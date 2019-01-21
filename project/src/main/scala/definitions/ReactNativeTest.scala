@@ -16,27 +16,7 @@ object ReactNativeTest extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Core Scala.js, React Native (react-native) testing utilities",
-      coverageExcludedPackages := "scommons.reactnative.test.raw",
-
-      npmDependencies in Compile ++= Seq(
-        "react" -> "16.6.3",
-        "react-dom" -> "16.6.3"
-      ),
-      npmResolutions in Compile := Map(
-        "react" -> "16.6.3",
-        "react-dom" -> "16.6.3"
-      ),
-      
-      npmResolutions in Test := Map(
-        "react" -> "16.6.3",
-        "react-dom" -> "16.6.3",
-        "react-test-renderer" -> "16.6.3"
-      ),
-      npmDependencies in Test ++= Seq(
-        "react-test-renderer" -> "16.6.3"
-      ),
-
-      version in webpack := "3.5.5"
+      coverageExcludedPackages := "scommons.reactnative.test.raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil
