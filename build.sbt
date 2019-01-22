@@ -1,5 +1,6 @@
 import definitions._
 import scommons.sbtplugin.project.CommonModule
+import scommons.sbtplugin.project.CommonModule.ideExcludedDirectories
 
 lazy val `scommons-react-native` = (project in file("."))
   .settings(CommonModule.settings: _*)
@@ -10,7 +11,7 @@ lazy val `scommons-react-native` = (project in file("."))
     publishM2 := ()
   )
   .settings(
-    ideaExcludeFolders += s"${baseDirectory.value}/docs/_site"
+    ideExcludedDirectories += baseDirectory.value / "docs" / "_site"
   )
   .aggregate(
   `scommons-react-native-core`,
