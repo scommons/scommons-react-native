@@ -8,15 +8,18 @@ lazy val `scommons-react-native` = (project in file("."))
   .settings(
     skip in publish := true,
     publish := (),
-    publishM2 := ()
+    publishM2 := (),
+    publishLocal := ()
   )
   .settings(
     ideExcludedDirectories += baseDirectory.value / "docs" / "_site"
   )
   .aggregate(
   `scommons-react-native-core`,
-  `scommons-react-native-test`
+  `scommons-react-native-test`,
+  `scommons-react-native-showcase`
 )
 
 lazy val `scommons-react-native-core` = ReactNativeCore.definition
 lazy val `scommons-react-native-test` = ReactNativeTest.definition
+lazy val `scommons-react-native-showcase` = ReactNativeShowcase.definition
