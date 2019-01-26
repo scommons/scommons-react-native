@@ -26,6 +26,10 @@ object ReactNativeShowcase extends ScalaJsModule {
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),
 
+      webpackConfigFile in Test := Some(
+        baseDirectory.value / "src" / "test" / "resources" / "test.webpack.config.js"
+      ),
+
       ideExcludedDirectories ++= {
         val base = baseDirectory.value
         List(
@@ -35,7 +39,8 @@ object ReactNativeShowcase extends ScalaJsModule {
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
-    ReactNativeCore.definition
+    ReactNativeCore.definition,
+    ReactNativeTest.definition % "test"
   )
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
