@@ -4,7 +4,6 @@ import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
 import scommons.sbtplugin.project.CommonModule.ideExcludedDirectories
-import scoverage.ScoverageKeys._
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
@@ -20,8 +19,6 @@ object ReactNativeShowcase extends ScalaJsModule {
       publish := (),
       publishM2 := (),
       publishLocal := (),
-
-      coverageEnabled := false,
 
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),
