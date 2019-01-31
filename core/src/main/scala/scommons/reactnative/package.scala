@@ -12,6 +12,10 @@ import scala.scalajs.js.annotation.JSImport
 package object reactnative {
 
   @js.native
+  @JSImport("react-native", "Image")
+  object NativeImage extends ReactClass
+
+  @js.native
   @JSImport("react-native", "ScrollView")
   object NativeScrollView extends ReactClass
 
@@ -32,6 +36,7 @@ package object reactnative {
   object NativeView extends ReactClass
 
   implicit class ReactNativeVirtualDOMElements(elements: VirtualDOMElements) {
+    lazy val Image: ReactClassElementSpec = elements(NativeImage)
     lazy val ScrollView: ReactClassElementSpec = elements(NativeScrollView)
     lazy val Text: ReactClassElementSpec = elements(NativeText)
     lazy val TextInput: ReactClassElementSpec = elements(NativeTextInput)
@@ -43,21 +48,23 @@ package object reactnative {
 
     import VirtualDOMAttributes.Type._
 
+    case class ImageSourceAttributeSpec(name: String) extends AttributeSpec {
+      def :=(value: ImageSource): Attribute[ImageSource] = Attribute(name, value, AS_IS)
+    }
+
     case class ReactNativeStyleAttributeSpec(name: String) extends AttributeSpec {
-      def :=(style: Style): Attribute[Style] = Attribute(name = name, value = style, AS_IS)
-      def :=(style: js.Array[Style]): Attribute[js.Array[Style]] = Attribute(name = name, value = style, AS_IS)
+      def :=(style: Style): Attribute[Style] = Attribute(name, style, AS_IS)
+      def :=(style: js.Array[Style]): Attribute[js.Array[Style]] = Attribute(name, style, AS_IS)
     }
 
     type OnChangeTextEvent = js.Function1[String, Unit]
     case class OnChangeTextEventAttribute(name: String) extends AttributeSpec {
-      def :=(onEvent: OnChangeTextEvent): Attribute[OnChangeTextEvent] =
-        Attribute(name = name, value = onEvent, AS_IS)
+      def :=(onEvent: OnChangeTextEvent): Attribute[OnChangeTextEvent] = Attribute(name, onEvent, AS_IS)
     }
     
     type OnPressEvent = js.Function0[Unit]
     case class OnPressEventAttribute(name: String) extends AttributeSpec {
-      def :=(onEvent: OnPressEvent): Attribute[OnPressEvent] =
-        Attribute(name = name, value = onEvent, AS_IS)
+      def :=(onEvent: OnPressEvent): Attribute[OnPressEvent] = Attribute(name, onEvent, AS_IS)
     }
   }
 
@@ -70,6 +77,7 @@ package object reactnative {
     lazy val placeholderTextColor = StringAttributeSpec("placeholderTextColor")
     lazy val selectionColor = StringAttributeSpec("selectionColor")
     lazy val underlayColor = StringAttributeSpec("underlayColor")
+    lazy val source = ImageSourceAttributeSpec("source")
     
     lazy val onChangeText = OnChangeTextEventAttribute("onChangeText")
     lazy val onPress = OnPressEventAttribute("onPress")

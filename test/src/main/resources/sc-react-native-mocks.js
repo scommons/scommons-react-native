@@ -5,6 +5,7 @@ module.exports = {
       return obj;
     }
   },
+  Image: 'Image',
   ScrollView: 'ScrollView',
   Text: 'Text',
   TextInput: 'TextInput',

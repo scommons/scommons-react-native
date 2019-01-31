@@ -4,7 +4,7 @@ import io.github.shogowada.scalajs.reactjs.React
 import io.github.shogowada.scalajs.reactjs.classes.ReactClass
 import scommons.react.UiComponent
 import scommons.reactnative._
-import scommons.reactnative.showcase.style.{BorderRadiusDemo, BorderStyleDemo}
+import scommons.reactnative.showcase.style.{BorderRadiusDemo, BorderStyleDemo, ProfileCard}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
@@ -17,11 +17,19 @@ object ShowcaseApp extends UiComponent[Unit] {
 
   protected def create(): ReactClass = React.createClass[PropsType, Unit] { _ =>
     <.View(^.rnStyle := styles.container)(
-      <.Text()("Border Styles:\n"),
-      <(BorderStyleDemo())()(),
-      
-      <.Text()("Border Radius Styles:\n"),
-      <(BorderRadiusDemo())()()
+      <.ScrollView(
+        ^.rnStyle := styles.content,
+        ^.keyboardShouldPersistTaps := "always"
+      )(
+        <.Text()("Border Styles:\n"),
+        <(BorderStyleDemo())()(),
+        
+        <.Text()("Border Radius Styles:\n"),
+        <(BorderRadiusDemo())()(),
+        
+        <.Text()("Profile Card:\n"),
+        <(ProfileCard())()()
+      )
     )
   }
 
@@ -31,8 +39,10 @@ object ShowcaseApp extends UiComponent[Unit] {
     val container: Style = new Style {
       override val flex = 1
       override val backgroundColor = "#f5f5f5"
-      //override val alignItems = "center"
-      //override val justifyContent = "center"
+    }
+    val content: Style = new Style {
+      override val flex = 1
+      override val paddingTop = 60
     }
   }
 }

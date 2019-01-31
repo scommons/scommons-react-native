@@ -16,7 +16,11 @@ object ReactNativeTest extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Core Scala.js, React Native (react-native) testing utilities",
-      coverageExcludedPackages := "scommons.reactnative.test.raw"
+      coverageExcludedPackages := "scommons.reactnative.test.raw",
+
+      npmDevDependencies in Compile ++= Seq(
+        "file-loader" -> "1.1.4"
+      )
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil

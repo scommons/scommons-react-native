@@ -61,7 +61,6 @@ object BorderRadiusDemo extends UiComponent[Unit] {
       override val flex = 1
       override val flexDirection = "row"
       override val flexWrap = "wrap"
-      override val marginTop = 75
     }
     val example: Style = new Style {
       override val width = 120

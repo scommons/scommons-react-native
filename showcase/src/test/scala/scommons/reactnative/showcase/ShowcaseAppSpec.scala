@@ -18,11 +18,19 @@ class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.Text()("Border Styles:\n"),
-        <(BorderStyleDemo())()(),
+        <.ScrollView(
+          ^.rnStyle := styles.content,
+          ^.keyboardShouldPersistTaps := "always"
+        )(
+          <.Text()("Border Styles:\n"),
+          <(BorderStyleDemo())()(),
+  
+          <.Text()("Border Radius Styles:\n"),
+          <(BorderRadiusDemo())()(),
 
-        <.Text()("Border Radius Styles:\n"),
-        <(BorderRadiusDemo())()()
+          <.Text()("Profile Card:\n"),
+          <(ProfileCard())()()
+        )
       )
     )
   }
