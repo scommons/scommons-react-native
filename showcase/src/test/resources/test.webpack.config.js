@@ -1,4 +1,4 @@
 
-const commonConfig = require("./sc-react-native-mocks.webpack.config.js")
+const commonConfig = require("./sc-react-native.webpack.config.js")
 
 module.exports = commonConfig

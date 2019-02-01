@@ -3,45 +3,19 @@ package scommons
 import io.github.shogowada.scalajs.reactjs.VirtualDOM
 import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
-import io.github.shogowada.scalajs.reactjs.classes.ReactClass
 import io.github.shogowada.statictags._
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
 
 package object reactnative {
 
-  @js.native
-  @JSImport("react-native", "Image")
-  object NativeImage extends ReactClass
-
-  @js.native
-  @JSImport("react-native", "ScrollView")
-  object NativeScrollView extends ReactClass
-
-  @js.native
-  @JSImport("react-native", "Text")
-  object NativeText extends ReactClass
-
-  @js.native
-  @JSImport("react-native", "TextInput")
-  object NativeTextInput extends ReactClass
-
-  @js.native
-  @JSImport("react-native", "TouchableHighlight")
-  object NativeTouchableHighlight extends ReactClass
-
-  @js.native
-  @JSImport("react-native", "View")
-  object NativeView extends ReactClass
-
   implicit class ReactNativeVirtualDOMElements(elements: VirtualDOMElements) {
-    lazy val Image: ReactClassElementSpec = elements(NativeImage)
-    lazy val ScrollView: ReactClassElementSpec = elements(NativeScrollView)
-    lazy val Text: ReactClassElementSpec = elements(NativeText)
-    lazy val TextInput: ReactClassElementSpec = elements(NativeTextInput)
-    lazy val TouchableHighlight: ReactClassElementSpec = elements(NativeTouchableHighlight)
-    lazy val View: ReactClassElementSpec = elements(NativeView)
+    lazy val Image: ReactClassElementSpec = elements(raw.Image)
+    lazy val ScrollView: ReactClassElementSpec = elements(raw.ScrollView)
+    lazy val Text: ReactClassElementSpec = elements(raw.Text)
+    lazy val TextInput: ReactClassElementSpec = elements(raw.TextInput)
+    lazy val TouchableHighlight: ReactClassElementSpec = elements(raw.TouchableHighlight)
+    lazy val View: ReactClassElementSpec = elements(raw.View)
   }
 
   object ReactNativeVirtualDOMAttributes {
