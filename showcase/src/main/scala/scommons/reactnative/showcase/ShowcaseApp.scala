@@ -4,7 +4,7 @@ import io.github.shogowada.scalajs.reactjs.React
 import io.github.shogowada.scalajs.reactjs.classes.ReactClass
 import scommons.react.UiComponent
 import scommons.reactnative._
-import scommons.reactnative.showcase.style.{BorderRadiusDemo, BorderStyleDemo, ProfileCard}
+import scommons.reactnative.showcase.style._
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
@@ -26,6 +26,12 @@ object ShowcaseApp extends UiComponent[Unit] {
         
         <.Text()("Border Radius Styles:\n"),
         <(BorderRadiusDemo())()(),
+        
+        <.Text()("Margin Styles:\n"),
+        <(MarginStyleDemo())()(),
+        
+        <.Text()("Padding Styles:\n"),
+        <(PaddingStyleDemo())()(),
         
         <.Text()("Profile Card:\n"),
         <(ProfileCard())()()

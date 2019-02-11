@@ -28,6 +28,12 @@ class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
           <.Text()("Border Radius Styles:\n"),
           <(BorderRadiusDemo())()(),
 
+          <.Text()("Margin Styles:\n"),
+          <(MarginStyleDemo())()(),
+
+          <.Text()("Padding Styles:\n"),
+          <(PaddingStyleDemo())()(),
+
           <.Text()("Profile Card:\n"),
           <(ProfileCard())()()
         )
