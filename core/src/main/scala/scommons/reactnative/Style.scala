@@ -45,6 +45,10 @@ trait Style extends js.Object {
   val shadowRadius: js.UndefOr[Int] = js.undefined
   val textAlign: js.UndefOr[String] = js.undefined
   val width: js.UndefOr[Int] = js.undefined
+  
+  val position: js.UndefOr[String] = js.undefined
+  val right: js.UndefOr[Int] = js.undefined
+  val bottom: js.UndefOr[Int] = js.undefined
 }
 
 object Style {

@@ -33,6 +33,9 @@ object ShowcaseApp extends UiComponent[Unit] {
         <.Text()("Padding Styles:\n"),
         <(PaddingStyleDemo())()(),
         
+        <.Text()("Position Styles:\n"),
+        <(PositionStyleDemo())()(),
+        
         <.Text()("Profile Card:\n"),
         <(ProfileCard())()()
       )
