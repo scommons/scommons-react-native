@@ -7,9 +7,9 @@ lazy val `scommons-react-native` = (project in file("."))
   .settings(ReactNativeModule.settings: _*)
   .settings(
     skip in publish := true,
-    publish := (),
-    publishM2 := (),
-    publishLocal := ()
+    publish := ((): Unit),
+    publishLocal := ((): Unit),
+    publishM2 := ((): Unit)
   )
   .settings(
     ideExcludedDirectories += baseDirectory.value / "docs" / "_site"

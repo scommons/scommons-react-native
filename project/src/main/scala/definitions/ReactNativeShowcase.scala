@@ -16,9 +16,9 @@ object ReactNativeShowcase extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       skip in publish := true,
-      publish := (),
-      publishM2 := (),
-      publishLocal := (),
+      publish := ((): Unit),
+      publishLocal := ((): Unit),
+      publishM2 := ((): Unit),
 
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),

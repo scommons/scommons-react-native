@@ -1,6 +1,6 @@
 package common
 
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
 import sbt._
 import scommons.sbtplugin.project.CommonLibs
 
