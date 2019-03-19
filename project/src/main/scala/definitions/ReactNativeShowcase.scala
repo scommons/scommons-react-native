@@ -3,7 +3,6 @@ package definitions
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
-import scommons.sbtplugin.project.CommonModule.ideExcludedDirectories
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
@@ -25,14 +24,7 @@ object ReactNativeShowcase extends ScalaJsModule {
 
       webpackConfigFile in Test := Some(
         baseDirectory.value / "src" / "test" / "resources" / "test.webpack.config.js"
-      ),
-
-      ideExcludedDirectories ++= {
-        val base = baseDirectory.value
-        List(
-          base / ".expo"
-        )
-      }
+      )
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
