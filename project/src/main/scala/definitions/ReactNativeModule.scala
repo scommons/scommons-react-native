@@ -3,6 +3,7 @@ package definitions
 import sbt.Keys._
 import sbt._
 import scommons.sbtplugin.project.CommonModule
+import xerial.sbt.Sonatype.autoImport._
 
 trait ReactNativeModule extends CommonModule {
 
@@ -22,6 +23,7 @@ object ReactNativeModule {
     //
     // publish/release related settings:
     //
+    sonatypeProfileName := "org.scommons",
     publishMavenStyle := true,
     publishArtifact in Test := false,
     publishTo := {
