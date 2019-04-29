@@ -27,6 +27,25 @@ the proper dependency resolver to your `build.sbt` settings:
 resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 ```
 
+### How to use it
+
+Note: Almost all examples are from a great book [React Native in Action](https://github.com/dabit3/react-native-in-action)
+
+* Demo Application
+  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ShowcaseAppSpec.scala)
+  * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
+
+* Example Components:
+  * Styling
+    * [Border Style](showcase/src/main/scala/scommons/reactnative/showcase/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/BorderStyleDemoSpec.scala)
+    * [Border Radius](showcase/src/main/scala/scommons/reactnative/showcase/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/BorderRadiusDemoSpec.scala)
+    * [Margin](showcase/src/main/scala/scommons/reactnative/showcase/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/MarginStyleDemoSpec.scala)
+    * [Padding](showcase/src/main/scala/scommons/reactnative/showcase/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PaddingStyleDemoSpec.scala)
+    * [Position](showcase/src/main/scala/scommons/reactnative/showcase/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PositionStyleDemoSpec.scala)
+    * [Images](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
+
+You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
+
 ### How to Build
 
 To build and run all the tests use the following command:
