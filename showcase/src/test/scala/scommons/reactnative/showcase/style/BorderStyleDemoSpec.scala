@@ -14,7 +14,7 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(Example)(^.rnStyle := style)(
+    val component = <(Example())(^.rnStyle := style)(
       <.Text()("borderWidth: 1")
     )
     
@@ -39,29 +39,29 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderWidth = 1
         })(
           <.Text()("borderWidth: 1")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderWidth = 3
           override val borderLeftWidth = 0
         })(
           <.Text()("borderWidth: 3, borderLeftWidth: 0")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderWidth = 3
           override val borderLeftColor = "red"
         })(
           <.Text()("borderWidth: 3, borderLeftColor: 'red'")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderLeftWidth = 3
         })(
           <.Text()("borderLeftWidth: 3")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderWidth = 1
           override val borderStyle = "dashed"
         })(

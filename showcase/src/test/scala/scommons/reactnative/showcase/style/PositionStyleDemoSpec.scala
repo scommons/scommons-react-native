@@ -14,7 +14,7 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(Example)(^.rnStyle := style)(
+    val component = <(Example())(^.rnStyle := style)(
       <.Text()("borderWidth: 1")
     )
     
@@ -34,7 +34,7 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(CenteredText)(^.rnStyle := style)(
+    val component = <(CenteredText())(^.rnStyle := style)(
       "Example 1:\n4 Rounded Corners"
     )
 
@@ -60,21 +60,21 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := styles.row)(
-          <(Example)()(
-            <(CenteredText)()("A")
+          <(Example())()(
+            <(CenteredText())()("A")
           ),
-          <(Example)()(
-            <(CenteredText)()("B"),
+          <(Example())()(
+            <(CenteredText())()("B"),
             <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-              <(CenteredText)()("E")
+              <(CenteredText())()("E")
             )
           ),
-          <(Example)()(
-            <(CenteredText)()("C")
+          <(Example())()(
+            <(CenteredText())()("C")
           )
         ),
-        <(Example)(^.rnStyle := styles.positionAbsolute)(
-          <(CenteredText)()("D")
+        <(Example())(^.rnStyle := styles.positionAbsolute)(
+          <(CenteredText())()("D")
         )
       )
     )

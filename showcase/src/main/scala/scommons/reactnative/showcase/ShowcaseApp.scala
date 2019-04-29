@@ -1,8 +1,6 @@
 package scommons.reactnative.showcase
 
-import io.github.shogowada.scalajs.reactjs.React
-import io.github.shogowada.scalajs.reactjs.classes.ReactClass
-import scommons.react.UiComponent
+import scommons.react._
 import scommons.reactnative._
 import scommons.reactnative.showcase.style._
 
@@ -10,12 +8,12 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 
 @JSExportTopLevel(name = "ShowcaseApp")
-object ShowcaseApp extends UiComponent[Unit] {
+object ShowcaseApp extends FunctionComponent[Unit] {
 
   @JSExport("apply")
   override def apply(): ReactClass = super.apply()
 
-  protected def create(): ReactClass = React.createClass[PropsType, Unit] { _ =>
+  protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := styles.container)(
       <.ScrollView(
         ^.rnStyle := styles.content,

@@ -14,7 +14,7 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(Example)(^.rnStyle := style)(
+    val component = <(Example())(^.rnStyle := style)(
       <.Text()("borderWidth: 1")
     )
     
@@ -34,7 +34,7 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(CenteredText)(^.rnStyle := style)(
+    val component = <(CenteredText())(^.rnStyle := style)(
       "Example 1:\n4 Rounded Corners"
     )
 
@@ -60,31 +60,31 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example)()(
-            <(CenteredText)()("A")
+          <(Example())()(
+            <(CenteredText())()("A")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example)(^.rnStyle := new Style {
+          <(Example())(^.rnStyle := new Style {
             override val marginTop = 50
           })(
-            <(CenteredText)()("B")
+            <(CenteredText())()("B")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example)(^.rnStyle := new Style {
+          <(Example())(^.rnStyle := new Style {
             override val marginTop = 50
             override val marginLeft = 10
           })(
-            <(CenteredText)()("C")
+            <(CenteredText())()("C")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example)(^.rnStyle := new Style {
+          <(Example())(^.rnStyle := new Style {
             override val marginLeft = -10
             override val marginTop = -10
           })(
-            <(CenteredText)()("D")
+            <(CenteredText())()("D")
           )
         )
       )

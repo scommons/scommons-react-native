@@ -14,7 +14,7 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(Example)(^.rnStyle := style)(
+    val component = <(Example())(^.rnStyle := style)(
       <.Text()("borderWidth: 1")
     )
 
@@ -34,7 +34,7 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     val style = new Style {
       override val borderWidth = 1
     }
-    val component = <(CenteredText)(^.rnStyle := style)(
+    val component = <(CenteredText())(^.rnStyle := style)(
       "Example 1:\n4 Rounded Corners"
     )
 
@@ -59,27 +59,27 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderRadius = 20
         })(
-          <(CenteredText)()("Example 1:\n4 Rounded Corners")
+          <(CenteredText())()("Example 1:\n4 Rounded Corners")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderTopRightRadius = 60
           override val borderBottomRightRadius = 60
         })(
-          <(CenteredText)()("Example 2:\nD Shape")
+          <(CenteredText())()("Example 2:\nD Shape")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderTopLeftRadius = 30
           override val borderBottomRightRadius = 30
         })(
-          <(CenteredText)()("Example 3:\nLeaf Shape")
+          <(CenteredText())()("Example 3:\nLeaf Shape")
         ),
-        <(Example)(^.rnStyle := new Style {
+        <(Example())(^.rnStyle := new Style {
           override val borderRadius = 60
         })(
-          <(CenteredText)()("Example 4:\nCircle")
+          <(CenteredText())()("Example 4:\nCircle")
         )
       )
     )

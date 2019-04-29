@@ -1,6 +1,5 @@
 package scommons
 
-import io.github.shogowada.scalajs.reactjs.VirtualDOM
 import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
@@ -56,7 +55,4 @@ package object reactnative {
     lazy val onChangeText = OnChangeTextEventAttribute("onChangeText")
     lazy val onPress = OnPressEventAttribute("onPress")
   }
-
-  lazy val < : VirtualDOM.VirtualDOMElements = VirtualDOM.<
-  lazy val ^ : VirtualDOM.VirtualDOMAttributes = VirtualDOM.^
 }

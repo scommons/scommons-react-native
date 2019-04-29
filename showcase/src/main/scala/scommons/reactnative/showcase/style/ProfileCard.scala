@@ -1,15 +1,13 @@
 package scommons.reactnative.showcase.style
 
-import io.github.shogowada.scalajs.reactjs.React
-import io.github.shogowada.scalajs.reactjs.classes.ReactClass
-import scommons.react.UiComponent
+import scommons.react._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
-object ProfileCard extends UiComponent[Unit] {
+object ProfileCard extends FunctionComponent[Unit] {
 
-  protected def create(): ReactClass = React.createClass[PropsType, Unit] { _ =>
+  protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := styles.container)(
       <.View(^.rnStyle := styles.cardContainer)(
         <.View(^.rnStyle := styles.cardImageContainer)(

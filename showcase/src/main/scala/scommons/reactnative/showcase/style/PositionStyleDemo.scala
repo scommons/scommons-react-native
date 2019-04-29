@@ -1,52 +1,56 @@
 package scommons.reactnative.showcase.style
 
-import io.github.shogowada.scalajs.reactjs.React
-import io.github.shogowada.scalajs.reactjs.classes.ReactClass
-import scommons.react.UiComponent
+import scommons.react._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
-object PositionStyleDemo extends UiComponent[Unit] {
+object PositionStyleDemo extends FunctionComponent[Unit] {
 
-  protected def create(): ReactClass = React.createClass[PropsType, Unit] { _ =>
+  protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := styles.container)(
       <.View(^.rnStyle := styles.row)(
-        <(Example)()(
-          <(CenteredText)()("A")
+        <(Example())()(
+          <(CenteredText())()("A")
         ),
-        <(Example)()(
-          <(CenteredText)()("B"),
+        <(Example())()(
+          <(CenteredText())()("B"),
           <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-            <(CenteredText)()("E")
+            <(CenteredText())()("E")
           )
         ),
-        <(Example)()(
-          <(CenteredText)()("C")
+        <(Example())()(
+          <(CenteredText())()("C")
         )
       ),
-      <(Example)(^.rnStyle := styles.positionAbsolute)(
-        <(CenteredText)()("D")
+      <(Example())(^.rnStyle := styles.positionAbsolute)(
+        <(CenteredText())()("D")
       )
     )
   }
 
-  private[style] val Example: ReactClass = React.createClass[PropsType, Unit] { self =>
-    <.View(^.rnStyle := js.Array(
-      styles.example,
-      self.props.native.style.asInstanceOf[Style]
-    ))(
-      self.props.children
-    )
+  private[style] val Example = new FunctionComponent[Unit] {
+
+    protected def render(props: Props): ReactElement = {
+      <.View(^.rnStyle := js.Array(
+        styles.example,
+        props.native.style.asInstanceOf[Style]
+      ))(
+        props.children
+      )
+    }
   }
 
-  private[style] val CenteredText: ReactClass = React.createClass[PropsType, Unit] { self =>
-    <.Text(^.rnStyle := js.Array(
-      styles.centeredText,
-      self.props.native.style.asInstanceOf[Style]
-    ))(
-      self.props.children
-    )
+  private[style] val CenteredText = new FunctionComponent[Unit] {
+
+    protected def render(props: Props): ReactElement = {
+      <.Text(^.rnStyle := js.Array(
+        styles.centeredText,
+        props.native.style.asInstanceOf[Style]
+      ))(
+        props.children
+      )
+    }
   }
 
   private[style] lazy val styles = StyleSheet.create(Styles)
