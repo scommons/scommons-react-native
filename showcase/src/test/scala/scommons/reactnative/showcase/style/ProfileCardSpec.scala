@@ -20,6 +20,23 @@ class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
         <.View(^.rnStyle := styles.cardContainer)(
           <.View(^.rnStyle := styles.cardImageContainer)(
             <.Image(^.rnStyle := styles.cardImage, ^.source := StyleImages.User)()
+          ),
+          <.View()(
+            <.Text(^.rnStyle := styles.cardName)(
+              "John Doe"
+            )
+          ),
+          <.View(^.rnStyle := styles.cardOccupationContainer)(
+            <.Text(^.rnStyle := styles.cardOccupation)(
+              "React Native Developer"
+            )
+          ),
+          <.View()(
+            <.Text(^.rnStyle := styles.cardDescription)(
+              "John is a really great JavaScript developer. He" +
+                " loves using JS to build React Native applications" +
+                " for iOS and Android."
+            )
           )
         )
       )

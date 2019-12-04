@@ -10,6 +10,7 @@ trait Style extends js.Object {
   val alignSelf: js.UndefOr[String] = js.undefined
   val backgroundColor: js.UndefOr[String] = js.undefined
   val borderBottomRightRadius: js.UndefOr[Int] = js.undefined
+  val borderBottomWidth: js.UndefOr[Int] = js.undefined
   val borderColor: js.UndefOr[String] = js.undefined
   val borderLeftColor: js.UndefOr[String] = js.undefined
   val borderLeftWidth: js.UndefOr[Int] = js.undefined
