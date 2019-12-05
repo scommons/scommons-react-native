@@ -5,6 +5,11 @@ module.exports = {
       return obj;
     }
   },
+  
+  Platform: {
+    OS: "ios"
+  },
+  
   Image: 'Image',
   ScrollView: 'ScrollView',
   Text: 'Text',

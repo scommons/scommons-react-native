@@ -15,6 +15,13 @@ package object raw {
   }
   
   @js.native
+  @JSImport("react-native", "Platform")
+  object Platform extends js.Object {
+
+    val OS: String = js.native
+  }
+  
+  @js.native
   @JSImport("react-native", "Image") object Image extends ReactClass
 
   @js.native

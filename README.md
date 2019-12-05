@@ -42,7 +42,8 @@ Note: Almost all examples are from a great book [React Native in Action](https:/
     * [Margin](showcase/src/main/scala/scommons/reactnative/showcase/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/MarginStyleDemoSpec.scala)
     * [Padding](showcase/src/main/scala/scommons/reactnative/showcase/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PaddingStyleDemoSpec.scala)
     * [Position](showcase/src/main/scala/scommons/reactnative/showcase/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PositionStyleDemoSpec.scala)
-    * [Images](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
+    * [Platform Specific](showcase/src/main/scala/scommons/reactnative/showcase/style/PlatformDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PlatformDemoSpec.scala)
+    * [Images (ProfileCard)](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
 

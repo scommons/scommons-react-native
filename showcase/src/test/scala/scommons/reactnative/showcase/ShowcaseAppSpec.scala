@@ -37,6 +37,9 @@ class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
           <.Text()("Position Styles:\n"),
           <(PositionStyleDemo())()(),
 
+          <.Text()(s"Platform:\n"),
+          <(PlatformDemo())()(),
+
           <.Text()("Profile Card:\n"),
           <(ProfileCard())()()
         )

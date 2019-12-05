@@ -33,6 +33,9 @@ object ShowcaseApp extends FunctionComponent[Unit] {
         
         <.Text()("Position Styles:\n"),
         <(PositionStyleDemo())()(),
+
+        <.Text()(s"Platform:\n"),
+        <(PlatformDemo())()(),
         
         <.Text()("Profile Card:\n"),
         <(ProfileCard())()()
