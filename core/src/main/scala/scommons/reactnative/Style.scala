@@ -23,11 +23,6 @@ trait Style extends js.Object {
   val borderTopWidth: js.UndefOr[Int] = js.undefined
   val borderWidth: js.UndefOr[Int] = js.undefined
   val color: js.UndefOr[String] = js.undefined
-  val flex: js.UndefOr[Int] = js.undefined
-  val flexDirection: js.UndefOr[String] = js.undefined
-  val flexWrap: js.UndefOr[String] = js.undefined
-  val fontSize: js.UndefOr[Int] = js.undefined
-  val fontWeight: js.UndefOr[String] = js.undefined
   val height: js.UndefOr[Int] = js.undefined
   val justifyContent: js.UndefOr[String] = js.undefined
   val margin: js.UndefOr[Int] = js.undefined

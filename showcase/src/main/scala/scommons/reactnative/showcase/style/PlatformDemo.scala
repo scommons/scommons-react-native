@@ -18,7 +18,7 @@ object PlatformDemo extends FunctionComponent[Unit] {
   private[style] lazy val styles = StyleSheet.create(Styles)
   
   private[style] object Styles extends js.Object {
-    val container: Style = new Style {
+    val container: Style = new ViewStyle {
       override val marginLeft = 40
       override val marginBottom = 20
     }

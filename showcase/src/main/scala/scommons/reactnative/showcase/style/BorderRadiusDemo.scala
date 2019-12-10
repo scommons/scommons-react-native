@@ -61,7 +61,7 @@ object BorderRadiusDemo extends FunctionComponent[Unit] {
   private[style] lazy val styles = StyleSheet.create(Styles)
   
   private[style] object Styles extends js.Object {
-    val container: Style = new Style {
+    val container: Style = new ViewStyle {
       override val flex = 1
       override val flexDirection = "row"
       override val flexWrap = "wrap"
