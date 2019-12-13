@@ -36,9 +36,9 @@ object ProfileCard extends FunctionComponent[Unit] {
 
   private val profileCardColor = "dodgerblue"
 
-  private[style] lazy val styles = StyleSheet.create(Styles)
+  private[style] lazy val styles = StyleSheet.create(new Styles)
   
-  private[style] object Styles extends js.Object {
+  private[style] class Styles extends js.Object {
     val container: Style = new ViewStyle {
       override val flex = 1
       override val justifyContent = "center"
@@ -71,6 +71,8 @@ object ProfileCard extends FunctionComponent[Unit] {
     }
     val cardName: Style = new TextStyle {
       override val color = "white"
+      override val fontWeight = "bold"
+      override val fontSize = 24
       override val marginTop = 30
     }
     val cardOccupationContainer: Style = new ViewStyle {
@@ -78,10 +80,12 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val borderBottomWidth = 3
     }
     val cardOccupation: Style = new TextStyle {
+      override val fontWeight = "bold"
       override val marginTop = 10
       override val marginBottom = 10
     }
     val cardDescription: Style = new TextStyle {
+      override val fontStyle = "italic"
       override val marginTop = 10
       override val marginRight = 40
       override val marginLeft = 40
