@@ -81,7 +81,7 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
       override val justifyContent = "center"
       override val backgroundColor = "lightgrey"
     }
-    val centeredText: Style = new ViewStyle {
+    val centeredText: Style = new TextStyle {
       override val textAlign = "center"
       override val margin = 10
     }

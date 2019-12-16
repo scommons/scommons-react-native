@@ -75,7 +75,7 @@ object BorderRadiusDemo extends FunctionComponent[Unit] {
       override val borderWidth = 2
       override val justifyContent = "center"
     }
-    val centeredText: Style = new Style {
+    val centeredText: Style = new TextStyle {
       override val textAlign = "center"
       override val margin = 10
     }

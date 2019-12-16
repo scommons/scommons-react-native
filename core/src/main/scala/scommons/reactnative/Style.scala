@@ -1,7 +1,5 @@
 package scommons.reactnative
 
-import scommons.reactnative.Style._
-
 import scala.scalajs.js
 
 trait Style extends js.Object {
@@ -36,10 +34,9 @@ trait Style extends js.Object {
   val paddingRight: js.UndefOr[Int] = js.undefined
   val paddingTop: js.UndefOr[Int] = js.undefined
   val shadowColor: js.UndefOr[String] = js.undefined
-  val shadowOffset: js.UndefOr[ShadowOffset] = js.undefined
+  val shadowOffset: js.UndefOr[Style.ShadowOffset] = js.undefined
   val shadowOpacity: js.UndefOr[Double] = js.undefined
   val shadowRadius: js.UndefOr[Int] = js.undefined
-  val textAlign: js.UndefOr[String] = js.undefined
   val width: js.UndefOr[Int] = js.undefined
   
   val position: js.UndefOr[String] = js.undefined

@@ -43,6 +43,7 @@ Note: Almost all examples are from a great book [React Native in Action](https:/
     * [Padding](showcase/src/main/scala/scommons/reactnative/showcase/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PaddingStyleDemoSpec.scala)
     * [Position](showcase/src/main/scala/scommons/reactnative/showcase/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PositionStyleDemoSpec.scala)
     * [Platform Specific](showcase/src/main/scala/scommons/reactnative/showcase/style/PlatformDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PlatformDemoSpec.scala)
+    * [Text](showcase/src/main/scala/scommons/reactnative/showcase/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/TextStyleDemoSpec.scala)
     * [Images (ProfileCard)](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)

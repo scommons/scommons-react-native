@@ -88,7 +88,7 @@ object MarginStyleDemo extends FunctionComponent[Unit] {
       override val borderWidth = 1
       override val justifyContent = "center"
     }
-    val centeredText: Style = new ViewStyle {
+    val centeredText: Style = new TextStyle {
       override val textAlign = "center"
       override val margin = 10
     }
