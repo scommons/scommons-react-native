@@ -46,9 +46,8 @@ object ShowcaseApp extends FunctionComponent[Unit] {
     )
   }
 
-  private[showcase] lazy val styles = StyleSheet.create(Styles)
-  
-  private[showcase] object Styles extends js.Object {
+  private[showcase] lazy val styles = StyleSheet.create(new Styles)
+  private[showcase] class Styles extends js.Object {
     val container: Style = new ViewStyle {
       override val flex = 1
       override val backgroundColor = "#f5f5f5"

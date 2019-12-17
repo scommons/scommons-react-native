@@ -5,6 +5,8 @@ import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative._
 import scommons.reactnative.showcase.style.ProfileCard._
 
+import scala.scalajs.js
+
 class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render component" in {
@@ -17,8 +19,8 @@ class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.View(^.rnStyle := styles.cardContainer)(
-          <.View(^.rnStyle := styles.cardImageContainer)(
+        <.View(^.rnStyle := js.Array(styles.cardContainer, styles.cardContainerShadow))(
+          <.View(^.rnStyle := js.Array(styles.cardImageContainer, styles.cardImageContainerShadow))(
             <.Image(^.rnStyle := styles.cardImage, ^.source := StyleImages.User)()
           ),
           <.View()(

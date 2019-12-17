@@ -9,8 +9,8 @@ object ProfileCard extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := styles.container)(
-      <.View(^.rnStyle := styles.cardContainer)(
-        <.View(^.rnStyle := styles.cardImageContainer)(
+      <.View(^.rnStyle := js.Array(styles.cardContainer, styles.cardContainerShadow))(
+        <.View(^.rnStyle := js.Array(styles.cardImageContainer, styles.cardImageContainerShadow))(
           <.Image(^.rnStyle := styles.cardImage, ^.source := StyleImages.User)()
         ),
         <.View()(
@@ -37,7 +37,6 @@ object ProfileCard extends FunctionComponent[Unit] {
   private val profileCardColor = "dodgerblue"
 
   private[style] lazy val styles = StyleSheet.create(new Styles)
-  
   private[style] class Styles extends js.Object {
     val container: Style = new ViewStyle {
       override val flex = 1
@@ -54,6 +53,18 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val width = 300
       override val height = 400
     }
+    val cardContainerShadow: Style = Platform.select {
+      case Platform.ios => new ViewStyle {
+        override val shadowColor = "black"
+        override val shadowOffset = new Style.ShadowOffset {
+          override val height = 10
+        }
+        override val shadowOpacity = 1
+      }
+      case Platform.android => new ViewStyle {
+        override val elevation = 15
+      }
+    }
     val cardImageContainer: Style = new ViewStyle {
       override val alignItems = "center"
       override val backgroundColor = "white"
@@ -65,6 +76,20 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val marginTop = 30
       override val paddingTop = 15
     }
+    val cardImageContainerShadow: Style = Platform.select {
+      case Platform.ios => new ViewStyle {
+        override val shadowColor = "black"
+        override val shadowOffset = new Style.ShadowOffset {
+          override val height = 10
+        }
+        override val shadowOpacity = 1
+      }
+      case Platform.android => new ViewStyle {
+        override val borderWidth = 3
+        override val borderColor = "black"
+        override val elevation = 15
+      }
+    }
     val cardImage: Style = new Style {
       override val width = 80
       override val height = 80
@@ -74,6 +99,12 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val fontWeight = "bold"
       override val fontSize = 24
       override val marginTop = 30
+      override val textShadowColor = "black"
+      override val textShadowOffset = new Style.ShadowOffset {
+        override val height = 2
+        override val width = 2
+      }
+      override val textShadowRadius = 3
     }
     val cardOccupationContainer: Style = new ViewStyle {
       override val borderColor = "black"
