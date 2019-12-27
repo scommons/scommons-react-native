@@ -53,9 +53,12 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
     }
   }
 
-  private[style] lazy val styles = StyleSheet.create(Styles)
-  
-  private[style] object Styles extends js.Object {
+  private[style] lazy val styles = StyleSheet.create(new Styles)
+  private[style] class Styles extends js.Object {
+    import Style._
+    import ViewStyle._
+    import TextStyle._
+    
     val container: Style = new ViewStyle {
       override val width = 300
       override val height = 300
@@ -65,28 +68,28 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
     }
     val row: Style = new ViewStyle {
       override val flex = 1
-      override val flexDirection = "row"
+      override val flexDirection = FlexDirection.row
     }
     val example: Style = new ViewStyle {
       override val width = 100
       override val height = 100
-      override val backgroundColor = "grey"
+      override val backgroundColor = Color.grey
       override val borderWidth = 1
-      override val justifyContent = "center"
+      override val justifyContent = JustifyContent.center
     }
     val tinyExample: Style = new ViewStyle {
       override val width = 30
       override val height = 30
       override val borderWidth = 1
-      override val justifyContent = "center"
-      override val backgroundColor = "lightgrey"
+      override val justifyContent = JustifyContent.center
+      override val backgroundColor = Color.lightgrey
     }
     val centeredText: Style = new TextStyle {
-      override val textAlign = "center"
+      override val textAlign = TextAlign.center
       override val margin = 10
     }
     val positionAbsolute: Style = new ViewStyle {
-      override val position = "absolute"
+      override val position = Position.absolute
       override val right = 0
       override val bottom = 0
     }

@@ -64,15 +64,18 @@ object PaddingStyleDemo extends FunctionComponent[Unit] {
     }
   }
 
-  private[style] lazy val styles = StyleSheet.create(Styles)
-  
-  private[style] object Styles extends js.Object {
+  private[style] lazy val styles = StyleSheet.create(new Styles)
+  private[style] class Styles extends js.Object {
+    import Style._
+    import ViewStyle._
+    import TextStyle._
+    
     val container: Style = new ViewStyle {
-      override val alignItems = "center"
+      override val alignItems = AlignItems.center
       override val flex = 1
-      override val flexDirection = "row"
-      override val flexWrap = "wrap"
-      override val justifyContent = "center"
+      override val flexDirection = FlexDirection.row
+      override val flexWrap = FlexWrap.wrap
+      override val justifyContent = JustifyContent.center
     }
     val exampleContainer: Style = new ViewStyle {
       override val borderWidth = 1
@@ -84,15 +87,15 @@ object PaddingStyleDemo extends FunctionComponent[Unit] {
     val example: Style = new ViewStyle {
       override val width = 50
       override val height = 50
-      override val backgroundColor = "grey"
+      override val backgroundColor = Color.grey
       override val borderWidth = 1
-      override val justifyContent = "center"
+      override val justifyContent = JustifyContent.center
     }
     val centeredText: Style = new TextStyle {
-      override val textAlign = "center"
+      override val textAlign = TextAlign.center
       override val margin = 10
       override val borderWidth = 1
-      override val backgroundColor = "lightgrey"
+      override val backgroundColor = Color.lightgrey
     }
   }
 }

@@ -8,6 +8,8 @@ import scala.scalajs.js
 object BorderStyleDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    import Style._
+    
     <.View(^.rnStyle := styles.container)(
       <(Example())(^.rnStyle := new Style {
         override val borderWidth = 1
@@ -22,7 +24,7 @@ object BorderStyleDemo extends FunctionComponent[Unit] {
       ),
       <(Example())(^.rnStyle := new Style {
         override val borderWidth = 3
-        override val borderLeftColor = "red"
+        override val borderLeftColor = Color.red
       })(
         <.Text()("borderWidth: 3, borderLeftColor: 'red'")
       ),
@@ -33,7 +35,7 @@ object BorderStyleDemo extends FunctionComponent[Unit] {
       ),
       <(Example())(^.rnStyle := new Style {
         override val borderWidth = 1
-        override val borderStyle = "dashed"
+        override val borderStyle = BorderStyle.dashed
       })(
         <.Text()("borderWidth: 1, borderStyle: 'dashed'")
       )
@@ -52,13 +54,14 @@ object BorderStyleDemo extends FunctionComponent[Unit] {
     }
   }
 
-  private[style] lazy val styles = StyleSheet.create(Styles)
-  
-  private[style] object Styles extends js.Object {
+  private[style] lazy val styles = StyleSheet.create(new Styles)
+  private[style] class Styles extends js.Object {
+    import ViewStyle._
+    
     val container: Style = new ViewStyle {
       override val flex = 1
-      override val justifyContent = "center"
-      override val alignItems = "center"
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
     }
     val example: Style = new ViewStyle {
       override val marginBottom = 15

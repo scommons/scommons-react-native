@@ -2,6 +2,7 @@ package scommons.reactnative.showcase.style
 
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
+import scommons.reactnative.Style._
 import scommons.reactnative._
 import scommons.reactnative.showcase.style.BorderStyleDemo._
 
@@ -52,7 +53,7 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
         ),
         <(Example())(^.rnStyle := new Style {
           override val borderWidth = 3
-          override val borderLeftColor = "red"
+          override val borderLeftColor = Color.red
         })(
           <.Text()("borderWidth: 3, borderLeftColor: 'red'")
         ),
@@ -63,7 +64,7 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
         ),
         <(Example())(^.rnStyle := new Style {
           override val borderWidth = 1
-          override val borderStyle = "dashed"
+          override val borderStyle = BorderStyle.dashed
         })(
           <.Text()("borderWidth: 1, borderStyle: 'dashed'")
         )

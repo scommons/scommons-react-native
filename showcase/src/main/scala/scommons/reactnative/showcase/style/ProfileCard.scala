@@ -34,20 +34,25 @@ object ProfileCard extends FunctionComponent[Unit] {
     )
   }
 
-  private val profileCardColor = "dodgerblue"
+  import Style._
+
+  private val profileCardColor = Color.dodgerblue
 
   private[style] lazy val styles = StyleSheet.create(new Styles)
   private[style] class Styles extends js.Object {
+    import TextStyle._
+    import ViewStyle._
+    
     val container: Style = new ViewStyle {
       override val flex = 1
-      override val justifyContent = "center"
-      override val alignItems = "center"
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
     }
     val cardContainer: Style = new ViewStyle {
-      override val alignItems = "center"
-      override val borderColor = "black"
+      override val alignItems = AlignItems.center
+      override val borderColor = Color.black
       override val borderWidth = 3
-      override val borderStyle = "solid"
+      override val borderStyle = BorderStyle.solid
       override val borderRadius = 20
       override val backgroundColor = profileCardColor
       override val width = 300
@@ -55,8 +60,8 @@ object ProfileCard extends FunctionComponent[Unit] {
     }
     val cardContainerShadow: Style = Platform.select {
       case Platform.ios => new ViewStyle {
-        override val shadowColor = "black"
-        override val shadowOffset = new Style.ShadowOffset {
+        override val shadowColor = Color.black
+        override val shadowOffset = new ShadowOffset {
           override val height = 10
         }
         override val shadowOpacity = 1
@@ -66,10 +71,10 @@ object ProfileCard extends FunctionComponent[Unit] {
       }
     }
     val cardImageContainer: Style = new ViewStyle {
-      override val alignItems = "center"
-      override val backgroundColor = "white"
+      override val alignItems = AlignItems.center
+      override val backgroundColor = Color.white
       override val borderWidth = 3
-      override val borderColor = "black"
+      override val borderColor = Color.black
       override val width = 120
       override val height = 120
       override val borderRadius = 60
@@ -78,15 +83,15 @@ object ProfileCard extends FunctionComponent[Unit] {
     }
     val cardImageContainerShadow: Style = Platform.select {
       case Platform.ios => new ViewStyle {
-        override val shadowColor = "black"
-        override val shadowOffset = new Style.ShadowOffset {
+        override val shadowColor = Color.black
+        override val shadowOffset = new ShadowOffset {
           override val height = 10
         }
         override val shadowOpacity = 1
       }
       case Platform.android => new ViewStyle {
         override val borderWidth = 3
-        override val borderColor = "black"
+        override val borderColor = Color.black
         override val elevation = 15
       }
     }
@@ -95,28 +100,28 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val height = 80
     }
     val cardName: Style = new TextStyle {
-      override val color = "white"
-      override val fontWeight = "bold"
+      override val color = Color.white
+      override val fontWeight = FontWeight.bold
       override val fontSize = 24
       override val marginTop = 30
-      override val textShadowColor = "black"
-      override val textShadowOffset = new Style.ShadowOffset {
+      override val textShadowColor = Color.black
+      override val textShadowOffset = new ShadowOffset {
         override val height = 2
         override val width = 2
       }
       override val textShadowRadius = 3
     }
     val cardOccupationContainer: Style = new ViewStyle {
-      override val borderColor = "black"
+      override val borderColor = Color.black
       override val borderBottomWidth = 3
     }
     val cardOccupation: Style = new TextStyle {
-      override val fontWeight = "bold"
+      override val fontWeight = FontWeight.bold
       override val marginTop = 10
       override val marginBottom = 10
     }
     val cardDescription: Style = new TextStyle {
-      override val fontStyle = "italic"
+      override val fontStyle = FontStyle.italic
       override val marginTop = 10
       override val marginRight = 40
       override val marginLeft = 40

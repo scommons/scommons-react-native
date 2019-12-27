@@ -58,25 +58,28 @@ object BorderRadiusDemo extends FunctionComponent[Unit] {
     }
   }
 
-  private[style] lazy val styles = StyleSheet.create(Styles)
-  
-  private[style] object Styles extends js.Object {
+  private[style] lazy val styles = StyleSheet.create(new Styles)
+  private[style] class Styles extends js.Object {
+    import Style._
+    import TextStyle._
+    import ViewStyle._
+    
     val container: Style = new ViewStyle {
       override val flex = 1
-      override val flexDirection = "row"
-      override val flexWrap = "wrap"
+      override val flexDirection = FlexDirection.row
+      override val flexWrap = FlexWrap.wrap
     }
-    val example: Style = new Style {
+    val example: Style = new ViewStyle {
       override val width = 120
       override val height = 120
       override val marginLeft = 20
       override val marginBottom = 20
-      override val backgroundColor = "grey"
+      override val backgroundColor = Color.grey
       override val borderWidth = 2
-      override val justifyContent = "center"
+      override val justifyContent = JustifyContent.center
     }
     val centeredText: Style = new TextStyle {
-      override val textAlign = "center"
+      override val textAlign = TextAlign.center
       override val margin = 10
     }
   }
