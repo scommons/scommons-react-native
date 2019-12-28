@@ -15,5 +15,6 @@ module.exports = {
   Text: 'Text',
   TextInput: 'TextInput',
   TouchableHighlight: 'TouchableHighlight',
+  TouchableOpacity: 'TouchableOpacity',
   View: 'View'
 }

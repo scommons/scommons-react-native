@@ -37,6 +37,9 @@ package object raw {
   @JSImport("react-native", "TouchableHighlight") object TouchableHighlight extends ReactClass
 
   @js.native
+  @JSImport("react-native", "TouchableOpacity") object TouchableOpacity extends ReactClass
+
+  @js.native
   @JSImport("react-native", "View") object View extends ReactClass
 
 }

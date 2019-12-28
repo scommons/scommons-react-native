@@ -2,6 +2,7 @@ package scommons.reactnative.showcase
 
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
+import scommons.reactnative.ScrollView._
 import scommons.reactnative._
 import scommons.reactnative.showcase.ShowcaseApp._
 import scommons.reactnative.showcase.style._
@@ -20,7 +21,7 @@ class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
       <.View(^.rnStyle := styles.container)(
         <.ScrollView(
           ^.rnStyle := styles.content,
-          ^.keyboardShouldPersistTaps := "always"
+          ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.always
         )(
           <.Text()("Border Styles:\n"),
           <(BorderStyleDemo())()(),

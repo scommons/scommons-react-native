@@ -1,6 +1,7 @@
 package scommons.reactnative.showcase
 
 import scommons.react._
+import scommons.reactnative.ScrollView._
 import scommons.reactnative._
 import scommons.reactnative.showcase.style._
 
@@ -17,7 +18,7 @@ object ShowcaseApp extends FunctionComponent[Unit] {
     <.View(^.rnStyle := styles.container)(
       <.ScrollView(
         ^.rnStyle := styles.content,
-        ^.keyboardShouldPersistTaps := "always"
+        ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.always
       )(
         <.Text()("Border Styles:\n"),
         <(BorderStyleDemo())()(),
