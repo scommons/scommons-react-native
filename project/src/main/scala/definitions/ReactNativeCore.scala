@@ -16,7 +16,8 @@ object ReactNativeCore extends ScalaJsModule {
       description := "Scala.js facades for React Native (react-native) utilities and components",
       coverageExcludedPackages :=
         "scommons.reactnative.raw" +
-        ";scommons.reactnative.Style"
+        ";scommons.reactnative.*Style" +
+        ";scommons.reactnative.Style.Color"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil

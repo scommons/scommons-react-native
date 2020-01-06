@@ -5,7 +5,7 @@
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.17.svg)](https://www.scala-js.org)
 
 ## Scala Commons React Native
-Scala.js facades for core React Native (react-native) utilities and components.
+Scala.js facades for core [react-native](https://facebook.github.io/react-native/docs/getting-started) utilities and components.
 
 It uses excellent [scalajs-reactjs](https://github.com/shogowada/scalajs-reactjs) binding/facade library.
 
@@ -29,11 +29,23 @@ resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositor
 
 ### How to use it
 
-Note: Almost all examples are from a great book [React Native in Action](https://github.com/dabit3/react-native-in-action)
+Note: Almost all examples are from an excellent book [React Native in Action](https://github.com/dabit3/react-native-in-action)
 
 * Demo Application
-  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ShowcaseAppSpec.scala)
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
+  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ShowcaseAppSpec.scala)
+
+* react-native [Components](https://facebook.github.io/react-native/docs/activityindicator):
+  * [Image](showcase/src/main/scala/scommons/reactnative/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ImageDemoSpec.scala)
+  * [ScrollView](showcase/src/main/scala/scommons/reactnative/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ScrollViewDemoSpec.scala)
+  * [TextInput](showcase/src/main/scala/scommons/reactnative/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TextInputDemoSpec.scala)
+  * [TouchableHighlight](showcase/src/main/scala/scommons/reactnative/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TouchableHighlightDemoSpec.scala)
+
+* react-native [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
+  * [Platform](showcase/src/main/scala/scommons/reactnative/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/PlatformDemoSpec.scala)
+  * [Style](showcase/src/main/scala/scommons/reactnative/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/StyleDemoSpec.scala)
+  * [TextStyle](showcase/src/main/scala/scommons/reactnative/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TextStyleDemoSpec.scala)
+  * [ViewStyle](showcase/src/main/scala/scommons/reactnative/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ViewStyleDemoSpec.scala)
 
 * Example Components:
   * Styling
@@ -42,9 +54,8 @@ Note: Almost all examples are from a great book [React Native in Action](https:/
     * [Margin](showcase/src/main/scala/scommons/reactnative/showcase/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/MarginStyleDemoSpec.scala)
     * [Padding](showcase/src/main/scala/scommons/reactnative/showcase/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PaddingStyleDemoSpec.scala)
     * [Position](showcase/src/main/scala/scommons/reactnative/showcase/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PositionStyleDemoSpec.scala)
-    * [Platform Specific](showcase/src/main/scala/scommons/reactnative/showcase/style/PlatformDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PlatformDemoSpec.scala)
-    * [Text](showcase/src/main/scala/scommons/reactnative/showcase/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/TextStyleDemoSpec.scala)
-    * [Images (ProfileCard)](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
+    * [TextStyle](showcase/src/main/scala/scommons/reactnative/showcase/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/TextStyleDemoSpec.scala)
+    * [ProfileCard (with Images)](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
 
@@ -52,7 +63,7 @@ You can find more examples [here](https://github.com/scommons/scommons-examples-
 
 To build and run all the tests use the following command:
 ```bash
-sbt clean test
+sbt test
 ```
 
 ## Documentation

@@ -1,4 +1,4 @@
-package scommons.reactnative.showcase.style
+package scommons.reactnative.showcase
 
 import scommons.react._
 import scommons.reactnative._
@@ -15,8 +15,8 @@ object PlatformDemo extends FunctionComponent[Unit] {
     )
   }
 
-  private[style] lazy val styles = StyleSheet.create(new Styles)
-  private[style] class Styles extends js.Object {
+  private[showcase] lazy val styles = StyleSheet.create(new Styles)
+  private[showcase] class Styles extends js.Object {
     val container: Style = new ViewStyle {
       override val marginLeft = 40
       override val marginBottom = 20

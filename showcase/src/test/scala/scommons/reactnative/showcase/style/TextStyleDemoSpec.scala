@@ -8,9 +8,32 @@ import scommons.reactnative.TextStyle._
 import scommons.reactnative._
 import scommons.reactnative.showcase.style.TextStyleDemo._
 
+import scala.scalajs.js
+
 class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
 
-  it should "render component" in {
+  it should "render LeftText component" in {
+    //given
+    val style = new TextStyle {
+      override val fontStyle = FontStyle.italic
+    }
+    val component = <(LeftText())(^.rnStyle := style)("test child")
+    
+    //when
+    val result = shallowRender(component)
+    
+    //then
+    assertNativeComponent(result,
+      <.Text(^.rnStyle := js.Array(
+        styles.leftText,
+        style
+      ))(
+        "test child"
+      )
+    )
+  }
+  
+  it should "render main component" in {
     //given
     val component = <(TextStyleDemo())()()
     

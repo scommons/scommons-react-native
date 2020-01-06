@@ -1,10 +1,10 @@
-package scommons.reactnative.showcase.style
+package scommons.reactnative.showcase
 
 import scommons.react.test.TestSpec
 import scommons.react.test.raw.ShallowInstance
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative._
-import scommons.reactnative.showcase.style.PlatformDemo._
+import scommons.reactnative.showcase.PlatformDemo._
 import scommons.reactnative.test.PlatformMock
 
 class PlatformDemoSpec extends TestSpec with ShallowRendererUtils {
