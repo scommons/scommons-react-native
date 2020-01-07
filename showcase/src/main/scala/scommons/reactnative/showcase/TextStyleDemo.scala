@@ -21,7 +21,10 @@ object TextStyleDemo extends FunctionComponent[Unit] {
   private class Styles extends js.Object {
     
     val text: Style = new TextStyle with AndroidTextStyle with IOSTextStyle {
-      override val fontFamily = "monospace"
+      override val fontFamily = Platform.select {
+        case Platform.ios => "American Typewriter"
+        case Platform.android => "monospace"
+      }
       override val fontSize = 14
       override val fontStyle = FontStyle.italic
       override val fontWeight = FontWeight.`100`

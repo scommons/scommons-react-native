@@ -3,6 +3,7 @@ package definitions
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
+import scoverage.ScoverageKeys.coverageExcludedPackages
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
@@ -19,6 +20,8 @@ object ReactNativeShowcase extends ScalaJsModule {
       publishLocal := ((): Unit),
       publishM2 := ((): Unit),
 
+      coverageExcludedPackages := "scommons.reactnative.showcase.ShowcaseApp",
+
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),
 
@@ -29,6 +32,7 @@ object ReactNativeShowcase extends ScalaJsModule {
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
     ReactNativeCore.definition,
+    ReactNavigation.definition,
     ReactNativeTest.definition % "test"
   )
 

@@ -23,7 +23,10 @@ class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     assertNativeComponent(result,
       <("Text")(
         ^.rnStyle := js.Dynamic.literal(
-          "fontFamily" -> "monospace",
+          "fontFamily" -> Platform.select {
+            case Platform.ios => "American Typewriter"
+            case Platform.android => "monospace"
+          },
           "fontSize" -> 14,
           "fontStyle" -> FontStyle.italic,
           "fontWeight" -> FontWeight.`100`,
