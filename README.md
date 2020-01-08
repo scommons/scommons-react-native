@@ -16,6 +16,7 @@ val scommonsReactNativeVer = "1.0.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "org.scommons.react-native" %%% "scommons-react-native-core" % scommonsReactNativeVer,
+  "org.scommons.react-native" %%% "scommons-react-navigation" % scommonsReactNativeVer,
   
   "org.scommons.react-native" %%% "scommons-react-native-test" % scommonsReactNativeVer % "test"
 )
@@ -33,7 +34,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 
 * Demo Application
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
-  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ShowcaseAppSpec.scala)
+  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala)
 
 * react-native [Components](https://facebook.github.io/react-native/docs/activityindicator):
   * [Image](showcase/src/main/scala/scommons/reactnative/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ImageDemoSpec.scala)
