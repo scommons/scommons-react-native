@@ -34,29 +34,33 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 
 * Demo Application
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
-  * [app](showcase/src/main/scala/scommons/reactnative/showcase/ShowcaseApp.scala)
+  * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala)
 
-* react-native [Components](https://facebook.github.io/react-native/docs/activityindicator):
-  * [Image](showcase/src/main/scala/scommons/reactnative/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ImageDemoSpec.scala)
-  * [ScrollView](showcase/src/main/scala/scommons/reactnative/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ScrollViewDemoSpec.scala)
-  * [TextInput](showcase/src/main/scala/scommons/reactnative/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TextInputDemoSpec.scala)
-  * [TouchableHighlight](showcase/src/main/scala/scommons/reactnative/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TouchableHighlightDemoSpec.scala)
+* react-native
+  * [Components](https://facebook.github.io/react-native/docs/activityindicator):
+    * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
+    * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
+    * [TextInput](showcase/src/main/scala/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/showcase/TextInputDemoSpec.scala)
+    * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)
+  * [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
+    * [Platform](showcase/src/main/scala/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/showcase/PlatformDemoSpec.scala)
+    * [Style](showcase/src/main/scala/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/showcase/StyleDemoSpec.scala)
+    * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
+    * [ViewStyle](showcase/src/main/scala/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/ViewStyleDemoSpec.scala)
 
-* react-native [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
-  * [Platform](showcase/src/main/scala/scommons/reactnative/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/PlatformDemoSpec.scala)
-  * [Style](showcase/src/main/scala/scommons/reactnative/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/StyleDemoSpec.scala)
-  * [TextStyle](showcase/src/main/scala/scommons/reactnative/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/TextStyleDemoSpec.scala)
-  * [ViewStyle](showcase/src/main/scala/scommons/reactnative/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/ViewStyleDemoSpec.scala)
+* [react-navigation](https://reactnavigation.org/docs/en/hello-react-navigation.html)
+  * [navigation](showcase/src/main/scala/showcase/navigation/ReactNavigationDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationDemoSpec.scala)
+  * [stack](showcase/src/main/scala/showcase/navigation/ReactNavigationStackDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationStackDemoSpec.scala)
 
 * Example Components:
   * Styling
-    * [Border Style](showcase/src/main/scala/scommons/reactnative/showcase/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/BorderStyleDemoSpec.scala)
-    * [Border Radius](showcase/src/main/scala/scommons/reactnative/showcase/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/BorderRadiusDemoSpec.scala)
-    * [Margin](showcase/src/main/scala/scommons/reactnative/showcase/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/MarginStyleDemoSpec.scala)
-    * [Padding](showcase/src/main/scala/scommons/reactnative/showcase/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PaddingStyleDemoSpec.scala)
-    * [Position](showcase/src/main/scala/scommons/reactnative/showcase/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/PositionStyleDemoSpec.scala)
-    * [TextStyle](showcase/src/main/scala/scommons/reactnative/showcase/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/TextStyleDemoSpec.scala)
-    * [ProfileCard (with Images)](showcase/src/main/scala/scommons/reactnative/showcase/style/ProfileCard.scala) => [tests](showcase/src/test/scala/scommons/reactnative/showcase/style/ProfileCardSpec.scala)
+    * [Border Style](showcase/src/main/scala/showcase/app/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderStyleDemoSpec.scala)
+    * [Border Radius](showcase/src/main/scala/showcase/app/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderRadiusDemoSpec.scala)
+    * [Margin](showcase/src/main/scala/showcase/app/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/MarginStyleDemoSpec.scala)
+    * [Padding](showcase/src/main/scala/showcase/app/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PaddingStyleDemoSpec.scala)
+    * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
+    * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
+    * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
 

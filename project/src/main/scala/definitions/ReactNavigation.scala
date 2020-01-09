@@ -14,7 +14,11 @@ object ReactNavigation extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Scala.js facades for react-navigation Components and Api",
-      coverageExcludedPackages := "scommons.react.navigation.raw"
+      
+      coverageExcludedPackages :=
+        "scommons.react.navigation.raw" +
+        ";scommons.react.navigation.stack.raw" +
+        ";scommons.react.navigation.stack.*Config"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil
