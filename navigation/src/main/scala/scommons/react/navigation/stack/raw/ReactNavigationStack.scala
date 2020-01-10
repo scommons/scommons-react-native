@@ -11,6 +11,5 @@ import scala.scalajs.js.annotation.JSImport
 object ReactNavigationStack extends js.Object {
 
   def createStackNavigator(routes: js.Dictionary[StackRouteConfig],
-                           config: js.UndefOr[StackNavigatorConfig] = js.undefined
-                          ): ReactClass = js.native
+                           config: StackNavigatorConfig): ReactClass = js.native
 }

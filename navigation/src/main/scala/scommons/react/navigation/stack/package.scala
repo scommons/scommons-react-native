@@ -7,12 +7,9 @@ import scala.scalajs.js
 
 package object stack {
 
-  def createStackNavigator(routes: Map[String, StackRouteConfig]): ReactClass =
-    ReactNavigationStack.createStackNavigator(js.Dictionary(routes.toList: _*))
-  
   def createStackNavigator(routes: Map[String, StackRouteConfig],
-                           config: StackNavigatorConfig
-                          ): ReactClass = {
+                           config: StackNavigatorConfig): ReactClass = {
+    
     ReactNavigationStack.createStackNavigator(js.Dictionary(routes.toList: _*), config)
   }
 }
