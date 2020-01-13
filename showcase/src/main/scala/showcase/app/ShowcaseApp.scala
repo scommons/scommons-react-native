@@ -1,5 +1,6 @@
 package showcase.app
 
+import showcase.app.style.StylesScreen
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
@@ -20,7 +21,10 @@ object ShowcaseApp extends FunctionComponent[Unit] {
   private lazy val AppNavigator = createStackNavigator(
     routes = Map(
       "Showcase" -> new StackRouteConfig {
-        override val screen = ShowcaseRoot()
+        override val screen = ShowcaseScreen()
+      },
+      "Styles" -> new StackRouteConfig {
+        override val screen = StylesScreen()
       }
     ),
     config = new StackNavigatorConfig {

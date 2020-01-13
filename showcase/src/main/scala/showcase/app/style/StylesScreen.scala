@@ -1,14 +1,13 @@
-package showcase.app
+package showcase.app.style
 
 import showcase.PlatformDemo
-import showcase.app.style._
 import scommons.react._
 import scommons.reactnative.ScrollView._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
-object ShowcaseRoot extends FunctionComponent[Unit] {
+object StylesScreen extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := styles.container)(
@@ -43,8 +42,8 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
     )
   }
 
-  private[app] lazy val styles = StyleSheet.create(new Styles)
-  private[app] class Styles extends js.Object {
+  private[style] lazy val styles = StyleSheet.create(new Styles)
+  private[style] class Styles extends js.Object {
     val container: Style = new ViewStyle {
       override val flex = 1
       override val backgroundColor = "#f5f5f5"

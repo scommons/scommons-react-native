@@ -1,18 +1,17 @@
-package showcase.app
+package showcase.app.style
 
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative.ScrollView._
 import scommons.reactnative._
 import showcase.PlatformDemo
-import showcase.app.ShowcaseRoot._
-import showcase.app.style._
+import showcase.app.style.StylesScreen._
 
-class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
+class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render component" in {
     //given
-    val component = <(ShowcaseRoot())()()
+    val component = <(StylesScreen())()()
     
     //when
     val result = shallowRender(component)

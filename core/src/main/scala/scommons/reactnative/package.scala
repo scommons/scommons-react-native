@@ -15,6 +15,7 @@ package object reactnative {
     lazy val TextInput: ReactClassElementSpec = elements(raw.TextInput)
     lazy val TouchableHighlight: ReactClassElementSpec = elements(raw.TouchableHighlight)
     lazy val TouchableOpacity: ReactClassElementSpec = elements(raw.TouchableOpacity)
+    lazy val TouchableWithoutFeedback: ReactClassElementSpec = elements(raw.TouchableWithoutFeedback)
     lazy val View: ReactClassElementSpec = elements(raw.View)
   }
 

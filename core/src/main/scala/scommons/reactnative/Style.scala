@@ -13,6 +13,7 @@ trait Style extends js.Object {
   
   val borderBottomRightRadius: js.UndefOr[Int] = js.undefined
   val borderBottomWidth: js.UndefOr[Int] = js.undefined
+  val borderBottomColor: js.UndefOr[String] = js.undefined
   val borderColor: js.UndefOr[String] = js.undefined
   val borderLeftColor: js.UndefOr[String] = js.undefined
   val borderLeftWidth: js.UndefOr[Int] = js.undefined
