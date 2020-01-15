@@ -1,9 +1,11 @@
 package definitions
 
-import common.Libs
+import common.{Libs, TestLibs}
 import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
+
+import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
 object ReactNavigation extends ScalaJsModule {
 
@@ -14,6 +16,8 @@ object ReactNavigation extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Scala.js facades for react-navigation Components and Api",
+
+      requireJsDomEnv in Test := false,
       
       coverageExcludedPackages :=
         "scommons.react.navigation.raw" +
@@ -31,5 +35,8 @@ object ReactNavigation extends ScalaJsModule {
     Libs.scommonsReactCore.value
   ))
 
-  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
+  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
+    TestLibs.scalaTestJs.value,
+    TestLibs.scalaMockJs.value
+  ).map(_ % "test"))
 }

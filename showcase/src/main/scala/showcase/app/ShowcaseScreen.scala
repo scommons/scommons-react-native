@@ -7,16 +7,18 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
-object ShowcaseScreen extends FunctionComponent[Unit] {
+case class ShowcaseScreenProps(navigate: String => Unit)
+
+object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
 
   protected def render(compProps: Props): ReactElement = {
-    val navProps = compProps.native.navigation
+    val props = compProps.wrapped
     
     <.ScrollView(
       ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.always
     )(
       <.TouchableWithoutFeedback(^.onPress := { () =>
-        navProps.navigate("Styles")
+        props.navigate("Styles")
       })(
         <.View(^.rnStyle := styles.itemContainer)(
           <.Text(^.rnStyle := styles.itemTitle)("Styles"),

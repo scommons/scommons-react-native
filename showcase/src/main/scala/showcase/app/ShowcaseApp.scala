@@ -21,7 +21,7 @@ object ShowcaseApp extends FunctionComponent[Unit] {
   private lazy val AppNavigator = createStackNavigator(
     routes = Map(
       "Showcase" -> new StackRouteConfig {
-        override val screen = ShowcaseScreen()
+        override val screen = ShowcaseController()
       },
       "Styles" -> new StackRouteConfig {
         override val screen = StylesScreen()

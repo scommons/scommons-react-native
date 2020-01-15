@@ -5,6 +5,8 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
+import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
+
 object ReactNativeCore extends ScalaJsModule {
 
   override val id: String = "scommons-react-native-core"
@@ -14,6 +16,9 @@ object ReactNativeCore extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Scala.js facades for React Native (react-native) utilities and components",
+
+      requireJsDomEnv in Test := false,
+
       coverageExcludedPackages :=
         "scommons.reactnative.raw" +
         ";scommons.reactnative.*Style" +

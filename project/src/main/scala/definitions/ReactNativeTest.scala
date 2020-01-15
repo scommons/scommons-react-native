@@ -18,6 +18,8 @@ object ReactNativeTest extends ScalaJsModule {
       description := "Core Scala.js, React Native (react-native) testing utilities",
       coverageExcludedPackages := "scommons.reactnative.test.raw",
 
+      requireJsDomEnv in Test := false,
+
       npmDevDependencies in Compile ++= Seq(
         "file-loader" -> "1.1.4"
       )
