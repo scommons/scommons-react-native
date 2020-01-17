@@ -17,9 +17,12 @@ object PlatformDemo extends FunctionComponent[Unit] {
 
   private[showcase] lazy val styles = StyleSheet.create(new Styles)
   private[showcase] class Styles extends js.Object {
+    import ViewStyle._
+    
     val container: Style = new ViewStyle {
-      override val marginLeft = 40
-      override val marginBottom = 20
+      override val flex = 1
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
     }
     val info: Style = new TextStyle {
       override val fontFamily = Platform.select {

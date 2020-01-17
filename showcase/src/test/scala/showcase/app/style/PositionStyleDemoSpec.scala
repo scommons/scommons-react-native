@@ -58,23 +58,25 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     
     //then
     assertNativeComponent(result,
-      <.View(^.rnStyle := styles.container)(
-        <.View(^.rnStyle := styles.row)(
-          <(Example())()(
-            <(CenteredText())()("A")
-          ),
-          <(Example())()(
-            <(CenteredText())()("B"),
-            <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-              <(CenteredText())()("E")
+      <.View(^.rnStyle := styles.screen)(
+        <.View(^.rnStyle := styles.container)(
+          <.View(^.rnStyle := styles.row)(
+            <(Example())()(
+              <(CenteredText())()("A")
+            ),
+            <(Example())()(
+              <(CenteredText())()("B"),
+              <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
+                <(CenteredText())()("E")
+              )
+            ),
+            <(Example())()(
+              <(CenteredText())()("C")
             )
           ),
-          <(Example())()(
-            <(CenteredText())()("C")
+          <(Example())(^.rnStyle := styles.positionAbsolute)(
+            <(CenteredText())()("D")
           )
-        ),
-        <(Example())(^.rnStyle := styles.positionAbsolute)(
-          <(CenteredText())()("D")
         )
       )
     )

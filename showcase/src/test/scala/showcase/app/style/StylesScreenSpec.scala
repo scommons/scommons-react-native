@@ -2,52 +2,32 @@ package showcase.app.style
 
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
-import scommons.reactnative.ScrollView._
-import scommons.reactnative._
-import showcase.PlatformDemo
-import showcase.app.style.StylesScreen._
+import showcase.app._
 
 class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render component" in {
     //given
-    val component = <(StylesScreen())()()
-    
+    val props = StylesScreenProps(navigate = _ => ())
+    val component = <(StylesScreen())(^.wrapped := props)()
+
     //when
     val result = shallowRender(component)
-    
+
     //then
-    assertNativeComponent(result,
-      <.View(^.rnStyle := styles.container)(
-        <.ScrollView(
-          ^.rnStyle := styles.content,
-          ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.always
-        )(
-          <.Text()("Border Styles:\n"),
-          <(BorderStyleDemo())()(),
-  
-          <.Text()("Border Radius Styles:\n"),
-          <(BorderRadiusDemo())()(),
-
-          <.Text()("Margin Styles:\n"),
-          <(MarginStyleDemo())()(),
-
-          <.Text()("Padding Styles:\n"),
-          <(PaddingStyleDemo())()(),
-
-          <.Text()("Position Styles:\n"),
-          <(PositionStyleDemo())()(),
-
-          <.Text()(s"Platform:\n"),
-          <(PlatformDemo())()(),
-
-          <.Text()(s"TextStyle:\n"),
-          <(TextStyleDemo())()(),
-
-          <.Text()("Profile Card:\n"),
-          <(ProfileCard())()()
+    assertComponent(result, ShowcaseListView) {
+      case ShowcaseListViewProps(items, navigate) =>
+        items shouldBe List(
+          "BorderStyle" -> "Demo border styles",
+          "BorderRadius" -> "Demo border radius styles",
+          "MarginStyle" -> "Demo margin styles",
+          "PaddingStyle" -> "Demo padding styles",
+          "PositionStyle" -> "Demo position styles",
+          "Platform" -> "Demo platform-specific styles",
+          "TextStyle" -> "Demo text styles",
+          "ProfileCard" -> "Demo ProfileCard component"
         )
-      )
-    )
+        navigate shouldBe props.navigate
+    }
   }
 }

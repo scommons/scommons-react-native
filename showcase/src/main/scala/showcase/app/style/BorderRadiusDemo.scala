@@ -66,6 +66,8 @@ object BorderRadiusDemo extends FunctionComponent[Unit] {
     
     val container: Style = new ViewStyle {
       override val flex = 1
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
       override val flexDirection = FlexDirection.row
       override val flexWrap = FlexWrap.wrap
     }

@@ -12,44 +12,46 @@ object TextStyleDemo extends FunctionComponent[Unit] {
   import TextStyle._
   
   protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
-      <(LeftText())(^.rnStyle := new TextStyle {
-        override val fontStyle = FontStyle.italic
-      })(
-        "A) Italic"
-      ),
-      <(LeftText())(^.rnStyle := new TextStyle {
-        override val textDecorationLine = TextDecorationLine.`underline line-through`
-      })(
-        "B) Underline and Line Through"
-      ),
-      <(LeftText())(^.rnStyle := new IOSTextStyle {
-        override val textDecorationLine = TextDecorationLine.`underline line-through`
-        override val textDecorationColor = Color.red
-        override val textDecorationStyle = TextDecorationStyle.dotted
-      })(
-        "C) Underline and Line Through"
-      ),
-      <(LeftText())(^.rnStyle := new TextStyle {
-        override val textShadowColor = Color.red
-        override val textShadowOffset = new ShadowOffset {
-          override val width = -2
-          override val height = -2
-        }
-        override val textShadowRadius = 4
-      })(
-        "D) Text Shadow"
-      ),
-      <(LeftText())(^.rnStyle := new IOSTextStyle {
-        override val letterSpacing = 5
-      })(
-        "E) Letter Spacing"
-      ),
-      <(LeftText())(^.rnStyle := new TextStyle {
-        override val textAlign = TextAlign.center
-        override val fontWeight = FontWeight.bold
-      })(
-        s"${Platform.OS}"
+    <.View(^.rnStyle := styles.screen)(
+      <.View(^.rnStyle := styles.container)(
+        <(LeftText())(^.rnStyle := new TextStyle {
+          override val fontStyle = FontStyle.italic
+        })(
+          "A) Italic"
+        ),
+        <(LeftText())(^.rnStyle := new TextStyle {
+          override val textDecorationLine = TextDecorationLine.`underline line-through`
+        })(
+          "B) Underline and Line Through"
+        ),
+        <(LeftText())(^.rnStyle := new IOSTextStyle {
+          override val textDecorationLine = TextDecorationLine.`underline line-through`
+          override val textDecorationColor = Color.red
+          override val textDecorationStyle = TextDecorationStyle.dotted
+        })(
+          "C) Underline and Line Through"
+        ),
+        <(LeftText())(^.rnStyle := new TextStyle {
+          override val textShadowColor = Color.red
+          override val textShadowOffset = new ShadowOffset {
+            override val width = -2
+            override val height = -2
+          }
+          override val textShadowRadius = 4
+        })(
+          "D) Text Shadow"
+        ),
+        <(LeftText())(^.rnStyle := new IOSTextStyle {
+          override val letterSpacing = 5
+        })(
+          "E) Letter Spacing"
+        ),
+        <(LeftText())(^.rnStyle := new TextStyle {
+          override val textAlign = TextAlign.center
+          override val fontWeight = FontWeight.bold
+        })(
+          s"${Platform.OS}"
+        )
       )
     )
   }
@@ -68,6 +70,13 @@ object TextStyleDemo extends FunctionComponent[Unit] {
 
   private[style] lazy val styles = StyleSheet.create(new Styles)
   private[style] class Styles extends js.Object {
+    import ViewStyle._
+
+    val screen: Style = new ViewStyle {
+      override val flex = 1
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
+    }
     val container: Style = new ViewStyle {
       override val width = 300
       override val marginLeft = 40

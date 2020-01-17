@@ -8,23 +8,25 @@ import scala.scalajs.js
 object PositionStyleDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
-      <.View(^.rnStyle := styles.row)(
-        <(Example())()(
-          <(CenteredText())()("A")
-        ),
-        <(Example())()(
-          <(CenteredText())()("B"),
-          <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-            <(CenteredText())()("E")
+    <.View(^.rnStyle := styles.screen)(
+      <.View(^.rnStyle := styles.container)(
+        <.View(^.rnStyle := styles.row)(
+          <(Example())()(
+            <(CenteredText())()("A")
+          ),
+          <(Example())()(
+            <(CenteredText())()("B"),
+            <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
+              <(CenteredText())()("E")
+            )
+          ),
+          <(Example())()(
+            <(CenteredText())()("C")
           )
         ),
-        <(Example())()(
-          <(CenteredText())()("C")
+        <(Example())(^.rnStyle := styles.positionAbsolute)(
+          <(CenteredText())()("D")
         )
-      ),
-      <(Example())(^.rnStyle := styles.positionAbsolute)(
-        <(CenteredText())()("D")
       )
     )
   }
@@ -59,6 +61,11 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
     import TextStyle._
     import ViewStyle._
     
+    val screen: Style = new ViewStyle {
+      override val flex = 1
+      override val justifyContent = JustifyContent.center
+      override val alignItems = AlignItems.center
+    }
     val container: Style = new ViewStyle {
       override val width = 300
       override val height = 300

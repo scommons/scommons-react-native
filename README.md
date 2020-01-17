@@ -35,6 +35,19 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 * Demo Application
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
   * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala)
+  * [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
+  * [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
+  * Styles
+    * [controller](showcase/src/main/scala/showcase/app/style/StylesScreenController.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenControllerSpec.scala)
+    * [screen](showcase/src/main/scala/showcase/app/style/StylesScreen.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenSpec.scala)
+    * Example Components:
+      * [Border Style](showcase/src/main/scala/showcase/app/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderStyleDemoSpec.scala)
+      * [Border Radius](showcase/src/main/scala/showcase/app/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderRadiusDemoSpec.scala)
+      * [Margin](showcase/src/main/scala/showcase/app/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/MarginStyleDemoSpec.scala)
+      * [Padding](showcase/src/main/scala/showcase/app/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PaddingStyleDemoSpec.scala)
+      * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
+      * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
+      * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
 
 * react-native
   * [Components](https://facebook.github.io/react-native/docs/activityindicator):
@@ -54,16 +67,6 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [StackNavigator](showcase/src/main/scala/showcase/navigation/ReactNavigationStackDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationStackDemoSpec.scala)
   * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
-
-* Example Components:
-  * Styling
-    * [Border Style](showcase/src/main/scala/showcase/app/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderStyleDemoSpec.scala)
-    * [Border Radius](showcase/src/main/scala/showcase/app/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderRadiusDemoSpec.scala)
-    * [Margin](showcase/src/main/scala/showcase/app/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/MarginStyleDemoSpec.scala)
-    * [Padding](showcase/src/main/scala/showcase/app/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PaddingStyleDemoSpec.scala)
-    * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
-    * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
-    * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
 
