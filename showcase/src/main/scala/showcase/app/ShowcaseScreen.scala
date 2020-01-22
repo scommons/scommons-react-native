@@ -11,7 +11,8 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
     
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
-        "Styles" -> "Demo style components"
+        "Styles" -> "Demo style components",
+        "Video" -> "Demo video components"
       ),
       navigate = props.navigate
     ))()

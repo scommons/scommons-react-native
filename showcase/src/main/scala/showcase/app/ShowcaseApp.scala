@@ -2,6 +2,7 @@ package showcase.app
 
 import showcase.PlatformDemo
 import showcase.app.style._
+import showcase.app.video._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
@@ -24,6 +25,7 @@ object ShowcaseApp extends FunctionComponent[Unit] {
       "Showcase" -> new StackRouteConfig {
         override val screen = ShowcaseController()
       },
+      //style
       "Styles" -> new StackRouteConfig {
         override val screen = StylesScreenController()
       },
@@ -50,6 +52,10 @@ object ShowcaseApp extends FunctionComponent[Unit] {
       },
       "ProfileCard" -> new StackRouteConfig {
         override val screen = ProfileCard()
+      },
+      // video
+      "Video" -> new StackRouteConfig {
+        override val screen = VideoDemo()
       }
     ),
     config = new StackNavigatorConfig {

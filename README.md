@@ -48,6 +48,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
       * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
       * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
       * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
+  * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
 
 * react-native
   * [Components](https://facebook.github.io/react-native/docs/activityindicator):
@@ -67,6 +68,9 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [StackNavigator](showcase/src/main/scala/showcase/navigation/ReactNavigationStackDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationStackDemoSpec.scala)
   * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
+
+* [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
+  * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
 
 You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
 
