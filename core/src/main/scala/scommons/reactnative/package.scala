@@ -3,12 +3,14 @@ package scommons
 import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
+import scommons.reactnative.raw.{Timeout, Timers}
 
 import scala.scalajs.js
 
 package object reactnative {
 
   implicit class ReactNativeVirtualDOMElements(elements: VirtualDOMElements) {
+    lazy val ActivityIndicator: ReactClassElementSpec = elements(raw.ActivityIndicator)
     lazy val Image: ReactClassElementSpec = elements(raw.Image)
     lazy val ScrollView: ReactClassElementSpec = elements(raw.ScrollView)
     lazy val Text: ReactClassElementSpec = elements(raw.Text)
@@ -30,14 +32,25 @@ package object reactnative {
   }
 
   implicit class ReactNativeVirtualDOMAttributes(attributes: VirtualDOMAttributes)
-    extends TextInput.TextInputAttributes
-    with Touchable.TouchableAttributes
-    with TouchableHighlight.TouchableHighlightAttributes
+    extends ActivityIndicator.ActivityIndicatorAttributes
+    with Image.ImageAttributes
     with ScrollView.ScrollViewAttributes
-    with Image.ImageAttributes {
+    with TextInput.TextInputAttributes
+    with Touchable.TouchableAttributes
+    with TouchableHighlight.TouchableHighlightAttributes {
 
     import ReactNativeVirtualDOMAttributes._
 
     lazy val rnStyle = ReactNativeStyleAttributeSpec("style")
   }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // global APIs
+  
+  private lazy val global = js.Dynamic.global.asInstanceOf[Timers]
+  
+  def setInterval(callback: js.Function0[Any], delay: Double): Timeout = global.setInterval(callback, delay)
+  def setTimeout(callback: js.Function0[Any], delay: Double): Timeout = global.setTimeout(callback, delay)
+  def clearInterval(timeout: Timeout): Unit = global.clearInterval(timeout)
+  def clearTimeout(timeout: Timeout): Unit = global.clearTimeout(timeout)
 }

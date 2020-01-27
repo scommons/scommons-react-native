@@ -10,6 +10,7 @@ module.exports = {
     OS: "ios"
   },
   
+  ActivityIndicator: 'ActivityIndicator',
   Image: 'Image',
   ScrollView: 'ScrollView',
   Text: 'Text',

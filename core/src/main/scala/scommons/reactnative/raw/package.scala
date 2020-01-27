@@ -22,6 +22,9 @@ package object raw {
   }
   
   @js.native
+  @JSImport("react-native", "ActivityIndicator") object ActivityIndicator extends ReactClass
+
+  @js.native
   @JSImport("react-native", "Image") object Image extends ReactClass
 
   @js.native

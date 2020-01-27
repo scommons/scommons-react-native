@@ -1,5 +1,6 @@
 package showcase.app
 
+import showcase.ActivityIndicatorDemo
 import showcase.PlatformDemo
 import showcase.app.style._
 import showcase.app.video._
@@ -24,6 +25,10 @@ object ShowcaseApp extends FunctionComponent[Unit] {
     routes = Map(
       "Showcase" -> new StackRouteConfig {
         override val screen = ShowcaseController()
+      },
+      // components
+      "ActivityIndicator" -> new StackRouteConfig {
+        override val screen = ActivityIndicatorDemo()
       },
       //style
       "Styles" -> new StackRouteConfig {
