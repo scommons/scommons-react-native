@@ -28,6 +28,9 @@ package object raw {
   @JSImport("react-native", "Image") object Image extends ReactClass
 
   @js.native
+  @JSImport("react-native", "Modal") object Modal extends ReactClass
+
+  @js.native
   @JSImport("react-native", "ScrollView") object ScrollView extends ReactClass
 
   @js.native

@@ -17,6 +17,7 @@ val scommonsReactNativeVer = "1.0.0-SNAPSHOT"
 libraryDependencies ++= Seq(
   "org.scommons.react-native" %%% "scommons-react-native-core" % scommonsReactNativeVer,
   "org.scommons.react-native" %%% "scommons-react-navigation" % scommonsReactNativeVer,
+  "org.scommons.react-native" %%% "scommons-expo-av" % scommonsReactNativeVer,
   
   "org.scommons.react-native" %%% "scommons-react-native-test" % scommonsReactNativeVer % "test"
 )
@@ -30,7 +31,7 @@ resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositor
 
 ### How to use it
 
-Note: Almost all examples are from an excellent book [React Native in Action](https://github.com/dabit3/react-native-in-action)
+Note: Almost all examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
 
 * Demo Application
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
@@ -54,6 +55,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
   * [Components](https://facebook.github.io/react-native/docs/activityindicator):
     * [ActivityIndicator](showcase/src/main/scala/showcase/ActivityIndicatorDemo.scala) => [tests](showcase/src/test/scala/showcase/ActivityIndicatorDemoSpec.scala)
     * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
+    * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
     * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
     * [TextInput](showcase/src/main/scala/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/showcase/TextInputDemoSpec.scala)
     * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)

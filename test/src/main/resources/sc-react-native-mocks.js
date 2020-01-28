@@ -12,6 +12,7 @@ module.exports = {
   
   ActivityIndicator: 'ActivityIndicator',
   Image: 'Image',
+  Modal: 'Modal',
   ScrollView: 'ScrollView',
   Text: 'Text',
   TextInput: 'TextInput',

@@ -1,7 +1,6 @@
 package showcase.app
 
-import showcase.ActivityIndicatorDemo
-import showcase.PlatformDemo
+import showcase._
 import showcase.app.style._
 import showcase.app.video._
 import scommons.react._
@@ -30,6 +29,9 @@ object ShowcaseApp extends FunctionComponent[Unit] {
       "ActivityIndicator" -> new StackRouteConfig {
         override val screen = ActivityIndicatorDemo()
       },
+      "Modal" -> new StackRouteConfig {
+        override val screen = ModalDemo()
+      },
       //style
       "Styles" -> new StackRouteConfig {
         override val screen = StylesScreenController()
@@ -53,7 +55,7 @@ object ShowcaseApp extends FunctionComponent[Unit] {
         override val screen = PlatformDemo()
       },
       "TextStyle" -> new StackRouteConfig {
-        override val screen = TextStyleDemo()
+        override val screen = app.style.TextStyleDemo()
       },
       "ProfileCard" -> new StackRouteConfig {
         override val screen = ProfileCard()
