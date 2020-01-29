@@ -29,6 +29,9 @@ object ShowcaseApp extends FunctionComponent[Unit] {
       "ActivityIndicator" -> new StackRouteConfig {
         override val screen = ActivityIndicatorDemo()
       },
+      "Button" -> new StackRouteConfig {
+        override val screen = ButtonDemo()
+      },
       "Modal" -> new StackRouteConfig {
         override val screen = ModalDemo()
       },

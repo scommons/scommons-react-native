@@ -6,6 +6,9 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
+/** @see https://facebook.github.io/react-native/docs/view-style-props
+  * @see https://facebook.github.io/react-native/docs/flexbox
+  */
 object ViewStyleDemo extends FunctionComponent[Unit] {
 
   protected def render(compProps: Props): ReactElement = {

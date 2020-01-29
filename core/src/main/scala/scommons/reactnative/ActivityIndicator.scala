@@ -14,7 +14,6 @@ object ActivityIndicator {
     import ActivityIndicatorAttributes._
 
     lazy val animating = BooleanAttributeSpec("animating")
-    lazy val color = StringAttributeSpec("color")
     lazy val aiSize = ActivityIndicatorSizeAttributeSpec("size")
   }
 

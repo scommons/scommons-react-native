@@ -17,8 +17,9 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
     assertComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
-          "ActivityIndicator" -> "Demo ActivityIndicator",
-          "Modal" -> "Demo Modal",
+          "ActivityIndicator" -> "Demo ActivityIndicator component",
+          "Button" -> "Demo Button component",
+          "Modal" -> "Demo Modal component",
           "Styles" -> "Demo style components",
           "Video" -> "Demo video components"
         )

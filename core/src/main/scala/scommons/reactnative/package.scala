@@ -11,6 +11,7 @@ package object reactnative {
 
   implicit class ReactNativeVirtualDOMElements(elements: VirtualDOMElements) {
     lazy val ActivityIndicator: ReactClassElementSpec = elements(raw.ActivityIndicator)
+    lazy val Button: ReactClassElementSpec = elements(raw.Button)
     lazy val Image: ReactClassElementSpec = elements(raw.Image)
     lazy val Modal: ReactClassElementSpec = elements(raw.Modal)
     lazy val ScrollView: ReactClassElementSpec = elements(raw.ScrollView)
@@ -34,6 +35,7 @@ package object reactnative {
 
   implicit class ReactNativeVirtualDOMAttributes(attributes: VirtualDOMAttributes)
     extends ActivityIndicator.ActivityIndicatorAttributes
+    with Button.ButtonAttributes
     with Image.ImageAttributes
     with Modal.ModalAttributes
     with ScrollView.ScrollViewAttributes
@@ -44,6 +46,7 @@ package object reactnative {
     import ReactNativeVirtualDOMAttributes._
 
     lazy val rnStyle = ReactNativeStyleAttributeSpec("style")
+    lazy val color = StringAttributeSpec("color")
   }
 
   //////////////////////////////////////////////////////////////////////////////

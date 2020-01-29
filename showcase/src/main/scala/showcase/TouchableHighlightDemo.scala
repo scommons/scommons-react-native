@@ -8,6 +8,8 @@ import scala.scalajs.js
 
 case class TouchableHighlightDemoProps(onPress: () => Unit)
 
+/** @see https://facebook.github.io/react-native/docs/touchablehighlight
+  */
 object TouchableHighlightDemo extends FunctionComponent[TouchableHighlightDemoProps] {
 
   protected def render(compProps: Props): ReactElement = {

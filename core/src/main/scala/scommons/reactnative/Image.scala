@@ -3,6 +3,8 @@ package scommons.reactnative
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
 
+/** @see https://facebook.github.io/react-native/docs/image
+  */
 object Image {
 
   trait ImageAttributes {

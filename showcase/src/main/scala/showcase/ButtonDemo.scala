@@ -1,21 +1,18 @@
 package showcase
 
 import scommons.react._
-import scommons.reactnative.ActivityIndicator._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
-/** @see https://facebook.github.io/react-native/docs/activityindicator
+/** @see https://facebook.github.io/react-native/docs/button
   */
-object ActivityIndicatorDemo extends FunctionComponent[Unit] {
+object ButtonDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
     <.View(^.rnStyle := js.Array(styles.container, styles.horizontal))(
-      <.ActivityIndicator(^.aiSize := ActivityIndicatorSize.large, ^.color := "#0000ff")(),
-      <.ActivityIndicator(^.aiSize := ActivityIndicatorSize.small, ^.color := "#00ff00")(),
-      <.ActivityIndicator(^.aiSize := ActivityIndicatorSize.large, ^.color := "#0000ff")(),
-      <.ActivityIndicator(^.aiSize := ActivityIndicatorSize.small, ^.color := "#00ff00")()
+      <.Button(^.title := "Press me", ^.color := "#0000ff", ^.onPress := { () => })(),
+      <.Button(^.title := "Press me", ^.color := "#00ff00", ^.onPress := { () => })()
     )
   }
 

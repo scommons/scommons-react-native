@@ -14,7 +14,7 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
     renderer.render(<(ModalDemo())()())
     val List(modal) = findComponents(renderer.getRenderOutput(), raw.Modal)
     modal.props.visible shouldBe false
-    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.TouchableHighlight)
+    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
     
     //when
     showModal.props.onPress()
@@ -28,11 +28,11 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
     //given
     val renderer = createRenderer()
     renderer.render(<(ModalDemo())()())
-    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.TouchableHighlight)
+    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
     showModal.props.onPress()
     val List(modal) = findComponents(renderer.getRenderOutput(), raw.Modal)
     modal.props.visible shouldBe true
-    val List(hideModal, _) = findComponents(renderer.getRenderOutput(), raw.TouchableHighlight)
+    val List(hideModal, _) = findComponents(renderer.getRenderOutput(), raw.Button)
     
     //when
     hideModal.props.onPress()
@@ -60,16 +60,12 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
           <.View(^.rnStyle := styles.container)(
             <.View()(
               <.Text()("Hello World!"),
-              <.TouchableHighlight()(
-                <.Text()("Hide Modal")
-              )
+              <.Button(^.title := "Hide Modal", ^.color := "#0000ff")()
             )
           )
         ),
 
-        <.TouchableHighlight()(
-          <.Text()("Show Modal")
-        )
+        <.Button(^.title := "Show Modal", ^.color := "#0000ff")()
       )
     )
   }

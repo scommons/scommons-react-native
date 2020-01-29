@@ -6,6 +6,8 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
+/** @see https://facebook.github.io/react-native/docs/image
+  */
 object ImageDemo extends FunctionComponent[Unit] {
 
   protected def render(compProps: Props): ReactElement = {

@@ -5,6 +5,8 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
+/** @see https://facebook.github.io/react-native/docs/platform-specific-code
+  */
 object PlatformDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {

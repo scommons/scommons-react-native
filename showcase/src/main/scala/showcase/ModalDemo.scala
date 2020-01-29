@@ -7,6 +7,8 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
+/** @see https://facebook.github.io/react-native/docs/modal
+  */
 object ModalDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
@@ -27,24 +29,16 @@ object ModalDemo extends FunctionComponent[Unit] {
         <.View(^.rnStyle := styles.container)(
           <.View()(
             <.Text()("Hello World!"),
-            <.TouchableHighlight(
-              ^.onPress := { () =>
-                setModalVisible(false)
-              }
-            )(
-              <.Text()("Hide Modal")
-            )
+            <.Button(^.title := "Hide Modal", ^.color := "#0000ff", ^.onPress := { () =>
+              setModalVisible(false)
+            })()
           )
         )
       ),
 
-      <.TouchableHighlight(
-        ^.onPress := { () =>
-          setModalVisible(true)
-        }
-      )(
-        <.Text()("Show Modal")
-      )
+      <.Button(^.title := "Show Modal", ^.color := "#0000ff", ^.onPress := { () =>
+        setModalVisible(true)
+      })()
     )
   }
 

@@ -10,6 +10,8 @@ import scala.scalajs.js
 
 case class TextInputDemoProps(onChangeText: String => Unit)
 
+/** @see https://facebook.github.io/react-native/docs/textinput
+  */
 object TextInputDemo extends FunctionComponent[TextInputDemoProps] {
 
   protected def render(compProps: Props): ReactElement = {

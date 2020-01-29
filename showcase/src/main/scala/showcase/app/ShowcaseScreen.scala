@@ -11,8 +11,9 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
     
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
-        "ActivityIndicator" -> "Demo ActivityIndicator",
-        "Modal" -> "Demo Modal",
+        "ActivityIndicator" -> "Demo ActivityIndicator component",
+        "Button" -> "Demo Button component",
+        "Modal" -> "Demo Modal component",
         "Styles" -> "Demo style components",
         "Video" -> "Demo video components"
       ),
