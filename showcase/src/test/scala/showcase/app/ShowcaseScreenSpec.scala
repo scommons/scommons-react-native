@@ -19,6 +19,7 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
         items shouldBe List(
           "ActivityIndicator" -> "Demo ActivityIndicator component",
           "Button" -> "Demo Button component",
+          "FlatList" -> "Demo FlatList component",
           "Modal" -> "Demo Modal component",
           "Styles" -> "Demo style components",
           "Video" -> "Demo video components"

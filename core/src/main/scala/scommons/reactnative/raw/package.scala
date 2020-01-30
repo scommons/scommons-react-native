@@ -28,6 +28,9 @@ package object raw {
   @JSImport("react-native", "Button") object Button extends ReactClass
 
   @js.native
+  @JSImport("react-native", "FlatList") object FlatList extends ReactClass
+
+  @js.native
   @JSImport("react-native", "Image") object Image extends ReactClass
 
   @js.native
