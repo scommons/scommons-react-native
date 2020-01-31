@@ -25,7 +25,10 @@ object ShowcaseApp extends FunctionComponent[Unit] {
       "Showcase" -> new StackRouteConfig {
         override val screen = ShowcaseController()
       },
-      // components
+      // RN components
+      "ReactNative" -> new StackRouteConfig {
+        override val screen = ReactNativeDemoController()
+      },
       "ActivityIndicator" -> new StackRouteConfig {
         override val screen = ActivityIndicatorDemo()
       },

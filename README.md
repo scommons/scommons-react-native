@@ -9,6 +9,8 @@ Scala.js facades for core [react-native](https://facebook.github.io/react-native
 
 It uses excellent [scalajs-reactjs](https://github.com/shogowada/scalajs-reactjs) binding/facade library.
 
+![Screenshots](docs/images/screenshots.png)
+
 ### How to add it to your project
 
 ```scala
