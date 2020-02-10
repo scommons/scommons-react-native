@@ -1,6 +1,7 @@
 package showcase
 
 import scommons.react._
+import scommons.react.hooks._
 import scommons.reactnative.FlatList._
 import scommons.reactnative._
 
@@ -27,29 +28,47 @@ object FlatListDemo extends FunctionComponent[Unit] {
     )
   )
 
-  case class ItemProps(title: String)
+  case class ItemProps(title: String, selected: Boolean, onPress: () => Unit)
   
   object Item extends FunctionComponent[ItemProps] {
     protected def render(compProps: Props): ReactElement = {
       val props = compProps.wrapped
+
+      val styleAttr =
+        if (props.selected) ^.rnStyle := js.Array(styles.item, styles.selectedItem)
+        else ^.rnStyle := styles.item
       
-      <.View(^.rnStyle := styles.item)(
+      <.TouchableOpacity(styleAttr, ^.onPress := props.onPress)(
         <.Text(^.rnStyle := styles.title)(props.title)
       )
     }
   }
   
   protected def render(props: Props): ReactElement = {
+    val (selected, setSelected) = useState(Set.empty[String])
+    
+    def onInvertSelection(id: String): Unit = {
+      if (selected.contains(id)) setSelected(selected - id)
+      else setSelected(selected + id)
+    }
+    
     <.View(^.rnStyle := styles.container)(
       <.FlatList(
         ^.flatListData := js.Array(dataList: _*),
         ^.renderItem := { data: FlatListData[Data] =>
           val item = data.item
-          <(Item())(^.wrapped := ItemProps(item.title))()
+          <(Item())(^.wrapped := ItemProps(
+            title = item.title,
+            selected = selected.contains(item.id),
+            onPress = { () =>
+              onInvertSelection(item.id)
+            }
+          ))()
         },
         ^.keyExtractor := { item: Data =>
           item.id
-        }
+        },
+        ^.extraData := selected
       )()
     )
   }
@@ -66,6 +85,9 @@ object FlatListDemo extends FunctionComponent[Unit] {
       override val padding = 20
       override val marginVertical = 8
       override val marginHorizontal = 16
+    }
+    val selectedItem: Style = new ViewStyle {
+      override val backgroundColor = "#6e3b6e"
     }
     val title: Style = new TextStyle {
       override val fontSize = 32

@@ -17,6 +17,7 @@ object FlatList {
     lazy val renderItem = RenderItemAttributeSpec("renderItem")
     lazy val flatListData = DataAttributeSpec("data")
     lazy val keyExtractor = KeyExtractorAttributeSpec("keyExtractor")
+    lazy val extraData = ExtraDataAttributeSpec("extraData")
   }
 
   object FlatListAttributes {
@@ -39,6 +40,10 @@ object FlatList {
 
     case class DataAttributeSpec(name: String) extends AttributeSpec {
       def :=[T](value: js.Array[T]): Attribute[js.Array[T]] = Attribute(name, value, AS_IS)
+    }
+
+    case class ExtraDataAttributeSpec(name: String) extends AttributeSpec {
+      def :=[T](value: T): Attribute[T] = Attribute(name, value, AS_IS)
     }
 
   }

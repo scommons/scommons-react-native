@@ -43,7 +43,8 @@ package object reactnative {
     with ScrollView.ScrollViewAttributes
     with TextInput.TextInputAttributes
     with Touchable.TouchableAttributes
-    with TouchableHighlight.TouchableHighlightAttributes {
+    with TouchableHighlight.TouchableHighlightAttributes
+    with TouchableOpacity.TouchableOpacityAttributes {
 
     import ReactNativeVirtualDOMAttributes._
 
