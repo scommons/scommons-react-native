@@ -15,67 +15,31 @@ object ShowcaseApp extends FunctionComponent[Unit] {
   @JSExport("apply")
   override def apply(): ReactClass = super.apply()
 
-  protected def render(props: Props): ReactElement = {
-    <(AppContainer)()()
-  }
+  private lazy val Stack = createStackNavigator()
   
-  private lazy val AppContainer = createAppContainer(AppNavigator)
-  private lazy val AppNavigator = createStackNavigator(
-    routes = Map(
-      "Showcase" -> new StackRouteConfig {
-        override val screen = ShowcaseController()
-      },
-      // RN components
-      "ReactNative" -> new StackRouteConfig {
-        override val screen = ReactNativeDemoController()
-      },
-      "ActivityIndicator" -> new StackRouteConfig {
-        override val screen = ActivityIndicatorDemo()
-      },
-      "Button" -> new StackRouteConfig {
-        override val screen = ButtonDemo()
-      },
-      "FlatList" -> new StackRouteConfig {
-        override val screen = FlatListDemo()
-      },
-      "Modal" -> new StackRouteConfig {
-        override val screen = ModalDemo()
-      },
-      //style
-      "Styles" -> new StackRouteConfig {
-        override val screen = StylesScreenController()
-      },
-      "BorderStyle" -> new StackRouteConfig {
-        override val screen = BorderStyleDemo()
-      },
-      "BorderRadius" -> new StackRouteConfig {
-        override val screen = BorderRadiusDemo()
-      },
-      "MarginStyle" -> new StackRouteConfig {
-        override val screen = MarginStyleDemo()
-      },
-      "PaddingStyle" -> new StackRouteConfig {
-        override val screen = PaddingStyleDemo()
-      },
-      "PositionStyle" -> new StackRouteConfig {
-        override val screen = PositionStyleDemo()
-      },
-      "Platform" -> new StackRouteConfig {
-        override val screen = PlatformDemo()
-      },
-      "TextStyle" -> new StackRouteConfig {
-        override val screen = app.style.TextStyleDemo()
-      },
-      "ProfileCard" -> new StackRouteConfig {
-        override val screen = ProfileCard()
-      },
-      // video
-      "Video" -> new StackRouteConfig {
-        override val screen = VideoDemo()
-      }
-    ),
-    config = new StackNavigatorConfig {
-      override val initialRouteName = "Showcase"
-    }
-  )
+  protected def render(props: Props): ReactElement = {
+    <.NavigationContainer()(
+      <(Stack.Navigator)(^.initialRouteName := "Showcase")(
+        <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
+        // RN components
+        <(Stack.Screen)(^.name := "ReactNative", ^.component := ReactNativeDemoController())(),
+        <(Stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
+        <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
+        <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
+        <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
+        //style
+        <(Stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),
+        <(Stack.Screen)(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),
+        <(Stack.Screen)(^.name := "BorderRadius", ^.component := BorderRadiusDemo())(),
+        <(Stack.Screen)(^.name := "MarginStyle", ^.component := MarginStyleDemo())(),
+        <(Stack.Screen)(^.name := "PaddingStyle", ^.component := PaddingStyleDemo())(),
+        <(Stack.Screen)(^.name := "PositionStyle", ^.component := PositionStyleDemo())(),
+        <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())(),
+        <(Stack.Screen)(^.name := "TextStyle", ^.component := app.style.TextStyleDemo())(),
+        <(Stack.Screen)(^.name := "ProfileCard", ^.component := ProfileCard())(),
+        // video
+        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())()
+      )
+    )
+  }
 }

@@ -37,7 +37,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 
 * Demo Application
   * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
-  * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala)
+  * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
   * [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
   * [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
   * Styles
@@ -70,10 +70,9 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
     * [ViewStyle](showcase/src/main/scala/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/ViewStyleDemoSpec.scala)
 
-* react-navigation
+* react-navigation (v5)
   * [Components](https://reactnavigation.org/docs/en/hello-react-navigation.html)
-    * [AppContainer](showcase/src/main/scala/showcase/navigation/ReactNavigationDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationDemoSpec.scala)
-    * [StackNavigator](showcase/src/main/scala/showcase/navigation/ReactNavigationStackDemo.scala) => [tests](showcase/src/test/scala/showcase/navigation/ReactNavigationStackDemoSpec.scala)
+    * [StackNavigator](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
   * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
 

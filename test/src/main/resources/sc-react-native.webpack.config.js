@@ -4,8 +4,8 @@ module.exports = {
   resolve: {
     alias: {
       'react-native$': './sc-react-native-mocks.js',
-      'react-navigation$': './sc-react-navigation-mocks.js',
-      'react-navigation-stack$': './sc-react-navigation-mocks.js',
+      '@react-navigation/native$': './sc-react-navigation-mocks.js',
+      '@react-navigation/stack$': './sc-react-navigation-mocks.js',
       'expo-av$': './sc-expo-av-mocks.js'
     }
   },

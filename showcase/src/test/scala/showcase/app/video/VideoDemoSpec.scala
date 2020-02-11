@@ -21,7 +21,7 @@ class VideoDemoSpec extends TestSpec with ShallowRendererUtils {
         <.Video(
           ^.rnStyle := styles.mediaPlayer,
           ^.expoAVSource := new ExpoAVSource {
-            override val uri = "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+            override val uri = "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
           },
           ^.shouldPlay := true,
           ^.useNativeControls := true

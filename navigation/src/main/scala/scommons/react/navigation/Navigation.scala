@@ -4,24 +4,35 @@ import io.github.shogowada.scalajs.reactjs.React.Props
 
 import scala.scalajs.js
 
-class Navigation(val native: raw.Navigation) {
+class Navigation(val navigation: raw.Navigation, val route: raw.Route) {
 
-  def navigate(routeName: String): Unit = native.navigate(routeName)
+  def navigate(name: String): Unit = navigation.navigate(name)
   
-  def navigate[T](routeName: String, params: T): Unit = {
-    native.navigate(routeName, params.asInstanceOf[js.Any])
+  def navigate[T](name: String, params: T): Unit = {
+    navigation.navigate(name, params.asInstanceOf[js.Any])
   }
   
-  def goBack(): Unit = native.goBack()
+  def goBack(): Unit = navigation.goBack()
   
   def getParams[T]: T = {
-    native.state.params.asInstanceOf[T]
+    route.params.asInstanceOf[T]
+  }
+  
+  def setParams[T](params: T): Unit = {
+    navigation.setParams(params.asInstanceOf[js.Any])
+  }
+
+  def setOptions(options: js.Object): Unit = {
+    navigation.setOptions(options)
   }
 }
 
 object Navigation {
 
   def apply(props: Props[_]): Navigation = {
-    new Navigation(props.native.navigation.asInstanceOf[raw.Navigation])
+    new Navigation(
+      props.native.navigation.asInstanceOf[raw.Navigation],
+      props.native.route.asInstanceOf[raw.Route]
+    )
   }
 }
