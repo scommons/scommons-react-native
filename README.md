@@ -79,8 +79,6 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
   * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
 
-You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)
-
 ### How to Build
 
 To build and run all the tests use the following command:
@@ -90,4 +88,8 @@ sbt test
 
 ## Documentation
 
-You can find more documentation [here](https://scommons.org)
+You can find more documentation [here](https://scommons.org/scommons-react-native)
+
+### Examples
+
+You can find more examples [here](https://github.com/scommons/scommons-examples-mobile)

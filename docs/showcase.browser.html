@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>ShowcaseApp</title>
+  <style>
+body {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex: 0 1 auto;
+}
+
+.iphone_emulator {
+  background-image: url("./assets/img/smartphone.png");
+  width: 526px;
+  height: 961px;
+}
+
+.frame_container {
+  margin: 110px 0 0 66px;
+  display: inline-block;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+}
+.frame_container > iframe {
+  width: 389px;
+  height: 691px;
+}
+  </style>
+</head>
+
+<body>
+  <div class="iphone_emulator">
+    <div class="frame_container">
+      <iframe src="./showcase.html" style="background-color: #fff;" frameborder="0">
+      </iframe>
+    </div>
+  </div>
+</body>
+
+</html>
