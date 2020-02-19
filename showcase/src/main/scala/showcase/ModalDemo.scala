@@ -15,26 +15,28 @@ object ModalDemo extends FunctionComponent[Unit] {
     val (modalVisible, setModalVisible) = useState(false)
     
     <.View(^.rnStyle := styles.container)(
-      <.Modal(
-        ^.animationType := AnimationType.slide,
-        ^.transparent := false,
-        ^.visible := modalVisible,
-        ^.onShow := { () =>
-          println("modal is visible")
-        },
-        ^.onRequestClose := { () =>
-          println("modal will be closed")
-        }
-      )(
-        <.View(^.rnStyle := styles.container)(
-          <.View()(
-            <.Text()("Hello World!"),
-            <.Button(^.title := "Hide Modal", ^.color := "#0000ff", ^.onPress := { () =>
-              setModalVisible(false)
-            })()
+      if (modalVisible) Some(
+        <.Modal(
+          ^.animationType := AnimationType.slide,
+          ^.transparent := false,
+          ^.visible := true,
+          ^.onShow := { () =>
+            println("modal is visible")
+          },
+          ^.onRequestClose := { () =>
+            println("modal will be closed")
+          }
+        )(
+          <.View(^.rnStyle := styles.container)(
+            <.View()(
+              <.Text()("Hello World!"),
+              <.Button(^.title := "Hide Modal", ^.color := "#0000ff", ^.onPress := { () =>
+                setModalVisible(false)
+              })()
+            )
           )
         )
-      ),
+      ) else None,
 
       <.Button(^.title := "Show Modal", ^.color := "#0000ff", ^.onPress := { () =>
         setModalVisible(true)

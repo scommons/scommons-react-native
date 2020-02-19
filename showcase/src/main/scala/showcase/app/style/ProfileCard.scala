@@ -59,7 +59,7 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val height = 400
     }
     val cardContainerShadow: Style = Platform.select {
-      case Platform.ios => new ViewStyle {
+      case Platform.ios | Platform.web => new ViewStyle {
         override val shadowColor = Color.black
         override val shadowOffset = new ShadowOffset {
           override val height = 10
@@ -82,7 +82,7 @@ object ProfileCard extends FunctionComponent[Unit] {
       override val paddingTop = 15
     }
     val cardImageContainerShadow: Style = Platform.select {
-      case Platform.ios => new ViewStyle {
+      case Platform.ios | Platform.web => new ViewStyle {
         override val shadowColor = Color.black
         override val shadowOffset = new ShadowOffset {
           override val height = 10

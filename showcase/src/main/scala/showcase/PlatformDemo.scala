@@ -28,7 +28,7 @@ object PlatformDemo extends FunctionComponent[Unit] {
     }
     val info: Style = new TextStyle {
       override val fontFamily = Platform.select {
-        case Platform.ios => "American Typewriter"
+        case Platform.ios | Platform.web => "American Typewriter"
         case Platform.android => "monospace"
       }
     }

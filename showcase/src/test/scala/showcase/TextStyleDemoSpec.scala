@@ -24,7 +24,7 @@ class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
       <("Text")(
         ^.rnStyle := js.Dynamic.literal(
           "fontFamily" -> Platform.select {
-            case Platform.ios => "American Typewriter"
+            case Platform.ios | Platform.web => "American Typewriter"
             case Platform.android => "monospace"
           },
           "fontSize" -> 14,

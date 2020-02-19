@@ -24,7 +24,7 @@ object TextStyleDemo extends FunctionComponent[Unit] {
     
     val text: Style = new TextStyle with AndroidTextStyle with IOSTextStyle {
       override val fontFamily = Platform.select {
-        case Platform.ios => "American Typewriter"
+        case Platform.ios | Platform.web => "American Typewriter"
         case Platform.android => "monospace"
       }
       override val fontSize = 14

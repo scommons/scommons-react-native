@@ -12,23 +12,22 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
     //given
     val renderer = createRenderer()
     renderer.render(<(ModalDemo())()())
-    val List(modal) = findComponents(renderer.getRenderOutput(), raw.Modal)
-    modal.props.visible shouldBe false
-    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
+    findComponents(renderer.getRenderOutput(), raw.Modal) shouldBe Nil
+    val List(showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
     
     //when
     showModal.props.onPress()
     
     //then
-    val List(updatedModal) = findComponents(renderer.getRenderOutput(), raw.Modal)
-    updatedModal.props.visible shouldBe true
+    val List(modal) = findComponents(renderer.getRenderOutput(), raw.Modal)
+    modal.props.visible shouldBe true
   }
   
   it should "set visible to false when press Hide Modal" in {
     //given
     val renderer = createRenderer()
     renderer.render(<(ModalDemo())()())
-    val List(_, showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
+    val List(showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
     showModal.props.onPress()
     val List(modal) = findComponents(renderer.getRenderOutput(), raw.Modal)
     modal.props.visible shouldBe true
@@ -38,11 +37,10 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
     hideModal.props.onPress()
     
     //then
-    val List(updatedModal) = findComponents(renderer.getRenderOutput(), raw.Modal)
-    updatedModal.props.visible shouldBe false
+    findComponents(renderer.getRenderOutput(), raw.Modal) shouldBe Nil
   }
   
-  it should "render component" in {
+  it should "render component without modal" in {
     //given
     val component = <(ModalDemo())()()
 
@@ -52,10 +50,27 @@ class ModalDemoSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
+        <.Button(^.title := "Show Modal", ^.color := "#0000ff")()
+      )
+    )
+  }
+  
+  it should "render component with modal" in {
+    //given
+    val renderer = createRenderer()
+    renderer.render(<(ModalDemo())()())
+    val List(showModal) = findComponents(renderer.getRenderOutput(), raw.Button)
+
+    //when
+    showModal.props.onPress()
+
+    //then
+    assertNativeComponent(renderer.getRenderOutput(),
+      <.View(^.rnStyle := styles.container)(
         <.Modal(
           ^.animationType := AnimationType.slide,
           ^.transparent := false,
-          ^.visible := false
+          ^.visible := true
         )(
           <.View(^.rnStyle := styles.container)(
             <.View()(
