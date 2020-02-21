@@ -27,6 +27,7 @@ class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
           <("Screen")(^.name := "Button", ^.component := ButtonDemo())(),
           <("Screen")(^.name := "FlatList", ^.component := FlatListDemo())(),
           <("Screen")(^.name := "Modal", ^.component := ModalDemo())(),
+          <("Screen")(^.name := "Alert", ^.component := AlertDemo())(),
           //style
           <("Screen")(^.name := "Styles", ^.component := StylesScreenController())(),
           <("Screen")(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),

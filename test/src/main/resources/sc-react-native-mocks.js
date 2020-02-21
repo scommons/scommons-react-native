@@ -1,5 +1,11 @@
 
 module.exports = {
+  
+  Alert: {
+    alert: function (title) {
+    }
+  },
+  
   StyleSheet: {
     create: function (obj) {
       return obj;

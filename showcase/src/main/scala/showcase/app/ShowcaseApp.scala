@@ -27,6 +27,7 @@ object ShowcaseApp extends FunctionComponent[Unit] {
         <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
         <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
         <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
+        <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
         //style
         <(Stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),
         <(Stack.Screen)(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),

@@ -65,6 +65,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)
     * [TouchableOpacity](showcase/src/main/scala/showcase/TouchableOpacityDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableOpacityDemoSpec.scala)
   * [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
+    * [Alert](showcase/src/main/scala/showcase/AlertDemo.scala) => [tests](showcase/src/test/scala/showcase/AlertDemoSpec.scala)
     * [Platform](showcase/src/main/scala/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/showcase/PlatformDemoSpec.scala)
     * [Style](showcase/src/main/scala/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/showcase/StyleDemoSpec.scala)
     * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
