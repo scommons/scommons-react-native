@@ -19,6 +19,8 @@ val scommonsReactNativeVer = "1.0.0-SNAPSHOT"
 libraryDependencies ++= Seq(
   "org.scommons.react-native" %%% "scommons-react-native-core" % scommonsReactNativeVer,
   "org.scommons.react-native" %%% "scommons-react-navigation" % scommonsReactNativeVer,
+  // ui module already includes all above modules
+  "org.scommons.react-native" %%% "scommons-react-native-ui" % scommonsReactNativeVer,
   "org.scommons.react-native" %%% "scommons-expo-av" % scommonsReactNativeVer,
   
   "org.scommons.react-native" %%% "scommons-react-native-test" % scommonsReactNativeVer % "test"
