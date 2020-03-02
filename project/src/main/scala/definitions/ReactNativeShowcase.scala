@@ -20,7 +20,9 @@ object ReactNativeShowcase extends ScalaJsModule {
       publishLocal := ((): Unit),
       publishM2 := ((): Unit),
 
-      coverageExcludedPackages := "showcase.app.BaseRouteController",
+      coverageExcludedPackages :=
+        "showcase.app.ShowcaseApp" +
+          ";showcase.app.ShowcaseActions",
 
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),

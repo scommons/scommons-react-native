@@ -7,11 +7,11 @@ import showcase._
 import showcase.app.style._
 import showcase.app.video._
 
-class ShowcaseAppSpec extends TestSpec with ShallowRendererUtils {
+class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render component" in {
     //given
-    val component = <(ShowcaseApp())()()
+    val component = <(ShowcaseRoot())()()
     
     //when
     val result = shallowRender(component)
