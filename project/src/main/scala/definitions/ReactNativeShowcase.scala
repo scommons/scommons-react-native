@@ -1,5 +1,6 @@
 package definitions
 
+import common.TestLibs
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
@@ -22,7 +23,8 @@ object ReactNativeShowcase extends ScalaJsModule {
 
       coverageExcludedPackages :=
         "showcase.app.ShowcaseApp" +
-          ";showcase.app.ShowcaseActions",
+          ";showcase.app.ShowcaseActions" +
+          ";showcase.api.task.DemoTaskApi",
 
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),
@@ -38,9 +40,13 @@ object ReactNativeShowcase extends ScalaJsModule {
     ReactNativeTest.definition % "test"
   )
 
-  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
+  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
+    ("scommons-react", "scommons-react-test-dom", Some("test"))
+  )
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
 
-  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
+  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
+    TestLibs.scommonsReactTestDom.value
+  ).map(_ % "test"))
 }

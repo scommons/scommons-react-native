@@ -2,7 +2,7 @@ package showcase.app
 
 import scommons.react.redux.task.FutureTask
 import scommons.react.test.TestSpec
-import showcase.app.task.DemoActions.SuccessfulFetchAction
+import showcase.app.task.DemoTaskActions.SuccessfulFetchAction
 
 import scala.concurrent.Future
 

@@ -3,13 +3,16 @@ package showcase.app
 import showcase._
 import showcase.app.style._
 import showcase.app.video._
+import showcase.app.task._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
 
 object ShowcaseRoot extends FunctionComponent[Unit] {
 
-  private lazy val Stack = createStackNavigator()
+  private[app] lazy val Stack = createStackNavigator()
+  
+  private[app] lazy val demoTaskComp = new DemoTaskController(ShowcaseActions).apply()
   
   protected def render(props: Props): ReactElement = {
     <.NavigationContainer()(
@@ -33,7 +36,9 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
         <(Stack.Screen)(^.name := "TextStyle", ^.component := app.style.TextStyleDemo())(),
         <(Stack.Screen)(^.name := "ProfileCard", ^.component := ProfileCard())(),
         // video
-        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())()
+        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
+        // task
+        <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)()
       )
     )
   }

@@ -42,6 +42,8 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
   * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
   * [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
   * [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
+  * [state](showcase/src/main/scala/showcase/app/ShowcaseState.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseStateReducerSpec.scala)
+  * [TaskController](showcase/src/main/scala/showcase/app/ShowcaseTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseTaskControllerSpec.scala)
   * Styles
     * [controller](showcase/src/main/scala/showcase/app/style/StylesScreenController.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenControllerSpec.scala)
     * [screen](showcase/src/main/scala/showcase/app/style/StylesScreen.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenSpec.scala)
@@ -54,6 +56,10 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
       * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
       * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
   * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
+  * API Tasks
+    * [actions](showcase/src/main/scala/showcase/app/task/DemoTaskActions.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskActionsSpec.scala)
+    * [controller](showcase/src/main/scala/showcase/app/task/DemoTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskControllerSpec.scala)
+    * [screen](showcase/src/main/scala/showcase/app/task/DemoTaskScreen.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskScreenSpec.scala)
 
 * react-native
   * [Components](https://facebook.github.io/react-native/docs/activityindicator):

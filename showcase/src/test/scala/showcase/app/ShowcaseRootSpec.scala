@@ -1,9 +1,11 @@
 package showcase.app
 
+import scommons.react.navigation._
 import scommons.react.navigation.stack._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import showcase._
+import showcase.app.ShowcaseRoot._
 import showcase.app.style._
 import showcase.app.video._
 
@@ -18,28 +20,30 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     
     //then
     assertNativeComponent(result,
-      <("NavigationContainer")()(
-        <("Navigator")(^.initialRouteName := "Showcase")(
-          <("Screen")(^.name := "Showcase", ^.component := ShowcaseController())(),
+      <.NavigationContainer()(
+        <(Stack.Navigator)(^.initialRouteName := "Showcase")(
+          <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
           // RN components
-          <("Screen")(^.name := "ReactNative", ^.component := ReactNativeDemoController())(),
-          <("Screen")(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
-          <("Screen")(^.name := "Button", ^.component := ButtonDemo())(),
-          <("Screen")(^.name := "FlatList", ^.component := FlatListDemo())(),
-          <("Screen")(^.name := "Modal", ^.component := ModalDemo())(),
-          <("Screen")(^.name := "Alert", ^.component := AlertDemo())(),
+          <(Stack.Screen)(^.name := "ReactNative", ^.component := ReactNativeDemoController())(),
+          <(Stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
+          <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
+          <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
+          <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
+          <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
           //style
-          <("Screen")(^.name := "Styles", ^.component := StylesScreenController())(),
-          <("Screen")(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),
-          <("Screen")(^.name := "BorderRadius", ^.component := BorderRadiusDemo())(),
-          <("Screen")(^.name := "MarginStyle", ^.component := MarginStyleDemo())(),
-          <("Screen")(^.name := "PaddingStyle", ^.component := PaddingStyleDemo())(),
-          <("Screen")(^.name := "PositionStyle", ^.component := PositionStyleDemo())(),
-          <("Screen")(^.name := "Platform", ^.component := PlatformDemo())(),
-          <("Screen")(^.name := "TextStyle", ^.component := app.style.TextStyleDemo())(),
-          <("Screen")(^.name := "ProfileCard", ^.component := ProfileCard())(),
+          <(Stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),
+          <(Stack.Screen)(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),
+          <(Stack.Screen)(^.name := "BorderRadius", ^.component := BorderRadiusDemo())(),
+          <(Stack.Screen)(^.name := "MarginStyle", ^.component := MarginStyleDemo())(),
+          <(Stack.Screen)(^.name := "PaddingStyle", ^.component := PaddingStyleDemo())(),
+          <(Stack.Screen)(^.name := "PositionStyle", ^.component := PositionStyleDemo())(),
+          <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())(),
+          <(Stack.Screen)(^.name := "TextStyle", ^.component := app.style.TextStyleDemo())(),
+          <(Stack.Screen)(^.name := "ProfileCard", ^.component := ProfileCard())(),
           // video
-          <("Screen")(^.name := "Video", ^.component := VideoDemo())()
+          <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
+          // task
+          <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)()
         )
       )
     )

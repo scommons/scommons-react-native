@@ -1,8 +1,11 @@
 package showcase.app
 
-import showcase.app.task.DemoActions
+import showcase.api.task.DemoTaskApi
+import showcase.app.task.DemoTaskActions
 
 object ShowcaseActions
-  extends DemoActions {
+  extends DemoTaskActions {
 
+  protected val client: DemoTaskApi = new DemoTaskApi {
+  }
 }
