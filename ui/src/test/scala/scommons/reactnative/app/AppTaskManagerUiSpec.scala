@@ -40,11 +40,44 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     errorDetails shouldBe None
   }
 
+  it should "call onCloseErrorPopup function when onClose error popup" in {
+    //given
+    val onCloseErrorPopup = mockFunction[Unit]
+    val props = getTaskManagerUiProps(
+      error = Some("Some error"),
+      onCloseErrorPopup = onCloseErrorPopup
+    )
+    val comp = new AppTaskManagerUi().apply()
+    val result = shallowRender(<(comp)(^.wrapped := props)())
+    val errorProps = findComponentProps(result, ErrorPopup)
+
+    //then
+    onCloseErrorPopup.expects()
+
+    //when
+    errorProps.onClose()
+  }
+
   it should "render loading" in {
     //given
     val props = getTaskManagerUiProps(
       showLoading = true,
       status = Some("Fetching data")
+    )
+    val comp = new AppTaskManagerUi().apply()
+
+    //when
+    val result = shallowRender(<(comp)(^.wrapped := props)())
+
+    //then
+    assertRenderingResult(result, props)
+  }
+
+  it should "render error with details" in {
+    //given
+    val props = getTaskManagerUiProps(
+      error = Some("Some error"),
+      errorDetails = Some("Some error details")
     )
     val comp = new AppTaskManagerUi().apply()
 
@@ -85,10 +118,13 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
   }
   
   private def assertRenderingResult(result: ShallowInstance, props: TaskManagerUiProps): Unit = {
+    val showError = props.error.isDefined
+    
     assertNativeComponent(result, <.>()(), { children =>
-      val loadingPopup = children match {
-        case List(lp) if props.showLoading => Some(lp)
-        case Nil => None
+      val (loadingPopup, errorPopup) = children match {
+        case List(lp) if props.showLoading => (Some(lp), None)
+        case List(ep) if showError => (None, Some(ep))
+        case Nil => (None, None)
       }
 
       if (props.showLoading) {
@@ -96,6 +132,15 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
         assertComponent(loadingPopup.get, LoadingPopup) { case LoadingPopupProps(resSize, color) =>
           resSize shouldBe ActivityIndicatorSize.small
           color shouldBe Style.Color.gray
+        }
+      }
+
+      if (showError) {
+        errorPopup should not be None
+        assertComponent(errorPopup.get, ErrorPopup) { case ErrorPopupProps(error, onClose, details) =>
+          error shouldBe props.error.getOrElse("")
+          details shouldBe props.errorDetails
+          onClose shouldBe props.onCloseErrorPopup
         }
       }
 
