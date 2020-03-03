@@ -36,6 +36,11 @@ class TextInputDemoSpec extends TestSpec with ShallowRendererUtils {
       <("TextInput")(
         ^.rnStyle := styles.input,
         ^.value := "Some text",
+        ^("allowFontScaling") := true,
+        ^("autoCapitalize") := AutoCapitalize.none.asInstanceOf[String],
+        ^("autoCompleteType") := AutoCompleteType.off.asInstanceOf[String],
+        ^("autoCorrect") := true,
+        ^("autoFocus") := false,
         ^("placeholderTextColor") := Color.red,
         ^("selectionColor") := Color.blue,
         ^("secureTextEntry") := true,
@@ -61,5 +66,33 @@ class TextInputDemoSpec extends TestSpec with ShallowRendererUtils {
     KeyboardType.`web-search` shouldBe "web-search"
     //Android Only
     KeyboardType.`visible-password` shouldBe "visible-password"
+  }
+  
+  it should "provide AutoCapitalize enum" in {
+    //when & then
+    AutoCapitalize.sentences shouldBe "sentences"
+    AutoCapitalize.words shouldBe "words"
+    AutoCapitalize.characters shouldBe "characters"
+    AutoCapitalize.none shouldBe "none"
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  // android
+
+  it should "provide AutoCompleteType enum" in {
+    //when & then
+    AutoCompleteType.off shouldBe "off"
+    AutoCompleteType.username shouldBe "username"
+    AutoCompleteType.password shouldBe "password"
+    AutoCompleteType.email shouldBe "email"
+    AutoCompleteType.name shouldBe "name"
+    AutoCompleteType.tel shouldBe "tel"
+    AutoCompleteType.`street-address` shouldBe "street-address"
+    AutoCompleteType.`postal-code` shouldBe "postal-code"
+    AutoCompleteType.`cc-number` shouldBe "cc-number"
+    AutoCompleteType.`cc-csc` shouldBe "cc-csc"
+    AutoCompleteType.`cc-exp` shouldBe "cc-exp"
+    AutoCompleteType.`cc-exp-month` shouldBe "cc-exp-month"
+    AutoCompleteType.`cc-exp-year` shouldBe "cc-exp-year"
   }
 }

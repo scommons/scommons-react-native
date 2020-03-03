@@ -20,6 +20,11 @@ object TextInputDemo extends FunctionComponent[TextInputDemoProps] {
     <.TextInput(
       ^.rnStyle := styles.input,
       ^.value := "Some text",
+      ^.allowFontScaling := true,
+      ^.autoCapitalize := AutoCapitalize.none,
+      ^.autoCompleteType := AutoCompleteType.off, // android
+      ^.autoCorrect := true,
+      ^.autoFocus := false,
       ^.placeholderTextColor := Color.red,
       ^.selectionColor := Color.blue,
       ^.secureTextEntry := true,
