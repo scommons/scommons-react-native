@@ -58,7 +58,7 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     errorProps.onClose()
   }
 
-  it should "render loading" in {
+  it should "render loading and log task status" in {
     //given
     val props = getTaskManagerUiProps(
       showLoading = true,
@@ -121,12 +121,16 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     val showError = props.error.isDefined
     
     assertNativeComponent(result, <.>()(), { children =>
-      val (loadingPopup, errorPopup) = children match {
-        case List(lp) if props.showLoading => (Some(lp), None)
-        case List(ep) if showError => (None, Some(ep))
-        case Nil => (None, None)
+      val (taskLogger, loadingPopup, errorPopup) = children match {
+        case List(tl, lp) if props.showLoading => (tl, Some(lp), None)
+        case List(tl, ep) if showError => (tl, None, Some(ep))
+        case List(tl) => (tl, None, None)
       }
 
+      assertComponent(taskLogger, TaskLogger) { case TaskLoggerProps(text) =>
+        text shouldBe props.status.getOrElse("")
+      }
+      
       if (props.showLoading) {
         loadingPopup should not be None
         assertComponent(loadingPopup.get, LoadingPopup) { case LoadingPopupProps(resSize, color) =>

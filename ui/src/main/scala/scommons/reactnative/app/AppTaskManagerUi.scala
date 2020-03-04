@@ -24,10 +24,13 @@ class AppTaskManagerUi(loadingProps: LoadingPopupProps = LoadingPopupProps())
 
   protected def render(compProps: Props): ReactElement = {
     val props = compProps.wrapped
+    val statusMessage = props.status.getOrElse("")
     val showError = props.error.isDefined
     val errorMessage = props.error.getOrElse("")
 
     <.>()(
+      <(TaskLogger())(^.wrapped := TaskLoggerProps(statusMessage))(),
+      
       if (props.showLoading) Some(
         <(LoadingPopup())(^.wrapped := loadingProps)()
       ) else None,
