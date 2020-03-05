@@ -1,21 +1,22 @@
 package scommons.reactnative.app
 
 import scommons.api.ApiResponse
+import scommons.api.http.ApiHttpStatusException
 import scommons.react._
 import scommons.react.redux.task.TaskManagerUiProps
 import scommons.reactnative.ui.popup._
 
-import scala.util.{Success, Try}
+import scala.util.{Failure, Success, Try}
 
 object AppTaskManagerUi {
 
   var errorHandler: PartialFunction[Try[_], (Option[String], Option[String])] = {
-    case Success(result) => result match {
-      case res: ApiResponse if res.status.nonSuccessful =>
-        (Some(res.status.error.getOrElse("Non-successful response")), res.status.details)
-      case _ =>
-        (None, None)
-    }
+    
+    case Success(res: ApiResponse) if res.status.nonSuccessful =>
+      (Some(res.status.error.getOrElse("Non-successful response")), res.status.details)
+    
+    case Failure(e: ApiHttpStatusException) =>
+      (Some(e.error), Option(e.getMessage))
   }
 }
 

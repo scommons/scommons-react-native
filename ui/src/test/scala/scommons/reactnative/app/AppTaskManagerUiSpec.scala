@@ -1,6 +1,7 @@
 package scommons.reactnative.app
 
 import org.scalatest.Succeeded
+import scommons.api.http.{ApiHttpResponse, ApiHttpStatusException}
 import scommons.api.{ApiStatus, StatusResponse}
 import scommons.react._
 import scommons.react.redux.task.TaskManagerUiProps
@@ -11,7 +12,7 @@ import scommons.reactnative.ActivityIndicator._
 import scommons.reactnative.Style
 import scommons.reactnative.ui.popup._
 
-import scala.util.Success
+import scala.util.{Failure, Success}
 
 class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
 
@@ -28,16 +29,41 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     errorDetails shouldBe status.details
   }
 
-  it should "return None if successful response in errorHandler" in {
+  it should "not handle successful response in errorHandler" in {
     //given
     val value = Success(StatusResponse(ApiStatus.Ok))
 
+    //when & then
+    AppTaskManagerUi.errorHandler.isDefinedAt(value) shouldBe false
+  }
+
+  it should "not handle any other successful result in errorHandler" in {
+    //given
+    val value = Success(123)
+
+    //when & then
+    AppTaskManagerUi.errorHandler.isDefinedAt(value) shouldBe false
+  }
+
+  it should "return error if failed response exception in errorHandler" in {
+    //given
+    val resp = ApiHttpResponse("test/url", 500, Map.empty, "Some error resp")
+    val ex = ApiHttpStatusException("Login failed", resp)
+
     //when
-    val (error, errorDetails) = AppTaskManagerUi.errorHandler(value)
+    val (error, errorDetails) = AppTaskManagerUi.errorHandler(Failure(ex))
 
     //then
-    error shouldBe None
-    errorDetails shouldBe None
+    error shouldBe Some(ex.error)
+    errorDetails shouldBe Some(ex.getMessage)
+  }
+
+  it should "not handle any other exception in errorHandler" in {
+    //given
+    val ex = new Exception("any other test error")
+
+    //when & then
+    AppTaskManagerUi.errorHandler.isDefinedAt(Failure(ex)) shouldBe false
   }
 
   it should "call onCloseErrorPopup function when onClose error popup" in {
