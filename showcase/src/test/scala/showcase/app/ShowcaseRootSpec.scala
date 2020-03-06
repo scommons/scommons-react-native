@@ -29,6 +29,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
           <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
           <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
           <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
+          <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
           <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
           //style
           <(Stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),

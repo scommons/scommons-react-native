@@ -21,6 +21,7 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
           "Button" -> "Demo Button component",
           "FlatList" -> "Demo FlatList component",
           "Modal" -> "Demo Modal component",
+          "Picker" -> "Demo Picker component",
           "Alert" -> "Demo Alert component"
         )
         navigate shouldBe props.navigate

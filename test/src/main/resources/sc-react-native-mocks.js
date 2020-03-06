@@ -1,4 +1,11 @@
 
+const createPicker = () => {
+  const Picker = function () {}
+  Picker.displayName = "Picker"
+  Picker.Item = "Picker.Item"
+  return Picker
+}
+
 module.exports = {
   
   Alert: {
@@ -21,6 +28,7 @@ module.exports = {
   FlatList: 'FlatList',
   Image: 'Image',
   Modal: 'Modal',
+  Picker: createPicker(),
   ScrollView: 'ScrollView',
   Text: 'Text',
   TextInput: 'TextInput',

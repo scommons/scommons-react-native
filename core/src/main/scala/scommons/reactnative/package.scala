@@ -15,6 +15,8 @@ package object reactnative {
     lazy val FlatList: ReactClassElementSpec = elements(raw.FlatList)
     lazy val Image: ReactClassElementSpec = elements(raw.Image)
     lazy val Modal: ReactClassElementSpec = elements(raw.Modal)
+    lazy val Picker: ReactClassElementSpec = elements(raw.Picker)
+    lazy val PickerItem: ReactClassElementSpec = elements(raw.Picker.Item)
     lazy val ScrollView: ReactClassElementSpec = elements(raw.ScrollView)
     lazy val Text: ReactClassElementSpec = elements(raw.Text)
     lazy val TextInput: ReactClassElementSpec = elements(raw.TextInput)
@@ -40,6 +42,7 @@ package object reactnative {
     with FlatList.FlatListAttributes
     with Image.ImageAttributes
     with Modal.ModalAttributes
+    with Picker.PickerAttributes
     with ScrollView.ScrollViewAttributes
     with TextInput.TextInputAttributes
     with Touchable.TouchableAttributes

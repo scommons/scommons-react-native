@@ -15,6 +15,7 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
         "Button" -> "Demo Button component",
         "FlatList" -> "Demo FlatList component",
         "Modal" -> "Demo Modal component",
+        "Picker" -> "Demo Picker component",
         "Alert" -> "Demo Alert component"
       ),
       navigate = props.navigate
