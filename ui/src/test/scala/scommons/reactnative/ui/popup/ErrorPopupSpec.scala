@@ -1,6 +1,6 @@
 package scommons.reactnative.ui.popup
 
-import scommons.react.test.TestSpec
+import scommons.react.test.dom.AsyncTestSpec
 import scommons.react.test.util.TestRendererUtils
 import scommons.reactnative.Alert._
 import scommons.reactnative._
@@ -10,7 +10,7 @@ import scommons.reactnative.ui.popup.ErrorPopupSpec.AlertMock
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class ErrorPopupSpec extends TestSpec with TestRendererUtils {
+class ErrorPopupSpec extends AsyncTestSpec with TestRendererUtils {
 
   it should "show and close simple error alert" in {
     //given
@@ -18,6 +18,7 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
     val alert = mock[AlertMock]
     NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
     val props = ErrorPopupProps("Test error", onClose = onClose)
+    var testFinish = false
     
     //then
     onClose.expects()
@@ -31,10 +32,18 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
       
       //when
       closeBtn.onPress()
+      
+      //then
+      testFinish = true
     }
 
     //when
     testRender(<(ErrorPopup())(^.wrapped := props)())
+    
+    //then
+    eventually {
+      testFinish shouldBe true
+    }
   }
   
   it should "show and close error alert with Details button" in {
@@ -43,6 +52,7 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
     val alert = mock[AlertMock]
     NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
     val props = ErrorPopupProps("Test error", onClose = onClose, details = Some("Test details"))
+    var testFinish = false
     
     //then
     onClose.expects()
@@ -59,10 +69,18 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
       
       //when
       closeBtn.onPress()
+      
+      //then
+      testFinish = true
     }
 
     //when
     testRender(<(ErrorPopup())(^.wrapped := props)())
+
+    //then
+    eventually {
+      testFinish shouldBe true
+    }
   }
   
   it should "show error details alert when press Details button" in {
@@ -71,6 +89,7 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
     val alert = mock[AlertMock]
     NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
     val props = ErrorPopupProps("Test error", onClose = onClose, details = Some("Test details"))
+    var testFinish = false
     
     //then
     onClose.expects()
@@ -98,10 +117,18 @@ class ErrorPopupSpec extends TestSpec with TestRendererUtils {
       
       //when
       closeBtn.onPress()
+      
+      //then
+      testFinish = true
     }
 
     //when
     testRender(<(ErrorPopup())(^.wrapped := props)())
+
+    //then
+    eventually {
+      testFinish shouldBe true
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 package definitions
 
-import common.Libs
+import common.{Libs, TestLibs}
 import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
@@ -33,7 +33,9 @@ object ReactNativeUi extends ScalaJsModule {
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
     ("scommons-api", "scommons-api-dom", None),
-    ("scommons-react", "scommons-react-redux", None)
+    ("scommons-react", "scommons-react-redux", None),
+
+    ("scommons-react", "scommons-react-test-dom", Some("test"))
   )
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
@@ -41,5 +43,7 @@ object ReactNativeUi extends ScalaJsModule {
     Libs.scommonsReactRedux.value
   ))
 
-  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
+  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
+    TestLibs.scommonsReactTestDom.value
+  ).map(_ % "test"))
 }

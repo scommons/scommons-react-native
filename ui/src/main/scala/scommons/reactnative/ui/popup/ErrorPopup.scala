@@ -36,7 +36,16 @@ object ErrorPopup extends FunctionComponent[ErrorPopupProps] {
     }
     
     useEffect({ () =>
-      showAlert()
+      if (!showDetails) {
+        // fix Alert is not showing just after loading modal is closed
+        setTimeout({ () =>
+          showAlert()
+        }, 100)
+      }
+      else {
+        showAlert()
+      }
+      ()
     }, List(showDetails))
     
     <.>()()
