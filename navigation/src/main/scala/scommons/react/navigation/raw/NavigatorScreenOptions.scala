@@ -1,10 +1,10 @@
-package scommons.react.navigation.stack.raw
+package scommons.react.navigation.raw
 
 import scommons.react._
 
 import scala.scalajs.js
 
-trait ScreenOptions extends js.Object {
+trait NavigatorScreenOptions extends js.Object {
 
   val title: js.UndefOr[String] = js.undefined
   val headerTintColor: js.UndefOr[String] = js.undefined

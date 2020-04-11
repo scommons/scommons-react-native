@@ -1,12 +1,14 @@
 package showcase.app.style
 
+import showcase.app._
+import scommons.react._
+import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
-import showcase.app._
 
 class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
 
-  it should "render component" in {
+  it should "render main component" in {
     //given
     val props = StylesScreenProps(navigate = _ => ())
     val component = <(StylesScreen())(^.wrapped := props)()
@@ -23,11 +25,39 @@ class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
           "MarginStyle" -> "Demo margin styles",
           "PaddingStyle" -> "Demo padding styles",
           "PositionStyle" -> "Demo position styles",
-          "Platform" -> "Demo platform-specific styles",
           "TextStyle" -> "Demo text styles",
           "ProfileCard" -> "Demo ProfileCard component"
         )
         navigate shouldBe props.navigate
     }
+  }
+
+  it should "render styles stack" in {
+    //given
+    val stack = ShowcaseScreen.Stack
+    val wrapper = new FunctionComponent[Unit] {
+      protected def render(props: Props): ReactElement = {
+        <.>()(
+          StylesScreen.getStylesStack(stack)
+        )
+      }
+    }
+    
+    //when
+    val result = shallowRender(<(wrapper())()())
+    
+    //then
+    assertNativeComponent(result,
+      <.>()(
+        <(stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),
+        <(stack.Screen)(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),
+        <(stack.Screen)(^.name := "BorderRadius", ^.component := BorderRadiusDemo())(),
+        <(stack.Screen)(^.name := "MarginStyle", ^.component := MarginStyleDemo())(),
+        <(stack.Screen)(^.name := "PaddingStyle", ^.component := PaddingStyleDemo())(),
+        <(stack.Screen)(^.name := "PositionStyle", ^.component := PositionStyleDemo())(),
+        <(stack.Screen)(^.name := "TextStyle", ^.component := TextStyleDemo())(),
+        <(stack.Screen)(^.name := "ProfileCard", ^.component := ProfileCard())()
+      )
+    )
   }
 }

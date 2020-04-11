@@ -82,7 +82,9 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 
 * react-navigation (v5)
   * [Components](https://reactnavigation.org/docs/en/hello-react-navigation.html)
-    * [StackNavigator](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
+    * [StackNavigator](showcase/src/main/scala/showcase/app/ReactNativeDemoScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ReactNativeDemoScreenSpec.scala)
+    * [Tab Navigation](https://reactnavigation.org/docs/tab-based-navigation)
+      * [BottomTabNavigator](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
   * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
 

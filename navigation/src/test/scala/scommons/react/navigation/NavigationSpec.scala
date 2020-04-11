@@ -4,7 +4,7 @@ import io.github.shogowada.scalajs.reactjs.React.Props
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.{FlatSpec, Inside, Matchers}
 import scommons.react.navigation.NavigationSpec._
-import scommons.react.navigation.stack.raw.ScreenOptions
+import scommons.react.navigation.stack.raw.StackScreenOptions
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
@@ -98,7 +98,7 @@ class NavigationSpec extends FlatSpec
     val nav = Navigation(Props(js.Dynamic.literal(
       "navigation" -> navigation.asInstanceOf[raw.Navigation]
     )))
-    val options = new ScreenOptions {
+    val options = new StackScreenOptions {
       override val title = "test"
     }
 
