@@ -36,7 +36,7 @@ object ReactNativeShowcase extends ScalaJsModule {
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
     ReactNativeUi.definition,
-    ExpoAV.definition,
+    Expo.definition,
     ReactNativeTest.definition % "test"
   )
 

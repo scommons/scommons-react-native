@@ -22,7 +22,7 @@ object ReactNavigation extends ScalaJsModule {
       coverageExcludedPackages :=
         "scommons.react.navigation.raw" +
         ";scommons.react.navigation.stack.raw" +
-        ";scommons.react.navigation.stack.*Config"
+        ";scommons.react.navigation.tab.raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil

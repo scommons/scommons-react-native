@@ -1,4 +1,4 @@
-package showcase.app.video
+package showcase.app.expo.av
 
 import scommons.expo.av._
 import scommons.react._
@@ -21,8 +21,8 @@ object VideoDemo extends FunctionComponent[Unit] {
     )
   }
 
-  private[video] lazy val styles = StyleSheet.create(new Styles)
-  private[video] class Styles extends js.Object {
+  private[expo] lazy val styles = StyleSheet.create(new Styles)
+  private[expo] class Styles extends js.Object {
     import Style._
     
     val container: Style = new ViewStyle {

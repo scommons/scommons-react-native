@@ -7,19 +7,19 @@ import scoverage.ScoverageKeys.coverageExcludedPackages
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
-object ExpoAV extends ScalaJsModule {
+object Expo extends ScalaJsModule {
 
-  override val id: String = "scommons-expo-av"
+  override val id: String = "scommons-expo"
 
-  override val base: File = file("expo-av")
+  override val base: File = file("expo")
 
   override def definition: Project = super.definition
     .settings(
-      description := "Scala.js facades for expo-av Components and Api",
+      description := "Scala.js facades for Expo Components and Api",
 
       requireJsDomEnv in Test := false,
       
-      coverageExcludedPackages := "scommons.expo.av.raw"
+      coverageExcludedPackages := "scommons.expo.*.raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil

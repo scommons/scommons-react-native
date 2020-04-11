@@ -21,7 +21,7 @@ libraryDependencies ++= Seq(
   "org.scommons.react-native" %%% "scommons-react-navigation" % scommonsReactNativeVer,
   // ui module already includes all above modules
   "org.scommons.react-native" %%% "scommons-react-native-ui" % scommonsReactNativeVer,
-  "org.scommons.react-native" %%% "scommons-expo-av" % scommonsReactNativeVer,
+  "org.scommons.react-native" %%% "scommons-expo" % scommonsReactNativeVer,
   
   "org.scommons.react-native" %%% "scommons-react-native-test" % scommonsReactNativeVer % "test"
 )
@@ -55,7 +55,6 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
       * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
       * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
       * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
-  * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
   * API Tasks
     * [actions](showcase/src/main/scala/showcase/app/task/DemoTaskActions.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskActionsSpec.scala)
     * [controller](showcase/src/main/scala/showcase/app/task/DemoTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskControllerSpec.scala)
@@ -88,8 +87,9 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
   * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
 
-* [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
-  * [Video](showcase/src/main/scala/showcase/app/video/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/video/VideoDemoSpec.scala)
+* [expo modules](https://docs.expo.io/versions/latest/)
+  * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
+    * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
 
 ### How to Build
 

@@ -19,7 +19,7 @@ lazy val `scommons-react-native` = (project in file("."))
   `scommons-react-native-ui`,
   `scommons-react-native-test`,
   `scommons-react-navigation`,
-  `scommons-expo-av`,
+  `scommons-expo`,
   `scommons-react-native-showcase`
 )
 
@@ -27,5 +27,5 @@ lazy val `scommons-react-native-core` = ReactNativeCore.definition
 lazy val `scommons-react-native-ui` = ReactNativeUi.definition
 lazy val `scommons-react-native-test` = ReactNativeTest.definition
 lazy val `scommons-react-navigation` = ReactNavigation.definition
-lazy val `scommons-expo-av` = ExpoAV.definition
+lazy val `scommons-expo` = Expo.definition
 lazy val `scommons-react-native-showcase` = ReactNativeShowcase.definition

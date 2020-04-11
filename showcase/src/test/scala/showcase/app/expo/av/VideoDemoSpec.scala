@@ -1,10 +1,10 @@
-package showcase.app.video
+package showcase.app.expo.av
 
 import scommons.expo.av._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative._
-import showcase.app.video.VideoDemo.styles
+import showcase.app.expo.av.VideoDemo.styles
 
 class VideoDemoSpec extends TestSpec with ShallowRendererUtils {
 

@@ -1,7 +1,7 @@
 package showcase.app
 
+import showcase.app.expo.av._
 import showcase.app.style._
-import showcase.app.video._
 import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
