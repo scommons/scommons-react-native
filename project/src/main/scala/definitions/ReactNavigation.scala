@@ -1,6 +1,6 @@
 package definitions
 
-import common.{Libs, TestLibs}
+import common.TestLibs
 import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
@@ -20,20 +20,17 @@ object ReactNavigation extends ScalaJsModule {
       requireJsDomEnv in Test := false,
       
       coverageExcludedPackages :=
-        "scommons.react.navigation.raw" +
-        ";scommons.react.navigation.stack.raw" +
-        ";scommons.react.navigation.tab.raw"
+        "scommons.react.navigation.*raw" +
+          ";scommons.react.navigation.tab.TabBarOptions"
     )
 
-  override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil
-
-  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
-    ("scommons-react", "scommons-react-core", None)
+  override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
+    ReactNativeCore.definition
   )
 
-  override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
-    Libs.scommonsReactCore.value
-  ))
+  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
+
+  override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
 
   override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
     TestLibs.scalaTestJs.value,
