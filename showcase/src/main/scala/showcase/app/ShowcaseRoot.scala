@@ -1,9 +1,13 @@
 package showcase.app
 
+import scommons.expo.VectorIcons._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.tab.TabBarOptions._
 import scommons.react.navigation.tab._
+import scommons.reactnative._
+
+import scala.scalajs.js
 
 object ShowcaseRoot extends FunctionComponent[Unit] {
 
@@ -19,8 +23,24 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           override val labelPosition = LabelPosition.`below-icon`
         }
       )(
-        <(Tab.Screen)(^.name := "Home", ^.component := ShowcaseScreen.homeStackComp)(),
-        <(Tab.Screen)(^.name := "react-native", ^.component := ReactNativeDemoScreen.reactNativeStackComp)()
+        <(Tab.Screen)(
+          ^.name := "Home",
+          ^.component := ShowcaseScreen.homeStackComp,
+          ^.options := new TabScreenOptions {
+            override val tabBarIcon = { params =>
+              <(FontAwesome5)(^.name := "home", ^.rnSize := params.size, ^.color := params.color)()
+            }: js.Function1[TabBarIconParams, ReactElement]
+          }
+        )(),
+        <(Tab.Screen)(
+          ^.name := "react-native",
+          ^.component := ReactNativeDemoScreen.reactNativeStackComp,
+          ^.options := new TabScreenOptions {
+            override val tabBarIcon = { params =>
+              <(FontAwesome5)(^.name := "react", ^.rnSize := params.size, ^.color := params.color)()
+            }: js.Function1[TabBarIconParams, ReactElement]
+          }
+        )()
       )
     )
   }

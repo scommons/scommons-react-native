@@ -19,7 +19,7 @@ object Expo extends ScalaJsModule {
 
       requireJsDomEnv in Test := false,
       
-      coverageExcludedPackages := "scommons.expo.*.raw"
+      coverageExcludedPackages := "scommons.expo.*raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil

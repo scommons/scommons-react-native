@@ -90,6 +90,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 * [expo modules](https://docs.expo.io/versions/latest/)
   * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
     * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
+  * [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 
 ### How to Build
 

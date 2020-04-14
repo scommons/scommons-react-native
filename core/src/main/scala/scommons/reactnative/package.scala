@@ -34,6 +34,10 @@ package object reactnative {
       def :=(style: Style): Attribute[Style] = Attribute(name, style, AS_IS)
       def :=(style: js.Array[Style]): Attribute[js.Array[Style]] = Attribute(name, style, AS_IS)
     }
+    
+    case class ReactNativeSizeAttributeSpec(name: String) extends AttributeSpec {
+      def :=(style: Int): Attribute[Int] = Attribute(name, style, AS_IS)
+    }
   }
 
   implicit class ReactNativeVirtualDOMAttributes(attributes: VirtualDOMAttributes)
@@ -52,6 +56,7 @@ package object reactnative {
     import ReactNativeVirtualDOMAttributes._
 
     lazy val rnStyle = ReactNativeStyleAttributeSpec("style")
+    lazy val rnSize = ReactNativeSizeAttributeSpec("size")
     lazy val color = StringAttributeSpec("color")
   }
 
