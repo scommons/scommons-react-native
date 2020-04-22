@@ -1,5 +1,6 @@
 package showcase.app.style
 
+import showcase.app.ShowcaseImages
 import scommons.react._
 import scommons.reactnative._
 
@@ -11,7 +12,7 @@ object ProfileCard extends FunctionComponent[Unit] {
     <.View(^.rnStyle := styles.container)(
       <.View(^.rnStyle := js.Array(styles.cardContainer, styles.cardContainerShadow))(
         <.View(^.rnStyle := js.Array(styles.cardImageContainer, styles.cardImageContainerShadow))(
-          <.Image(^.rnStyle := styles.cardImage, ^.source := StyleImages.User)()
+          <.Image(^.rnStyle := styles.cardImage, ^.source := ShowcaseImages.User)()
         ),
         <.View()(
           <.Text(^.rnStyle := styles.cardName)(

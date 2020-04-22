@@ -6,10 +6,10 @@ import io.github.shogowada.statictags._
 
 package object av {
   
-  type ExpoAVSource = raw.ExpoAVSource
+  type ExpoAVSource = av.raw.ExpoAVSource
 
   implicit class ExpoAVElements(elements: VirtualDOMElements) {
-    lazy val Video: ReactClassElementSpec = elements(raw.ExpoVideo)
+    lazy val Video: ReactClassElementSpec = elements(av.raw.ExpoVideo)
   }
 
   object ExpoAVAttributes {

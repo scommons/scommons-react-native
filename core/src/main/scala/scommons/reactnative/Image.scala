@@ -3,7 +3,8 @@ package scommons.reactnative
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
 
-/** @see https://facebook.github.io/react-native/docs/image
+/** @see https://reactnative.dev/docs/image
+  * @see https://reactnative.dev/docs/images.html
   */
 object Image {
 
@@ -19,7 +20,8 @@ object Image {
     import VirtualDOMAttributes.Type._
 
     case class ImageSourceAttributeSpec(name: String) extends AttributeSpec {
-      def :=(value: ImageSource): Attribute[ImageSource] = Attribute(name, value, AS_IS)
+      def :=(value: StaticResource): Attribute[StaticResource] = Attribute(name, value, AS_IS)
+      def :=(value: UriResource): Attribute[UriResource] = Attribute(name, value, AS_IS)
     }
 
   }

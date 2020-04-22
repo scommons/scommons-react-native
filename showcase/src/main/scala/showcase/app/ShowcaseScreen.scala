@@ -1,6 +1,5 @@
 package showcase.app
 
-import showcase.app.expo.av._
 import showcase.app.style._
 import showcase.app.task._
 import scommons.react._
@@ -17,9 +16,9 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
         "ReactNative" -> "Demo core components",
-        "Styles" -> "Demo style components",
-        "Video" -> "Demo video components",
-        "DemoTask" -> "Demo API task components"
+        "Expo" -> "Demo expo components",
+        "Styles" -> "Demo different styles",
+        "DemoTask" -> "Demo API tasks"
       ),
       navigate = props.navigate
     ))()
@@ -35,8 +34,6 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
         <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
         // styles
         StylesScreen.getStylesStack(Stack),
-        // expo
-        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
         // ui
         <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)()
       )

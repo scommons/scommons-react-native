@@ -8,6 +8,9 @@ import scommons.reactnative.raw.{Timeout, Timers}
 import scala.scalajs.js
 
 package object reactnative {
+  
+  type StaticResource = raw.StaticResource
+  type UriResource = raw.UriResource
 
   implicit class ReactNativeVirtualDOMElements(elements: VirtualDOMElements) {
     lazy val ActivityIndicator: ReactClassElementSpec = elements(raw.ActivityIndicator)

@@ -3,6 +3,7 @@ package showcase.app.style
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative._
+import showcase.app.ShowcaseImages
 import showcase.app.style.ProfileCard._
 
 import scala.scalajs.js
@@ -21,7 +22,7 @@ class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := js.Array(styles.cardContainer, styles.cardContainerShadow))(
           <.View(^.rnStyle := js.Array(styles.cardImageContainer, styles.cardImageContainerShadow))(
-            <.Image(^.rnStyle := styles.cardImage, ^.source := StyleImages.User)()
+            <.Image(^.rnStyle := styles.cardImage, ^.source := ShowcaseImages.User)()
           ),
           <.View()(
             <.Text(^.rnStyle := styles.cardName)(

@@ -22,11 +22,11 @@ object Expo extends ScalaJsModule {
       coverageExcludedPackages := "scommons.expo.*raw"
     )
 
-  override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Nil
-
-  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
-    ("scommons-react", "scommons-react-core", None)
+  override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
+    ReactNativeCore.definition
   )
+
+  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
     Libs.scommonsReactCore.value

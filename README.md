@@ -66,6 +66,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [Button](showcase/src/main/scala/showcase/ButtonDemo.scala) => [tests](showcase/src/test/scala/showcase/ButtonDemoSpec.scala)
     * [FlatList](showcase/src/main/scala/showcase/FlatListDemo.scala) => [tests](showcase/src/test/scala/showcase/FlatListDemoSpec.scala)
     * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
+      * [StaticResource](showcase/src/main/scala/showcase/app/ShowcaseImages.scala)
     * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
     * [Picker](showcase/src/main/scala/showcase/PickerDemo.scala) => [tests](showcase/src/test/scala/showcase/PickerDemoSpec.scala)
     * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
@@ -88,6 +89,7 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
     * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
 
 * [expo modules](https://docs.expo.io/versions/latest/)
+  * [expo-asset](showcase/src/main/scala/showcase/app/expo/AssetDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/AssetDemoSpec.scala)
   * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
     * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
   * [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)

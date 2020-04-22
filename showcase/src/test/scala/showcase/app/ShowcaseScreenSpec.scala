@@ -1,6 +1,5 @@
 package showcase.app
 
-import showcase.app.expo.av._
 import showcase.app.style._
 import scommons.react.navigation._
 import scommons.react.test.TestSpec
@@ -21,9 +20,9 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "ReactNative" -> "Demo core components",
-          "Styles" -> "Demo style components",
-          "Video" -> "Demo video components",
-          "DemoTask" -> "Demo API task components"
+          "Expo" -> "Demo expo components",
+          "Styles" -> "Demo different styles",
+          "DemoTask" -> "Demo API tasks"
         )
         navigate shouldBe props.navigate
     }
@@ -43,8 +42,6 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
         <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
         // styles
         StylesScreen.getStylesStack(Stack),
-        // expo
-        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
         // ui
         <(Stack.Screen)(^.name := "DemoTask", ^.component := ShowcaseScreen.demoTaskComp)()
       )
