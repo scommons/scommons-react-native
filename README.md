@@ -37,62 +37,71 @@ resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositor
 
 Note: Almost all examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
 
-* Demo Application
-  * [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
-  * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
-  * [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
-  * [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
-  * [state](showcase/src/main/scala/showcase/app/ShowcaseState.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseStateReducerSpec.scala)
-  * [TaskController](showcase/src/main/scala/showcase/app/ShowcaseTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseTaskControllerSpec.scala)
-  * Styles
-    * [controller](showcase/src/main/scala/showcase/app/style/StylesScreenController.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenControllerSpec.scala)
-    * [screen](showcase/src/main/scala/showcase/app/style/StylesScreen.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenSpec.scala)
-    * Example Components:
-      * [Border Style](showcase/src/main/scala/showcase/app/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderStyleDemoSpec.scala)
-      * [Border Radius](showcase/src/main/scala/showcase/app/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderRadiusDemoSpec.scala)
-      * [Margin](showcase/src/main/scala/showcase/app/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/MarginStyleDemoSpec.scala)
-      * [Padding](showcase/src/main/scala/showcase/app/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PaddingStyleDemoSpec.scala)
-      * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
-      * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
-      * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
-  * API Tasks
-    * [actions](showcase/src/main/scala/showcase/app/task/DemoTaskActions.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskActionsSpec.scala)
-    * [controller](showcase/src/main/scala/showcase/app/task/DemoTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskControllerSpec.scala)
-    * [screen](showcase/src/main/scala/showcase/app/task/DemoTaskScreen.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskScreenSpec.scala)
+#### Demo Application
 
-* react-native
-  * [Components](https://facebook.github.io/react-native/docs/activityindicator):
-    * [ActivityIndicator](showcase/src/main/scala/showcase/ActivityIndicatorDemo.scala) => [tests](showcase/src/test/scala/showcase/ActivityIndicatorDemoSpec.scala)
-    * [Button](showcase/src/main/scala/showcase/ButtonDemo.scala) => [tests](showcase/src/test/scala/showcase/ButtonDemoSpec.scala)
-    * [FlatList](showcase/src/main/scala/showcase/FlatListDemo.scala) => [tests](showcase/src/test/scala/showcase/FlatListDemoSpec.scala)
-    * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
-      * [StaticResource](showcase/src/main/scala/showcase/app/ShowcaseImages.scala)
-    * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
-    * [Picker](showcase/src/main/scala/showcase/PickerDemo.scala) => [tests](showcase/src/test/scala/showcase/PickerDemoSpec.scala)
-    * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
-    * [TextInput](showcase/src/main/scala/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/showcase/TextInputDemoSpec.scala)
-    * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)
-    * [TouchableOpacity](showcase/src/main/scala/showcase/TouchableOpacityDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableOpacityDemoSpec.scala)
-  * [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
-    * [Alert](showcase/src/main/scala/showcase/AlertDemo.scala) => [tests](showcase/src/test/scala/showcase/AlertDemoSpec.scala)
-    * [Platform](showcase/src/main/scala/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/showcase/PlatformDemoSpec.scala)
-    * [Style](showcase/src/main/scala/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/showcase/StyleDemoSpec.scala)
-    * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
-    * [ViewStyle](showcase/src/main/scala/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/ViewStyleDemoSpec.scala)
+* [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
+* [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
+* [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
+* [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
+* [state](showcase/src/main/scala/showcase/app/ShowcaseState.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseStateReducerSpec.scala)
+* [TaskController](showcase/src/main/scala/showcase/app/ShowcaseTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseTaskControllerSpec.scala)
+* Styles
+  * [controller](showcase/src/main/scala/showcase/app/style/StylesScreenController.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenControllerSpec.scala)
+  * [screen](showcase/src/main/scala/showcase/app/style/StylesScreen.scala) => [tests](showcase/src/test/scala/showcase/app/style/StylesScreenSpec.scala)
+  * Example Components:
+    * [Border Style](showcase/src/main/scala/showcase/app/style/BorderStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderStyleDemoSpec.scala)
+    * [Border Radius](showcase/src/main/scala/showcase/app/style/BorderRadiusDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/BorderRadiusDemoSpec.scala)
+    * [Margin](showcase/src/main/scala/showcase/app/style/MarginStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/MarginStyleDemoSpec.scala)
+    * [Padding](showcase/src/main/scala/showcase/app/style/PaddingStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PaddingStyleDemoSpec.scala)
+    * [Position](showcase/src/main/scala/showcase/app/style/PositionStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/PositionStyleDemoSpec.scala)
+    * [TextStyle](showcase/src/main/scala/showcase/app/style/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/app/style/TextStyleDemoSpec.scala)
+    * [ProfileCard (with Images)](showcase/src/main/scala/showcase/app/style/ProfileCard.scala) => [tests](showcase/src/test/scala/showcase/app/style/ProfileCardSpec.scala)
+* API Tasks
+  * [actions](showcase/src/main/scala/showcase/app/task/DemoTaskActions.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskActionsSpec.scala)
+  * [controller](showcase/src/main/scala/showcase/app/task/DemoTaskController.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskControllerSpec.scala)
+  * [screen](showcase/src/main/scala/showcase/app/task/DemoTaskScreen.scala) => [tests](showcase/src/test/scala/showcase/app/task/DemoTaskScreenSpec.scala)
 
-* react-navigation (v5)
-  * [Components](https://reactnavigation.org/docs/en/hello-react-navigation.html)
-    * [StackNavigator](showcase/src/main/scala/showcase/app/ReactNativeDemoScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ReactNativeDemoScreenSpec.scala)
-    * [Tab Navigation](https://reactnavigation.org/docs/tab-based-navigation)
-      * [BottomTabNavigator](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
-  * [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
-    * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
+#### react-native
 
-* [expo modules](https://docs.expo.io/versions/latest/)
-  * [expo-asset](showcase/src/main/scala/showcase/app/expo/AssetDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/AssetDemoSpec.scala)
-  * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
-    * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
-  * [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
+* [Components](https://facebook.github.io/react-native/docs/activityindicator):
+  * [ActivityIndicator](showcase/src/main/scala/showcase/ActivityIndicatorDemo.scala) => [tests](showcase/src/test/scala/showcase/ActivityIndicatorDemoSpec.scala)
+  * [Button](showcase/src/main/scala/showcase/ButtonDemo.scala) => [tests](showcase/src/test/scala/showcase/ButtonDemoSpec.scala)
+  * [FlatList](showcase/src/main/scala/showcase/FlatListDemo.scala) => [tests](showcase/src/test/scala/showcase/FlatListDemoSpec.scala)
+  * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
+    * [StaticResource](showcase/src/main/scala/showcase/app/ShowcaseImages.scala)
+  * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
+  * [Picker](showcase/src/main/scala/showcase/PickerDemo.scala) => [tests](showcase/src/test/scala/showcase/PickerDemoSpec.scala)
+  * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
+  * [TextInput](showcase/src/main/scala/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/showcase/TextInputDemoSpec.scala)
+  * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)
+  * [TouchableOpacity](showcase/src/main/scala/showcase/TouchableOpacityDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableOpacityDemoSpec.scala)
+
+* [APIs](https://facebook.github.io/react-native/docs/accessibilityinfo):
+  * [Alert](showcase/src/main/scala/showcase/AlertDemo.scala) => [tests](showcase/src/test/scala/showcase/AlertDemoSpec.scala)
+  * [Platform](showcase/src/main/scala/showcase/PlatformDemo.scala) => [tests](showcase/src/test/scala/showcase/PlatformDemoSpec.scala)
+  * [Style](showcase/src/main/scala/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/showcase/StyleDemoSpec.scala)
+  * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
+  * [ViewStyle](showcase/src/main/scala/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/ViewStyleDemoSpec.scala)
+
+#### react-navigation (v5)
+
+* [Components](https://reactnavigation.org/docs/en/hello-react-navigation.html)
+  * [StackNavigator](showcase/src/main/scala/showcase/app/ReactNativeDemoScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ReactNativeDemoScreenSpec.scala)
+  * [Tab Navigation](https://reactnavigation.org/docs/tab-based-navigation)
+    * [BottomTabNavigator](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
+
+* [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
+  * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
+
+#### expo modules
+
+[expo docs](https://docs.expo.io/versions/latest/)
+
+* [expo-asset](showcase/src/main/scala/showcase/app/expo/AssetDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/AssetDemoSpec.scala)
+* [expo-font](showcase/src/main/scala/showcase/app/expo/FontDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/FontDemoSpec.scala)
+* [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
+  * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
+* [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 
 ### How to Build
 

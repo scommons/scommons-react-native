@@ -30,7 +30,7 @@ class AssetDemoSpec extends AsyncTestSpec
     }
   }
   
-  it should "render component" in {
+  it should "render initial component" in {
     //given
     val component = <(AssetDemo())()()
     

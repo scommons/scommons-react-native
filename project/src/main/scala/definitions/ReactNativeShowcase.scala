@@ -4,6 +4,7 @@ import common.TestLibs
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
+import scommons.sbtplugin.ScommonsPlugin.autoImport._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
@@ -28,6 +29,8 @@ object ReactNativeShowcase extends ScalaJsModule {
 
       scalaJSUseMainModuleInitializer := false,
       webpackBundlingMode := BundlingMode.LibraryOnly(),
+
+      scommonsResourcesFileFilter := scommonsResourcesFileFilter.value || "*.ttf",
 
       webpackConfigFile in Test := Some(
         baseDirectory.value / "src" / "test" / "resources" / "test.webpack.config.js"

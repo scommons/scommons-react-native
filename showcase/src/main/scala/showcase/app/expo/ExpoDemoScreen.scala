@@ -16,6 +16,7 @@ object ExpoDemoScreen extends FunctionComponent[ExpoDemoScreenProps] {
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
         "Asset" -> "Demo Asset API",
+        "Font" -> "Demo Font API",
         "Video" -> "Demo video components"
       ),
       navigate = props.navigate
@@ -29,6 +30,7 @@ object ExpoDemoScreen extends FunctionComponent[ExpoDemoScreenProps] {
       <(Stack.Navigator)(^.initialRouteName := "Expo")(
         <(Stack.Screen)(^.name := "Expo", ^.component := ExpoDemoController())(),
         <(Stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
+        <(Stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
         <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())()
       )
     }

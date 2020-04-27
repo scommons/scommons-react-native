@@ -8,6 +8,7 @@ module.exports = {
       '@react-navigation/stack$': './sc-react-navigation-mocks.js',
       '@react-navigation/bottom-tabs$': './sc-react-navigation-mocks.js',
       'expo-asset$': './sc-expo-asset-mocks.js',
+      'expo-font$': './sc-expo-font-mocks.js',
       'expo-av$': './sc-expo-mocks.js',
       '@expo/vector-icons$': './sc-expo-mocks.js'
     }
@@ -15,7 +16,7 @@ module.exports = {
   
   module: {
     rules: [{
-      test: /\.(ico|png|gif|jpe?g|svg)$/i,
+      test: /\.(ico|png|gif|jpe?g|svg|ttf)$/i,
       use: [{
         loader: 'file-loader',
         options: {

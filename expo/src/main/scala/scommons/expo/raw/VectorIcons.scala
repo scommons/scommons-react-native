@@ -1,6 +1,7 @@
 package scommons.expo.raw
 
 import scommons.react.ReactClass
+import scommons.reactnative.StaticResource
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -12,17 +13,23 @@ import scala.scalajs.js.annotation.JSImport
 @JSImport("@expo/vector-icons", JSImport.Namespace)
 object VectorIcons extends js.Object {
   
-  def AntDesign: ReactClass = js.native
-  def Entypo: ReactClass = js.native
-  def EvilIcons: ReactClass = js.native
-  def Feather: ReactClass = js.native
-  def FontAwesome: ReactClass = js.native
-  def FontAwesome5: ReactClass = js.native
-  def Foundation: ReactClass = js.native
-  def Ionicons: ReactClass = js.native
-  def MaterialIcons: ReactClass = js.native
-  def MaterialCommunityIcons: ReactClass = js.native
-  def SimpleLineIcons: ReactClass = js.native
-  def Octicons: ReactClass = js.native
-  def Zocial: ReactClass = js.native
+  def AntDesign: VectorFontComp = js.native
+  def Entypo: VectorFontComp = js.native
+  def EvilIcons: VectorFontComp = js.native
+  def Feather: VectorFontComp = js.native
+  def FontAwesome: VectorFontComp = js.native
+  def FontAwesome5: VectorFontComp = js.native
+  def Foundation: VectorFontComp = js.native
+  def Ionicons: VectorFontComp = js.native
+  def MaterialIcons: VectorFontComp = js.native
+  def MaterialCommunityIcons: VectorFontComp = js.native
+  def SimpleLineIcons: VectorFontComp = js.native
+  def Octicons: VectorFontComp = js.native
+  def Zocial: VectorFontComp = js.native
+}
+
+@js.native
+trait VectorFontComp extends ReactClass {
+  
+  def font: js.Dictionary[StaticResource] = js.native
 }

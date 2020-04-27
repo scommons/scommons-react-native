@@ -21,6 +21,7 @@ class ExpoDemoScreenSpec extends TestSpec with ShallowRendererUtils {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "Asset" -> "Demo Asset API",
+          "Font" -> "Demo Font API",
           "Video" -> "Demo video components"
         )
         navigate shouldBe props.navigate
@@ -40,6 +41,7 @@ class ExpoDemoScreenSpec extends TestSpec with ShallowRendererUtils {
       <(Stack.Navigator)(^.initialRouteName := "Expo")(
         <(Stack.Screen)(^.name := "Expo", ^.component := ExpoDemoController())(),
         <(Stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
+        <(Stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
         <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())()
       )
     )
