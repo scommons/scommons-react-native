@@ -98,10 +98,11 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
 [expo docs](https://docs.expo.io/versions/latest/)
 
 * [expo-asset](showcase/src/main/scala/showcase/app/expo/AssetDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/AssetDemoSpec.scala)
+  * [preloading-and-caching-assets](https://docs.expo.io/guides/preloading-and-caching-assets/) => [ShowcaseApp](showcase/src/main/scala/showcase/app/ShowcaseApp.scala)
 * [expo-font](showcase/src/main/scala/showcase/app/expo/FontDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/FontDemoSpec.scala)
+* [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
   * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
-* [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 
 ### How to Build
 

@@ -18,7 +18,13 @@ class AssetDemoSpec extends AsyncTestSpec
     eventually {
       assertNativeComponent(result,
         <.View(^.rnStyle := styles.container)(
-          <.Image(^.source := ShowcaseImages.Expo)(),
+          <.Image(
+            ^.source := ShowcaseImages.Expo.Resource,
+            ^.rnStyle := new Style {
+              override val width = 50
+              override val height = 50
+            }
+          )(),
 
           <.Text()("Asset props:"),
           <.Text()(s"name: test"),
@@ -39,9 +45,7 @@ class AssetDemoSpec extends AsyncTestSpec
     
     //then
     assertNativeComponent(result,
-      <.View(^.rnStyle := styles.container)(
-        <.Image(^.source := ShowcaseImages.Expo)()
-      )
+      <.View(^.rnStyle := styles.container)()
     )
   }
 }

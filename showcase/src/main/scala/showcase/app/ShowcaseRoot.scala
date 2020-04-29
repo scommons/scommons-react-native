@@ -1,7 +1,6 @@
 package showcase.app
 
 import showcase.app.expo._
-import scommons.expo.VectorIcons._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.tab.TabBarOptions._
@@ -29,7 +28,7 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           ^.component := ShowcaseScreen.homeStackComp,
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
-              <(FontAwesome5)(^.name := "home", ^.rnSize := params.size, ^.color := params.color)()
+              <(ShowcaseIcons.FontAwesome5)(^.name := "home", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),
@@ -38,7 +37,7 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           ^.component := ReactNativeDemoScreen.reactNativeStackComp,
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
-              <(FontAwesome5)(^.name := "react", ^.rnSize := params.size, ^.color := params.color)()
+              <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),
@@ -47,7 +46,7 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           ^.component := ExpoDemoScreen.expoStackComp,
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
-              <(Ionicons)(^.name := "ios-apps", ^.rnSize := params.size, ^.color := params.color)()
+              <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )()

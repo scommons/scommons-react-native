@@ -2,7 +2,6 @@ package showcase.app
 
 import showcase.app.ShowcaseRoot._
 import showcase.app.expo._
-import scommons.expo.VectorIcons._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.tab.TabBarOptions._
@@ -55,21 +54,21 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
             <(Tab.Screen)(^.name := "Home", ^.component := ShowcaseScreen.homeStackComp)()
           )
           assertNativeComponent(renderIcon(tab1, 16, "green"),
-            <(FontAwesome5)(^.name := "home", ^.rnSize := 16, ^.color := "green")()
+            <(ShowcaseIcons.FontAwesome5)(^.name := "home", ^.rnSize := 16, ^.color := "green")()
           )
           
           assertNativeComponent(tab2,
             <(Tab.Screen)(^.name := "react-native", ^.component := ReactNativeDemoScreen.reactNativeStackComp)()
           )
           assertNativeComponent(renderIcon(tab2, 32, "red"),
-            <(FontAwesome5)(^.name := "react", ^.rnSize := 32, ^.color := "red")()
+            <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := 32, ^.color := "red")()
           )
           
           assertNativeComponent(tab3,
             <(Tab.Screen)(^.name := "expo", ^.component := ExpoDemoScreen.expoStackComp)()
           )
           assertNativeComponent(renderIcon(tab3, 32, "red"),
-            <(Ionicons)(^.name := "ios-apps", ^.rnSize := 32, ^.color := "red")()
+            <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := 32, ^.color := "red")()
           )
         })
     })

@@ -16,7 +16,7 @@ module.exports = {
   
   module: {
     rules: [{
-      test: /\.(ico|png|gif|jpe?g|svg|ttf)$/i,
+      test: /\.(ico|png|gif|jpe?g|svg|ttf|mp3|wav|mp4|mov|html|pdf)$/i,
       use: [{
         loader: 'file-loader',
         options: {

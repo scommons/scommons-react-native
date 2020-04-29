@@ -22,7 +22,7 @@ class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := js.Array(styles.cardContainer, styles.cardContainerShadow))(
           <.View(^.rnStyle := js.Array(styles.cardImageContainer, styles.cardImageContainerShadow))(
-            <.Image(^.rnStyle := styles.cardImage, ^.source := ShowcaseImages.User)()
+            <.Image(^.rnStyle := styles.cardImage, ^.source := ShowcaseImages.User.Resource)()
           ),
           <.View()(
             <.Text(^.rnStyle := styles.cardName)(

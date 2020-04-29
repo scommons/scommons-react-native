@@ -7,8 +7,16 @@ import scala.scalajs.js.annotation.JSImport
 
 object ShowcaseFonts {
 
-  @js.native
-  @JSImport("./showcase/app/Montserrat-Black.ttf", JSImport.Namespace)
-  object MontserratBlack extends StaticResource
+  object MontserratBlack {
 
+    val name = "Montserrat-Black"
+    
+    @js.native
+    @JSImport("./showcase/app/Montserrat-Black.ttf", JSImport.Namespace)
+    object Resource extends StaticResource
+  }
+
+  def fontsToPreload: Seq[(String, StaticResource)] = Seq(
+    MontserratBlack.name -> MontserratBlack.Resource
+  )
 }

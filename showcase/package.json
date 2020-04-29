@@ -1,4 +1,5 @@
 {
+  "homepage": "https://scommons.org/scommons-react-native",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

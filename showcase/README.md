@@ -27,8 +27,16 @@ expo start --web
 expo start --android
 ```
 
-To build web-assets, use the following command:
+#### How to publish web app
+
+To build web-assets use the following command:
 ```bash
-cd showcase
-expo build:web --no-pwa
+./script/docs_gen_assets.sh
+```
+
+You can check the result by running docs server locally:
+```bash
+./script/docs_server.sh
+
+open http://127.0.0.1:4000/scommons-react-native/
 ```

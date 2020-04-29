@@ -1,6 +1,6 @@
 package showcase.app.expo
 
-import showcase.app.ShowcaseFonts
+import showcase.app.ShowcaseFonts.MontserratBlack
 import scommons.expo.Font
 import scommons.react._
 import scommons.react.hooks._
@@ -19,8 +19,8 @@ object FontDemo extends FunctionComponent[Unit] {
     
     useEffect(() => {
       // preload font
-      Font.loadAsync(Seq("Montserrat-Black" -> ShowcaseFonts.MontserratBlack)).map { _ =>
-        setFont(Some("Montserrat-Black"))
+      Font.loadAsync(Seq(MontserratBlack.name -> MontserratBlack.Resource)).map { _ =>
+        setFont(Some(MontserratBlack.name))
       }
       ()
     }, Nil)

@@ -18,19 +18,25 @@ object AssetDemo extends FunctionComponent[Unit] {
     val (maybeAsset, setAsset) = useState(Option.empty[Asset])
     
     useEffect(() => {
-      // preload image
-      Asset.loadAsync(Seq(ShowcaseImages.Expo)).map { _ =>
-        val asset = Asset.fromModule(ShowcaseImages.Expo)
+      // preload asset - usually done at the start of app, see ShowcaseApp
+      Asset.loadAsync(Seq(ShowcaseImages.Expo.Resource)).map { _ =>
+        val asset = Asset.fromModule(ShowcaseImages.Expo.Resource)
         setAsset(Some(asset))
       }
       ()
     }, Nil)
     
     <.View(^.rnStyle := styles.container)(
-      <.Image(^.source := ShowcaseImages.Expo)(),
-
       maybeAsset.map { asset =>
         <.>()(
+          <.Image(
+            ^.source := ShowcaseImages.Expo.Resource,
+            ^.rnStyle := new Style {
+              override val width = asset.width
+              override val height = asset.height
+            }
+          )(),
+          
           <.Text()("Asset props:"),
           <.Text()(s"name: ${asset.name}"),
           <.Text()(s"type: ${asset.`type`}"),

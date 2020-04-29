@@ -18,14 +18,21 @@ class ImageDemoSpec extends AsyncTestSpec
     eventually {
       assertNativeComponent(result,
         <.View(^.rnStyle := styles.container)(
-          <.Image(^.source := ShowcaseImages.User)(),
           <.Image(
+            ^.source := ShowcaseImages.User.Resource,
             ^.rnStyle := new Style {
               override val width = 50
               override val height = 50
-            },
+            }
+          )(),
+          
+          <.Image(
             ^.source := new UriResource {
               override val uri = "test/asset/uri"
+            },
+            ^.rnStyle := new Style {
+              override val width = 50
+              override val height = 50
             }
           )()
         )
@@ -33,7 +40,7 @@ class ImageDemoSpec extends AsyncTestSpec
     }
   }
 
-  it should "render component" in {
+  it should "render initial component" in {
     //given
     val component = <(ImageDemo())()()
     
@@ -43,7 +50,13 @@ class ImageDemoSpec extends AsyncTestSpec
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.Image(^.source := ShowcaseImages.User)()
+        <.Image(
+          ^.source := ShowcaseImages.User.Resource,
+          ^.rnStyle := new Style {
+            override val width = 50
+            override val height = 50
+          }
+        )()
       )
     )
   }

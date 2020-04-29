@@ -1,5 +1,6 @@
 package showcase.app
 
+import scommons.expo.Asset
 import scommons.reactnative.StaticResource
 
 import scala.scalajs.js
@@ -9,11 +10,24 @@ import scala.scalajs.js.annotation.JSImport
   */
 object ShowcaseImages {
 
-  @js.native
-  @JSImport("./showcase/app/user.png", JSImport.Namespace)
-  object User extends StaticResource
+  object User {
+    val asset: Asset = Asset.fromModule(Resource)
+
+    @js.native
+    @JSImport("./showcase/app/user.png", JSImport.Namespace)
+    object Resource extends StaticResource
+  }
+
+  object Expo {
+    val asset: Asset = Asset.fromModule(Resource)
+
+    @js.native
+    @JSImport("./showcase/app/expo.png", JSImport.Namespace)
+    object Resource extends StaticResource
+  }
   
-  @js.native
-  @JSImport("./showcase/app/expo.png", JSImport.Namespace)
-  object Expo extends StaticResource
+  def imagesToPreload: Seq[StaticResource] = Seq(
+    User.Resource,
+    Expo.Resource
+  )
 }
