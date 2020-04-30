@@ -8,18 +8,22 @@ class Navigation(val navigation: raw.Navigation, val route: raw.Route) {
 
   def navigate(name: String): Unit = navigation.navigate(name)
   
-  def navigate[T](name: String, params: T): Unit = {
-    navigation.navigate(name, params.asInstanceOf[js.Any])
+  def navigate(name: String, params: Map[String, String]): Unit = {
+    navigation.navigate(name, js.Dictionary(params.toSeq: _*))
   }
   
   def goBack(): Unit = navigation.goBack()
   
-  def getParams[T]: T = {
-    route.params.asInstanceOf[T]
+  def getParams: Map[String, String] = {
+    val params = route.params
+    if (js.isUndefined(params) || params == null) Map.empty
+    else {
+      params.asInstanceOf[js.Dictionary[String]].toMap
+    }
   }
   
-  def setParams[T](params: T): Unit = {
-    navigation.setParams(params.asInstanceOf[js.Any])
+  def setParams(params: Map[String, String]): Unit = {
+    navigation.setParams(js.Dictionary(params.toSeq: _*))
   }
 
   def setOptions(options: js.Object): Unit = {

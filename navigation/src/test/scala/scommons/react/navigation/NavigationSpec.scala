@@ -36,10 +36,12 @@ class NavigationSpec extends FlatSpec
       "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
     val routeName = "TestRoute"
-    val params = TestParams("TestParams")
+    val params = testParams
 
     //then
-    (native.navigate(_: String, _: js.Any)).expects(routeName, params.asInstanceOf[js.Any])
+    (native.navigate(_: String, _: js.Any)).expects(routeName, *).onCall { (_, dict) =>
+      dict.asInstanceOf[js.Dictionary[String]].toMap shouldBe testParams
+    }
 
     //when
     nav.navigate(routeName, params)
@@ -59,19 +61,53 @@ class NavigationSpec extends FlatSpec
     nav.goBack()
   }
   
+  it should "return empty Map if params is undefined when getParams" in {
+    //given
+    val route = mock[RouteMock]
+    val nav = Navigation(Props(js.Dynamic.literal(
+      "route" -> route.asInstanceOf[raw.Route]
+    )))
+
+    //then
+    (route.params _).expects().returning(js.undefined)
+
+    //when
+    val result = nav.getParams
+    
+    //then
+    result shouldBe Map.empty
+  }
+
+  it should "return empty Map if params is null when getParams" in {
+    //given
+    val route = mock[RouteMock]
+    val nav = Navigation(Props(js.Dynamic.literal(
+      "route" -> route.asInstanceOf[raw.Route]
+    )))
+
+    //then
+    (route.params _).expects().returning(null)
+
+    //when
+    val result = nav.getParams
+    
+    //then
+    result shouldBe Map.empty
+  }
+
   it should "return params when getParams" in {
     //given
     val route = mock[RouteMock]
     val nav = Navigation(Props(js.Dynamic.literal(
       "route" -> route.asInstanceOf[raw.Route]
     )))
-    val params = TestParams("TestParams")
+    val params = testParams
 
     //then
-    (route.params _).expects().returning(params.asInstanceOf[js.Any])
+    (route.params _).expects().returning(js.Dictionary(params.toSeq: _*))
 
     //when
-    val result = nav.getParams[TestParams]
+    val result = nav.getParams
     
     //then
     result shouldBe params
@@ -83,10 +119,13 @@ class NavigationSpec extends FlatSpec
     val nav = Navigation(Props(js.Dynamic.literal(
       "navigation" -> navigation.asInstanceOf[raw.Navigation]
     )))
-    val params = TestParams("TestParams")
+    val params = testParams
 
     //then
-    (navigation.setParams _).expects(params.asInstanceOf[js.Any])
+    (navigation.setParams _).expects(*).onCall { dict: js.Any =>
+      dict.asInstanceOf[js.Dictionary[String]].toMap shouldBe testParams
+      ()
+    }
 
     //when
     nav.setParams(params)
@@ -112,7 +151,9 @@ class NavigationSpec extends FlatSpec
 
 object NavigationSpec {
   
-  case class TestParams(name: String)
+  val testParams = Map(
+    "name" -> "test"
+  )
 
   @JSExportAll
   trait NavigationMock {
