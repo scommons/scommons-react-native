@@ -15,7 +15,7 @@ object ReactNativeTest extends ScalaJsModule {
 
   override def definition: Project = super.definition
     .settings(
-      description := "Core Scala.js, React Native (react-native) testing utilities",
+      description := "Core Scala.js react-native testing utilities and mocks",
       coverageExcludedPackages := "scommons.reactnative.test.raw",
 
       requireJsDomEnv in Test := false,

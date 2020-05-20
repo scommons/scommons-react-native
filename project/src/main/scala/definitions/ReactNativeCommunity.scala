@@ -1,25 +1,25 @@
 package definitions
 
-import common.{Libs, TestLibs}
+import common.TestLibs
 import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
 import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
-object Expo extends ScalaJsModule {
+object ReactNativeCommunity extends ScalaJsModule {
 
-  override val id: String = "scommons-expo"
+  override val id: String = "scommons-react-native-community"
 
-  override val base: File = file("expo")
+  override val base: File = file("community")
 
   override def definition: Project = super.definition
     .settings(
-      description := "Scala.js facades for Expo Components and Api",
+      description := "Scala.js facades for react-native-community Components and APIs",
 
       requireJsDomEnv in Test := false,
       
-      coverageExcludedPackages := "scommons.expo.*raw"
+      coverageExcludedPackages := "scommons.reactnative.*raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(

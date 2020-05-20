@@ -1,6 +1,7 @@
 package showcase.app
 
 import showcase.app.ShowcaseRoot._
+import showcase.app.community._
 import showcase.app.expo._
 import scommons.react._
 import scommons.react.navigation._
@@ -49,7 +50,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
             override val labelPosition = LabelPosition.`below-icon`
           }
         )()
-        , { case List(tab1, tab2, tab3) =>
+        , { case List(tab1, tab2, tab3, tab4) =>
           assertNativeComponent(tab1,
             <(Tab.Screen)(^.name := "Home", ^.component := ShowcaseScreen.homeStackComp)()
           )
@@ -65,10 +66,17 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
           )
           
           assertNativeComponent(tab3,
+            <(Tab.Screen)(^.name := "community", ^.component := CommunityDemoScreen.communityStackComp)()
+          )
+          assertNativeComponent(renderIcon(tab3, 48, "blue"),
+            <(ShowcaseIcons.FontAwesome5)(^.name := "reacteurope", ^.rnSize := 48, ^.color := "blue")()
+          )
+          
+          assertNativeComponent(tab4,
             <(Tab.Screen)(^.name := "expo", ^.component := ExpoDemoScreen.expoStackComp)()
           )
-          assertNativeComponent(renderIcon(tab3, 32, "red"),
-            <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := 32, ^.color := "red")()
+          assertNativeComponent(renderIcon(tab4, 64, "white"),
+            <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := 64, ^.color := "white")()
           )
         })
     })

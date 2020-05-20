@@ -18,11 +18,14 @@ val scommonsReactNativeVer = "1.0.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "org.scommons.react-native" %%% "scommons-react-native-core" % scommonsReactNativeVer,
+  "org.scommons.react-native" %%% "scommons-react-native-community" % scommonsReactNativeVer,
   "org.scommons.react-native" %%% "scommons-react-navigation" % scommonsReactNativeVer,
-  // ui module already includes all above modules
-  "org.scommons.react-native" %%% "scommons-react-native-ui" % scommonsReactNativeVer,
   "org.scommons.react-native" %%% "scommons-expo" % scommonsReactNativeVer,
   
+  // ui module already includes all above modules
+  "org.scommons.react-native" %%% "scommons-react-native-ui" % scommonsReactNativeVer,
+  
+  // mocks of native Components and APIs
   "org.scommons.react-native" %%% "scommons-react-native-test" % scommonsReactNativeVer % "test"
 )
 ```
@@ -35,11 +38,20 @@ resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositor
 
 ### How to use it
 
-Note: Almost all examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
+Note: Many examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
 
 #### Demo Application
 
-* [live expo link](https://expo.io/@viktorpodzigun/showcase) => [How to Build and Run](showcase/README.md)
+##### How to Build and Run
+
+See [showcase/README.md](showcase/README.md)
+
+* [live expo link](https://expo.io/@viktorpodzigun/showcase)
+* [mobile browser](https://scommons.org/scommons-react-native/showcase.html)
+* [web emulator](https://scommons.org/scommons-react-native/showcase.browser.html)
+
+##### Demo Ui Components
+
 * [app](showcase/src/main/scala/showcase/app/ShowcaseApp.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseAppSpec.scala)
 * [controller](showcase/src/main/scala/showcase/app/ShowcaseController.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseControllerSpec.scala)
 * [screen](showcase/src/main/scala/showcase/app/ShowcaseScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseScreenSpec.scala)
@@ -82,6 +94,11 @@ Note: Almost all examples are from an excellent book [React Native in Action](ht
   * [Style](showcase/src/main/scala/showcase/StyleDemo.scala) => [tests](showcase/src/test/scala/showcase/StyleDemoSpec.scala)
   * [TextStyle](showcase/src/main/scala/showcase/TextStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/TextStyleDemoSpec.scala)
   * [ViewStyle](showcase/src/main/scala/showcase/ViewStyleDemo.scala) => [tests](showcase/src/test/scala/showcase/ViewStyleDemoSpec.scala)
+
+#### react-native-community
+
+* [react-native-svg](https://github.com/react-native-community/react-native-svg)
+  * [SvgXml](showcase/src/main/scala/showcase/app/community/SvgXmlDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgXmlDemoSpec.scala)
 
 #### react-navigation (v5)
 

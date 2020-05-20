@@ -27,7 +27,9 @@ object ReactNativeUi extends ScalaJsModule {
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
     ReactNativeCore.definition,
+    ReactNativeCommunity.definition,
     ReactNavigation.definition,
+    Expo.definition,
     ReactNativeTest.definition % "test"
   )
 

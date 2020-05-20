@@ -20,6 +20,7 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "ReactNative" -> "Demo core components",
+          "Community" -> "Demo community components",
           "Expo" -> "Demo expo components",
           "Styles" -> "Demo different styles",
           "DemoTask" -> "Demo API tasks"

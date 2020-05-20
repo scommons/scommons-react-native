@@ -1,5 +1,6 @@
 package showcase.app
 
+import showcase.app.community._
 import showcase.app.expo._
 import scommons.react._
 import scommons.react.navigation._
@@ -38,6 +39,15 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
               <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := params.size, ^.color := params.color)()
+            }: js.Function1[TabBarIconParams, ReactElement]
+          }
+        )(),
+        <(Tab.Screen)(
+          ^.name := "community",
+          ^.component := CommunityDemoScreen.communityStackComp,
+          ^.options := new TabScreenOptions {
+            override val tabBarIcon = { params =>
+              <(ShowcaseIcons.FontAwesome5)(^.name := "reacteurope", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),

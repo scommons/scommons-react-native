@@ -4,6 +4,7 @@ module.exports = {
   resolve: {
     alias: {
       'react-native$': './sc-react-native-mocks.js',
+      'react-native-svg$': './sc-react-native-community-mocks.js',
       '@react-navigation/native$': './sc-react-navigation-mocks.js',
       '@react-navigation/stack$': './sc-react-navigation-mocks.js',
       '@react-navigation/bottom-tabs$': './sc-react-navigation-mocks.js',
@@ -16,7 +17,7 @@ module.exports = {
   
   module: {
     rules: [{
-      test: /\.(ico|png|gif|jpe?g|svg|ttf|mp3|wav|mp4|mov|html|pdf)$/i,
+      test: /\.(ico|png|gif|jpe?g|ttf|mp3|wav|mp4|mov|html|pdf)$/i,
       use: [{
         loader: 'file-loader',
         options: {

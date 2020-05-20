@@ -16,6 +16,7 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
         "ReactNative" -> "Demo core components",
+        "Community" -> "Demo community components",
         "Expo" -> "Demo expo components",
         "Styles" -> "Demo different styles",
         "DemoTask" -> "Demo API tasks"
