@@ -34,20 +34,14 @@ object SvgXmlDemo extends FunctionComponent[Unit] {
       |""".stripMargin
   
   protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
-      <.SvgXml(^.rnStyle := styles.container, ^.xml := xml)()
+    <.View()(
+      <.SvgXml(^.rnStyle := styles.svg, ^.xml := xml)()
     )
   }
 
   private[community] lazy val styles = StyleSheet.create(new Styles)
   private[community] class Styles extends js.Object {
-    import ViewStyle._
 
-    val container: Style = new ViewStyle {
-      override val flex = 1
-      override val justifyContent = JustifyContent.center
-      override val alignItems = AlignItems.center
-    }
     val svg: Style = new ViewStyle {
       override val width = "100%"
       override val height = "100%"

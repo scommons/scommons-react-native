@@ -37,7 +37,7 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     assertNativeComponent(result,
       <(Stack.Navigator)(^.initialRouteName := "Community")(
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
-        <(Stack.Screen)(^.name := "Svg", ^.component := SvgXmlDemo())()
+        <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())()
       )
     )
   }

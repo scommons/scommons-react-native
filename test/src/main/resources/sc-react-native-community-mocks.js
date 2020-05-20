@@ -1,5 +1,6 @@
 
 module.exports = {
   
-  SvgXml: 'SvgXml'
+  SvgXml: 'SvgXml',
+  SvgCss: 'SvgCss'
 }

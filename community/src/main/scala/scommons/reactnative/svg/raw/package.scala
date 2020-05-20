@@ -11,4 +11,8 @@ package object raw {
   @JSImport("react-native-svg", "SvgXml")
   object SvgXml extends ReactClass
 
+  @js.native
+  @JSImport("react-native-svg", "SvgCss")
+  object SvgCss extends ReactClass
+
 }

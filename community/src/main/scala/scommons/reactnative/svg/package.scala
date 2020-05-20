@@ -10,6 +10,7 @@ package object svg {
 
   implicit class SvgVirtualDOMElements(elements: VirtualDOMElements) {
     lazy val SvgXml: ReactClassElementSpec = elements(svg.raw.SvgXml)
+    lazy val SvgCss: ReactClassElementSpec = elements(svg.raw.SvgCss)
   }
 
   implicit class SvgVirtualDOMAttributes(attributes: VirtualDOMAttributes) {

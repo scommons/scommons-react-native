@@ -4,13 +4,13 @@ import scommons.react.test._
 import scommons.react.test.dom._
 import scommons.reactnative._
 import scommons.reactnative.svg._
-import showcase.app.community.SvgXmlDemo._
+import showcase.app.community.SvgCssDemo._
 
-class SvgXmlDemoSpec extends AsyncTestSpec with ShallowRendererUtils {
+class SvgCssDemoSpec extends AsyncTestSpec with ShallowRendererUtils {
 
   it should "render component" in {
     //given
-    val component = <(SvgXmlDemo())()()
+    val component = <(SvgCssDemo())()()
     
     //when
     val result = shallowRender(component)
@@ -18,7 +18,7 @@ class SvgXmlDemoSpec extends AsyncTestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.View()(
-        <.SvgXml(^.rnStyle := styles.svg, ^.xml := xml)()
+        <.SvgCss(^.xml := xml, ^.width := 32, ^.height := 32)()
       )
     )
   }

@@ -26,7 +26,7 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
     protected def render(props: Props): ReactElement = {
       <(Stack.Navigator)(^.initialRouteName := "Community")(
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
-        <(Stack.Screen)(^.name := "Svg", ^.component := SvgXmlDemo())()
+        <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())()
       )
     }
   }.apply()
