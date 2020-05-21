@@ -3,10 +3,17 @@ package scommons.reactnative
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
 
+import scala.concurrent.Future
+import scala.scalajs.js
+
 /** @see https://reactnative.dev/docs/image
   * @see https://reactnative.dev/docs/images.html
   */
 object Image {
+
+  def prefetch(url: String): Future[js.Any] = {
+    raw.Image.prefetch(url).toFuture
+  }
 
   trait ImageAttributes {
 

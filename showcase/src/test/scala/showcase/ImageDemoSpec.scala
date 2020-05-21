@@ -10,7 +10,7 @@ class ImageDemoSpec extends AsyncTestSpec
   with ShallowRendererUtils
   with TestRendererUtils {
 
-  it should "render second image asynchronously" in {
+  it should "render images asynchronously" in {
     //when
     val result = testRender(<(ImageDemo())()())
 
@@ -19,20 +19,19 @@ class ImageDemoSpec extends AsyncTestSpec
       assertNativeComponent(result,
         <.View(^.rnStyle := styles.container)(
           <.Image(
-            ^.source := ShowcaseImages.User.Resource,
+            ^.source := ShowcaseImages.Expo.Resource,
             ^.rnStyle := new Style {
               override val width = 50
               override val height = 50
             }
           )(),
-          
           <.Image(
             ^.source := new UriResource {
-              override val uri = "test/asset/uri"
+              override val uri = "https://reactjs.org/logo-og.png"
             },
             ^.rnStyle := new Style {
-              override val width = 50
-              override val height = 50
+              override val width = 400
+              override val height = 400
             }
           )()
         )
@@ -49,15 +48,7 @@ class ImageDemoSpec extends AsyncTestSpec
     
     //then
     assertNativeComponent(result,
-      <.View(^.rnStyle := styles.container)(
-        <.Image(
-          ^.source := ShowcaseImages.User.Resource,
-          ^.rnStyle := new Style {
-            override val width = 50
-            override val height = 50
-          }
-        )()
-      )
+      <.View(^.rnStyle := styles.container)()
     )
   }
 }

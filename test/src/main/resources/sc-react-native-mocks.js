@@ -1,6 +1,19 @@
 
+const createImage = () => {
+  const Image = function () {
+    return null
+  }
+  Image.displayName = "Image"
+  Image.prefetch = function (url) {
+    return Promise.resolve([undefined])
+  }
+  return Image
+}
+
 const createPicker = () => {
-  const Picker = function () {}
+  const Picker = function () {
+    return null
+  }
   Picker.displayName = "Picker"
   Picker.Item = "Picker.Item"
   return Picker
@@ -26,7 +39,7 @@ module.exports = {
   ActivityIndicator: 'ActivityIndicator',
   Button: 'Button',
   FlatList: 'FlatList',
-  Image: 'Image',
+  Image: createImage(),
   Modal: 'Modal',
   Picker: createPicker(),
   ScrollView: 'ScrollView',

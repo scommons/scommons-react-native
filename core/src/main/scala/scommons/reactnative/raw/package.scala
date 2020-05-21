@@ -31,7 +31,10 @@ package object raw {
   @JSImport("react-native", "FlatList") object FlatList extends ReactClass
 
   @js.native
-  @JSImport("react-native", "Image") object Image extends ReactClass
+  @JSImport("react-native", "Image") object Image extends ReactClass {
+
+    def prefetch(url: String): js.Promise[js.Any] = js.native
+  }
 
   @js.native
   @JSImport("react-native", "Modal") object Modal extends ReactClass
