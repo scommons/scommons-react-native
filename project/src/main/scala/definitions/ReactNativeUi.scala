@@ -34,14 +34,14 @@ object ReactNativeUi extends ScalaJsModule {
   )
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
-    ("scommons-api", "scommons-api-dom", None),
+    ("scommons-api", "scommons-api-xhr", None),
     ("scommons-react", "scommons-react-redux", None),
 
     ("scommons-react", "scommons-react-test-dom", Some("test"))
   )
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
-    Libs.scommonsApiDom.value,
+    Libs.scommonsApiXhr.value,
     Libs.scommonsReactRedux.value
   ))
 
