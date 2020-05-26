@@ -12,7 +12,7 @@ Welcome to the **Scala Commons React Native** documentation page!
 
 ### Examples
 
-Almost all examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
+Many examples are from an excellent book [React Native in Action](https://www.manning.com/books/react-native-in-action) by [Nader Dabit](https://github.com/dabit3)
 
 ShowcaseApp:
 
