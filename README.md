@@ -121,6 +121,8 @@ See [showcase/README.md](showcase/README.md)
 * [@expo/vector-icons](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 * [expo-av](https://docs.expo.io/versions/latest/sdk/video/)
   * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
+* [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/)
+  * [SQLite](showcase/src/main/scala/showcase/app/expo/sqlite/SQLiteDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/sqlite/SQLiteDemoSpec.scala)
 
 ### How to Build
 

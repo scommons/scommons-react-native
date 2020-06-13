@@ -11,6 +11,7 @@ module.exports = {
       'expo-asset$': './sc-expo-asset-mocks.js',
       'expo-font$': './sc-expo-font-mocks.js',
       'expo-av$': './sc-expo-mocks.js',
+      'expo-sqlite$': './sc-expo-sqlite-mocks.js',
       '@expo/vector-icons$': './sc-expo-mocks.js'
     }
   },

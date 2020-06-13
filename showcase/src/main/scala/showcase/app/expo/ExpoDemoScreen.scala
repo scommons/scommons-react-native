@@ -1,6 +1,7 @@
 package showcase.app.expo
 
 import showcase.app.expo.av._
+import showcase.app.expo.sqlite._
 import showcase.app.{ShowcaseListView, ShowcaseListViewProps}
 import scommons.react._
 import scommons.react.navigation._
@@ -17,7 +18,8 @@ object ExpoDemoScreen extends FunctionComponent[ExpoDemoScreenProps] {
       items = List(
         "Asset" -> "Demo Asset API",
         "Font" -> "Demo Font API",
-        "Video" -> "Demo video components"
+        "Video" -> "Demo video components",
+        "SQLite" -> "Demo SQLite API"
       ),
       navigate = props.navigate
     ))()
@@ -31,7 +33,8 @@ object ExpoDemoScreen extends FunctionComponent[ExpoDemoScreenProps] {
         <(Stack.Screen)(^.name := "Expo", ^.component := ExpoDemoController())(),
         <(Stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
         <(Stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
-        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())()
+        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
+        <(Stack.Screen)(^.name := "SQLite", ^.component := SQLiteDemo())()
       )
     }
   }.apply()
