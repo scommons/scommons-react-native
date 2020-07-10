@@ -26,9 +26,13 @@ object Expo extends ScalaJsModule {
     ReactNativeCore.definition
   )
 
-  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
+  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
+    ("scommons-websql", "scommons-websql-core", None)
+  )
 
-  override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
+  override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
+    Libs.scommonsWebSqlCore.value
+  ))
 
   override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
     TestLibs.scalaTestJs.value,

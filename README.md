@@ -123,6 +123,9 @@ See [showcase/README.md](showcase/README.md)
   * [Video](showcase/src/main/scala/showcase/app/expo/av/VideoDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/av/VideoDemoSpec.scala)
 * [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/)
   * [SQLite](showcase/src/main/scala/showcase/app/expo/sqlite/SQLiteDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/sqlite/SQLiteDemoSpec.scala)
+  * See [scommons-websql](https://github.com/scommons/scommons-websql) on how to:
+    * use [quill](https://getquill.io) bindings with expo SQLite
+    * use `scommons-websql-migrations` to automate your DB schema versioning
 
 ### How to Build
 

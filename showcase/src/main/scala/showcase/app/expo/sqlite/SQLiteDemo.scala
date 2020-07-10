@@ -4,6 +4,7 @@ import scommons.expo.sqlite._
 import scommons.react._
 import scommons.react.hooks._
 import scommons.reactnative._
+import scommons.websql.Transaction
 
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext.Implicits.global

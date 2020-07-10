@@ -1,5 +1,7 @@
 package scommons.expo.sqlite
 
+import scommons.websql.Database
+
 import scala.concurrent.{Future, Promise}
 import scala.util.Try
 
