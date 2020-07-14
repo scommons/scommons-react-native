@@ -1,7 +1,7 @@
 package scommons.reactnative.ui.popup
 
-import scommons.react.test.dom.AsyncTestSpec
-import scommons.react.test.util.TestRendererUtils
+import scommons.nodejs.test.AsyncTestSpec
+import scommons.react.test.{BaseTestSpec, TestRendererUtils}
 import scommons.reactnative.Alert._
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
@@ -10,7 +10,9 @@ import scommons.reactnative.ui.popup.ErrorPopupSpec.AlertMock
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class ErrorPopupSpec extends AsyncTestSpec with TestRendererUtils {
+class ErrorPopupSpec extends AsyncTestSpec
+  with BaseTestSpec
+  with TestRendererUtils {
 
   it should "show and close simple error alert" in {
     //given

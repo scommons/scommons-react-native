@@ -8,5 +8,5 @@ import scommons.sbtplugin.project.CommonTestLibs
 object TestLibs extends CommonTestLibs {
 
   lazy val scommonsReactTest = Def.setting("org.scommons.react" %%% "scommons-react-test" % scommonsReactVersion)
-  lazy val scommonsReactTestDom = Def.setting("org.scommons.react" %%% "scommons-react-test-dom" % scommonsReactVersion)
+  lazy val scommonsNodejsTest = Def.setting("org.scommons.nodejs" %%% "scommons-nodejs-test" % scommonsNodejsVersion)
 }

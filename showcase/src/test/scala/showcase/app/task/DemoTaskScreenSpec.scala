@@ -3,9 +3,9 @@ package showcase.app.task
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import org.scalatest.Succeeded
 import scommons.api.{ApiStatus, StatusResponse}
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.redux.task.FutureTask
-import scommons.react.test.dom.AsyncTestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test.{BaseTestSpec, ShallowRendererUtils}
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
 import showcase.app.task.DemoTaskActions._
@@ -16,7 +16,9 @@ import scala.concurrent.Future
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class DemoTaskScreenSpec extends AsyncTestSpec with ShallowRendererUtils {
+class DemoTaskScreenSpec extends AsyncTestSpec
+  with BaseTestSpec
+  with ShallowRendererUtils {
 
   it should "dispatch actions and call alert() when press Successful Request" in {
     //given

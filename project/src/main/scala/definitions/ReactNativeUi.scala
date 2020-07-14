@@ -1,11 +1,10 @@
 package definitions
 
-import common.{Libs, TestLibs}
+import common.Libs
 import sbt.Keys._
 import sbt._
+import scommons.sbtplugin.ScommonsPlugin.autoImport._
 import scoverage.ScoverageKeys.coverageExcludedPackages
-
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
 object ReactNativeUi extends ScalaJsModule {
 
@@ -20,9 +19,8 @@ object ReactNativeUi extends ScalaJsModule {
       coverageExcludedPackages :=
         "scommons.reactnative.app.BaseStateAndRouteController",
 
-      webpackConfigFile in Test := Some(
-        baseDirectory.value / "src" / "test" / "resources" / "test.webpack.config.js"
-      )
+      // we substitute references to react-native modules with our custom mocks during test
+      scommonsNodeJsTestLibs := Seq("scommons.reactnative.aliases.js")
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
@@ -35,9 +33,7 @@ object ReactNativeUi extends ScalaJsModule {
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
     ("scommons-api", "scommons-api-xhr", None),
-    ("scommons-react", "scommons-react-redux", None),
-
-    ("scommons-react", "scommons-react-test-dom", Some("test"))
+    ("scommons-react", "scommons-react-redux", None)
   )
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
@@ -45,7 +41,5 @@ object ReactNativeUi extends ScalaJsModule {
     Libs.scommonsReactRedux.value
   ))
 
-  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
-    TestLibs.scommonsReactTestDom.value
-  ).map(_ % "test"))
+  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
 }

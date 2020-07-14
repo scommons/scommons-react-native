@@ -1,11 +1,12 @@
 package showcase.app.expo
 
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
-import scommons.react.test.dom._
 import scommons.reactnative._
 import showcase.app.expo.FontDemo.styles
 
 class FontDemoSpec extends AsyncTestSpec
+  with BaseTestSpec
   with ShallowRendererUtils
   with TestRendererUtils {
 

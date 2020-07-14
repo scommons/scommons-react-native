@@ -1,7 +1,7 @@
 package showcase.app.task
 
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.redux.task.FutureTask
-import scommons.react.test.dom.AsyncTestSpec
 import showcase.api.task.DemoTaskApi
 import showcase.app.task.DemoTaskActions._
 import showcase.app.task.DemoTaskActionsSpec._

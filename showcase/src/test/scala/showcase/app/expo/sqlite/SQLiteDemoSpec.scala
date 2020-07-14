@@ -1,10 +1,11 @@
 package showcase.app.expo.sqlite
 
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
-import scommons.react.test.dom.AsyncTestSpec
 import scommons.reactnative._
 
 class SQLiteDemoSpec extends AsyncTestSpec
+  with BaseTestSpec
   with ShallowRendererUtils
   with TestRendererUtils {
 

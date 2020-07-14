@@ -5,8 +5,6 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
-
 object ReactNativeCommunity extends ScalaJsModule {
 
   override val id: String = "scommons-react-native-community"
@@ -16,9 +14,6 @@ object ReactNativeCommunity extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Scala.js facades for react-native-community Components and APIs",
-
-      requireJsDomEnv in Test := false,
-      
       coverageExcludedPackages := "scommons.reactnative.*raw"
     )
 

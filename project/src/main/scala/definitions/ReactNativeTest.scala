@@ -5,8 +5,6 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
-
 object ReactNativeTest extends ScalaJsModule {
 
   override val id: String = "scommons-react-native-test"
@@ -16,13 +14,7 @@ object ReactNativeTest extends ScalaJsModule {
   override def definition: Project = super.definition
     .settings(
       description := "Core Scala.js react-native testing utilities and mocks",
-      coverageExcludedPackages := "scommons.reactnative.test.raw",
-
-      requireJsDomEnv in Test := false,
-
-      npmDevDependencies in Compile ++= Seq(
-        "file-loader" -> "1.1.4"
-      )
+      coverageExcludedPackages := "scommons.reactnative.test.raw"
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
@@ -31,12 +23,14 @@ object ReactNativeTest extends ScalaJsModule {
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
     ("scommons-react", "scommons-react-core", None),
-    ("scommons-react", "scommons-react-test", None)
+    ("scommons-react", "scommons-react-test", None),
+    ("scommons-nodejs", "scommons-nodejs-test", None)
   )
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
     Libs.scommonsReactCore.value,
-    TestLibs.scommonsReactTest.value
+    TestLibs.scommonsReactTest.value,
+    TestLibs.scommonsNodejsTest.value
   ))
 
   override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)

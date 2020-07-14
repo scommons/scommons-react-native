@@ -1,11 +1,13 @@
 package showcase.app.community
 
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
-import scommons.react.test.dom._
 import scommons.reactnative._
 import showcase.app.community.SvgDemo._
 
-class SvgDemoSpec extends AsyncTestSpec with ShallowRendererUtils {
+class SvgDemoSpec extends AsyncTestSpec
+  with BaseTestSpec
+  with ShallowRendererUtils {
 
   it should "render component" in {
     //given

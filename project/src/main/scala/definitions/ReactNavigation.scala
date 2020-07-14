@@ -5,8 +5,6 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
-
 object ReactNavigation extends ScalaJsModule {
 
   override val id: String = "scommons-react-navigation"
@@ -17,8 +15,6 @@ object ReactNavigation extends ScalaJsModule {
     .settings(
       description := "Scala.js facades for react-navigation Components and Api",
 
-      requireJsDomEnv in Test := false,
-      
       coverageExcludedPackages :=
         "scommons.react.navigation.*raw" +
           ";scommons.react.navigation.tab.TabBarOptions"

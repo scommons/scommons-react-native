@@ -1,13 +1,9 @@
 package definitions
 
-import common.TestLibs
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
 import scommons.sbtplugin.ScommonsPlugin.autoImport._
 import scoverage.ScoverageKeys.coverageExcludedPackages
-
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
 
 object ReactNativeShowcase extends ScalaJsModule {
 
@@ -27,14 +23,8 @@ object ReactNativeShowcase extends ScalaJsModule {
           ";showcase.app.ShowcaseActions" +
           ";showcase.api.task.DemoTaskApi",
 
-      scalaJSUseMainModuleInitializer := false,
-      webpackBundlingMode := BundlingMode.LibraryOnly(),
-
-      scommonsResourcesFileFilter := scommonsResourcesFileFilter.value || "*.ttf",
-
-      webpackConfigFile in Test := Some(
-        baseDirectory.value / "src" / "test" / "resources" / "test.webpack.config.js"
-      )
+      // we substitute references to react-native modules with our custom mocks during test
+      scommonsNodeJsTestLibs := Seq("scommons.reactnative.aliases.js")
     )
 
   override val internalDependencies: Seq[ClasspathDep[ProjectReference]] = Seq(
@@ -42,13 +32,9 @@ object ReactNativeShowcase extends ScalaJsModule {
     ReactNativeTest.definition % "test"
   )
 
-  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
-    ("scommons-react", "scommons-react-test-dom", Some("test"))
-  )
+  override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Nil
 
   override val runtimeDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
 
-  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
-    TestLibs.scommonsReactTestDom.value
-  ).map(_ % "test"))
+  override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Nil)
 }

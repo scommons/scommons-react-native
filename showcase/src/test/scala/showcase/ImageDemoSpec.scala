@@ -1,12 +1,13 @@
 package showcase
 
+import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
-import scommons.react.test.dom._
 import scommons.reactnative._
 import showcase.ImageDemo.styles
 import showcase.app.ShowcaseImages
 
 class ImageDemoSpec extends AsyncTestSpec
+  with BaseTestSpec
   with ShallowRendererUtils
   with TestRendererUtils {
 

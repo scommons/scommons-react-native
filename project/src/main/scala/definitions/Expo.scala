@@ -5,8 +5,6 @@ import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys.coverageExcludedPackages
 
-import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
-
 object Expo extends ScalaJsModule {
 
   override val id: String = "scommons-expo"
@@ -17,8 +15,6 @@ object Expo extends ScalaJsModule {
     .settings(
       description := "Scala.js facades for Expo Components and Api",
 
-      requireJsDomEnv in Test := false,
-      
       coverageExcludedPackages := "scommons.expo.*raw"
     )
 
