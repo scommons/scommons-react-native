@@ -5,7 +5,9 @@ import scommons.react.hooks._
 import scommons.reactnative.FlatList._
 import scommons.reactnative._
 
+import scala.concurrent.duration._
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 
 /** @see https://facebook.github.io/react-native/docs/flatlist
   */
@@ -45,15 +47,31 @@ object FlatListDemo extends FunctionComponent[Unit] {
   }
   
   protected def render(props: Props): ReactElement = {
+    val (refreshing, setRefreshing) = useState(false)
     val (selected, setSelected) = useState(Set.empty[String])
     
     def onInvertSelection(id: String): Unit = {
       if (selected.contains(id)) setSelected(selected - id)
       else setSelected(selected + id)
     }
+
+    val onRefresh = useMemo[js.Function0[Unit]]({ () =>
+      () => {
+        setRefreshing(true)
+
+        var handleId: js.Any = null
+        handleId = g.setTimeout({ () =>
+          g.clearTimeout(handleId)
+
+          setRefreshing(false)
+        }, 2.seconds.toMillis.toDouble)
+      }
+    }, List(refreshing))
     
     <.View(^.rnStyle := styles.container)(
       <.FlatList(
+        ^.refreshing := refreshing,
+        ^.onRefresh := onRefresh,
         ^.flatListData := js.Array(dataList: _*),
         ^.renderItem := { data: FlatListData[Data] =>
           val item = data.item

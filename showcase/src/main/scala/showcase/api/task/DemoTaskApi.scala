@@ -1,10 +1,11 @@
 package showcase.api.task
 
-import org.scalajs.dom
 import scommons.api.{ApiStatus, StatusResponse}
 
 import scala.concurrent.duration._
 import scala.concurrent.{Future, Promise}
+import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 
 trait DemoTaskApi {
 
@@ -15,9 +16,9 @@ trait DemoTaskApi {
   def timedoutExample(): Future[StatusResponse] = {
     val promise = Promise[StatusResponse]()
 
-    var handleId = 0
-    handleId = dom.window.setTimeout({ () =>
-      dom.window.clearTimeout(handleId)
+    var handleId: js.Any = null
+    handleId = g.setTimeout({ () =>
+      g.clearTimeout(handleId)
 
       promise.failure(new Exception("Request timed out, unable to get timely response"))
     }, 2.seconds.toMillis.toDouble)

@@ -18,6 +18,8 @@ object FlatList {
     lazy val flatListData = DataAttributeSpec("data")
     lazy val keyExtractor = KeyExtractorAttributeSpec("keyExtractor")
     lazy val extraData = ExtraDataAttributeSpec("extraData")
+    lazy val onRefresh = OnRefreshAttributeSpec("onRefresh")
+    lazy val refreshing = BooleanAttributeSpec("refreshing")
   }
 
   object FlatListAttributes {
@@ -46,6 +48,9 @@ object FlatList {
       def :=[T](value: T): Attribute[T] = Attribute(name, value, AS_IS)
     }
 
+    case class OnRefreshAttributeSpec(name: String) extends AttributeSpec {
+      def :=(onRefresh: js.Function0[Unit]): Attribute[js.Function0[Unit]] = Attribute(name, onRefresh, AS_IS)
+    }
   }
 
   @js.native
