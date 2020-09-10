@@ -5,28 +5,35 @@ jdk:
 dist: trusty
 env:
   global:
-  - TRAVIS_NODE_VERSION="8"
   - TRAVIS_SBT_VERSION="1.2.8"
   - secure: tO7bVoLTCiAHjUR7aSWBba4QSMDCpluJ1ElEM1BCPK4mKK1h6NtARsyC0aobp7K0YeXJ2QpMwc+FP+0bK5sLp9xA6RVMO1kugBDulDnLx+o64esATIjQtsP21bP6TCwNRWfFFMsQ4c6dgJxbzCMHeU1+y3bdhvlSROHlaMdKcndaHrcr/A8xIUY1IRAMuu/s0l+/PQjodrzx4E7C7QkvYvNjEyTE1mpyGXRZa1sBhuBcM4raqHdwRp7VV5uFQYYXvYgtS4jZ6IXfERuBEbuJT3uHQdDovgWcyNbnyxFU6ROL5PbW43fVki2pxhmqxLgklHP0AAPW8SIjpiVrACOiOcG7GeRZbpq+nNzDcbEx7xKSvNzsPir0l/OLPnMEBZ/3T7f0AMSWn6YyMpjhHTTQXrPYqIH0rmMBAXN/cW3EQcHDBkMLvXX9ek1rInufav5GX9c4z3zoWPGOxHWbWafvpiHv1PZpVjEhHkzvYG89qwjSlTdkYmPMMc8t5P4F0HJWXsadrPVye7/cN2laN/kJd0HtFLAstVkr9WYJJ/njfswU1FHFTP6jUVll0TBuUCtVSDK83MT16bhYnonZ7gHzPfLpVFAlzjLM5U400g673PNVZZz/ZtGioXDdM1OI+iC8BYMd3JtH1tyeYDB84U4vWPwc4TfeKh1jCZNWBuhoxuw=
   - secure: rpHhDP1ecDeQkJK+550KmRnvUFVC0vKxuh6YaKtZsXz3ZFJecD6Z8qUaQ3uMcbn5CeldM/JLrDcKuYJiIj1wXiVuo72WjeHWgLRdRMmG2IbdN7VYnntkLpMpVg5WTzisN+k99YT6g6AYkX/CFMsvTFGUyJVrWl1C3n6e1z2zbgOgMe3iWDcWSUOSiUYRHJW6TMwi+pVw+37tHp4yqzORHKp2rC6lH9cUHzc119XMHIZSy+l+PcexOR/RjYFS3Y5JsWLok1Qr6LxhsgtSfjGdpx/oQO+pK9km3MLC3chelojh0CiyAJJGyeUnyGOlJS7PHo6vjMwccS+zMsrCAwMn49ACnKJySZhzZJC4jfALw1Fz9UK6ArM3KFylEKIWJTgS3bW5AXEDVkRH+pTNwviEYFTonshitl9KAS7nW3+RpQA8r76x+yGfhREwbodca3bSBHNpmjyYz5iZP76rliLg6lc4mtWfBIFSqNQ8fOF78RxUYbSFAZ4Wk1KXQahYuCXM8HW48pG+U4Eyss71mq2gCSwCxMoXNkYHLwvJeShN2iAA4ZY/Lz99f1fTN8Co2EoOjIVgdFF53G+DqBH4/Pv/oFbXmjw/WFvMLzQd2lOeSvp0b4IgCCNt2/8dYxz0Qzri/6bplmdge6h3CypTDrLXDuGT0FnmCaMIew8Cd9mKd7o=
   - secure: V7HvxibRYfOhPvYumfhsVFj01uq+NLyT5kLUZsY1ZyalA6BGAl9sHoPIoOiIPU2OaMKFy0aq+Nacl7SMLEd/OOKcs7nVlhfYXmYEh8KLtAzVha8GG7qcrCLXZbYzKEDAr/nptSLYjfT6Q4Ns1z+6h2uWj3jKAsl4uVAzzqRRD5MoHcHByfL4TCo6sLjrbsWEJwHxzGDVxq9tm51T5PUj2+jMVGV1BWjVeJd+poltaigk4M4DCpZDc3T/aL9sh0pnGNYXssLId++mag+x9hWFGNPKzeGpc2r3cYiTNhc7WwZ5h/D/7H5uUS12MvvPR0yMnNTmfTe2ZKO/ereatalyx8NKvcmG+mUNFmZKa7y91e58uA2Z33eKiz0TH8t+LA4C/GcpPqPHniZKWZLLsx9vSP9L/+VWWDu3h6YlMRTnqwkFHHn87wJw+yeppH/dxgHXoTX4+IT/mzZNYSHK4iv+9u1lTTF3LXkGvFCRFIJgaY5GIfoJny5vEI09b243TZm+ooOE2ttik9MQzDjAnq61WO1emXgUPNgEZ3ltpaK2TkBnH8mAIWy967WOiiWxPfrtwS5Q9ydGjutLGTqbITC7elHss6yCh8QEd6QIJ/8wT9QERv5kwiTwC8Xw3Rv3eQ3qAS7i1F85KZpJUZTzFBojLdroSGT6heP6hD5J/Z98e5Y=
+  - secure: c9UUQYqWv/cZ7M4dstD0LU2Pdl2SNq7iMSjETW0iq0AQVNR9STmTS6AJNm+d+o0OJo0iPazTY/KkFJIZZibTBiTW1JerxjI4Q9gA9ogHRc6Ssay7UtF2gsZjqk7kuuYHOP4Qh+owAZr5haaxSQBectfinTsdH93Bl9dPCUriXmArJrEvPlhjaNjMdZydvQyK4SKqPTujW1S3iM4gJ+60EancVFz7qV7Lb/WXJdvU97/ZF8na/A0k2d3yFq/oWyPcyfFPEcRjGllDjuPI7VeUdAaKeklW6nsfWWY/aeO7cWIty0IuZgn+71uX59QYXr82hnzrVDMUYbyxzjKsEl3429KgwP5zApJlpPyU0jgQwEwlw9h8WXACZM7+f2xwcoNBB/r29ySgzOC5avkuqwzeoCxeeYfAiB3WeZ4s6eG7jwLxr51MwdGtc7x0VWKmt3NXiE+NlaGmS1EQJH9C4fUSpMpEwUZcb1HZaCiHtgDqoFUOr7XoDRz2vCTnD0gZV4Aisj/Sn7kKJ4P4zGaBXpeYsFsZOLT04wNwfM911CUvSyl2XqZEIsfOqUNj3gM0P5Kd/2kPzlNPq4GAXcWld3wSWIrCfShN+qvmkC9NELHLq0CwttJkZr0RmxBXpcQpxr2g0cbv6dNt7aQKs5rm9gjMY6CGR6N3eaHNEK4+ZMldVxU=
+  - secure: Rg2Esy6chS1t45+6vdJZfEaEi325shWPfXhLUKMdrbKtdJvk7wMMBA+tdKw7uCjIrRSxIko7AkaLuBnUvXKN6qBIc6du6w4ZxFcB2HySq6WWnIE2qze/AYHVCcoiXTeny5zf/UxPlqmaWXcirKYeEVoxis3k4BwsSKktg2v3i517STOoChWlHvTmJ7cpo5h1bk7aW5yNAiJKg+LzZSfYZ14mBj8fCtQqvbvJQto0CeiOPM8/ypO9n+i+Gx0IOXoOoanxdt1zkWoeXxQqNgbnFxNWKiu4FA8gF4KF6PSf5lfo/gPJ0BcGyMZs1HermNFHbWif9T5B7sbiE87ceNR1kteESVzYVj41ul2uhz6PGWuZons96d0aE9DoG52h7xajmHwGzaCUt+uS/wJBLgq3ukQEYFxW221ghmxqGlEvFpb8SnmJND5BZuWZQjWYyLsgfckG3yPALmjKUiyMsY3sVxT0hZ6Zc6KjdEQrUM4wnwlfLvzU2CxIDjMXdjeAEw/iz1R5CckVV1dXP8z7ZKTHX0jz5+CVtxjMLMaxoAQwjxokTOYWC6QHjmV8lCJ2EIihkW4+00qHI9uKfDmebGyF7Pgk+XVbDWc7WMfXUzj9a64PSPF9ENwSFxTOAVJ4nGIkSDIJcSFVkxnMoRoCla9NmDnFp7OcNvLGRgAiH33iSUU=
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+\.\d+$/
 before_install:
-- nvm install 6
-- nvm use 6
+- nvm install 10 &&
+  nvm use 10
 - node --version
+- npm install -g expo-cli
 - if [ $TRAVIS_PULL_REQUEST = 'false' ]; then
     openssl aes-256-cbc -K $encrypted_ecd940086dd2_key -iv $encrypted_ecd940086dd2_iv -in travis/secrets.tar.enc -out travis/secrets.tar -d;
     tar xv -C travis -f travis/secrets.tar;
   fi
 script:
 - sbt clean coverage test coverageReport &&
-  sbt coverageAggregate
-after_success:
-- sbt coveralls
+  sbt coverageAggregate &&
+  sbt coveralls
 - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]; then
     if [ -z "$TRAVIS_TAG" ]; then
        echo "Publish a snapshot";
        sbt clean publish;
+       expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD;
+       expo publish --non-interactive;
     else
        echo "Publish a release version=$TRAVIS_TAG";
        version=$TRAVIS_TAG sbt clean publishSigned sonatypeRelease;
@@ -36,6 +43,7 @@ after_success:
   fi
 cache:
   directories:
+  - ~/.npm
   - "$HOME/.ivy2/cache"
   - "$HOME/.sbt"
 before_cache:

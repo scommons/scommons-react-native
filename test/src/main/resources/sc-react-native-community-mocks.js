@@ -2,5 +2,7 @@
 module.exports = {
   
   SvgXml: 'SvgXml',
-  SvgCss: 'SvgCss'
+  SvgCss: 'SvgCss',
+  
+  WebView: 'WebView'
 }

@@ -6,6 +6,7 @@ const moduleAlias = require('module-alias')
 moduleAlias.addAliases({
   'react-native': __dirname + '/sc-react-native-mocks.js',
   'react-native-svg': __dirname + '/sc-react-native-community-mocks.js',
+  'react-native-webview': __dirname + '/sc-react-native-community-mocks.js',
   '@react-navigation/native': __dirname + '/sc-react-navigation-mocks.js',
   '@react-navigation/stack': __dirname + '/sc-react-navigation-mocks.js',
   '@react-navigation/bottom-tabs': __dirname + '/sc-react-navigation-mocks.js',

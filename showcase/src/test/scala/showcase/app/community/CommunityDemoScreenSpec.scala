@@ -19,7 +19,8 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     assertComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
-          "Svg" -> "Demo Svg components"
+          "Svg" -> "Demo Svg components",
+          "WebView" -> "Demo WebView components"
         )
         navigate shouldBe props.navigate
     }
@@ -37,7 +38,8 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     assertNativeComponent(result,
       <(Stack.Navigator)(^.initialRouteName := "Community")(
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
-        <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())()
+        <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
+        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())()
       )
     )
   }
