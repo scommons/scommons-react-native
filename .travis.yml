@@ -32,6 +32,9 @@ script:
     if [ -z "$TRAVIS_TAG" ]; then
        echo "Publish a snapshot";
        sbt clean publish;
+       
+       echo "Publish to expo";
+       cd showcase;
        expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD;
        expo publish --non-interactive;
     else
