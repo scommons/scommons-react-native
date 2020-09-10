@@ -34,6 +34,7 @@ script:
        sbt clean publish;
        
        echo "Publish to expo";
+       sbt "project scommons-react-native-showcase" fastOptJS;
        cd showcase;
        npm install;
        expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD;
