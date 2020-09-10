@@ -35,6 +35,7 @@ script:
        
        echo "Publish to expo";
        cd showcase;
+       npm install;
        expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD;
        expo publish --non-interactive;
     else
