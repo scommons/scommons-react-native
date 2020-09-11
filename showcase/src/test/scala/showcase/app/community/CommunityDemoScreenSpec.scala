@@ -20,7 +20,8 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "Svg" -> "Demo Svg components",
-          "WebView" -> "Demo WebView components"
+          "WebView" -> "Demo WebView components",
+          "HTMLView" -> "Demo HTMLView components"
         )
         navigate shouldBe props.navigate
     }
@@ -39,7 +40,8 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
       <(Stack.Navigator)(^.initialRouteName := "Community")(
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
         <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
-        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())()
+        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
+        <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())()
       )
     )
   }

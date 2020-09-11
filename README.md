@@ -101,6 +101,7 @@ See [showcase/README.md](showcase/README.md)
   * [SvgXml](showcase/src/main/scala/showcase/app/community/SvgXmlDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgXmlDemoSpec.scala)
   * [SvgCss](showcase/src/main/scala/showcase/app/community/SvgCssDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgCssDemoSpec.scala)
 * [react-native-webview](showcase/src/main/scala/showcase/app/community/WebViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/WebViewDemoSpec.scala)
+* [react-native-htmlview](showcase/src/main/scala/showcase/app/community/HTMLViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/HTMLViewDemoSpec.scala)
 
 #### react-navigation (v5)
 

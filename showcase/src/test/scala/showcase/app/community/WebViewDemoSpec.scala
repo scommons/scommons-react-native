@@ -1,12 +1,11 @@
 package showcase.app.community
 
-import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.webview._
 import showcase.app.community.WebViewDemo._
 
-class WebViewDemoSpec extends AsyncTestSpec
+class WebViewDemoSpec extends TestSpec
   with BaseTestSpec
   with ShallowRendererUtils {
 

@@ -15,7 +15,8 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
         "Svg" -> "Demo Svg components",
-        "WebView" -> "Demo WebView components"
+        "WebView" -> "Demo WebView components",
+        "HTMLView" -> "Demo HTMLView components"
       ),
       navigate = props.navigate
     ))()
@@ -28,7 +29,8 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
       <(Stack.Navigator)(^.initialRouteName := "Community")(
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
         <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
-        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())()
+        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
+        <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())()
       )
     }
   }.apply()

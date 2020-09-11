@@ -1,12 +1,11 @@
 package showcase.app.community
 
-import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.svg._
 import showcase.app.community.SvgCssDemo._
 
-class SvgCssDemoSpec extends AsyncTestSpec
+class SvgCssDemoSpec extends TestSpec
   with BaseTestSpec
   with ShallowRendererUtils {
 
