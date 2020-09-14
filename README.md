@@ -102,6 +102,7 @@ See [showcase/README.md](showcase/README.md)
   * [SvgCss](showcase/src/main/scala/showcase/app/community/SvgCssDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgCssDemoSpec.scala)
 * [react-native-webview](showcase/src/main/scala/showcase/app/community/WebViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/WebViewDemoSpec.scala)
 * [react-native-htmlview](showcase/src/main/scala/showcase/app/community/HTMLViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/HTMLViewDemoSpec.scala)
+* [react-native-syntax-highlighter](showcase/src/main/scala/showcase/app/community/SyntaxHighlighterDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SyntaxHighlighterDemoSpec.scala)
 
 #### react-navigation (v5)
 

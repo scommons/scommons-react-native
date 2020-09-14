@@ -16,7 +16,8 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
       items = List(
         "Svg" -> "Demo Svg components",
         "WebView" -> "Demo WebView components",
-        "HTMLView" -> "Demo HTMLView components"
+        "HTMLView" -> "Demo HTMLView components",
+        "SyntaxHighlighter" -> "Demo SyntaxHighlighter components"
       ),
       navigate = props.navigate
     ))()
@@ -30,7 +31,8 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
         <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
         <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
         <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
-        <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())()
+        <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),
+        <(Stack.Screen)(^.name := "SyntaxHighlighter", ^.component := SyntaxHighlighterDemo())()
       )
     }
   }.apply()
