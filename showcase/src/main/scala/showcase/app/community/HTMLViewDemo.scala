@@ -16,11 +16,16 @@ object HTMLViewDemo extends FunctionComponent[Unit] {
                  parent: js.UndefOr[HTMLViewNode],
                  defaultRenderer: DefaultRendererFn): js.Any = {
     
-    if (node.name.getOrElse("") == "custom") {
+    def getNodeText(node: HTMLViewNode): Option[String] = {
+      node.children.headOption.flatMap(_.data.toOption)
+    }
+
+    val tagName = node.name.getOrElse("")
+    if (tagName == "custom") {
       val specialStyle = node.attribs.style.asInstanceOf[Style]
       
       <.Text(^.key := s"$index", ^.rnStyle := js.Array(specialStyle, styles.customText))(
-        defaultRenderer(node.children, parent)
+        entities.decodeHTML(getNodeText(node).getOrElse(""))
       )
     }
     else ()
@@ -39,8 +44,9 @@ object HTMLViewDemo extends FunctionComponent[Unit] {
         ^.renderNode := renderNode,
         ^.value :=
           """<h1>Custom style example</h1>
+            |Some custom <b>&lt;tag&gt;</b> style:
             |<div>
-            |  <custom>Rendered with custom tag/style</custom>
+            |  <custom>Rendered with &lt;custom&gt; tag/style</custom>
             |</div>
             |""".stripMargin
       )()

@@ -16,26 +16,26 @@ class HTMLViewDemoSpec extends TestSpec
 
   it should "return custom text component if custom node when renderNode" in {
     //given
-    val node = mock[HTMLViewNodeMock]
+    val customNode = mock[HTMLViewNodeMock]
+    val textNode = mock[HTMLViewNodeMock]
     val specialStyle = js.Dynamic.literal(
       "style" -> js.Dynamic.literal(
         "width" -> "123"
       )
     )
     
-    (node.name _).expects().returning("custom")
-    (node.attribs _).expects().returning(specialStyle)
-    (node.children _).expects().returning(js.Array[HTMLViewNode]())
+    (customNode.name _).expects().returning("custom")
+    (customNode.attribs _).expects().returning(specialStyle)
+    (customNode.children _).expects().returning(js.Array(textNode.asInstanceOf[HTMLViewNode]))
+    (textNode.data _).expects().returning("custom node text")
     
     //when
     val resultComp = HTMLViewDemo.renderNode(
-      node = node.asInstanceOf[HTMLViewNode],
+      node = customNode.asInstanceOf[HTMLViewNode],
       index = 1,
       siblings = js.Array[HTMLViewNode](),
       parent = js.undefined,
-      defaultRenderer = { (_, _) =>
-        "test".asInstanceOf[ReactElement]
-      }
+      defaultRenderer = null
     )
     
     //then
@@ -50,7 +50,7 @@ class HTMLViewDemoSpec extends TestSpec
         ^.key := "1",
         ^.rnStyle := js.Array(specialStyle.style.asInstanceOf[Style], styles.customText)
       )(
-        "test"
+        "custom node text"
       )
     )
   }
@@ -94,8 +94,9 @@ class HTMLViewDemoSpec extends TestSpec
           ^.stylesheet := htmlStyles,
           ^.value :=
             """<h1>Custom style example</h1>
+              |Some custom <b>&lt;tag&gt;</b> style:
               |<div>
-              |  <custom>Rendered with custom tag/style</custom>
+              |  <custom>Rendered with &lt;custom&gt; tag/style</custom>
               |</div>
               |""".stripMargin
         )()

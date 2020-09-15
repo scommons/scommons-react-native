@@ -8,6 +8,7 @@ moduleAlias.addAliases({
   'react-native-svg': __dirname + '/sc-react-native-community-mocks.js',
   'react-native-webview': __dirname + '/sc-react-native-community-mocks.js',
   'react-native-htmlview': __dirname + '/sc-react-native-htmlview-mocks.js',
+  'entities': __dirname + '/sc-entities-mocks.js',
   'react-native-syntax-highlighter': __dirname + '/sc-react-native-syntax-highlighter-mocks.js',
   'react-syntax-highlighter/styles/hljs': __dirname + '/sc-react-syntax-highlighter-mocks.js',
   '@react-navigation/native': __dirname + '/sc-react-navigation-mocks.js',
