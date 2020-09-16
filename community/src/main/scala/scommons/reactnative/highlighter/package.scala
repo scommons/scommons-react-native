@@ -3,6 +3,7 @@ package scommons.reactnative
 import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
+import scommons.react.ReactClass
 
 import scala.scalajs.js
 
@@ -33,6 +34,9 @@ package object highlighter {
     
     lazy val highlighter = StringAttributeSpec("highlighter")
     lazy val highlighterStyle = HighlighterStyleAttribute("style")
+    
+    lazy val PreTag = ReactClassAttribute("PreTag")
+    lazy val CodeTag = ReactClassAttribute("CodeTag")
   }
 
   object SyntaxHighlighterVirtualDOMAttributes {
@@ -45,6 +49,10 @@ package object highlighter {
 
     case class HighlighterStyleAttribute(name: String) extends AttributeSpec {
       def :=(value: HighlighterStyle): Attribute[HighlighterStyle] = Attribute(name, value, AS_IS)
+    }
+    
+    case class ReactClassAttribute(name: String) extends AttributeSpec {
+      def :=(value: ReactClass): Attribute[ReactClass] = Attribute(name, value, AS_IS)
     }
   }
 

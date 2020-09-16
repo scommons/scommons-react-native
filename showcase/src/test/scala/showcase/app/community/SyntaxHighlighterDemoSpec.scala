@@ -47,6 +47,8 @@ class SyntaxHighlighterDemoSpec extends TestSpec
     assertNativeComponent(result,
       <.SyntaxHighlighter(
         ^.key := "1",
+        ^.PreTag := <.Text.reactClass,
+        ^.CodeTag := <.Text.reactClass,
         ^.customStyle := customStyle,
         ^.highlighter := "hljs",
         ^.highlighterStyle := HighlightJsStyles.defaultStyle

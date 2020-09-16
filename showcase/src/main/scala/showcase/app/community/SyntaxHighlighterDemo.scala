@@ -29,12 +29,14 @@ object SyntaxHighlighterDemo extends FunctionComponent[Unit] {
       case Some(code) =>
         <.SyntaxHighlighter(
           ^.key := s"$index",
+          ^.PreTag := <.Text.reactClass, // default is ScrollView
+          ^.CodeTag := <.Text.reactClass, // default is ScrollView
           //^.fontSize := 24,
           ^.customStyle := customStyle,
           ^.highlighter := "hljs",
           ^.highlighterStyle := getHighlightJsStyle("dark")
             .getOrElse(HighlightJsStyles.defaultStyle)
-        )(code)
+        )(entities.decodeHTML(code.trim))
       case None => ()
     }
   }
