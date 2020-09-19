@@ -2,6 +2,7 @@ package showcase.app
 
 import showcase.app.style._
 import showcase.app.task._
+import showcase.app.ui._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
@@ -19,7 +20,8 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
         "Community" -> "Demo community components",
         "Expo" -> "Demo expo components",
         "Styles" -> "Demo different styles",
-        "DemoTask" -> "Demo API tasks"
+        "DemoTask" -> "Demo API tasks",
+        "UI" -> "Demo common UI components"
       ),
       navigate = props.navigate
     ))()
@@ -36,7 +38,8 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
         // styles
         StylesScreen.getStylesStack(Stack),
         // ui
-        <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)()
+        <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)(),
+        UiDemoScreen.getUiStack(Stack)
       )
     }
   }.apply()

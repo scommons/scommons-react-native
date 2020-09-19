@@ -1,6 +1,7 @@
 package showcase.app
 
 import showcase.app.style._
+import showcase.app.ui.UiDemoScreen
 import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
@@ -23,7 +24,8 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
           "Community" -> "Demo community components",
           "Expo" -> "Demo expo components",
           "Styles" -> "Demo different styles",
-          "DemoTask" -> "Demo API tasks"
+          "DemoTask" -> "Demo API tasks",
+          "UI" -> "Demo common UI components"
         )
         navigate shouldBe props.navigate
     }
@@ -44,7 +46,8 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
         // styles
         StylesScreen.getStylesStack(Stack),
         // ui
-        <(Stack.Screen)(^.name := "DemoTask", ^.component := ShowcaseScreen.demoTaskComp)()
+        <(Stack.Screen)(^.name := "DemoTask", ^.component := ShowcaseScreen.demoTaskComp)(),
+        UiDemoScreen.getUiStack(Stack)
       )
     )
   }
