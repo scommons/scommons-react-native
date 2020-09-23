@@ -25,18 +25,10 @@ object ExpoDemoScreen extends FunctionComponent[ExpoDemoScreenProps] {
     ))()
   }
 
-  private[expo] lazy val Stack = createStackNavigator()
-
-  lazy val expoStackComp: ReactClass = new FunctionComponent[Unit] {
-    protected def render(props: Props): ReactElement = {
-      <(Stack.Navigator)(^.initialRouteName := "Expo")(
-        <(Stack.Screen)(^.name := "Expo", ^.component := ExpoDemoController())(),
-        <(Stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
-        <(Stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
-        <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
-        <(Stack.Screen)(^.name := "SQLite", ^.component := SQLiteDemo())()
-      )
-    }
-  }.apply()
-
+  def getExpoScreens(stack: StackNavigator): Seq[ReactElement] = Seq(
+    <(stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
+    <(stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
+    <(stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),
+    <(stack.Screen)(^.name := "SQLite", ^.component := SQLiteDemo())()
+  )
 }

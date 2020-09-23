@@ -6,13 +6,15 @@ import io.github.shogowada.statictags._
 
 import scala.scalajs.js
 
-package object navigation {
+package object navigation extends ReactNavigation {
 
   type NavigationProps = navigation.raw.NavigationProps
   type NavigatorScreenOptions = navigation.raw.NavigatorScreenOptions
   
+  protected lazy val native: navigation.raw.ReactNavigation = navigation.raw.ReactNavigation
+  
   implicit class ReactNavigationVirtualDOMElements(elements: VirtualDOMElements) {
-    lazy val NavigationContainer: ReactClassElementSpec = elements(navigation.raw.NavigationContainer)
+    lazy val NavigationContainer: ReactClassElementSpec = elements(native.NavigationContainer)
   }
 
   object NavigatorVirtualDOMAttributes {

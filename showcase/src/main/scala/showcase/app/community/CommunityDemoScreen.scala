@@ -23,18 +23,10 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
     ))()
   }
 
-  private[community] lazy val Stack = createStackNavigator()
-
-  lazy val communityStackComp: ReactClass = new FunctionComponent[Unit] {
-    protected def render(props: Props): ReactElement = {
-      <(Stack.Navigator)(^.initialRouteName := "Community")(
-        <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
-        <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
-        <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
-        <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),
-        <(Stack.Screen)(^.name := "SyntaxHighlighter", ^.component := SyntaxHighlighterDemo())()
-      )
-    }
-  }.apply()
-
+  def getCommunityScreens(stack: StackNavigator): Seq[ReactElement] = Seq(
+    <(stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
+    <(stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
+    <(stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),
+    <(stack.Screen)(^.name := "SyntaxHighlighter", ^.component := SyntaxHighlighterDemo())()
+  )
 }

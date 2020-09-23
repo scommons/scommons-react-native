@@ -1,11 +1,12 @@
 package showcase.app.expo
 
-import scommons.react.navigation._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
 import showcase.app.expo.av.VideoDemo
 import showcase.app.expo.sqlite.SQLiteDemo
 import showcase.app.{ShowcaseListView, ShowcaseListViewProps}
+import scommons.react._
+import scommons.react.navigation._
+import scommons.react.navigation.stack._
+import scommons.react.test._
 
 class ExpoDemoScreenSpec extends TestSpec with ShallowRendererUtils {
 
@@ -30,18 +31,23 @@ class ExpoDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     }
   }
 
-  it should "render expoStackComp" in {
+  it should "render expo screens" in {
     //given
-    val Stack = ExpoDemoScreen.Stack
-    val component = <(ExpoDemoScreen.expoStackComp).empty
+    val Stack = createStackNavigator()
+    val wrapper = new FunctionComponent[Unit] {
+      protected def render(props: Props): ReactElement = {
+        <.>()(
+          ExpoDemoScreen.getExpoScreens(Stack)
+        )
+      }
+    }
 
     //when
-    val result = shallowRender(component)
+    val result = shallowRender(<(wrapper())()())
 
     //then
     assertNativeComponent(result,
-      <(Stack.Navigator)(^.initialRouteName := "Expo")(
-        <(Stack.Screen)(^.name := "Expo", ^.component := ExpoDemoController())(),
+      <.>()(
         <(Stack.Screen)(^.name := "Asset", ^.component := AssetDemo())(),
         <(Stack.Screen)(^.name := "Font", ^.component := FontDemo())(),
         <(Stack.Screen)(^.name := "Video", ^.component := VideoDemo())(),

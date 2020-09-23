@@ -4,6 +4,7 @@ import showcase.app.community._
 import showcase.app.expo._
 import scommons.react._
 import scommons.react.navigation._
+import scommons.react.navigation.stack._
 import scommons.react.navigation.tab.TabBarOptions._
 import scommons.react.navigation.tab._
 import scommons.reactnative._
@@ -12,11 +13,46 @@ import scala.scalajs.js
 
 object ShowcaseRoot extends FunctionComponent[Unit] {
 
-  private[app] lazy val Tab = createBottomTabNavigator()
-  
   protected def render(props: Props): ReactElement = {
+
+    def getScreenTitle(navProps: NavigationProps): String = {
+      val routeName = getFocusedRouteNameFromRoute(navProps.route)
+        .getOrElse(navProps.route.name)
+      
+      routeName match {
+        case "App" => "Showcase"
+        case "Home" => "Showcase"
+        case name => name
+      }
+    }
+
     <.NavigationContainer()(
-      <(Tab.Navigator)(
+      <(AppStack.Navigator)(
+        ^.screenOptions := { navProps =>
+          val screenTitle = getScreenTitle(navProps)
+          val options = new StackScreenOptions {
+            val headerBackTitleVisible = false
+            override val title = screenTitle
+          }
+          options
+        }
+      )(
+        <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+        
+        ShowcaseScreen.getHomeScreens(AppStack),
+        ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+        CommunityDemoScreen.getCommunityScreens(AppStack),
+        ExpoDemoScreen.getExpoScreens(AppStack)
+      )
+    )
+  }
+
+  private[app] lazy val AppStack = createStackNavigator()
+  
+  private[app] lazy val HomeTab = createBottomTabNavigator()
+  private[app] lazy val homeTabComp: ReactClass = new FunctionComponent[Unit] {
+    protected def render(props: Props): ReactElement = {
+      <(HomeTab.Navigator)(
         ^.initialRouteName := "Home",
         ^.tabLazy := false,
         ^.tabBarOptions := new TabBarOptions {
@@ -24,36 +60,36 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           override val labelPosition = LabelPosition.`below-icon`
         }
       )(
-        <(Tab.Screen)(
+        <(HomeTab.Screen)(
           ^.name := "Home",
-          ^.component := ShowcaseScreen.homeStackComp,
+          ^.component := ShowcaseController(),
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
               <(ShowcaseIcons.FontAwesome5)(^.name := "home", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),
-        <(Tab.Screen)(
+        <(HomeTab.Screen)(
           ^.name := "react-native",
-          ^.component := ReactNativeDemoScreen.reactNativeStackComp,
+          ^.component := ReactNativeDemoController(),
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
               <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),
-        <(Tab.Screen)(
+        <(HomeTab.Screen)(
           ^.name := "community",
-          ^.component := CommunityDemoScreen.communityStackComp,
+          ^.component := CommunityDemoController(),
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
               <(ShowcaseIcons.FontAwesome5)(^.name := "reacteurope", ^.rnSize := params.size, ^.color := params.color)()
             }: js.Function1[TabBarIconParams, ReactElement]
           }
         )(),
-        <(Tab.Screen)(
+        <(HomeTab.Screen)(
           ^.name := "expo",
-          ^.component := ExpoDemoScreen.expoStackComp,
+          ^.component := ExpoDemoController(),
           ^.options := new TabScreenOptions {
             override val tabBarIcon = { params =>
               <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := params.size, ^.color := params.color)()
@@ -61,6 +97,6 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
           }
         )()
       )
-    )
-  }
+    }
+  }.apply()
 }

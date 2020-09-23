@@ -3,8 +3,8 @@ package showcase.app.style
 import showcase.app._
 import scommons.react._
 import scommons.react.navigation._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.navigation.stack._
+import scommons.react.test._
 
 class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
 
@@ -32,9 +32,9 @@ class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
     }
   }
 
-  it should "render styles stack" in {
+  it should "render Styles screens" in {
     //given
-    val stack = ShowcaseScreen.Stack
+    val stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
         <.>()(

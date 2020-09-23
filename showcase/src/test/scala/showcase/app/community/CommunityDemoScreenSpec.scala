@@ -1,9 +1,10 @@
 package showcase.app.community
 
-import scommons.react.navigation._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
 import showcase.app.{ShowcaseListView, ShowcaseListViewProps}
+import scommons.react._
+import scommons.react.navigation._
+import scommons.react.navigation.stack._
+import scommons.react.test._
 
 class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
 
@@ -28,18 +29,23 @@ class CommunityDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     }
   }
 
-  it should "render communityStackComp" in {
+  it should "render community screens" in {
     //given
-    val Stack = CommunityDemoScreen.Stack
-    val component = <(CommunityDemoScreen.communityStackComp).empty
+    val Stack = createStackNavigator()
+    val wrapper = new FunctionComponent[Unit] {
+      protected def render(props: Props): ReactElement = {
+        <.>()(
+          CommunityDemoScreen.getCommunityScreens(Stack)
+        )
+      }
+    }
 
     //when
-    val result = shallowRender(component)
+    val result = shallowRender(<(wrapper())()())
 
     //then
     assertNativeComponent(result,
-      <(Stack.Navigator)(^.initialRouteName := "Community")(
-        <(Stack.Screen)(^.name := "Community", ^.component := CommunityDemoController())(),
+      <.>()(
         <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
         <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
         <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),

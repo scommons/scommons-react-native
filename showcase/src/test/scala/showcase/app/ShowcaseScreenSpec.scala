@@ -2,9 +2,10 @@ package showcase.app
 
 import showcase.app.style._
 import showcase.app.ui.UiDemoScreen
+import scommons.react._
 import scommons.react.navigation._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.navigation.stack._
+import scommons.react.test._
 
 class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
 
@@ -20,9 +21,6 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
     assertComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
-          "ReactNative" -> "Demo core components",
-          "Community" -> "Demo community components",
-          "Expo" -> "Demo expo components",
           "Styles" -> "Demo different styles",
           "DemoTask" -> "Demo API tasks",
           "UI" -> "Demo common UI components"
@@ -31,18 +29,23 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
     }
   }
 
-  it should "render homeStackComp" in {
+  it should "render Home screens" in {
     //given
-    val Stack = ShowcaseScreen.Stack
-    val component = <(ShowcaseScreen.homeStackComp).empty
+    val Stack = createStackNavigator()
+    val wrapper = new FunctionComponent[Unit] {
+      protected def render(props: Props): ReactElement = {
+        <.>()(
+          ShowcaseScreen.getHomeScreens(Stack)
+        )
+      }
+    }
 
     //when
-    val result = shallowRender(component)
+    val result = shallowRender(<(wrapper())()())
 
     //then
     assertNativeComponent(result,
-      <(Stack.Navigator)(^.initialRouteName := "Showcase")(
-        <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
+      <.>()(
         // styles
         StylesScreen.getStylesStack(Stack),
         // ui

@@ -7,16 +7,48 @@ import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.tab.TabBarOptions._
 import scommons.react.navigation.tab._
-import scommons.react.test.TestSpec
-import scommons.react.test.raw.ShallowInstance
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative._
 
+import scala.scalajs.js
 import scala.scalajs.js.Dynamic.literal
 
 class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
 
-  it should "render component" in {
+  it should "render dynamic App screens titles" in {
+    //given
+    val comp = shallowRender(<(ShowcaseRoot())()())
+    val List(appStackNav) = findComponents(comp, AppStack.Navigator)
+
+    def navProps(route: String): js.Dynamic = {
+      js.Dynamic.literal(
+        "navigation" -> js.Dynamic.literal(),
+        "route" -> js.Dynamic.literal(
+          "name" -> route
+        )
+      )
+    }
+    
+    //when & then
+    inside(appStackNav.props.screenOptions(navProps("App"))) { case opts =>
+      opts.headerBackTitleVisible shouldBe false
+      opts.title shouldBe "Showcase"
+    }
+    
+    //when & then
+    inside(appStackNav.props.screenOptions(navProps("Home"))) { case opts =>
+      opts.headerBackTitleVisible shouldBe false
+      opts.title shouldBe "Showcase"
+    }
+    
+    //when & then
+    inside(appStackNav.props.screenOptions(navProps("Other"))) { case opts =>
+      opts.headerBackTitleVisible shouldBe false
+      opts.title shouldBe "Other"
+    }
+  }
+
+  it should "render App stack component" in {
     //given
     val component = <(ShowcaseRoot())()()
     
@@ -24,61 +56,74 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     val result = shallowRender(component)
     
     //then
-    assertShowcaseRoot(result)
+    assertNativeComponent(result, <.NavigationContainer()(
+      <(AppStack.Navigator)()(
+        <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+        
+        ShowcaseScreen.getHomeScreens(AppStack),
+        ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+        CommunityDemoScreen.getCommunityScreens(AppStack),
+        ExpoDemoScreen.getExpoScreens(AppStack)
+      )
+    ))
   }
 
-  private def assertShowcaseRoot(result: ShallowInstance): Unit = {
+  it should "render Home tab component" in {
+    //given
+    val component = <(homeTabComp)()()
     
-    def renderIcon(tab: ShallowInstance, size: Int, color: String): ShallowInstance = {
-      val iconComp = tab.props.options.tabBarIcon(literal("size" -> size, "color" -> color))
-      
-      val wrapper = new FunctionComponent[Unit] {
-        protected def render(props: Props): ReactElement = {
-          iconComp.asInstanceOf[ReactElement]
+    //when
+    val result = shallowRender(component)
+    
+    //then
+    assertNativeComponent(result,
+      <(HomeTab.Navigator)(
+        ^.initialRouteName := "Home",
+        ^.tabLazy := false,
+        ^.tabBarOptions := new TabBarOptions {
+          override val labelPosition = LabelPosition.`below-icon`
         }
+      )(), { case List(tab1, tab2, tab3, tab4) =>
+        assertNativeComponent(tab1,
+          <(HomeTab.Screen)(^.name := "Home", ^.component := ShowcaseController())()
+        )
+        assertNativeComponent(renderIcon(tab1, 16, "green"),
+          <(ShowcaseIcons.FontAwesome5)(^.name := "home", ^.rnSize := 16, ^.color := "green")()
+        )
+        
+        assertNativeComponent(tab2,
+          <(HomeTab.Screen)(^.name := "react-native", ^.component := ReactNativeDemoController())()
+        )
+        assertNativeComponent(renderIcon(tab2, 32, "red"),
+          <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := 32, ^.color := "red")()
+        )
+        
+        assertNativeComponent(tab3,
+          <(HomeTab.Screen)(^.name := "community", ^.component := CommunityDemoController())()
+        )
+        assertNativeComponent(renderIcon(tab3, 48, "blue"),
+          <(ShowcaseIcons.FontAwesome5)(^.name := "reacteurope", ^.rnSize := 48, ^.color := "blue")()
+        )
+        
+        assertNativeComponent(tab4,
+          <(HomeTab.Screen)(^.name := "expo", ^.component := ExpoDemoController())()
+        )
+        assertNativeComponent(renderIcon(tab4, 64, "white"),
+          <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := 64, ^.color := "white")()
+        )
       }
-      
-      shallowRender(<(wrapper()).empty)
+    )
+  }
+
+  private def renderIcon(tab: ShallowInstance, size: Int, color: String): ShallowInstance = {
+    val iconComp = tab.props.options.tabBarIcon(literal("size" -> size, "color" -> color))
+
+    val wrapper = new FunctionComponent[Unit] {
+      protected def render(props: Props): ReactElement = {
+        iconComp.asInstanceOf[ReactElement]
+      }
     }
-    
-    assertNativeComponent(result, <.NavigationContainer()(), { case List(navigator) =>
-      assertNativeComponent(navigator,
-        <(Tab.Navigator)(
-          ^.initialRouteName := "Home",
-          ^.tabLazy := false,
-          ^.tabBarOptions := new TabBarOptions {
-            override val labelPosition = LabelPosition.`below-icon`
-          }
-        )()
-        , { case List(tab1, tab2, tab3, tab4) =>
-          assertNativeComponent(tab1,
-            <(Tab.Screen)(^.name := "Home", ^.component := ShowcaseScreen.homeStackComp)()
-          )
-          assertNativeComponent(renderIcon(tab1, 16, "green"),
-            <(ShowcaseIcons.FontAwesome5)(^.name := "home", ^.rnSize := 16, ^.color := "green")()
-          )
-          
-          assertNativeComponent(tab2,
-            <(Tab.Screen)(^.name := "react-native", ^.component := ReactNativeDemoScreen.reactNativeStackComp)()
-          )
-          assertNativeComponent(renderIcon(tab2, 32, "red"),
-            <(ShowcaseIcons.FontAwesome5)(^.name := "react", ^.rnSize := 32, ^.color := "red")()
-          )
-          
-          assertNativeComponent(tab3,
-            <(Tab.Screen)(^.name := "community", ^.component := CommunityDemoScreen.communityStackComp)()
-          )
-          assertNativeComponent(renderIcon(tab3, 48, "blue"),
-            <(ShowcaseIcons.FontAwesome5)(^.name := "reacteurope", ^.rnSize := 48, ^.color := "blue")()
-          )
-          
-          assertNativeComponent(tab4,
-            <(Tab.Screen)(^.name := "expo", ^.component := ExpoDemoScreen.expoStackComp)()
-          )
-          assertNativeComponent(renderIcon(tab4, 64, "white"),
-            <(ShowcaseIcons.Ionicons)(^.name := "ios-apps", ^.rnSize := 64, ^.color := "white")()
-          )
-        })
-    })
+
+    shallowRender(<(wrapper()).empty)
   }
 }

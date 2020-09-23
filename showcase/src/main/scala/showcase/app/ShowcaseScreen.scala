@@ -16,9 +16,6 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
     
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
-        "ReactNative" -> "Demo core components",
-        "Community" -> "Demo community components",
-        "Expo" -> "Demo expo components",
         "Styles" -> "Demo different styles",
         "DemoTask" -> "Demo API tasks",
         "UI" -> "Demo common UI components"
@@ -29,19 +26,12 @@ object ShowcaseScreen extends FunctionComponent[ShowcaseScreenProps] {
 
   private[app] lazy val demoTaskComp = new DemoTaskController(ShowcaseActions).apply()
 
-  private[app] lazy val Stack = createStackNavigator()
-
-  lazy val homeStackComp: ReactClass = new FunctionComponent[Unit] {
-    protected def render(props: Props): ReactElement = {
-      <(Stack.Navigator)(^.initialRouteName := "Showcase")(
-        <(Stack.Screen)(^.name := "Showcase", ^.component := ShowcaseController())(),
-        // styles
-        StylesScreen.getStylesStack(Stack),
-        // ui
-        <(Stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)(),
-        UiDemoScreen.getUiStack(Stack)
-      )
-    }
-  }.apply()
-
+  def getHomeScreens(stack: StackNavigator): Seq[ReactElement] = {
+    // styles
+    StylesScreen.getStylesStack(stack) ++ List(
+      // ui
+      <(stack.Screen)(^.name := "DemoTask", ^.component := demoTaskComp)()
+    ) ++
+      UiDemoScreen.getUiStack(stack)
+  }
 }

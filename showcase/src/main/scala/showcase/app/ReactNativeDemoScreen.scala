@@ -27,22 +27,14 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
     ))()
   }
 
-  private[app] lazy val Stack = createStackNavigator()
-
-  lazy val reactNativeStackComp: ReactClass = new FunctionComponent[Unit] {
-    protected def render(props: Props): ReactElement = {
-      <(Stack.Navigator)(^.initialRouteName := "ReactNative")(
-        <(Stack.Screen)(^.name := "ReactNative", ^.component := ReactNativeDemoController())(),
-        <(Stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
-        <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
-        <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
-        <(Stack.Screen)(^.name := "Image", ^.component := ImageDemo())(),
-        <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
-        <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
-        <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
-        <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
-      )
-    }
-  }.apply()
-
+  def getReactNativeScreens(stack: StackNavigator): Seq[ReactElement] = Seq(
+    <(stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
+    <(stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
+    <(stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
+    <(stack.Screen)(^.name := "Image", ^.component := ImageDemo())(),
+    <(stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
+    <(stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
+    <(stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
+    <(stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
+  )
 }

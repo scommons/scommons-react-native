@@ -6,8 +6,18 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
 @js.native
-@JSImport("@react-navigation/native", "NavigationContainer")
-object NavigationContainer extends ReactClass
+@JSImport("@react-navigation/native", JSImport.Namespace)
+object ReactNavigation extends ReactNavigation
+
+@js.native
+trait ReactNavigation extends js.Object {
+  
+  val NavigationContainer: ReactClass = js.native
+  
+  def getFocusedRouteNameFromRoute(route: Route): js.Any = js.native
+  
+  def useIsFocused(): Boolean = js.native
+}
 
 /**
   * @see https://reactnavigation.org/docs/en/navigation-prop.html

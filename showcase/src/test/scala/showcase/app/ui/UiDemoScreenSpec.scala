@@ -3,6 +3,7 @@ package showcase.app.ui
 import showcase.app._
 import scommons.react._
 import scommons.react.navigation._
+import scommons.react.navigation.stack._
 import scommons.react.test._
 
 class UiDemoScreenSpec extends TestSpec with ShallowRendererUtils {
@@ -25,9 +26,9 @@ class UiDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     }
   }
 
-  it should "render UI stack" in {
+  it should "render UI screens" in {
     //given
-    val stack = ShowcaseScreen.Stack
+    val stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
         <.>()(
