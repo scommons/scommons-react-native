@@ -9,6 +9,7 @@ import scommons.react.navigation.tab.TabBarOptions._
 import scommons.react.navigation.tab._
 import scommons.react.test._
 import scommons.reactnative._
+import scommons.reactnative.safearea._
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.literal
@@ -56,16 +57,20 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     val result = shallowRender(component)
     
     //then
-    assertNativeComponent(result, <.NavigationContainer()(
-      <(AppStack.Navigator)()(
-        <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
-        
-        ShowcaseScreen.getHomeScreens(AppStack),
-        ReactNativeDemoScreen.getReactNativeScreens(AppStack),
-        CommunityDemoScreen.getCommunityScreens(AppStack),
-        ExpoDemoScreen.getExpoScreens(AppStack)
+    assertNativeComponent(result,
+      <.SafeAreaProvider()(
+        <.NavigationContainer()(
+          <(AppStack.Navigator)()(
+            <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+            
+            ShowcaseScreen.getHomeScreens(AppStack),
+            ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+            CommunityDemoScreen.getCommunityScreens(AppStack),
+            ExpoDemoScreen.getExpoScreens(AppStack)
+          )
+        )
       )
-    ))
+    )
   }
 
   it should "render Home tab component" in {

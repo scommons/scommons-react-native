@@ -2,6 +2,8 @@ package showcase.app.community
 
 import scommons.react._
 import scommons.reactnative._
+import scommons.reactnative.safearea.SafeArea._
+import scommons.reactnative.safearea._
 import scommons.reactnative.webview._
 
 import scala.scalajs.js
@@ -11,7 +13,11 @@ import scala.scalajs.js
 object WebViewDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
+    <.SafeAreaView(
+      ^.mode := SafeAreaMode.padding, //default
+      ^.edges := List(SafeAreaEdge.left, SafeAreaEdge.bottom, SafeAreaEdge.right),
+      ^.rnStyle := styles.container
+    )(
       <.Text(^.rnStyle := styles.title)("InlineWeb:"),
       <.WebView(
         ^.originWhiteList := Seq("*"),

@@ -98,6 +98,9 @@ Note: Many examples are from an excellent book [React Native in Action](https://
 
 #### react-native-community
 
+* [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context)
+  * [SafeAreaProvider](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
+  * [SafeAreaView](showcase/src/main/scala/showcase/app/community/WebViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/WebViewDemoSpec.scala)
 * [react-native-svg](https://github.com/react-native-community/react-native-svg)
   * [SvgXml](showcase/src/main/scala/showcase/app/community/SvgXmlDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgXmlDemoSpec.scala)
   * [SvgCss](showcase/src/main/scala/showcase/app/community/SvgCssDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SvgCssDemoSpec.scala)

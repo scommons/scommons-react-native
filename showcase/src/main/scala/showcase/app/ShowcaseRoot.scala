@@ -8,6 +8,7 @@ import scommons.react.navigation.stack._
 import scommons.react.navigation.tab.TabBarOptions._
 import scommons.react.navigation.tab._
 import scommons.reactnative._
+import scommons.reactnative.safearea._
 
 import scala.scalajs.js
 
@@ -22,27 +23,29 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
       routeName match {
         case "App" => "Showcase"
         case "Home" => "Showcase"
-        case name => name
+        case _ => routeName
       }
     }
 
-    <.NavigationContainer()(
-      <(AppStack.Navigator)(
-        ^.screenOptions := { navProps =>
-          val screenTitle = getScreenTitle(navProps)
-          val options = new StackScreenOptions {
-            val headerBackTitleVisible = false
-            override val title = screenTitle
+    <.SafeAreaProvider()(
+      <.NavigationContainer()(
+        <(AppStack.Navigator)(
+          ^.screenOptions := { navProps =>
+            val screenTitle = getScreenTitle(navProps)
+            val options = new StackScreenOptions {
+              val headerBackTitleVisible = false
+              override val title = screenTitle
+            }
+            options
           }
-          options
-        }
-      )(
-        <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
-        
-        ShowcaseScreen.getHomeScreens(AppStack),
-        ReactNativeDemoScreen.getReactNativeScreens(AppStack),
-        CommunityDemoScreen.getCommunityScreens(AppStack),
-        ExpoDemoScreen.getExpoScreens(AppStack)
+        )(
+          <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+          
+          ShowcaseScreen.getHomeScreens(AppStack),
+          ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+          CommunityDemoScreen.getCommunityScreens(AppStack),
+          ExpoDemoScreen.getExpoScreens(AppStack)
+        )
       )
     )
   }

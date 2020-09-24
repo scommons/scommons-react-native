@@ -2,6 +2,8 @@ package showcase.app.community
 
 import scommons.react.test._
 import scommons.reactnative._
+import scommons.reactnative.safearea.SafeArea._
+import scommons.reactnative.safearea._
 import scommons.reactnative.webview._
 import showcase.app.community.WebViewDemo._
 
@@ -18,7 +20,11 @@ class WebViewDemoSpec extends TestSpec
     
     //then
     assertNativeComponent(result,
-      <.View(^.rnStyle := styles.container)(
+      <.SafeAreaView(
+        ^.mode := SafeAreaMode.padding, //default
+        ^.edges := List(SafeAreaEdge.left, SafeAreaEdge.bottom, SafeAreaEdge.right),
+        ^.rnStyle := styles.container
+      )(
         <.Text(^.rnStyle := styles.title)("InlineWeb:"),
         <.WebView(
           ^.originWhiteList := Seq("*"),
