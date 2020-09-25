@@ -73,6 +73,19 @@ class ReactNavigationSpec extends FlatSpec
     //when & then
     nav.useIsFocused() shouldBe result
   }
+
+  it should "return native theme when useTheme" in {
+    //given
+    val nativeMock = mock[ReactNavigationMock]
+    val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
+    val themeMock = mock[ThemeMock]
+    val theme = themeMock.asInstanceOf[Theme]
+
+    (nativeMock.useTheme _).expects().returning(theme)
+
+    //when & then
+    nav.useTheme() should be theSameInstanceAs theme
+  }
 }
 
 object ReactNavigationSpec {
@@ -83,6 +96,13 @@ object ReactNavigationSpec {
     def getFocusedRouteNameFromRoute(route: raw.Route): js.Any
 
     def useIsFocused(): Boolean
+
+    def useTheme(): Theme
+  }
+
+  @JSExportAll
+  trait ThemeMock {
+    
   }
 
   case class TestReactNavigation(mock: raw.ReactNavigation) extends ReactNavigation {

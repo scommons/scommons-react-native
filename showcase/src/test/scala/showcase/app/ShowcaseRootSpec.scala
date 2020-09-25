@@ -59,7 +59,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     //then
     assertNativeComponent(result,
       <.SafeAreaProvider()(
-        <.NavigationContainer()(
+        <.NavigationContainer(^.theme := DefaultTheme)(
           <(AppStack.Navigator)()(
             <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
             

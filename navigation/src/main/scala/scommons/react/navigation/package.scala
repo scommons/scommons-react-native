@@ -11,7 +11,13 @@ package object navigation extends ReactNavigation {
   type NavigationProps = navigation.raw.NavigationProps
   type NavigatorScreenOptions = navigation.raw.NavigatorScreenOptions
   
+  type Theme = navigation.raw.Theme
+  type ThemeColors = navigation.raw.ThemeColors
+  
   protected lazy val native: navigation.raw.ReactNavigation = navigation.raw.ReactNavigation
+  
+  lazy val DefaultTheme: Theme = native.DefaultTheme
+  lazy val DarkTheme: Theme = native.DarkTheme
   
   implicit class ReactNavigationVirtualDOMElements(elements: VirtualDOMElements) {
     lazy val NavigationContainer: ReactClassElementSpec = elements(native.NavigationContainer)
@@ -20,6 +26,10 @@ package object navigation extends ReactNavigation {
   object NavigatorVirtualDOMAttributes {
 
     import VirtualDOMAttributes.Type._
+
+    case class ThemeAttributeSpec(name: String) extends AttributeSpec {
+      def :=(value: Theme): Attribute[Theme] = Attribute(name, value, AS_IS)
+    }
 
     case class ScreenComponentAttributeSpec(name: String) extends AttributeSpec {
       def :=(value: ReactClass): Attribute[ReactClass] = Attribute(name, value, AS_IS)
@@ -40,6 +50,9 @@ package object navigation extends ReactNavigation {
 
     import NavigatorVirtualDOMAttributes._
 
+    //NavigationContainer
+    lazy val theme = ThemeAttributeSpec("theme")
+    
     //Navigator
     lazy val initialRouteName = StringAttributeSpec("initialRouteName")
     lazy val screenOptions = ScreenOptionsAttributeSpec("screenOptions")

@@ -14,4 +14,7 @@ trait ReactNavigation {
 
   @inline
   def useIsFocused(): Boolean = native.useIsFocused()
+  
+  @inline
+  def useTheme(): Theme = native.useTheme()
 }

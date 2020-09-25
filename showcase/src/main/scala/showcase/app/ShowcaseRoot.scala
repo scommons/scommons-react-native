@@ -28,7 +28,7 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
     }
 
     <.SafeAreaProvider()(
-      <.NavigationContainer()(
+      <.NavigationContainer(^.theme := DefaultTheme)( //DarkTheme
         <(AppStack.Navigator)(
           ^.screenOptions := { navProps =>
             val screenTitle = getScreenTitle(navProps)

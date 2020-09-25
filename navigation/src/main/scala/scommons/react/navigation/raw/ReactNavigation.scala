@@ -17,6 +17,11 @@ trait ReactNavigation extends js.Object {
   def getFocusedRouteNameFromRoute(route: Route): js.Any = js.native
   
   def useIsFocused(): Boolean = js.native
+  
+  def useTheme(): Theme = js.native
+  
+  val DefaultTheme: Theme = js.native
+  val DarkTheme: Theme = js.native
 }
 
 /**
