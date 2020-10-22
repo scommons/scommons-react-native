@@ -1,5 +1,6 @@
 package showcase.app.community
 
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.react.{FunctionComponent, ReactElement}
 import scommons.reactnative._
@@ -83,9 +84,11 @@ class SyntaxHighlighterDemoSpec extends TestSpec
     val result = shallowRender(component)
     
     //then
+    implicit val theme: Theme = DefaultTheme
+    
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.Text(^.rnStyle := styles.title)("SyntaxHighlighter:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("SyntaxHighlighter:"),
         <.SyntaxHighlighter(
           ^.language := "javascript",
           ^.highlighter := "hljs",
@@ -95,7 +98,7 @@ class SyntaxHighlighterDemoSpec extends TestSpec
           """(num) => num + 1"""
         ),
 
-        <.Text(^.rnStyle := styles.title)("HtmlView with SyntaxHighlighter:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("HtmlView with SyntaxHighlighter:"),
         <.HTMLView(
           ^.value :=
             """<pre>

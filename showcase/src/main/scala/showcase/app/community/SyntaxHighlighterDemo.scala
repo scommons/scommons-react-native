@@ -1,6 +1,7 @@
 package showcase.app.community
 
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.highlighter._
 import scommons.reactnative.htmlview._
@@ -42,8 +43,10 @@ object SyntaxHighlighterDemo extends FunctionComponent[Unit] {
   }
   
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
+    
     <.View(^.rnStyle := styles.container)(
-      <.Text(^.rnStyle := styles.title)("SyntaxHighlighter:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("SyntaxHighlighter:"),
       <.SyntaxHighlighter(
         ^.language := "javascript",
         ^.highlighter := "hljs",
@@ -52,8 +55,8 @@ object SyntaxHighlighterDemo extends FunctionComponent[Unit] {
       )(
         """(num) => num + 1"""
       ),
-      
-      <.Text(^.rnStyle := styles.title)("HtmlView with SyntaxHighlighter:"),
+
+      <.Text(themeStyle(styles.title, themeTextStyle))("HtmlView with SyntaxHighlighter:"),
       <.HTMLView(
         ^.renderNode := renderNode,
         ^.value :=

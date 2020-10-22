@@ -1,5 +1,6 @@
 package showcase.app.community
 
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.safearea.SafeArea._
@@ -19,13 +20,14 @@ class WebViewDemoSpec extends TestSpec
     val result = shallowRender(component)
     
     //then
+    implicit val theme: Theme = DefaultTheme
     assertNativeComponent(result,
       <.SafeAreaView(
         ^.mode := SafeAreaMode.padding, //default
         ^.edges := List(SafeAreaEdge.left, SafeAreaEdge.bottom, SafeAreaEdge.right),
         ^.rnStyle := styles.container
       )(
-        <.Text(^.rnStyle := styles.title)("InlineWeb:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("InlineWeb:"),
         <.WebView(
           ^.originWhiteList := Seq("*"),
           ^.htmlSource := new HtmlResource {
@@ -33,7 +35,7 @@ class WebViewDemoSpec extends TestSpec
           }
         )(),
 
-        <.Text(^.rnStyle := styles.title)("WebView:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("WebView:"),
         <.WebView(
           ^.source := new UriResource {
             override val uri = "https://scommons.org/"

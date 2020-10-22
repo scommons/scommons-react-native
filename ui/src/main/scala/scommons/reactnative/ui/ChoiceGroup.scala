@@ -2,14 +2,15 @@ package scommons.reactnative.ui
 
 import scommons.expo._
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
 case class ChoiceGroupProps[K, T](items: Seq[T],
                                   keyExtractor: T => K,
-                                  iconRenderer: Boolean => ReactElement,
-                                  labelRenderer: T => ReactElement,
+                                  iconRenderer: (Boolean, Theme) => ReactElement,
+                                  labelRenderer: (T, Theme) => ReactElement,
                                   selectedIds: Set[K],
                                   onSelectChange: Set[K] => Unit,
                                   multiSelect: Boolean,
@@ -19,8 +20,8 @@ object ChoiceGroupProps {
 
   def defaultIconRenderer(multiSelect: Boolean,
                           size: Int = 24,
-                          color: String = Style.Color.dodgerblue
-                         ): Boolean => ReactElement = { isSelected =>
+                          color: Option[String] = None
+                         ): (Boolean, Theme) => ReactElement = { (isSelected, theme) =>
     
     <(VectorIcons.Ionicons)(
       ^.name := {
@@ -34,7 +35,7 @@ object ChoiceGroupProps {
         }
       },
       ^.rnSize := size,
-      ^.color := color
+      ^.color := color.getOrElse(theme.colors.primary)
     )()
   }
   
@@ -49,8 +50,9 @@ object ChoiceGroupProps {
       items = items,
       keyExtractor = _.id,
       iconRenderer = defaultIconRenderer(multiSelect),
-      labelRenderer = { data =>
-        <.Text(^.rnStyle := ChoiceGroup.styles.label)(data.text)
+      labelRenderer = { (data, theme) =>
+        implicit val t: Theme = theme
+        <.Text(themeStyle(ChoiceGroup.styles.label, themeTextStyle))(data.text)
       },
       selectedIds = selectedIds,
       onSelectChange = onSelectChange,
@@ -63,6 +65,7 @@ object ChoiceGroupProps {
 class ChoiceGroup[K, T] extends FunctionComponent[ChoiceGroupProps[K, T]] {
 
   protected def render(compProps: Props): ReactElement = {
+    val theme = useTheme()
     val props = compProps.wrapped
 
     def renderItem(data: T, index: Int): ReactElement = {
@@ -77,8 +80,8 @@ class ChoiceGroup[K, T] extends FunctionComponent[ChoiceGroupProps[K, T]] {
         else ^.rnStyle := ChoiceGroup.styles.item,
         ^.onPress := onPress(props, key, data)
       )(
-        props.iconRenderer(isSelected),
-        props.labelRenderer(data)
+        props.iconRenderer(isSelected, theme),
+        props.labelRenderer(data, theme)
       )
     }
 
@@ -120,7 +123,7 @@ object ChoiceGroup extends ChoiceGroup[String, ChoiceItemData] {
     val nonTopItem: Style = new ViewStyle {
       override val marginTop = 10
     }
-    val label: Style = new ViewStyle {
+    val label: Style = new TextStyle {
       override val marginHorizontal = 5
       override val paddingHorizontal = 5
     }

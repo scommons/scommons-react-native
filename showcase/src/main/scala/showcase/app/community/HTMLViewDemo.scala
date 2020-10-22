@@ -1,6 +1,7 @@
 package showcase.app.community
 
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.htmlview._
 
@@ -32,14 +33,25 @@ object HTMLViewDemo extends FunctionComponent[Unit] {
   }
   
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
+    
+    val textProps = ^.textComponentProps := {
+      val attrs = new js.Object {
+        val style = themeTextStyle
+      }
+      attrs
+    }
+    
     <.View(^.rnStyle := styles.container)(
-      <.Text(^.rnStyle := styles.title)("Simple Html:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("Simple Html:"),
       <.HTMLView(
+        textProps,
         ^.value := "<h1>Rendered from html!</h1>"
       )(),
       
-      <.Text(^.rnStyle := styles.title)("Html with custom styles/tags:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("Html with custom styles/tags:"),
       <.HTMLView(
+        textProps,
         ^.stylesheet := htmlStyles,
         ^.renderNode := renderNode,
         ^.value :=
@@ -69,6 +81,7 @@ object HTMLViewDemo extends FunctionComponent[Unit] {
     val title: Style = new TextStyle {
       override val marginTop = 15
       override val marginBottom = 5
+      override val color = DefaultTheme.colors.text
     }
     val customText: Style = new TextStyle {
       override val backgroundColor = Style.Color.yellow

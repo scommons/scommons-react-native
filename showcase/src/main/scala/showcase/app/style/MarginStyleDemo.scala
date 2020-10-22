@@ -76,6 +76,7 @@ object MarginStyleDemo extends FunctionComponent[Unit] {
       override val flexDirection = FlexDirection.row
       override val flexWrap = FlexWrap.wrap
       override val justifyContent = JustifyContent.center
+      override val backgroundColor = Style.Color.white
     }
     val exampleContainer: Style = new ViewStyle {
       override val borderWidth = 1

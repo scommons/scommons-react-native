@@ -1,6 +1,7 @@
 package showcase.app.expo.sqlite
 
 import scommons.nodejs.test.AsyncTestSpec
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 
@@ -17,10 +18,15 @@ class SQLiteDemoSpec extends AsyncTestSpec
     val result = shallowRender(component)
 
     //then
+    implicit val theme: Theme = DefaultTheme
     assertNativeComponent(result,
       <.View()(
-        <.Text()("DB log:"),
-        <.Text()("")
+        <.Text(^.rnStyle := themeTextStyle)(
+          s"""DB log:
+             |
+             |
+             |""".stripMargin
+        )
       )
     )
   }
@@ -33,14 +39,18 @@ class SQLiteDemoSpec extends AsyncTestSpec
     val result = testRender(component)
 
     //then
+    implicit val theme: Theme = DefaultTheme
     eventually {
       assertNativeComponent(result,
         <.View()(
-          <.Text()("DB log:"),
-          <.Text()(""),
-          <.Text()("DB is opened"),
-          <.Text()("select: rows: 0"),
-          <.Text()("tx is completed")
+          <.Text(^.rnStyle := themeTextStyle)(
+            s"""DB log:
+               |
+               |DB is opened
+               |select: rows: 0
+               |tx is completed
+               |""".stripMargin
+          )
         )
       )
     }

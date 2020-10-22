@@ -2,6 +2,7 @@ package scommons.reactnative.ui
 
 import scommons.expo._
 import scommons.react._
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 
@@ -107,7 +108,8 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
   
   private def assertChoiceGroup(result: ShallowInstance,
                                 props: ChoiceGroupProps[String, ChoiceItemData]): Unit = {
-    
+
+    implicit val theme: Theme = DefaultTheme
     val multiSelect = props.multiSelect
     
     def renderItem(data: ChoiceItemData, top: Boolean = false): ReactElement = {
@@ -133,9 +135,9 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
             }
           },
           ^.rnSize := 24,
-          ^.color := Style.Color.dodgerblue
+          ^.color := theme.colors.primary
         )(),
-        <.Text(^.rnStyle := ChoiceGroup.styles.label)(data.text)
+        <.Text(themeStyle(ChoiceGroup.styles.label, themeTextStyle))(data.text)
       )
     }
 

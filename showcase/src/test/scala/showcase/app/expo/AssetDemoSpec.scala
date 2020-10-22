@@ -1,6 +1,7 @@
 package showcase.app.expo
 
 import scommons.nodejs.test.AsyncTestSpec
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.ShowcaseImages
@@ -16,6 +17,7 @@ class AssetDemoSpec extends AsyncTestSpec
     val result = testRender(<(AssetDemo())()())
     
     //then
+    implicit val theme: Theme = DefaultTheme
     eventually {
       assertNativeComponent(result,
         <.View(^.rnStyle := styles.container)(
@@ -27,11 +29,14 @@ class AssetDemoSpec extends AsyncTestSpec
             }
           )(),
 
-          <.Text()("Asset props:"),
-          <.Text()(s"name: test"),
-          <.Text()(s"type: asset"),
-          <.Text()(s"width: 50"),
-          <.Text()(s"height: 50")
+          <.Text(^.rnStyle := themeTextStyle)(
+            s"""Asset props:
+               |name: test
+               |type: asset
+               |width: 50
+               |height: 50
+               |""".stripMargin
+          )
         )
       )
     }

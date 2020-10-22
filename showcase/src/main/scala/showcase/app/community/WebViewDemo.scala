@@ -1,6 +1,7 @@
 package showcase.app.community
 
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.safearea.SafeArea._
 import scommons.reactnative.safearea._
@@ -13,20 +14,22 @@ import scala.scalajs.js
 object WebViewDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
+    
     <.SafeAreaView(
       ^.mode := SafeAreaMode.padding, //default
       ^.edges := List(SafeAreaEdge.left, SafeAreaEdge.bottom, SafeAreaEdge.right),
       ^.rnStyle := styles.container
     )(
-      <.Text(^.rnStyle := styles.title)("InlineWeb:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("InlineWeb:"),
       <.WebView(
         ^.originWhiteList := Seq("*"),
         ^.htmlSource := new HtmlResource {
           override val html = "<h1>Hello world</h1>"
         }
       )(),
-      
-      <.Text(^.rnStyle := styles.title)("WebView:"),
+
+      <.Text(themeStyle(styles.title, themeTextStyle))("WebView:"),
       <.WebView(
         ^.source := new UriResource {
           override val uri = "https://scommons.org/"

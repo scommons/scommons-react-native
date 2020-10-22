@@ -3,6 +3,7 @@ package showcase.app.expo.sqlite
 import scommons.expo.sqlite._
 import scommons.react._
 import scommons.react.hooks._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.websql.Transaction
 
@@ -17,6 +18,7 @@ import scala.util.control.NonFatal
 object SQLiteDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
     val (messages, setMessages) = useState(Seq.empty[String])
     
     useEffect({ () =>
@@ -72,11 +74,12 @@ object SQLiteDemo extends FunctionComponent[Unit] {
     }, Nil)
     
     <.View()(
-      <.Text()("DB log:"),
-      <.Text()(""),
-      messages.map { msg =>
-        <.Text()(msg)
-      }
+      <.Text(^.rnStyle := themeTextStyle)(
+        s"""DB log:
+           |
+           |${messages.mkString("\n")}
+           |""".stripMargin
+      )      
     )
   }
 }

@@ -1,6 +1,7 @@
 package showcase
 
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 
 import scala.scalajs.js
@@ -10,8 +11,10 @@ import scala.scalajs.js
 object PlatformDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
+    
     <.View(^.rnStyle := styles.container)(
-      <.Text(^.rnStyle := styles.info)(
+      <.Text(themeStyle(styles.info, themeTextStyle))(
         s"You are using ${Platform.OS} platform"
       )
     )
@@ -31,6 +34,7 @@ object PlatformDemo extends FunctionComponent[Unit] {
         case Platform.ios | Platform.web => "American Typewriter"
         case Platform.android => "monospace"
       }
+      override val color = DefaultTheme.colors.text
     }
   }
 }

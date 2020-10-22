@@ -3,6 +3,7 @@ package showcase
 import scommons.react._
 import scommons.react.hooks._
 import scommons.reactnative._
+import scommons.react.navigation._
 
 import scala.scalajs.js
 
@@ -11,6 +12,7 @@ import scala.scalajs.js
 object PickerDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    val theme = useTheme()
     val (language, setLanguage) = useState("1")
     
     <.Picker(
@@ -21,8 +23,8 @@ object PickerDemo extends FunctionComponent[Unit] {
         setLanguage(itemValue)
       }
     )(
-      <.PickerItem(^.label := "Java", ^.value := 1)(),
-      <.PickerItem(^.label := "JavaScript", ^.value := 2)()
+      <.PickerItem(^.color := theme.colors.primary, ^.label := "Java", ^.value := 1)(),
+      <.PickerItem(^.color := theme.colors.primary, ^.label := "JavaScript", ^.value := 2)()
     )
   }
 

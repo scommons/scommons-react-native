@@ -1,6 +1,7 @@
 package showcase.app.expo
 
 import scommons.nodejs.test.AsyncTestSpec
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.expo.FontDemo.styles
@@ -20,6 +21,7 @@ class FontDemoSpec extends AsyncTestSpec
         <.View(^.rnStyle := styles.container)(
           <.Text(^.rnStyle := new TextStyle {
             override val fontFamily = "Montserrat-Black"
+            override val color = DefaultTheme.colors.text
           })(
             "Font: Montserrat-Black"
           )

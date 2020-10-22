@@ -4,6 +4,7 @@ import showcase.app.ShowcaseImages
 import scommons.expo.Asset
 import scommons.react._
 import scommons.react.hooks._
+import scommons.react.navigation._
 import scommons.reactnative._
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -15,6 +16,7 @@ import scala.scalajs.js
 object AssetDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
     val (maybeAsset, setAsset) = useState(Option.empty[Asset])
     
     useEffect(() => {
@@ -37,14 +39,14 @@ object AssetDemo extends FunctionComponent[Unit] {
             }
           )(),
           
-          <.Text()("Asset props:"),
-          <.Text()(s"name: ${asset.name}"),
-          <.Text()(s"type: ${asset.`type`}"),
-          //<.Text()(s"hash: ${asset.hash}"),
-          //<.Text()(s"uri: ${asset.uri}"),
-          //<.Text()(s"localUri: ${asset.localUri}"),
-          <.Text()(s"width: ${asset.width}"),
-          <.Text()(s"height: ${asset.height}")
+          <.Text(^.rnStyle := themeTextStyle)(
+            s"""Asset props:
+               |name: ${asset.name}
+               |type: ${asset.`type`}
+               |width: ${asset.width}
+               |height: ${asset.height}
+               |""".stripMargin
+          )
         )
       }
     )

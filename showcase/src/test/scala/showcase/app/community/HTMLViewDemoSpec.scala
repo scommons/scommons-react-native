@@ -2,6 +2,7 @@ package showcase.app.community
 
 import scommons.react.{FunctionComponent, ReactElement}
 import scommons.react.test._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.htmlview._
 import showcase.app.community.HTMLViewDemo._
@@ -82,15 +83,25 @@ class HTMLViewDemoSpec extends TestSpec
     val result = shallowRender(component)
     
     //then
+    implicit val theme: Theme = DefaultTheme
+    val textProps = ^.textComponentProps := {
+      val attrs = new js.Object {
+        val style = themeTextStyle
+      }
+      attrs
+    }
+
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.Text(^.rnStyle := styles.title)("Simple Html:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("Simple Html:"),
         <.HTMLView(
+          textProps,
           ^.value := "<h1>Rendered from html!</h1>"
         )(),
 
-        <.Text(^.rnStyle := styles.title)("Html with custom styles/tags:"),
+        <.Text(themeStyle(styles.title, themeTextStyle))("Html with custom styles/tags:"),
         <.HTMLView(
+          textProps,
           ^.stylesheet := htmlStyles,
           ^.value :=
             """<h1>Custom style example</h1>

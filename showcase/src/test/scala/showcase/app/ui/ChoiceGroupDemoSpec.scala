@@ -2,6 +2,7 @@ package showcase.app.ui
 
 import showcase.app.ui.ChoiceGroupDemo._
 import scommons.react._
+import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.ui._
@@ -62,8 +63,12 @@ class ChoiceGroupDemoSpec extends TestSpec
   }
   
   private def assertChoiceGroup(result: ShallowInstance): Unit = {
+    implicit val theme: Theme = DefaultTheme
+    
     assertNativeComponent(result, <.View(^.rnStyle := styles.container)(), { case List(t1, c1, t2, c2) =>
-      assertNativeComponent(t1, <.Text(^.rnStyle := styles.title)("Single-select (simple):"))
+      assertNativeComponent(t1, <.Text(themeStyle(styles.title, themeTextStyle))(
+        "Single-select (simple):"
+      ))
 
       assertComponent(c1, ChoiceGroup) {
         case ChoiceGroupProps(items, keyExtractor, _, _, selectedIds, _, multiSelect, style) =>
@@ -77,7 +82,9 @@ class ChoiceGroupDemoSpec extends TestSpec
           style shouldBe Some(styles.choiceGroup)
       }
       
-      assertNativeComponent(t2, <.Text(^.rnStyle := styles.title)("Multi-select (with custom data):"))
+      assertNativeComponent(t2, <.Text(themeStyle(styles.title, themeTextStyle))(
+        "Multi-select (with custom data):"
+      ))
 
       assertComponent(c2, choiceGroupComp) {
         case ChoiceGroupProps(items, keyExtractor, _, labelRenderer, selectedIds, _, multiSelect, style) =>
@@ -86,8 +93,8 @@ class ChoiceGroupDemoSpec extends TestSpec
           items shouldBe List(data, ChoiceData(2, "option 2", 0.2))
           keyExtractor(data) shouldBe 1
 
-          assertNativeComponent(wrapAndRender(labelRenderer(data)),
-            <.Text(^.rnStyle := styles.label)(data.name)
+          assertNativeComponent(wrapAndRender(labelRenderer(data, theme)),
+            <.Text(themeStyle(styles.label, themeTextStyle))(data.name)
           )
           
           selectedIds shouldBe Set.empty

@@ -4,6 +4,7 @@ import showcase.app.ShowcaseFonts.MontserratBlack
 import scommons.expo.Font
 import scommons.react._
 import scommons.react.hooks._
+import scommons.react.navigation._
 import scommons.reactnative._
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -15,6 +16,7 @@ import scala.scalajs.js
 object FontDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    val theme = useTheme()
     val (maybeFont, setFont) = useState(Option.empty[String])
     
     useEffect(() => {
@@ -29,6 +31,7 @@ object FontDemo extends FunctionComponent[Unit] {
       maybeFont.map { font =>
         <.Text(^.rnStyle := new TextStyle {
           override val fontFamily = font
+          override val color = theme.colors.text
         })(
           s"Font: $font"
         )

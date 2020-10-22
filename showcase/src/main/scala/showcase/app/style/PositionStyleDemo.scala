@@ -65,6 +65,7 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
       override val flex = 1
       override val justifyContent = JustifyContent.center
       override val alignItems = AlignItems.center
+      override val backgroundColor = Style.Color.white
     }
     val container: Style = new ViewStyle {
       override val width = 300

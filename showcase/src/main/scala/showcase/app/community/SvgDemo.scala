@@ -1,6 +1,7 @@
 package showcase.app.community
 
 import scommons.react._
+import scommons.react.navigation._
 import scommons.reactnative._
 
 import scala.scalajs.js
@@ -10,11 +11,13 @@ import scala.scalajs.js
 object SvgDemo extends FunctionComponent[Unit] {
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
+    
     <.View(^.rnStyle := styles.container)(
-      <.Text(^.rnStyle := styles.title)("SvgXml:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("SvgXml:"),
       <(SvgXmlDemo())()(),
 
-      <.Text(^.rnStyle := styles.title)("SvgCss:"),
+      <.Text(themeStyle(styles.title, themeTextStyle))("SvgCss:"),
       <(SvgCssDemo())()()
     )
   }

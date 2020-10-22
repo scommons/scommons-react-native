@@ -1,5 +1,6 @@
 package showcase
 
+import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative._
@@ -11,14 +12,14 @@ class PickerDemoSpec extends TestSpec with ShallowRendererUtils {
     //given
     val renderer = createRenderer()
     renderer.render(<(PickerDemo())()())
-    val List(picker) = findComponents(renderer.getRenderOutput(), raw.Picker)
+    val List(picker) = findComponents(renderer.getRenderOutput(), <.Picker.reactClass)
     picker.props.selectedValue shouldBe "1"
     
     //when
     picker.props.onValueChange("2", 1)
     
     //then
-    val List(updated) = findComponents(renderer.getRenderOutput(), raw.Picker)
+    val List(updated) = findComponents(renderer.getRenderOutput(), <.Picker.reactClass)
     updated.props.selectedValue shouldBe "2"
   }
   
@@ -35,8 +36,8 @@ class PickerDemoSpec extends TestSpec with ShallowRendererUtils {
         ^.selectedValue := "1",
         ^.rnStyle := styles.picker
       )(
-        <.PickerItem(^.label := "Java", ^.value := 1)(),
-        <.PickerItem(^.label := "JavaScript", ^.value := 2)()
+        <.PickerItem(^.color := DefaultTheme.colors.primary, ^.label := "Java", ^.value := 1)(),
+        <.PickerItem(^.color := DefaultTheme.colors.primary, ^.label := "JavaScript", ^.value := 2)()
       )
     )
   }

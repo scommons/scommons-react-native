@@ -23,7 +23,8 @@ package object htmlview {
 
     import HTMLViewVirtualDOMAttributes._
 
-    lazy val stylesheet = StyleSheetAttribute("stylesheet")
+    lazy val textComponentProps = JsObjectAttribute("textComponentProps")
+    lazy val stylesheet = JsObjectAttribute("stylesheet")
     lazy val renderNode = RenderNodeAttribute("renderNode")
   }
 
@@ -31,7 +32,7 @@ package object htmlview {
 
     import VirtualDOMAttributes.Type._
 
-    case class StyleSheetAttribute(name: String) extends AttributeSpec {
+    case class JsObjectAttribute(name: String) extends AttributeSpec {
       def :=(value: js.Object): Attribute[js.Object] = Attribute(name, value, AS_IS)
     }
     

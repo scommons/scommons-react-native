@@ -62,6 +62,7 @@ object BorderStyleDemo extends FunctionComponent[Unit] {
       override val flex = 1
       override val justifyContent = JustifyContent.center
       override val alignItems = AlignItems.center
+      override val backgroundColor = Style.Color.white
     }
     val example: Style = new ViewStyle {
       override val marginBottom = 15

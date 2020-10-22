@@ -2,6 +2,7 @@ package showcase.app.ui
 
 import scommons.react._
 import scommons.react.hooks._
+import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.ui._
 
@@ -14,11 +15,12 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
   private[ui] lazy val choiceGroupComp = new ChoiceGroup[Int, ChoiceData]
 
   protected def render(props: Props): ReactElement = {
+    implicit val theme: Theme = useTheme()
     val (singleSelectIds, setSingleSelectIds) = useState(Set.empty[String])
     val (multiSelectIds, setMultiSelectIds) = useState(Set.empty[Int])
     
     <.View(^.rnStyle := styles.container)(
-      <.Text(^.rnStyle := styles.title)(
+      <.Text(themeStyle(styles.title, themeTextStyle))(
         "Single-select (simple):"
       ),
       <(ChoiceGroup())(^.wrapped := ChoiceGroupProps(
@@ -31,7 +33,7 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
         style = Some(styles.choiceGroup)
       ))(),
       
-      <.Text(^.rnStyle := styles.title)(
+      <.Text(themeStyle(styles.title, themeTextStyle))(
         "Multi-select (with custom data):"
       ),
       <(choiceGroupComp())(^.wrapped := new ChoiceGroupProps[Int, ChoiceData](
@@ -41,8 +43,9 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
         ),
         keyExtractor = _.id,
         iconRenderer = ChoiceGroupProps.defaultIconRenderer(multiSelect = true),
-        labelRenderer = { data =>
-          <.Text(^.rnStyle := styles.label)(data.name)
+        labelRenderer = { (data, theme) =>
+          implicit val t: Theme = theme
+          <.Text(themeStyle(styles.label, themeTextStyle))(data.name)
         },
         selectedIds = multiSelectIds,
         onSelectChange = setMultiSelectIds,
