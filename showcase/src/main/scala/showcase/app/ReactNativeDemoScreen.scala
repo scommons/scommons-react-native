@@ -21,6 +21,7 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
         "Modal" -> "Demo Modal component",
         "Picker" -> "Demo Picker component",
         "Alert" -> "Demo Alert component",
+        "Switch" -> "Demo Switch component",
         "Platform" -> "Demo Platform API"
       ),
       navigate = props.navigate
@@ -35,6 +36,7 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
     <(stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
     <(stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
     <(stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
+    <(stack.Screen)(^.name := "Switch", ^.component := SwitchDemo())(),
     <(stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
   )
 }

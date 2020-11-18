@@ -27,6 +27,7 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
           "Modal" -> "Demo Modal component",
           "Picker" -> "Demo Picker component",
           "Alert" -> "Demo Alert component",
+          "Switch" -> "Demo Switch component",
           "Platform" -> "Demo Platform API"
         )
         navigate shouldBe props.navigate
@@ -57,6 +58,7 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
         <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
         <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
         <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
+        <(Stack.Screen)(^.name := "Switch", ^.component := SwitchDemo())(),
         <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
       )
     )

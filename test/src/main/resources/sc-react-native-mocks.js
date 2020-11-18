@@ -43,6 +43,7 @@ module.exports = {
   Modal: 'Modal',
   Picker: createPicker(),
   ScrollView: 'ScrollView',
+  Switch: 'Switch',
   Text: 'Text',
   TextInput: 'TextInput',
   TouchableHighlight: 'TouchableHighlight',
