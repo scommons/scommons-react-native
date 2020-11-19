@@ -28,6 +28,8 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
     ))()
   }
 
+  private[app] lazy val switchComp = new SwitchController(ShowcaseActions).apply()
+
   def getReactNativeScreens(stack: StackNavigator): Seq[ReactElement] = Seq(
     <(stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
     <(stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
@@ -36,7 +38,7 @@ object ReactNativeDemoScreen extends FunctionComponent[ReactNativeDemoScreenProp
     <(stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
     <(stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
     <(stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
-    <(stack.Screen)(^.name := "Switch", ^.component := SwitchDemo())(),
+    <(stack.Screen)(^.name := "Switch", ^.component := switchComp)(),
     <(stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
   )
 }

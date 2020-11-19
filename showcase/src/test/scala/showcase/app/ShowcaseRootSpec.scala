@@ -18,7 +18,8 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render dynamic App screens titles" in {
     //given
-    val comp = shallowRender(<(ShowcaseRoot())()())
+    val props = ShowcaseRootProps(darkTheme = false)
+    val comp = shallowRender(<(ShowcaseRoot())(^.wrapped := props)())
     val List(appStackNav) = findComponents(comp, AppStack.Navigator)
 
     def navProps(route: String): js.Dynamic = {
@@ -51,7 +52,8 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
 
   it should "render App stack component" in {
     //given
-    val component = <(ShowcaseRoot())()()
+    val props = ShowcaseRootProps(darkTheme = false)
+    val component = <(ShowcaseRoot())(^.wrapped := props)()
     
     //when
     val result = shallowRender(component)

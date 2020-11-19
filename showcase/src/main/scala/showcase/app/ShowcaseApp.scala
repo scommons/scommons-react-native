@@ -33,7 +33,7 @@ class ShowcaseApp(onReady: js.Function0[Unit]) extends FunctionComponent[Unit] {
     else {
       <.Provider(^.store := store)(
         <.>()(
-          <(ShowcaseRoot()).empty,
+          <(ShowcaseRootController()).empty,
           <(ShowcaseTaskController()).empty
         )
       )

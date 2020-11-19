@@ -1,6 +1,7 @@
 package showcase.app
 
 import showcase._
+import showcase.app.ReactNativeDemoScreen._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
@@ -40,7 +41,7 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
         <.>()(
-          ReactNativeDemoScreen.getReactNativeScreens(Stack)
+          getReactNativeScreens(Stack)
         )
       }
     }
@@ -58,7 +59,7 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
         <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
         <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
         <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
-        <(Stack.Screen)(^.name := "Switch", ^.component := SwitchDemo())(),
+        <(Stack.Screen)(^.name := "Switch", ^.component := switchComp)(),
         <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()
       )
     )

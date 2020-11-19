@@ -12,9 +12,12 @@ import scommons.reactnative.safearea._
 
 import scala.scalajs.js
 
-object ShowcaseRoot extends FunctionComponent[Unit] {
+case class ShowcaseRootProps(darkTheme: Boolean)
 
-  protected def render(props: Props): ReactElement = {
+object ShowcaseRoot extends FunctionComponent[ShowcaseRootProps] {
+
+  protected def render(compProps: Props): ReactElement = {
+    val props = compProps.wrapped
 
     def getScreenTitle(navProps: NavigationProps): String = {
       val routeName = getFocusedRouteNameFromRoute(navProps.route)
@@ -28,7 +31,10 @@ object ShowcaseRoot extends FunctionComponent[Unit] {
     }
 
     <.SafeAreaProvider()(
-      <.NavigationContainer(^.theme := DefaultTheme)( //DarkTheme
+      <.NavigationContainer(^.theme := {
+        if (props.darkTheme) DarkTheme
+        else DefaultTheme
+      })(
         <(AppStack.Navigator)(
           ^.screenOptions := { navProps =>
             val screenTitle = getScreenTitle(navProps)

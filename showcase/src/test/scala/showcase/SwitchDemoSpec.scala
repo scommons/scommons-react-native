@@ -1,39 +1,46 @@
 package showcase
 
+import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
 import scommons.reactnative.Switch._
 import scommons.reactnative._
 import showcase.SwitchDemo.styles
+import showcase.app.config.ShowcaseConfigActions
 
 class SwitchDemoSpec extends TestSpec with ShallowRendererUtils {
 
-  it should "set value when onValueChange" in {
+  it should "call updateTheme when onValueChange" in {
     //given
-    val renderer = createRenderer()
-    renderer.render(<(SwitchDemo())()())
-    val List(comp) = findComponents(renderer.getRenderOutput(), <.Switch.reactClass)
-    comp.props.selectDynamic("value") shouldBe false
-
-    //when
-    comp.props.onValueChange(true)
+    val dispatch = mockFunction[Any, Any]
+    val actions = mock[ShowcaseConfigActions]
+    val props = SwitchDemoProps(dispatch, actions, darkTheme = false)
+    val comp = shallowRender(<(SwitchDemo())(^.wrapped := props)())
+    val List(switchComp) = findComponents(comp, <.Switch.reactClass)
+    val darkTheme = true
 
     //then
-    val List(updated) = findComponents(renderer.getRenderOutput(), <.Switch.reactClass)
-    updated.props.selectDynamic("value") shouldBe true
+    (actions.updateTheme _).expects(dispatch, darkTheme)
+    
+    //when
+    switchComp.props.onValueChange(darkTheme)
   }
 
   it should "render component" in {
     //given
-    val component = <(SwitchDemo())()()
+    val dispatch = mockFunction[Any, Any]
+    val actions = mock[ShowcaseConfigActions]
+    val props = SwitchDemoProps(dispatch, actions, darkTheme = false)
+    val component = <(SwitchDemo())(^.wrapped := props)()
     
     //when
     val result = shallowRender(component)
     
     //then
+    implicit val theme: Theme = DefaultTheme
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <.Text()("Dark Theme"),
+        <.Text(^.rnStyle := themeTextStyle)("Dark Theme"),
         <.Switch(
           ^.trackColor := new TrackColor {
             val `false`: String = "#767577"

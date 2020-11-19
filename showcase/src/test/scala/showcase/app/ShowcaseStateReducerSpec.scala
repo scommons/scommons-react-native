@@ -2,6 +2,7 @@ package showcase.app
 
 import scommons.react.redux.task.FutureTask
 import scommons.react.test.TestSpec
+import showcase.app.config.ShowcaseConfig
 import showcase.app.task.DemoTaskActions.SuccessfulFetchAction
 
 import scala.concurrent.Future
@@ -14,8 +15,9 @@ class ShowcaseStateReducerSpec extends TestSpec {
 
     //then
     inside(result) {
-      case ShowcaseState(currentTask) =>
+      case ShowcaseState(currentTask, config) =>
         currentTask shouldBe None
+        config shouldBe ShowcaseConfig()
     }
   }
 
