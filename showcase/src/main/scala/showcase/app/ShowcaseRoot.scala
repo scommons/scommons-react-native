@@ -30,27 +30,34 @@ object ShowcaseRoot extends FunctionComponent[ShowcaseRootProps] {
       }
     }
 
-    <.SafeAreaProvider()(
-      <.NavigationContainer(^.theme := {
-        if (props.darkTheme) DarkTheme
-        else DefaultTheme
-      })(
-        <(AppStack.Navigator)(
-          ^.screenOptions := { navProps =>
-            val screenTitle = getScreenTitle(navProps)
-            val options = new StackScreenOptions {
-              val headerBackTitleVisible = false
-              override val title = screenTitle
+    <.>()(
+      <.StatusBar(^.barStyle := {
+        if (props.darkTheme) StatusBar.BarStyle.`light-content`
+        else StatusBar.BarStyle.`dark-content`
+      })(),
+      
+      <.SafeAreaProvider()(
+        <.NavigationContainer(^.theme := {
+          if (props.darkTheme) DarkTheme
+          else DefaultTheme
+        })(
+          <(AppStack.Navigator)(
+            ^.screenOptions := { navProps =>
+              val screenTitle = getScreenTitle(navProps)
+              val options = new StackScreenOptions {
+                val headerBackTitleVisible = false
+                override val title = screenTitle
+              }
+              options
             }
-            options
-          }
-        )(
-          <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
-          
-          ShowcaseScreen.getHomeScreens(AppStack),
-          ReactNativeDemoScreen.getReactNativeScreens(AppStack),
-          CommunityDemoScreen.getCommunityScreens(AppStack),
-          ExpoDemoScreen.getExpoScreens(AppStack)
+          )(
+            <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+            
+            ShowcaseScreen.getHomeScreens(AppStack),
+            ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+            CommunityDemoScreen.getCommunityScreens(AppStack),
+            ExpoDemoScreen.getExpoScreens(AppStack)
+          )
         )
       )
     )

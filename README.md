@@ -85,6 +85,7 @@ Note: Many examples are from an excellent book [React Native in Action](https://
   * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
   * [Picker](showcase/src/main/scala/showcase/PickerDemo.scala) => [tests](showcase/src/test/scala/showcase/PickerDemoSpec.scala)
   * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)
+  * [StatusBar](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
   * [Switch](showcase/src/main/scala/showcase/SwitchDemo.scala) => [tests](showcase/src/test/scala/showcase/SwitchDemoSpec.scala)
   * [TextInput](showcase/src/main/scala/showcase/TextInputDemo.scala) => [tests](showcase/src/test/scala/showcase/TextInputDemoSpec.scala)
   * [TouchableHighlight](showcase/src/main/scala/showcase/TouchableHighlightDemo.scala) => [tests](showcase/src/test/scala/showcase/TouchableHighlightDemoSpec.scala)

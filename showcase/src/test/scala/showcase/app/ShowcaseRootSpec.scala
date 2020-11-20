@@ -60,15 +60,22 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     
     //then
     assertNativeComponent(result,
-      <.SafeAreaProvider()(
-        <.NavigationContainer(^.theme := DefaultTheme)(
-          <(AppStack.Navigator)()(
-            <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
-            
-            ShowcaseScreen.getHomeScreens(AppStack),
-            ReactNativeDemoScreen.getReactNativeScreens(AppStack),
-            CommunityDemoScreen.getCommunityScreens(AppStack),
-            ExpoDemoScreen.getExpoScreens(AppStack)
+      <.>()(
+        <.StatusBar(^.barStyle := {
+          if (props.darkTheme) StatusBar.BarStyle.`light-content`
+          else StatusBar.BarStyle.`dark-content`
+        })(),
+
+        <.SafeAreaProvider()(
+          <.NavigationContainer(^.theme := DefaultTheme)(
+            <(AppStack.Navigator)()(
+              <(AppStack.Screen)(^.name := "App", ^.component := homeTabComp)(),
+              
+              ShowcaseScreen.getHomeScreens(AppStack),
+              ReactNativeDemoScreen.getReactNativeScreens(AppStack),
+              CommunityDemoScreen.getCommunityScreens(AppStack),
+              ExpoDemoScreen.getExpoScreens(AppStack)
+            )
           )
         )
       )

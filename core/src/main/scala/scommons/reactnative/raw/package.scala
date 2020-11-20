@@ -49,6 +49,9 @@ package object raw {
   @JSImport("react-native", "ScrollView") object ScrollView extends ReactClass
 
   @js.native
+  @JSImport("react-native", "StatusBar") object StatusBar extends ReactClass
+
+  @js.native
   @JSImport("react-native", "Switch") object Switch extends ReactClass
 
   @js.native

@@ -21,6 +21,7 @@ package object reactnative {
     lazy val Picker: ReactClassElementSpec = elements(raw.Picker)
     lazy val PickerItem: ReactClassElementSpec = elements(raw.Picker.Item)
     lazy val ScrollView: ReactClassElementSpec = elements(raw.ScrollView)
+    lazy val StatusBar: ReactClassElementSpec = elements(raw.StatusBar)
     lazy val Switch: ReactClassElementSpec = elements(raw.Switch)
     lazy val Text: ReactClassElementSpec = elements(raw.Text)
     lazy val TextInput: ReactClassElementSpec = elements(raw.TextInput)
@@ -52,6 +53,7 @@ package object reactnative {
     with Modal.ModalAttributes
     with Picker.PickerAttributes
     with ScrollView.ScrollViewAttributes
+    with StatusBar.StatusBarAttributes
     with Switch.SwitchAttributes
     with TextInput.TextInputAttributes
     with Touchable.TouchableAttributes
