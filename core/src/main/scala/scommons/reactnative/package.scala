@@ -17,6 +17,7 @@ package object reactnative {
     lazy val Button: ReactClassElementSpec = elements(raw.Button)
     lazy val FlatList: ReactClassElementSpec = elements(raw.FlatList)
     lazy val Image: ReactClassElementSpec = elements(raw.Image)
+    lazy val KeyboardAvoidingView: ReactClassElementSpec = elements(raw.KeyboardAvoidingView)
     lazy val Modal: ReactClassElementSpec = elements(raw.Modal)
     lazy val Picker: ReactClassElementSpec = elements(raw.Picker)
     lazy val PickerItem: ReactClassElementSpec = elements(raw.Picker.Item)
@@ -50,6 +51,7 @@ package object reactnative {
     with Button.ButtonAttributes
     with FlatList.FlatListAttributes
     with Image.ImageAttributes
+    with KeyboardAvoidingView.KeyboardAvoidingViewAttributes
     with Modal.ModalAttributes
     with Picker.PickerAttributes
     with ScrollView.ScrollViewAttributes
@@ -62,6 +64,7 @@ package object reactnative {
 
     import ReactNativeVirtualDOMAttributes._
 
+    lazy val contentContainerStyle = ReactNativeStyleAttributeSpec("contentContainerStyle")
     lazy val rnStyle = ReactNativeStyleAttributeSpec("style")
     lazy val rnSize = ReactNativeSizeAttributeSpec("size")
     lazy val color = StringAttributeSpec("color")

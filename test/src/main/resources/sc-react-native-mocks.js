@@ -40,6 +40,7 @@ module.exports = {
   Button: 'Button',
   FlatList: 'FlatList',
   Image: createImage(),
+  KeyboardAvoidingView: 'KeyboardAvoidingView',
   Modal: 'Modal',
   Picker: createPicker(),
   ScrollView: 'ScrollView',

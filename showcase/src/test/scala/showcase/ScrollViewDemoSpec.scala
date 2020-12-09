@@ -17,9 +17,11 @@ class ScrollViewDemoSpec extends TestSpec with ShallowRendererUtils {
     
     //then
     assertNativeComponent(result,
-      <("ScrollView")(
+      <.ScrollView(
         ^.rnStyle := styles.scrollView,
-        ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.always
+        ^.contentContainerStyle := styles.content,
+        ^.keyboardDismissMode := KeyboardDismissMode.`on-drag`,
+        ^.keyboardShouldPersistTaps := KeyboardShouldPersistTaps.handled
       )()
     )
   }
@@ -29,5 +31,11 @@ class ScrollViewDemoSpec extends TestSpec with ShallowRendererUtils {
     KeyboardShouldPersistTaps.never shouldBe "never"
     KeyboardShouldPersistTaps.always shouldBe "always"
     KeyboardShouldPersistTaps.handled shouldBe "handled"
+  }
+  
+  it should "provide KeyboardDismissMode enum" in {
+    //when & then
+    KeyboardDismissMode.none shouldBe "none"
+    KeyboardDismissMode.`on-drag` shouldBe "on-drag"
   }
 }

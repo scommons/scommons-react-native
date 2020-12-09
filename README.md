@@ -82,6 +82,7 @@ Note: Many examples are from an excellent book [React Native in Action](https://
   * [FlatList](showcase/src/main/scala/showcase/FlatListDemo.scala) => [tests](showcase/src/test/scala/showcase/FlatListDemoSpec.scala)
   * [Image](showcase/src/main/scala/showcase/ImageDemo.scala) => [tests](showcase/src/test/scala/showcase/ImageDemoSpec.scala)
     * [StaticResource](showcase/src/main/scala/showcase/app/ShowcaseImages.scala)
+  * [KeyboardAvoidingView](showcase/src/main/scala/showcase/KeyboardAvoidingViewDemo.scala) => [tests](showcase/src/test/scala/showcase/KeyboardAvoidingViewDemoSpec.scala)
   * [Modal](showcase/src/main/scala/showcase/ModalDemo.scala) => [tests](showcase/src/test/scala/showcase/ModalDemoSpec.scala)
   * [Picker](showcase/src/main/scala/showcase/PickerDemo.scala) => [tests](showcase/src/test/scala/showcase/PickerDemoSpec.scala)
   * [ScrollView](showcase/src/main/scala/showcase/ScrollViewDemo.scala) => [tests](showcase/src/test/scala/showcase/ScrollViewDemoSpec.scala)

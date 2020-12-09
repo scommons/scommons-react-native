@@ -37,6 +37,9 @@ package object raw {
   }
 
   @js.native
+  @JSImport("react-native", "KeyboardAvoidingView") object KeyboardAvoidingView extends ReactClass
+
+  @js.native
   @JSImport("react-native", "Modal") object Modal extends ReactClass
 
   @js.native
