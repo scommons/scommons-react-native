@@ -9,7 +9,12 @@ import scala.scalajs.js
 /** @see https://reactnative.dev/docs/image
   * @see https://reactnative.dev/docs/images.html
   */
-object Image {
+trait Image {
+
+  def prefetch(url: String): Future[js.Any]
+}
+
+object Image extends Image {
 
   def prefetch(url: String): Future[js.Any] = {
     raw.Image.prefetch(url).toFuture
