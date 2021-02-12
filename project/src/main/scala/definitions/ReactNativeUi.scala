@@ -32,7 +32,6 @@ object ReactNativeUi extends ScalaJsModule {
   )
 
   override val superRepoProjectsDependencies: Seq[(String, String, Option[String])] = Seq(
-    ("scommons-api", "scommons-api-xhr", None),
     ("scommons-react", "scommons-react-redux", None)
   )
 
