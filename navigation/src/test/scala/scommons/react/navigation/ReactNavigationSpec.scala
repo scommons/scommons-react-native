@@ -2,13 +2,15 @@ package scommons.react.navigation
 
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scommons.react.navigation.ReactNavigationSpec._
 import scommons.reactnative.Style
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class ReactNavigationSpec extends FlatSpec
+class ReactNavigationSpec extends AnyFlatSpec
   with Matchers
   with Inside
   with MockFactory {

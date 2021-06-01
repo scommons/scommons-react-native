@@ -2,12 +2,14 @@ package scommons.reactnative.safearea
 
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 import scommons.reactnative.safearea.SafeArea._
 import scommons.reactnative.safearea.SafeAreaSpec._
 
 import scala.scalajs.js.annotation.JSExportAll
 
-class SafeAreaSpec extends FlatSpec
+class SafeAreaSpec extends AnyFlatSpec
   with Matchers
   with Inside
   with MockFactory {
