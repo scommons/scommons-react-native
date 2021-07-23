@@ -19,7 +19,13 @@ First, build the application with the following command:
 sbt "project scommons-react-native-showcase" fastOptJS
 ```
 
-To run the application locally, use the following command:
+Then, please make sure you have `expo-cli` **version 3** installed
+globally:
+```bash
+npm i expo-cli@3 -g
+```
+
+To run the application locally, use the following command(s):
 ```bash
 cd showcase
 expo start --ios

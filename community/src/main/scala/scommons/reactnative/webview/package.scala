@@ -33,7 +33,7 @@ package object webview {
     }
     
     case class OriginWhiteListAttribute(name: String) extends AttributeSpec {
-      def :=(value: Seq[String]): Attribute[Seq[String]] = Attribute(name, js.Array(value: _*), AS_IS)
+      def :=(value: Seq[String]): Attribute[js.Array[String]] = Attribute(name, js.Array(value: _*), AS_IS)
     }
   }
 

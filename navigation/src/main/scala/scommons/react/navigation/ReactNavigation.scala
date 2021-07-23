@@ -8,9 +8,9 @@ import scala.scalajs.js
 
 trait ReactNavigation {
 
-  protected def native: raw.ReactNavigation
+  protected def native: navigation.raw.ReactNavigation
 
-  def getFocusedRouteNameFromRoute(route: raw.Route): Option[String] = {
+  def getFocusedRouteNameFromRoute(route: navigation.raw.Route): Option[String] = {
     val routeName = native.getFocusedRouteNameFromRoute(route)
     if (js.isUndefined(routeName) || routeName == null) None
     else Some(routeName.asInstanceOf[String])

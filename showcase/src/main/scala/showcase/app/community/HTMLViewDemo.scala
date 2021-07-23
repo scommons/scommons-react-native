@@ -53,7 +53,7 @@ object HTMLViewDemo extends FunctionComponent[Unit] {
       <.HTMLView(
         textProps,
         ^.stylesheet := htmlStyles,
-        ^.renderNode := renderNode,
+        ^.renderNode := renderNode _,
         ^.value :=
           """<h1>Custom style example</h1>
             |Some custom <b>&lt;tag&gt;</b> style:

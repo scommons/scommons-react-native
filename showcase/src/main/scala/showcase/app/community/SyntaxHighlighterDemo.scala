@@ -58,7 +58,7 @@ object SyntaxHighlighterDemo extends FunctionComponent[Unit] {
 
       <.Text(themeStyle(styles.title, themeTextStyle))("HtmlView with SyntaxHighlighter:"),
       <.HTMLView(
-        ^.renderNode := renderNode,
+        ^.renderNode := renderNode _,
         ^.value :=
           """<pre>
             |  <code>val test = 1 + 2;</code>

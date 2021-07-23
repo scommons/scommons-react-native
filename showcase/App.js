@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SplashScreen } from 'expo';
 
-import {ShowcaseApp} from './target/scala-2.12/scalajs-bundler/main/scommons-react-native-showcase-fastopt';
+import {ShowcaseApp} from './target/scala-2.13/scalajs-bundler/main/scommons-react-native-showcase-fastopt';
 
 SplashScreen.preventAutoHide()
 

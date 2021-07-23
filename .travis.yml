@@ -26,9 +26,8 @@ before_install:
     tar xv -C travis -f travis/secrets.tar;
   fi
 script:
-- sbt clean coverage test coverageReport &&
-  sbt coverageAggregate &&
-  sbt coveralls &&
+- sbt clean coverage test &&
+  sbt coverageAggregate coveralls &&
   if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]; then
     if [ -z "$TRAVIS_TAG" ]; then
        echo "Publish a snapshot";
