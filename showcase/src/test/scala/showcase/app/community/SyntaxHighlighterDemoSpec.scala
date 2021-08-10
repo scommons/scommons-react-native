@@ -1,8 +1,8 @@
 package showcase.app.community
 
+import scommons.react._
 import scommons.react.navigation._
 import scommons.react.test._
-import scommons.react.{FunctionComponent, ReactElement}
 import scommons.reactnative._
 import scommons.reactnative.highlighter._
 import scommons.reactnative.htmlview._
@@ -12,22 +12,22 @@ import showcase.app.community.SyntaxHighlighterDemoSpec._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class SyntaxHighlighterDemoSpec extends TestSpec
-  with BaseTestSpec
-  with ShallowRendererUtils {
+class SyntaxHighlighterDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "return custom SyntaxHighlighter for pre.code tag when renderNode" in {
     //given
-    val preNode = mock[HTMLViewNodeMock]
-    val codeNode = mock[HTMLViewNodeMock]
-    val textNode = mock[HTMLViewNodeMock]
     val code = "some code text"
-    
-    (preNode.name _).expects().returning("pre")
-    (preNode.children _).expects().returning(js.Array(codeNode.asInstanceOf[HTMLViewNode]))
-    (codeNode.name _).expects().returning("code")
-    (codeNode.children _).expects().returning(js.Array(textNode.asInstanceOf[HTMLViewNode]))
-    (textNode.data _).expects().returning(code)
+    val textNode = new HTMLViewNodeMock(
+      dataMock = code
+    )
+    val codeNode = new HTMLViewNodeMock(
+      nameMock = "code",
+      childrenMock = js.Array(textNode.asInstanceOf[HTMLViewNode])
+    )
+    val preNode = new HTMLViewNodeMock(
+      nameMock = "pre",
+      childrenMock = js.Array(codeNode.asInstanceOf[HTMLViewNode])
+    )
     
     //when
     val resultComp = SyntaxHighlighterDemo.renderNode(
@@ -37,17 +37,12 @@ class SyntaxHighlighterDemoSpec extends TestSpec
       parent = js.undefined,
       defaultRenderer = null
     )
+    resultComp should not be js.undefined
     
     //then
-    val wrapper = new FunctionComponent[Unit] {
-      protected def render(props: Props): ReactElement = {
-        resultComp.asInstanceOf[ReactElement]
-      }
-    }.apply()
-    val result = shallowRender(<(wrapper)()())
+    val result = createTestRenderer(resultComp.asInstanceOf[ReactElement]).root
     assertNativeComponent(result,
       <.SyntaxHighlighter(
-        ^.key := "1",
         ^.PreTag := <.Text.reactClass,
         ^.CodeTag := <.Text.reactClass,
         ^.customStyle := customStyle,
@@ -59,9 +54,9 @@ class SyntaxHighlighterDemoSpec extends TestSpec
   
   it should "return undefined for all other nodes when renderNode" in {
     //given
-    val node = mock[HTMLViewNodeMock]
-    
-    (node.name _).expects().returning("div")
+    val node = new HTMLViewNodeMock(
+      nameMock = "div"
+    )
     
     //when
     val result = SyntaxHighlighterDemo.renderNode(
@@ -81,7 +76,7 @@ class SyntaxHighlighterDemoSpec extends TestSpec
     val component = <(SyntaxHighlighterDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     implicit val theme: Theme = DefaultTheme
@@ -114,10 +109,14 @@ class SyntaxHighlighterDemoSpec extends TestSpec
 object SyntaxHighlighterDemoSpec {
 
   @JSExportAll
-  trait HTMLViewNodeMock {
+  class HTMLViewNodeMock(
+                          nameMock: js.UndefOr[String] = js.undefined,
+                          dataMock: js.UndefOr[String] = js.undefined,
+                          childrenMock: js.Array[HTMLViewNode] = null
+                        ) {
 
-    def name: js.UndefOr[String]
-    def data: js.UndefOr[String]
-    def children: js.Array[HTMLViewNode]
+    def name: js.UndefOr[String] = nameMock
+    def data: js.UndefOr[String] = dataMock
+    def children: js.Array[HTMLViewNode] = childrenMock
   }
 }

@@ -1,9 +1,7 @@
 package scommons.reactnative.app
 
 import org.scalatest.BeforeAndAfterAll
-import scommons.react.test.TestSpec
-import scommons.react.test.raw.TestRenderer
-import scommons.react.test.util.TestRendererUtils
+import scommons.react.test._
 
 class TaskLoggerSpec extends TestSpec
   with TestRendererUtils
@@ -34,29 +32,34 @@ class TaskLoggerSpec extends TestSpec
   
   it should "log status if it's non-empty" in {
     //given
-    val logger = mockFunction[String, Unit]
-    TaskLogger.logger = logger
+    var resultText: String = null
+    TaskLogger.logger = { text =>
+      resultText = text
+    }
     val props = TaskLoggerProps("Test status")
     
-    //then
-    logger.expects("Test status")
-
     //when
     testRender(<(TaskLogger())(^.wrapped := props)())
+
+    //then
+    resultText shouldBe "Test status"
   }
   
   it should "log updated status" in {
     //given
-    val logger = mockFunction[String, Unit]
-    TaskLogger.logger = logger
-    logger.expects("Initial status")
-    
+    var initialText: String = null
+    TaskLogger.logger = { text =>
+      initialText = text
+    }
     val renderer = createTestRenderer(<(TaskLogger())(
       ^.wrapped := TaskLoggerProps("Initial status")
     )())
-    
-    //then
-    logger.expects("Updated status")
+    initialText shouldBe "Initial status"
+
+    var resultText: String = null
+    TaskLogger.logger = { text =>
+      resultText = text
+    }
 
     //when
     TestRenderer.act { () =>
@@ -64,19 +67,26 @@ class TaskLoggerSpec extends TestSpec
         ^.wrapped := TaskLoggerProps("Updated status")
       )())
     }
+    
+    //then
+    resultText shouldBe "Updated status"
   }
 
   it should "not log status if it's not changed" in {
     //given
-    val logger = mockFunction[String, Unit]
-    TaskLogger.logger = logger
-    
-    //then
-    logger.expects("Test status").once()
-    
+    var initialText: String = null
+    TaskLogger.logger = { text =>
+      initialText = text
+    }
     val renderer = createTestRenderer(<(TaskLogger())(
       ^.wrapped := TaskLoggerProps("Test status")
     )())
+    initialText shouldBe "Test status"
+
+    var resultText: String = null
+    TaskLogger.logger = { text =>
+      resultText = text
+    }
     
     //when
     TestRenderer.act { () =>
@@ -84,5 +94,8 @@ class TaskLoggerSpec extends TestSpec
         ^.wrapped := TaskLoggerProps("Test status")
       )())
     }
+    
+    //then
+    resultText shouldBe null
   }
 }

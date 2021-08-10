@@ -18,14 +18,19 @@ class NavigationSpec extends AnyFlatSpec
 
   it should "navigate to route when navigate" in {
     //given
-    val native = mock[NavigationMock]
+    val navigateMock = mockFunction[String, Unit]
+    val navigate2Mock = mockFunction[String, js.Any, Unit]
+    val goBackMock = mockFunction[Unit]
+    val setParamsMock = mockFunction[js.Any, Unit]
+    val setOptionsMock = mockFunction[js.Object, Unit]
+    val native = new NavigationMock(navigateMock, navigate2Mock, goBackMock, setParamsMock, setOptionsMock)
     val nav = Navigation(Props(js.Dynamic.literal(
       "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
     val routeName = "TestRoute"
 
     //then
-    (native.navigate(_: String)).expects(routeName)
+    navigateMock.expects(routeName)
 
     //when
     nav.navigate(routeName)
@@ -33,7 +38,12 @@ class NavigationSpec extends AnyFlatSpec
   
   it should "navigate to route and pass params when navigate" in {
     //given
-    val native = mock[NavigationMock]
+    val navigateMock = mockFunction[String, Unit]
+    val navigate2Mock = mockFunction[String, js.Any, Unit]
+    val goBackMock = mockFunction[Unit]
+    val setParamsMock = mockFunction[js.Any, Unit]
+    val setOptionsMock = mockFunction[js.Object, Unit]
+    val native = new NavigationMock(navigateMock, navigate2Mock, goBackMock, setParamsMock, setOptionsMock)
     val nav = Navigation(Props(js.Dynamic.literal(
       "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
@@ -41,7 +51,7 @@ class NavigationSpec extends AnyFlatSpec
     val params = testParams
 
     //then
-    (native.navigate(_: String, _: js.Any)).expects(routeName, *).onCall { (_, dict) =>
+    navigate2Mock.expects(routeName, *).onCall { (_, dict) =>
       dict.asInstanceOf[js.Dictionary[String]].toMap shouldBe testParams
     }
 
@@ -51,13 +61,18 @@ class NavigationSpec extends AnyFlatSpec
 
   it should "call goBack when goBack" in {
     //given
-    val native = mock[NavigationMock]
+    val navigateMock = mockFunction[String, Unit]
+    val navigate2Mock = mockFunction[String, js.Any, Unit]
+    val goBackMock = mockFunction[Unit]
+    val setParamsMock = mockFunction[js.Any, Unit]
+    val setOptionsMock = mockFunction[js.Object, Unit]
+    val native = new NavigationMock(navigateMock, navigate2Mock, goBackMock, setParamsMock, setOptionsMock)
     val nav = Navigation(Props(js.Dynamic.literal(
       "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
 
     //then
-    (native.goBack _).expects()
+    goBackMock.expects()
 
     //when
     nav.goBack()
@@ -65,13 +80,12 @@ class NavigationSpec extends AnyFlatSpec
   
   it should "return empty Map if params is undefined when getParams" in {
     //given
-    val route = mock[RouteMock]
+    val route = new RouteMock(
+      paramsMock = js.undefined
+    )
     val nav = Navigation(Props(js.Dynamic.literal(
       "route" -> route.asInstanceOf[raw.Route]
     )))
-
-    //then
-    (route.params _).expects().returning(js.undefined)
 
     //when
     val result = nav.getParams
@@ -82,13 +96,12 @@ class NavigationSpec extends AnyFlatSpec
 
   it should "return empty Map if params is null when getParams" in {
     //given
-    val route = mock[RouteMock]
+    val route = new RouteMock(
+      paramsMock = null
+    )
     val nav = Navigation(Props(js.Dynamic.literal(
       "route" -> route.asInstanceOf[raw.Route]
     )))
-
-    //then
-    (route.params _).expects().returning(null)
 
     //when
     val result = nav.getParams
@@ -99,32 +112,35 @@ class NavigationSpec extends AnyFlatSpec
 
   it should "return params when getParams" in {
     //given
-    val route = mock[RouteMock]
+    val route = new RouteMock(
+      paramsMock = js.Dictionary(testParams.toSeq: _*)
+    )
     val nav = Navigation(Props(js.Dynamic.literal(
       "route" -> route.asInstanceOf[raw.Route]
     )))
-    val params = testParams
-
-    //then
-    (route.params _).expects().returning(js.Dictionary(params.toSeq: _*))
 
     //when
     val result = nav.getParams
     
     //then
-    result shouldBe params
+    result shouldBe testParams
   }
 
   it should "set params when setParams" in {
     //given
-    val navigation = mock[NavigationMock]
+    val navigateMock = mockFunction[String, Unit]
+    val navigate2Mock = mockFunction[String, js.Any, Unit]
+    val goBackMock = mockFunction[Unit]
+    val setParamsMock = mockFunction[js.Any, Unit]
+    val setOptionsMock = mockFunction[js.Object, Unit]
+    val native = new NavigationMock(navigateMock, navigate2Mock, goBackMock, setParamsMock, setOptionsMock)
     val nav = Navigation(Props(js.Dynamic.literal(
-      "navigation" -> navigation.asInstanceOf[raw.Navigation]
+      "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
     val params = testParams
 
     //then
-    (navigation.setParams _).expects(*).onCall { dict: js.Any =>
+    setParamsMock.expects(*).onCall { dict: js.Any =>
       dict.asInstanceOf[js.Dictionary[String]].toMap shouldBe testParams
       ()
     }
@@ -135,16 +151,21 @@ class NavigationSpec extends AnyFlatSpec
 
   it should "set options when setOptions" in {
     //given
-    val navigation = mock[NavigationMock]
+    val navigateMock = mockFunction[String, Unit]
+    val navigate2Mock = mockFunction[String, js.Any, Unit]
+    val goBackMock = mockFunction[Unit]
+    val setParamsMock = mockFunction[js.Any, Unit]
+    val setOptionsMock = mockFunction[js.Object, Unit]
+    val native = new NavigationMock(navigateMock, navigate2Mock, goBackMock, setParamsMock, setOptionsMock)
     val nav = Navigation(Props(js.Dynamic.literal(
-      "navigation" -> navigation.asInstanceOf[raw.Navigation]
+      "navigation" -> native.asInstanceOf[raw.Navigation]
     )))
     val options = new StackScreenOptions {
       override val title = "test"
     }
 
     //then
-    (navigation.setOptions _).expects(options)
+    setOptionsMock.expects(options)
 
     //when
     nav.setOptions(options)
@@ -158,20 +179,26 @@ object NavigationSpec {
   )
 
   @JSExportAll
-  trait NavigationMock {
+  class NavigationMock(
+                        navigateMock: String => Unit,
+                        navigate2Mock: (String, js.Any) => Unit,
+                        goBackMock: () => Unit,
+                        setParamsMock: js.Any => Unit,
+                        setOptionsMock: js.Object => Unit
+                      ) {
 
-    def navigate(name: String): Unit
-    def navigate(name: String, params: js.Any): Unit
+    def navigate(name: String): Unit = navigateMock(name)
+    def navigate(name: String, params: js.Any): Unit = navigate2Mock(name, params)
 
-    def goBack(): Unit
+    def goBack(): Unit = goBackMock()
 
-    def setParams(params: js.Any): Unit
-    def setOptions(options: js.Object): Unit
+    def setParams(params: js.Any): Unit = setParamsMock(params)
+    def setOptions(options: js.Object): Unit = setOptionsMock(options)
   }
 
   @JSExportAll
-  trait RouteMock {
+  class RouteMock(paramsMock: js.Any) {
 
-    def params: js.Any
+    def params: js.Any = paramsMock
   }
 }

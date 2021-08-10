@@ -8,13 +8,13 @@ import scommons.react.redux.task.FutureTask
 import scommons.react.test.{BaseTestSpec, ShallowRendererUtils}
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
+import showcase.api.task.DemoTaskApi
 import showcase.app.task.DemoTaskActions._
 import showcase.app.task.DemoTaskScreen.styles
-import showcase.app.task.DemoTaskScreenSpec.AlertMock
+import showcase.app.task.DemoTaskScreenSpec.{DemoTaskActionsMock, setAlertMock}
 
 import scala.concurrent.Future
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSExportAll
 
 class DemoTaskScreenSpec extends AsyncTestSpec
   with BaseTestSpec
@@ -23,9 +23,12 @@ class DemoTaskScreenSpec extends AsyncTestSpec
   it should "dispatch actions and call alert() when press Successful Request" in {
     //given
     val dispatch = mockFunction[Any, Any]
-    val actions = mock[DemoTaskActions]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val successfulActionMock = mockFunction[Dispatch, SuccessfulFetchAction]
+    val timedoutActionMock = mockFunction[FailingApiAction]
+    val failedActionMock = mockFunction[FailingApiAction]
+    val actions = new DemoTaskActionsMock(successfulActionMock, timedoutActionMock, failedActionMock)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
     val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
     val List(successReqBtn, _, _) = findComponents(comp, raw.Button)
@@ -36,9 +39,9 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     )
     
     //then
-    (actions.successfulAction _).expects(dispatch).returning(action)
+    successfulActionMock.expects(dispatch).returning(action)
     dispatch.expects(action)
-    (alert.alert _).expects(*, *, *, *).onCall { (title, message, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
       title shouldBe "Successful Request"
       message shouldBe resp
@@ -55,9 +58,12 @@ class DemoTaskScreenSpec extends AsyncTestSpec
   it should "dispatch action when press Timed-out Request" in {
     //given
     val dispatch = mockFunction[Any, Any]
-    val actions = mock[DemoTaskActions]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val successfulActionMock = mockFunction[Dispatch, SuccessfulFetchAction]
+    val timedoutActionMock = mockFunction[FailingApiAction]
+    val failedActionMock = mockFunction[FailingApiAction]
+    val actions = new DemoTaskActionsMock(successfulActionMock, timedoutActionMock, failedActionMock)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
     val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
     val List(_, timedoutReqBtn, _) = findComponents(comp, raw.Button)
@@ -67,7 +73,7 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     )
     
     //then
-    (actions.timedoutAction _).expects().returning(action)
+    timedoutActionMock.expects().returning(action)
     dispatch.expects(action)
     
     //when
@@ -79,9 +85,12 @@ class DemoTaskScreenSpec extends AsyncTestSpec
   it should "dispatch action when press Failed Request" in {
     //given
     val dispatch = mockFunction[Any, Any]
-    val actions = mock[DemoTaskActions]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val successfulActionMock = mockFunction[Dispatch, SuccessfulFetchAction]
+    val timedoutActionMock = mockFunction[FailingApiAction]
+    val failedActionMock = mockFunction[FailingApiAction]
+    val actions = new DemoTaskActionsMock(successfulActionMock, timedoutActionMock, failedActionMock)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
     val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
     val List(_, _, failedReqBtn) = findComponents(comp, raw.Button)
@@ -93,7 +102,7 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     )
     
     //then
-    (actions.failedAction _).expects().returning(action)
+    failedActionMock.expects().returning(action)
     dispatch.expects(action)
     
     //when
@@ -132,13 +141,22 @@ class DemoTaskScreenSpec extends AsyncTestSpec
 
 object DemoTaskScreenSpec {
 
-  @JSExportAll
-  trait AlertMock {
-    
-    def alert(title: String,
-              message: String,
-              buttons: js.Array[raw.AlertButton],
-              options: raw.AlertOptions
-             ): Unit
+  def setAlertMock(alertMock: (String, String, js.Array[raw.AlertButton], raw.AlertOptions) => Unit): Unit = {
+    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alertMock: js.Function)
+  }
+
+  class DemoTaskActionsMock(
+                             successfulActionMock: Dispatch => SuccessfulFetchAction,
+                             timedoutActionMock: () => FailingApiAction,
+                             failedActionMock: () => FailingApiAction
+                           ) extends DemoTaskActions {
+
+    protected def client: DemoTaskApi = null
+
+    override def successfulAction(dispatch: Dispatch): SuccessfulFetchAction = successfulActionMock(dispatch)
+
+    override def timedoutAction(): FailingApiAction = timedoutActionMock()
+
+    override def failedAction(): FailingApiAction = failedActionMock()
   }
 }

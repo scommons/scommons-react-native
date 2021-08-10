@@ -1,7 +1,6 @@
 package showcase
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.Style._
 import scommons.reactnative.TextInput._
 import scommons.reactnative._
@@ -17,7 +16,10 @@ class TextInputDemoSpec extends TestSpec with ShallowRendererUtils {
     val text = "new text"
     
     //then
-    onChangeText.expects(text)
+    onChangeText.expects(*).onCall { resultText: String =>
+      resultText shouldBe text
+      ()
+    }
     
     //when
     comp.props.onChangeText(text)

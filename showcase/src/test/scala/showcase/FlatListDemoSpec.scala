@@ -1,13 +1,13 @@
 package showcase
 
-import showcase.FlatListDemo._
-import showcase.FlatListDemoSpec.FlatListDataMock
 import org.scalatest.Succeeded
 import scommons.nodejs.test.AsyncTestSpec
 import scommons.react._
 import scommons.react.test._
 import scommons.reactnative.FlatList.FlatListData
 import scommons.reactnative._
+import showcase.FlatListDemo._
+import showcase.FlatListDemoSpec.FlatListDataMock
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
@@ -38,8 +38,9 @@ class FlatListDemoSpec extends AsyncTestSpec
     //given
     val renderer = createRenderer()
     renderer.render(<(FlatListDemo())()())
-    val data = mock[FlatListDataMock]
-    (data.item _).expects().repeated(3)
+    val itemMock = mockFunction[Data]
+    val data = new FlatListDataMock(itemMock)
+    itemMock.expects().repeated(3)
       .returning(dataList.head)
     
     def renderItem(flatList: ShallowInstance): ShallowInstance = {
@@ -153,7 +154,8 @@ class FlatListDemoSpec extends AsyncTestSpec
 object FlatListDemoSpec {
 
   @JSExportAll
-  trait FlatListDataMock {
-    def item: Data
+  class FlatListDataMock(itemMock: () => Data) {
+    
+    def item: Data = itemMock()
   }
 }

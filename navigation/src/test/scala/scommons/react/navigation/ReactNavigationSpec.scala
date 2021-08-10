@@ -21,10 +21,13 @@ class ReactNavigationSpec extends AnyFlatSpec
   
   it should "return None if native returns null when getFocusedRouteNameFromRoute" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
 
-    (nativeMock.getFocusedRouteNameFromRoute _).expects(route).returning(null)
+    getFocusedRouteNameFromRouteMock.expects(route).returning(null)
     
     //when & then
     nav.getFocusedRouteNameFromRoute(route) shouldBe None
@@ -32,10 +35,13 @@ class ReactNavigationSpec extends AnyFlatSpec
   
   it should "return None if native returns undefined when getFocusedRouteNameFromRoute" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
 
-    (nativeMock.getFocusedRouteNameFromRoute _).expects(route).returning(js.undefined)
+    getFocusedRouteNameFromRouteMock.expects(route).returning(js.undefined)
     
     //when & then
     nav.getFocusedRouteNameFromRoute(route) shouldBe None
@@ -43,11 +49,14 @@ class ReactNavigationSpec extends AnyFlatSpec
   
   it should "return Some if native returns string when getFocusedRouteNameFromRoute" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
     val routeName = "some RouteName"
 
-    (nativeMock.getFocusedRouteNameFromRoute _).expects(route).returning(routeName)
+    getFocusedRouteNameFromRouteMock.expects(route).returning(routeName)
     
     //when & then
     nav.getFocusedRouteNameFromRoute(route) shouldBe Some(routeName)
@@ -55,11 +64,14 @@ class ReactNavigationSpec extends AnyFlatSpec
   
   it should "return false if native returns false when useIsFocused" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
     val result = false
 
-    (nativeMock.useIsFocused _).expects().returning(result)
+    useIsFocusedMock.expects().returning(result)
     
     //when & then
     nav.useIsFocused() shouldBe result
@@ -67,11 +79,14 @@ class ReactNavigationSpec extends AnyFlatSpec
   
   it should "return true if native returns true when useIsFocused" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
     val result = true
 
-    (nativeMock.useIsFocused _).expects().returning(result)
+    useIsFocusedMock.expects().returning(result)
     
     //when & then
     nav.useIsFocused() shouldBe result
@@ -79,11 +94,14 @@ class ReactNavigationSpec extends AnyFlatSpec
 
   it should "return native theme when useTheme" in {
     //given
-    val nativeMock = mock[ReactNavigationMock]
+    val getFocusedRouteNameFromRouteMock = mockFunction[raw.Route, js.Any]
+    val useIsFocusedMock = mockFunction[Boolean]
+    val useThemeMock = mockFunction[Theme]
+    val nativeMock = new ReactNavigationMock(getFocusedRouteNameFromRouteMock, useIsFocusedMock, useThemeMock)
     val nav = TestReactNavigation(nativeMock.asInstanceOf[raw.ReactNavigation])
     val theme = js.Dynamic.literal().asInstanceOf[Theme]
 
-    (nativeMock.useTheme _).expects().returning(theme)
+    useThemeMock.expects().returning(theme)
 
     //when & then
     nav.useTheme() should be theSameInstanceAs theme
@@ -143,13 +161,17 @@ class ReactNavigationSpec extends AnyFlatSpec
 object ReactNavigationSpec {
 
   @JSExportAll
-  trait ReactNavigationMock {
+  class ReactNavigationMock(
+                             getFocusedRouteNameFromRouteMock: raw.Route => js.Any,
+                             useIsFocusedMock: () => Boolean,
+                             useThemeMock: () => Theme
+                           ) {
 
-    def getFocusedRouteNameFromRoute(route: raw.Route): js.Any
+    def getFocusedRouteNameFromRoute(route: raw.Route): js.Any = getFocusedRouteNameFromRouteMock(route)
 
-    def useIsFocused(): Boolean
+    def useIsFocused(): Boolean = useIsFocusedMock()
 
-    def useTheme(): Theme
+    def useTheme(): Theme = useThemeMock()
   }
 
   case class TestReactNavigation(mock: raw.ReactNavigation) extends ReactNavigation {

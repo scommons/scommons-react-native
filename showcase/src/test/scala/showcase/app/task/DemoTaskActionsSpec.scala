@@ -1,5 +1,6 @@
 package showcase.app.task
 
+import scommons.api.StatusResponse
 import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.redux.task.FutureTask
 import showcase.api.task.DemoTaskApi
@@ -12,13 +13,15 @@ class DemoTaskActionsSpec extends AsyncTestSpec {
 
   it should "dispatch SuccessfulFetchedAction when successfulAction" in {
     //given
-    val api = mock[DemoTaskApi]
+    val successExampleMock = mockFunction[Future[String]]
+    val timedoutExampleMock = mockFunction[Future[StatusResponse]]
+    val failedExampleMock = mockFunction[Future[StatusResponse]]
+    val api = new DemoTaskApiMock(successExampleMock, timedoutExampleMock, failedExampleMock)
     val actions = new DemoTaskActionsTest(api)
     val dispatch = mockFunction[Any, Any]
     val expectedResp = "successful resp"
 
-    (api.successExample _).expects()
-      .returning(Future.successful(expectedResp))
+    successExampleMock.expects().returning(Future.successful(expectedResp))
     dispatch.expects(SuccessfulFetchedAction(expectedResp))
 
     //when
@@ -34,11 +37,14 @@ class DemoTaskActionsSpec extends AsyncTestSpec {
   
   it should "return FailingApiAction when timedoutAction" in {
     //given
-    val api = mock[DemoTaskApi]
+    val successExampleMock = mockFunction[Future[String]]
+    val timedoutExampleMock = mockFunction[Future[StatusResponse]]
+    val failedExampleMock = mockFunction[Future[StatusResponse]]
+    val api = new DemoTaskApiMock(successExampleMock, timedoutExampleMock, failedExampleMock)
     val actions = new DemoTaskActionsTest(api)
     val expectedResp = new Exception("timed out resp")
 
-    (api.timedoutExample _).expects().returning(Future.failed(expectedResp))
+    timedoutExampleMock.expects().returning(Future.failed(expectedResp))
 
     //when
     val FailingApiAction(FutureTask(message, future)) =
@@ -53,11 +59,14 @@ class DemoTaskActionsSpec extends AsyncTestSpec {
   
   it should "return FailingApiAction when failedAction" in {
     //given
-    val api = mock[DemoTaskApi]
+    val successExampleMock = mockFunction[Future[String]]
+    val timedoutExampleMock = mockFunction[Future[StatusResponse]]
+    val failedExampleMock = mockFunction[Future[StatusResponse]]
+    val api = new DemoTaskApiMock(successExampleMock, timedoutExampleMock, failedExampleMock)
     val actions = new DemoTaskActionsTest(api)
     val expectedResp = new Exception("failed resp")
 
-    (api.failedExample _).expects().returning(Future.failed(expectedResp))
+    failedExampleMock.expects().returning(Future.failed(expectedResp))
 
     //when
     val FailingApiAction(FutureTask(message, future)) =
@@ -72,6 +81,19 @@ class DemoTaskActionsSpec extends AsyncTestSpec {
 }
 
 object DemoTaskActionsSpec {
+
+  class DemoTaskApiMock(
+                         successExampleMock: () => Future[String],
+                         timedoutExampleMock: () => Future[StatusResponse],
+                         failedExampleMock: () => Future[StatusResponse]
+                       ) extends DemoTaskApi {
+
+    override def successExample(): Future[String] = successExampleMock()
+
+    override def timedoutExample(): Future[StatusResponse] = timedoutExampleMock()
+
+    override def failedExample(): Future[StatusResponse] = failedExampleMock()
+  }
 
   private class DemoTaskActionsTest(api: DemoTaskApi)
     extends DemoTaskActions {

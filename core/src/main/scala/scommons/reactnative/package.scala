@@ -3,7 +3,7 @@ package scommons
 import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
-import scommons.reactnative.raw.{Timeout, Timers}
+import scommons.reactnative.raw.{Timeout, Globals => g}
 
 import scala.scalajs.js
 
@@ -73,10 +73,8 @@ package object reactnative {
   //////////////////////////////////////////////////////////////////////////////
   // global APIs
   
-  private lazy val global = js.Dynamic.global.asInstanceOf[Timers]
-  
-  def setInterval(callback: js.Function0[Any], delay: Double): Timeout = global.setInterval(callback, delay)
-  def setTimeout(callback: js.Function0[Any], delay: Double): Timeout = global.setTimeout(callback, delay)
-  def clearInterval(timeout: Timeout): Unit = global.clearInterval(timeout)
-  def clearTimeout(timeout: Timeout): Unit = global.clearTimeout(timeout)
+  def setInterval(callback: js.Function0[Any], delay: Double): Timeout = g.setInterval(callback, delay)
+  def setTimeout(callback: js.Function0[Any], delay: Double): Timeout = g.setTimeout(callback, delay)
+  def clearInterval(timeout: Timeout): Unit = g.clearInterval(timeout)
+  def clearTimeout(timeout: Timeout): Unit = g.clearTimeout(timeout)
 }

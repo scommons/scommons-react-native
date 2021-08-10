@@ -21,7 +21,7 @@ object SyntaxHighlighterDemo extends FunctionComponent[Unit] {
     val tagName = node.name.getOrElse("")
     val codeBlock =
       if (tagName == "pre") {
-        node.children.find(_.name.getOrElse("") == "code")
+        node.children.find(_.name.contains("code"))
           .flatMap(_.children.headOption.flatMap(_.data.toOption))
       }
       else None

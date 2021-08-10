@@ -3,9 +3,13 @@ package scommons.reactnative
 import io.github.shogowada.scalajs.reactjs.classes.ReactClass
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSGlobalScope, JSImport}
 
 package object raw {
+
+  @js.native
+  @JSGlobalScope
+  object Globals extends Timers
 
   @js.native
   @JSImport("react-native", "StyleSheet")

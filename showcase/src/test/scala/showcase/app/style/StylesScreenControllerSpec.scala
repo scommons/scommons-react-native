@@ -1,9 +1,12 @@
 package showcase.app.style
 
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
-import scommons.react.navigation.Navigation
+import scommons.react.navigation.{Navigation, raw}
 import scommons.react.test.TestSpec
-import showcase.app.ShowcaseStateDef
+import showcase.app.ShowcaseState
+import showcase.app.config.ShowcaseConfig
+
+import scala.scalajs.js
 
 class StylesScreenControllerSpec extends TestSpec {
 
@@ -19,11 +22,17 @@ class StylesScreenControllerSpec extends TestSpec {
     //given
     val controller = StylesScreenController
     val dispatch = mock[Dispatch]
-    val state = mock[ShowcaseStateDef]
-    val nav = mock[Navigation]
+    val navigate = mockFunction[String, Unit]
+    val state = ShowcaseState(None, ShowcaseConfig())
+    val nav = new Navigation(js.Dynamic.literal(
+      "navigate" -> (navigate: js.Function)
+    ).asInstanceOf[raw.Navigation], null)
     val routeName = "Test"
     
-    (nav.navigate(_: String)).expects(routeName)
+    navigate.expects(*).onCall { resRoute: String =>
+      resRoute shouldBe routeName
+      ()
+    }
 
     //when
     val result = controller.mapStateAndRouteToProps(dispatch, state, nav)

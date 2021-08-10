@@ -19,11 +19,9 @@ class ShowcaseRootControllerSpec extends TestSpec {
     //given
     val dispatch = mock[Dispatch]
     val controller = ShowcaseRootController
-    val state = mock[ShowcaseStateDef]
     val config = ShowcaseConfig(darkTheme = true)
+    val state = ShowcaseState(None, config)
     val props = mock[Props[Unit]]
-
-    (state.config _).expects().returning(config)
     
     //when
     val result = controller.mapStateToProps(dispatch, state, props)

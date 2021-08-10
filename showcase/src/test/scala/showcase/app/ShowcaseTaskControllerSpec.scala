@@ -4,6 +4,7 @@ import io.github.shogowada.scalajs.reactjs.React.Props
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.redux.task._
 import scommons.react.test.TestSpec
+import showcase.app.config.ShowcaseConfig
 
 import scala.concurrent.Future
 
@@ -19,8 +20,7 @@ class ShowcaseTaskControllerSpec extends TestSpec {
     val props = mock[Props[Unit]]
     val dispatch = mock[Dispatch]
     val currentTask = Some(FutureTask("test task", Future.successful(())))
-    val state = mock[ShowcaseStateDef]
-    (state.currentTask _).expects().returning(currentTask)
+    val state = ShowcaseState(currentTask, ShowcaseConfig())
 
     //when
     val result = ShowcaseTaskController.mapStateToProps(dispatch, state, props)

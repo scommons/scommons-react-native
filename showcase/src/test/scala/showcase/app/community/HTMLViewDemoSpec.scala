@@ -6,29 +6,28 @@ import scommons.react.navigation._
 import scommons.reactnative._
 import scommons.reactnative.htmlview._
 import showcase.app.community.HTMLViewDemo._
-import showcase.app.community.HTMLViewDemoSpec._
+import showcase.app.community.HTMLViewDemoSpec.HTMLViewNodeMock
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class HTMLViewDemoSpec extends TestSpec
-  with BaseTestSpec
-  with ShallowRendererUtils {
+class HTMLViewDemoSpec extends TestSpec with ShallowRendererUtils {
 
   it should "return custom text component if custom node when renderNode" in {
     //given
-    val customNode = mock[HTMLViewNodeMock]
-    val textNode = mock[HTMLViewNodeMock]
+    val textNode = new HTMLViewNodeMock(
+      dataMock = "custom node text"
+    )
     val specialStyle = js.Dynamic.literal(
       "style" -> js.Dynamic.literal(
         "width" -> "123"
       )
     )
-    
-    (customNode.name _).expects().returning("custom")
-    (customNode.attribs _).expects().returning(specialStyle)
-    (customNode.children _).expects().returning(js.Array(textNode.asInstanceOf[HTMLViewNode]))
-    (textNode.data _).expects().returning("custom node text")
+    val customNode = new HTMLViewNodeMock(
+      nameMock = "custom",
+      attribsMock = specialStyle,
+      childrenMock = js.Array(textNode.asInstanceOf[HTMLViewNode])
+    )
     
     //when
     val resultComp = HTMLViewDemo.renderNode(
@@ -58,9 +57,9 @@ class HTMLViewDemoSpec extends TestSpec
   
   it should "return undefined for all other nodes when renderNode" in {
     //given
-    val node = mock[HTMLViewNodeMock]
-    
-    (node.name _).expects().returning("div")
+    val node = new HTMLViewNodeMock(
+      nameMock = "div"
+    )
     
     //when
     val result = HTMLViewDemo.renderNode(
@@ -119,14 +118,21 @@ class HTMLViewDemoSpec extends TestSpec
 object HTMLViewDemoSpec {
 
   @JSExportAll
-  trait HTMLViewNodeMock {
+  class HTMLViewNodeMock(
+                          typeMock: String = null,
+                          nameMock: js.UndefOr[String] = js.undefined,
+                          attribsMock: js.Dynamic = null,
+                          dataMock: js.UndefOr[String] = js.undefined,
+                          parentMock: js.UndefOr[HTMLViewNode] = js.undefined,
+                          childrenMock: js.Array[HTMLViewNode] = null
+                        ) {
 
-    def `type`: String
-    def name: js.UndefOr[String]
-    def attribs: js.Dynamic
-    def data: js.UndefOr[String]
+    def `type`: String = typeMock
+    def name: js.UndefOr[String] = nameMock
+    def attribs: js.Dynamic = attribsMock
+    def data: js.UndefOr[String] = dataMock
 
-    def parent: js.UndefOr[HTMLViewNode]
-    def children: js.Array[HTMLViewNode]
+    def parent: js.UndefOr[HTMLViewNode] = parentMock
+    def children: js.Array[HTMLViewNode] = childrenMock
   }
 }

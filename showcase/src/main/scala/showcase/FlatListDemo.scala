@@ -4,10 +4,10 @@ import scommons.react._
 import scommons.react.hooks._
 import scommons.reactnative.FlatList._
 import scommons.reactnative._
+import scommons.reactnative.raw.{Timeout, Globals => g}
 
 import scala.concurrent.duration._
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g}
 
 /** @see https://facebook.github.io/react-native/docs/flatlist
   */
@@ -59,7 +59,7 @@ object FlatListDemo extends FunctionComponent[Unit] {
       () => {
         setRefreshing(true)
 
-        var handleId: js.Any = null
+        var handleId: Timeout = null
         handleId = g.setTimeout({ () =>
           g.clearTimeout(handleId)
 

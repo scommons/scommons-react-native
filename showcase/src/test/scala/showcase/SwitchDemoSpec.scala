@@ -1,5 +1,6 @@
 package showcase
 
+import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.navigation._
 import scommons.react.test.TestSpec
 import scommons.react.test.util.ShallowRendererUtils
@@ -13,14 +14,22 @@ class SwitchDemoSpec extends TestSpec with ShallowRendererUtils {
   it should "call updateTheme when onValueChange" in {
     //given
     val dispatch = mockFunction[Any, Any]
-    val actions = mock[ShowcaseConfigActions]
+    val updateThemeMock = mockFunction[Dispatch, Boolean, Unit]
+    val actions = new ShowcaseConfigActions {
+      override def updateTheme(dispatch: Dispatch, darkTheme: Boolean): Unit = {
+        updateThemeMock(dispatch, darkTheme)
+      }
+    }
     val props = SwitchDemoProps(dispatch, actions, darkTheme = false)
     val comp = shallowRender(<(SwitchDemo())(^.wrapped := props)())
     val List(switchComp) = findComponents(comp, <.Switch.reactClass)
     val darkTheme = true
 
     //then
-    (actions.updateTheme _).expects(dispatch, darkTheme)
+    updateThemeMock.expects(*, *).onCall { (resDispatch, resDarkTheme) =>
+      resDispatch shouldBe dispatch
+      resDarkTheme shouldBe darkTheme
+    }
     
     //when
     switchComp.props.onValueChange(darkTheme)

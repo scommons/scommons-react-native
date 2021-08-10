@@ -4,9 +4,10 @@ import org.scalamock.scalatest.MockFactory
 import org.scalatest._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import scommons.reactnative.safearea.SafeArea._
+import scommons.reactnative.safearea.SafeArea.{SafeAreaEdge, SafeAreaMode}
 import scommons.reactnative.safearea.SafeAreaSpec._
 
+import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
 class SafeAreaSpec extends AnyFlatSpec
@@ -16,12 +17,12 @@ class SafeAreaSpec extends AnyFlatSpec
 
   it should "return native result when useSafeAreaInsets" in {
     //given
-    val nativeMock = mock[SafeAreaMock]
-    val sa = TestSafeArea(nativeMock.asInstanceOf[raw.SafeArea])
+    val useSafeAreaInsetsMock = mockFunction[SafeAreaInsets]
+    val sa = new TestSafeArea(createSafeArea(useSafeAreaInsetsMock))
     val insetsMock = mock[SafeAreaInsetsMock]
     val insets = insetsMock.asInstanceOf[SafeAreaInsets]
     
-    (nativeMock.useSafeAreaInsets _).expects().returning(insets)
+    useSafeAreaInsetsMock.expects().returning(insets)
     
     //when & then
     sa.useSafeAreaInsets() should be theSameInstanceAs insets
@@ -44,16 +45,16 @@ class SafeAreaSpec extends AnyFlatSpec
 
 object SafeAreaSpec {
 
-  @JSExportAll
-  trait SafeAreaMock {
-
-    def useSafeAreaInsets(): SafeAreaInsets
+  def createSafeArea(useSafeAreaInsetsMock: () => SafeAreaInsets): raw.SafeArea = {
+    js.Dynamic.literal(
+      "useSafeAreaInsets" -> (useSafeAreaInsetsMock: js.Function)
+    ).asInstanceOf[raw.SafeArea]
   }
 
   @JSExportAll
   trait SafeAreaInsetsMock
   
-  case class TestSafeArea(mock: raw.SafeArea) extends SafeArea {
+  class TestSafeArea(mock: raw.SafeArea) extends SafeArea {
     protected def native: raw.SafeArea = mock
   }
 }

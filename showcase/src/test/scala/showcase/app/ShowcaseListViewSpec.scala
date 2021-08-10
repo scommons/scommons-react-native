@@ -1,9 +1,8 @@
 package showcase.app
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.ScrollView._
-import scommons.reactnative._
+import scommons.reactnative.{raw, _}
 import showcase.app.ShowcaseListView._
 
 class ShowcaseListViewSpec extends TestSpec with ShallowRendererUtils {
@@ -13,10 +12,15 @@ class ShowcaseListViewSpec extends TestSpec with ShallowRendererUtils {
     val navigate = mockFunction[String, Unit]
     val props = getShowcaseListViewProps(navigate = navigate)
     val comp = shallowRender(<(ShowcaseListView())(^.wrapped := props)())
-    val List(touchable) = findComponents(comp, raw.TouchableWithoutFeedback)
+    val touchable = inside(findComponents(comp, raw.TouchableWithoutFeedback)) {
+      case List(touchable) => touchable
+    }
 
     //then
-    navigate.expects("Test")
+    navigate.expects(*).onCall { resRoute: String =>
+      resRoute shouldBe "Test"
+      ()
+    }
 
     //when
     touchable.props.onPress()

@@ -6,17 +6,16 @@ import scommons.reactnative.Alert.AlertButtonStyle
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
 import showcase.AlertDemo.styles
-import showcase.AlertDemoSpec.AlertMock
+import showcase.AlertDemoSpec.setAlertMock
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSExportAll
 
 class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
 
   it should "call alert() and okHandler when press 2-Button Alert and OK button" in {
     //given
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val okHandler = mockFunction[Unit]
     AlertDemo.okHandler = okHandler
     val renderer = createRenderer()
@@ -26,7 +25,7 @@ class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
     //then
     okHandler.expects()
     
-    (alert.alert _).expects(*, *, *, *).onCall { (title, message, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
       title shouldBe "Alert Title"
       message shouldBe "My Alert Msg"
@@ -74,13 +73,7 @@ class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
 
 object AlertDemoSpec {
 
-  @JSExportAll
-  trait AlertMock {
-    
-    def alert(title: String,
-              message: String,
-              buttons: js.Array[raw.AlertButton],
-              options: raw.AlertOptions
-             ): Unit
+  def setAlertMock(alertMock: (String, String, js.Array[raw.AlertButton], raw.AlertOptions) => Unit): Unit = {
+    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alertMock: js.Function)
   }
 }

@@ -5,10 +5,9 @@ import scommons.react.test.{BaseTestSpec, TestRendererUtils}
 import scommons.reactnative.Alert._
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
-import scommons.reactnative.ui.popup.ErrorPopupSpec.AlertMock
+import scommons.reactnative.ui.popup.ErrorPopupSpec.setAlertMock
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSExportAll
 
 class ErrorPopupSpec extends AsyncTestSpec
   with BaseTestSpec
@@ -17,18 +16,22 @@ class ErrorPopupSpec extends AsyncTestSpec
   it should "show and close simple error alert" in {
     //given
     val onClose = mockFunction[Unit]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = ErrorPopupProps("Test error", onClose = onClose)
     var testFinish = false
     
     //then
     onClose.expects()
-    (alert.alert _).expects("Error", "Test error", *, *).onCall { (_, _, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
+      title shouldBe "Error"
+      message shouldBe "Test error"
       options.cancelable shouldBe false
       
-      val List(closeBtn) = buttons.toList
+      val closeBtn = inside(buttons.toList) {
+        case List(btn) => btn
+      }
       closeBtn.text shouldBe "Close"
       closeBtn.style shouldBe AlertButtonStyle.cancel
       
@@ -51,18 +54,22 @@ class ErrorPopupSpec extends AsyncTestSpec
   it should "show and close error alert with Details button" in {
     //given
     val onClose = mockFunction[Unit]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = ErrorPopupProps("Test error", onClose = onClose, details = Some("Test details"))
     var testFinish = false
     
     //then
     onClose.expects()
-    (alert.alert _).expects("Error", "Test error", *, *).onCall { (_, _, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
+      title shouldBe "Error"
+      message shouldBe "Test error"
       options.cancelable shouldBe false
       
-      val List(detailsBtn, closeBtn) = buttons.toList
+      val (detailsBtn, closeBtn) = inside(buttons.toList) {
+        case List(detailsBtn, closeBtn) => (detailsBtn, closeBtn)
+      }
       detailsBtn.text shouldBe "Details"
       detailsBtn.style shouldBe js.undefined
       
@@ -88,18 +95,22 @@ class ErrorPopupSpec extends AsyncTestSpec
   it should "show error details alert when press Details button" in {
     //given
     val onClose = mockFunction[Unit]
-    val alert = mock[AlertMock]
-    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alert.alert _)
+    val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
+    setAlertMock(alertMock)
     val props = ErrorPopupProps("Test error", onClose = onClose, details = Some("Test details"))
     var testFinish = false
     
     //then
     onClose.expects()
-    (alert.alert _).expects("Error", "Test error", *, *).onCall { (_, _, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
+      title shouldBe "Error"
+      message shouldBe "Test error"
       options.cancelable shouldBe false
 
-      val List(detailsBtn, closeBtn) = buttons.toList
+      val (detailsBtn, closeBtn) = inside(buttons.toList) {
+        case List(detailsBtn, closeBtn) => (detailsBtn, closeBtn)
+      }
       detailsBtn.text shouldBe "Details"
       detailsBtn.style shouldBe js.undefined
 
@@ -109,11 +120,15 @@ class ErrorPopupSpec extends AsyncTestSpec
       //when
       detailsBtn.onPress()
     }
-    (alert.alert _).expects("Error", "Test error\n\nTest details", *, *).onCall { (_, _, buttons, options) =>
+    alertMock.expects(*, *, *, *).onCall { (title, message, buttons, options) =>
       //then
+      title shouldBe "Error"
+      message shouldBe "Test error\n\nTest details"
       options.cancelable shouldBe false
       
-      val List(closeBtn) = buttons.toList
+      val closeBtn = inside(buttons.toList) {
+        case List(btn) => btn
+      }
       closeBtn.text shouldBe "Close"
       closeBtn.style shouldBe AlertButtonStyle.cancel
       
@@ -136,13 +151,7 @@ class ErrorPopupSpec extends AsyncTestSpec
 
 object ErrorPopupSpec {
 
-  @JSExportAll
-  trait AlertMock {
-
-    def alert(title: String,
-              message: String,
-              buttons: js.Array[raw.AlertButton],
-              options: raw.AlertOptions
-             ): Unit
+  def setAlertMock(alertMock: (String, String, js.Array[raw.AlertButton], raw.AlertOptions) => Unit): Unit = {
+    NativeAlert.asInstanceOf[js.Dynamic].updateDynamic("alert")(alertMock: js.Function)
   }
 }

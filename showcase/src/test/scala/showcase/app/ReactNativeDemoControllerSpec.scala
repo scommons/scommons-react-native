@@ -1,8 +1,11 @@
 package showcase.app
 
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
-import scommons.react.navigation.Navigation
+import scommons.react.navigation.{Navigation, raw}
 import scommons.react.test.TestSpec
+import showcase.app.config.ShowcaseConfig
+
+import scala.scalajs.js
 
 class ReactNativeDemoControllerSpec extends TestSpec {
 
@@ -18,11 +21,17 @@ class ReactNativeDemoControllerSpec extends TestSpec {
     //given
     val controller = ReactNativeDemoController
     val dispatch = mock[Dispatch]
-    val state = mock[ShowcaseStateDef]
-    val nav = mock[Navigation]
+    val navigate = mockFunction[String, Unit]
+    val state = ShowcaseState(None, ShowcaseConfig())
+    val nav = new Navigation(js.Dynamic.literal(
+      "navigate" -> (navigate: js.Function)
+    ).asInstanceOf[raw.Navigation], null)
     val routeName = "Test"
 
-    (nav.navigate(_: String)).expects(routeName)
+    navigate.expects(*).onCall { resRoute: String =>
+      resRoute shouldBe routeName
+      ()
+    }
 
     //when
     val result = controller.mapStateAndRouteToProps(dispatch, state, nav)

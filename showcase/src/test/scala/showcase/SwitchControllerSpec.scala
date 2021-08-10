@@ -3,7 +3,7 @@ package showcase
 import io.github.shogowada.scalajs.reactjs.React.Props
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.test.TestSpec
-import showcase.app.ShowcaseStateDef
+import showcase.app.ShowcaseState
 import showcase.app.config.{ShowcaseConfig, ShowcaseConfigActions}
 
 class SwitchControllerSpec extends TestSpec {
@@ -22,11 +22,9 @@ class SwitchControllerSpec extends TestSpec {
     val dispatch = mock[Dispatch]
     val actions = mock[ShowcaseConfigActions]
     val controller = new SwitchController(actions)
-    val state = mock[ShowcaseStateDef]
     val config = ShowcaseConfig(darkTheme = true)
+    val state = ShowcaseState(None, config)
     val props = mock[Props[Unit]]
-
-    (state.config _).expects().returning(config)
     
     //when
     val result = controller.mapStateToProps(dispatch, state, props)
