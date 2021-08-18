@@ -5,16 +5,14 @@ import scommons.reactnative._
 import scommons.reactnative.svg._
 import showcase.app.community.SvgXmlDemo._
 
-class SvgXmlDemoSpec extends TestSpec
-  with BaseTestSpec
-  with ShallowRendererUtils {
+class SvgXmlDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render component" in {
     //given
     val component = <(SvgXmlDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

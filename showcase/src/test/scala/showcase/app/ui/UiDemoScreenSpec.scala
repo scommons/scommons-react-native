@@ -1,12 +1,13 @@
 package showcase.app.ui
 
-import showcase.app._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
 import scommons.react.test._
+import scommons.reactnative._
+import showcase.app._
 
-class UiDemoScreenSpec extends TestSpec with ShallowRendererUtils {
+class UiDemoScreenSpec extends TestSpec with TestRendererUtils {
 
   it should "render main component" in {
     //given
@@ -14,10 +15,10 @@ class UiDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     val component = <(UiDemoScreen())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
-    assertComponent(result, ShowcaseListView) {
+    assertTestComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "ChoiceGroup" -> "Demo ChoiceGroup component"
@@ -31,18 +32,18 @@ class UiDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     val stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
-        <.>()(
+        <.View()(
           UiDemoScreen.getUiStack(stack)
         )
       }
     }
     
     //when
-    val result = shallowRender(<(wrapper())()())
+    val result = testRender(<(wrapper())()())
     
     //then
     assertNativeComponent(result,
-      <.>()(
+      <.View()(
         <(stack.Screen)(^.name := "UI", ^.component := UiDemoController())(),
         <(stack.Screen)(^.name := "ChoiceGroup", ^.component := ChoiceGroupDemo())()
       )

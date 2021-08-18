@@ -4,6 +4,7 @@ import scommons.api.ApiResponse
 import scommons.api.http.ApiHttpStatusException
 import scommons.react._
 import scommons.react.redux.task.TaskManagerUiProps
+import scommons.reactnative.app.AppTaskManagerUi._
 import scommons.reactnative.ui.popup._
 
 import scala.util.{Failure, Success, Try}
@@ -18,6 +19,10 @@ object AppTaskManagerUi {
     case Failure(e: ApiHttpStatusException) =>
       (Some(e.error), Option(e.getMessage))
   }
+
+  private[app] var taskLoggerComp: UiComponent[TaskLoggerProps] = TaskLogger
+  private[app] var loadingPopup: UiComponent[LoadingPopupProps] = LoadingPopup
+  private[app] var errorPopup: UiComponent[ErrorPopupProps] = ErrorPopup
 }
 
 class AppTaskManagerUi(loadingProps: LoadingPopupProps = LoadingPopupProps())
@@ -30,14 +35,14 @@ class AppTaskManagerUi(loadingProps: LoadingPopupProps = LoadingPopupProps())
     val errorMessage = props.error.getOrElse("")
 
     <.>()(
-      <(TaskLogger())(^.wrapped := TaskLoggerProps(statusMessage))(),
+      <(taskLoggerComp())(^.wrapped := TaskLoggerProps(statusMessage))(),
       
       if (props.showLoading) Some(
-        <(LoadingPopup())(^.wrapped := loadingProps)()
+        <(loadingPopup())(^.wrapped := loadingProps)()
       ) else None,
 
       if (showError) Some(
-        <(ErrorPopup())(^.wrapped := ErrorPopupProps(
+        <(errorPopup())(^.wrapped := ErrorPopupProps(
           error = errorMessage,
           onClose = props.onCloseErrorPopup,
           details = props.errorDetails

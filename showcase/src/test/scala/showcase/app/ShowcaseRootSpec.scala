@@ -14,13 +14,15 @@ import scommons.reactnative.safearea._
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.literal
 
-class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
+class ShowcaseRootSpec extends TestSpec with TestRendererUtils {
 
   it should "render dynamic App screens titles" in {
     //given
     val props = ShowcaseRootProps(darkTheme = false)
-    val comp = shallowRender(<(ShowcaseRoot())(^.wrapped := props)())
-    val List(appStackNav) = findComponents(comp, AppStack.Navigator)
+    val comp = createTestRenderer(<(ShowcaseRoot())(^.wrapped := props)()).root
+    val appStackNav = inside(findComponents(comp, AppStack.Navigator)) {
+      case List(appStackNav) => appStackNav
+    }
 
     def navProps(route: String): js.Dynamic = {
       js.Dynamic.literal(
@@ -56,16 +58,17 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ShowcaseRoot())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = createTestRenderer(component).root
     
     //then
-    assertNativeComponent(result,
-      <.>()(
+    inside(result.children.toList) { case List(statusBar, safeAreaProvider) =>
+      assertNativeComponent(statusBar,
         <.StatusBar(^.barStyle := {
           if (props.darkTheme) StatusBar.BarStyle.`light-content`
           else StatusBar.BarStyle.`dark-content`
-        })(),
-
+        })()
+      )
+      assertNativeComponent(safeAreaProvider,
         <.SafeAreaProvider()(
           <.NavigationContainer(^.theme := DefaultTheme)(
             <(AppStack.Navigator)()(
@@ -79,7 +82,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
           )
         )
       )
-    )
+    }
   }
 
   it should "render Home tab component" in {
@@ -87,7 +90,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     val component = <(homeTabComp)()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -129,7 +132,7 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
     )
   }
 
-  private def renderIcon(tab: ShallowInstance, size: Int, color: String): ShallowInstance = {
+  private def renderIcon(tab: TestInstance, size: Int, color: String): TestInstance = {
     val iconComp = tab.props.options.tabBarIcon(literal("size" -> size, "color" -> color))
 
     val wrapper = new FunctionComponent[Unit] {
@@ -138,6 +141,6 @@ class ShowcaseRootSpec extends TestSpec with ShallowRendererUtils {
       }
     }
 
-    shallowRender(<(wrapper()).empty)
+    testRender(<(wrapper()).empty)
   }
 }

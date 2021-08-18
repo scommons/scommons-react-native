@@ -8,7 +8,6 @@ import showcase.app.expo.FontDemo.styles
 
 class FontDemoSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils
   with TestRendererUtils {
 
   it should "load font asynchronously when mount" in {
@@ -35,7 +34,7 @@ class FontDemoSpec extends AsyncTestSpec
     val component = <(FontDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

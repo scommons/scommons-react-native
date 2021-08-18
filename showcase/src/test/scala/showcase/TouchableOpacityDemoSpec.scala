@@ -1,17 +1,16 @@
 package showcase
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.TouchableOpacityDemo.styles
 
-class TouchableOpacityDemoSpec extends TestSpec with ShallowRendererUtils {
+class TouchableOpacityDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "call onPress" in {
     //given
     val onPress = mockFunction[Unit]
     val props = TouchableOpacityDemoProps(onPress = onPress)
-    val comp = shallowRender(<(TouchableOpacityDemo())(^.wrapped := props)())
+    val comp = testRender(<(TouchableOpacityDemo())(^.wrapped := props)())
     
     //then
     onPress.expects()
@@ -26,7 +25,7 @@ class TouchableOpacityDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(TouchableOpacityDemo())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

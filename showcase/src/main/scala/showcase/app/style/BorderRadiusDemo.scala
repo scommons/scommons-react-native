@@ -7,35 +7,8 @@ import scala.scalajs.js
 
 object BorderRadiusDemo extends FunctionComponent[Unit] {
 
-  protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
-      <(Example())(^.rnStyle := new Style {
-        override val borderRadius = 20
-      })(
-        <(CenteredText())()("Example 1:\n4 Rounded Corners")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderTopRightRadius = 60
-        override val borderBottomRightRadius = 60
-      })(
-        <(CenteredText())()("Example 2:\nD Shape")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderTopLeftRadius = 30
-        override val borderBottomRightRadius = 30
-      })(
-        <(CenteredText())()("Example 3:\nLeaf Shape")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderRadius = 60
-      })(
-        <(CenteredText())()("Example 4:\nCircle")
-      )
-    )
-  }
-
   private[style] val Example = new FunctionComponent[Unit] {
-    
+
     protected def render(props: Props): ReactElement = {
       <.View(^.rnStyle := js.Array(
         styles.example,
@@ -56,6 +29,36 @@ object BorderRadiusDemo extends FunctionComponent[Unit] {
         props.children
       )
     }
+  }
+
+  private[style] var exampleComp: UiComponent[Unit] = Example
+  private[style] var centeredTextComp: UiComponent[Unit] = CenteredText
+
+  protected def render(props: Props): ReactElement = {
+    <.View(^.rnStyle := styles.container)(
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderRadius = 20
+      })(
+        <(centeredTextComp())()("Example 1:\n4 Rounded Corners")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderTopRightRadius = 60
+        override val borderBottomRightRadius = 60
+      })(
+        <(centeredTextComp())()("Example 2:\nD Shape")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderTopLeftRadius = 30
+        override val borderBottomRightRadius = 30
+      })(
+        <(centeredTextComp())()("Example 3:\nLeaf Shape")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderRadius = 60
+      })(
+        <(centeredTextComp())()("Example 4:\nCircle")
+      )
+    )
   }
 
   private[style] lazy val styles = StyleSheet.create(new Styles)

@@ -1,19 +1,18 @@
 package showcase.app.expo.av
 
 import scommons.expo.av._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.expo.av.VideoDemo.styles
 
-class VideoDemoSpec extends TestSpec with ShallowRendererUtils {
+class VideoDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render component" in {
     //given
     val component = <(VideoDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,

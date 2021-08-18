@@ -1,20 +1,22 @@
 package scommons.reactnative.app
 
-import org.scalatest.Succeeded
 import scommons.api.http.{ApiHttpResponse, ApiHttpStatusException}
 import scommons.api.{ApiStatus, StatusResponse}
 import scommons.react._
 import scommons.react.redux.task.TaskManagerUiProps
-import scommons.react.test.TestSpec
-import scommons.react.test.raw.ShallowInstance
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.ActivityIndicator._
 import scommons.reactnative.Style
+import scommons.reactnative.app.AppTaskManagerUi._
 import scommons.reactnative.ui.popup._
 
 import scala.util.{Failure, Success}
 
-class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
+class AppTaskManagerUiSpec extends TestSpec with TestRendererUtils {
+
+  AppTaskManagerUi.taskLoggerComp = () => "TaskLogger".asInstanceOf[ReactClass]
+  AppTaskManagerUi.loadingPopup = () => "LoadingPopup".asInstanceOf[ReactClass]
+  AppTaskManagerUi.errorPopup = () => "ErrorPopup".asInstanceOf[ReactClass]
 
   it should "return error if unsuccessful response in errorHandler" in {
     //given
@@ -74,8 +76,8 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
       onCloseErrorPopup = onCloseErrorPopup
     )
     val comp = new AppTaskManagerUi().apply()
-    val result = shallowRender(<(comp)(^.wrapped := props)())
-    val errorProps = findComponentProps(result, ErrorPopup)
+    val result = createTestRenderer(<(comp)(^.wrapped := props)()).root
+    val errorProps = findComponentProps(result, errorPopup)
 
     //then
     onCloseErrorPopup.expects()
@@ -93,7 +95,7 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     val comp = new AppTaskManagerUi().apply()
 
     //when
-    val result = shallowRender(<(comp)(^.wrapped := props)())
+    val result = createTestRenderer(<(comp)(^.wrapped := props)()).root
 
     //then
     assertRenderingResult(result, props)
@@ -108,7 +110,7 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     val comp = new AppTaskManagerUi().apply()
 
     //when
-    val result = shallowRender(<(comp)(^.wrapped := props)())
+    val result = createTestRenderer(<(comp)(^.wrapped := props)()).root
 
     //then
     assertRenderingResult(result, props)
@@ -120,7 +122,7 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     val comp = new AppTaskManagerUi().apply()
 
     //when
-    val result = shallowRender(<(comp)(^.wrapped := props)())
+    val result = createTestRenderer(<(comp)(^.wrapped := props)()).root
 
     //then
     assertRenderingResult(result, props)
@@ -143,38 +145,34 @@ class AppTaskManagerUiSpec extends TestSpec with ShallowRendererUtils {
     )
   }
   
-  private def assertRenderingResult(result: ShallowInstance, props: TaskManagerUiProps): Unit = {
+  private def assertRenderingResult(result: TestInstance, props: TaskManagerUiProps): Unit = {
     val showError = props.error.isDefined
     
-    assertNativeComponent(result, <.>()(), { children =>
-      val (taskLogger, loadingPopup, errorPopup) = children match {
-        case List(tl, lp) if props.showLoading => (tl, Some(lp), None)
-        case List(tl, ep) if showError => (tl, None, Some(ep))
-        case List(tl) => (tl, None, None)
-      }
+    val (resTaskLogger, resLoadingPopup, resErrorPopup) = inside(result.children.toList) {
+      case List(tl, lp) if props.showLoading => (tl, Some(lp), None)
+      case List(tl, ep) if showError => (tl, None, Some(ep))
+      case List(tl) => (tl, None, None)
+    }
 
-      assertComponent(taskLogger, TaskLogger) { case TaskLoggerProps(text) =>
-        text shouldBe props.status.getOrElse("")
+    assertTestComponent(resTaskLogger, taskLoggerComp) { case TaskLoggerProps(text) =>
+      text shouldBe props.status.getOrElse("")
+    }
+    
+    if (props.showLoading) {
+      resLoadingPopup should not be None
+      assertTestComponent(resLoadingPopup.get, loadingPopup) { case LoadingPopupProps(resSize, color) =>
+        resSize shouldBe ActivityIndicatorSize.small
+        color shouldBe Style.Color.gray
       }
-      
-      if (props.showLoading) {
-        loadingPopup should not be None
-        assertComponent(loadingPopup.get, LoadingPopup) { case LoadingPopupProps(resSize, color) =>
-          resSize shouldBe ActivityIndicatorSize.small
-          color shouldBe Style.Color.gray
-        }
-      }
+    }
 
-      if (showError) {
-        errorPopup should not be None
-        assertComponent(errorPopup.get, ErrorPopup) { case ErrorPopupProps(error, onClose, details) =>
-          error shouldBe props.error.getOrElse("")
-          details shouldBe props.errorDetails
-          onClose shouldBe props.onCloseErrorPopup
-        }
+    if (showError) {
+      resErrorPopup should not be None
+      assertTestComponent(resErrorPopup.get, errorPopup) { case ErrorPopupProps(error, onClose, details) =>
+        error shouldBe props.error.getOrElse("")
+        details shouldBe props.errorDetails
+        onClose shouldBe props.onCloseErrorPopup
       }
-
-      Succeeded
-    })
+    }
   }
 }

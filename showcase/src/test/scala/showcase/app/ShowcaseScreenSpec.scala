@@ -1,13 +1,14 @@
 package showcase.app
 
-import showcase.app.style._
-import showcase.app.ui.UiDemoScreen
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
 import scommons.react.test._
+import scommons.reactnative._
+import showcase.app.style._
+import showcase.app.ui.UiDemoScreen
 
-class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
+class ShowcaseScreenSpec extends TestSpec with TestRendererUtils {
 
   it should "render main component" in {
     //given
@@ -15,10 +16,10 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ShowcaseScreen())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
-    assertComponent(result, ShowcaseListView) {
+    assertTestComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "Styles" -> "Demo different styles",
@@ -34,18 +35,18 @@ class ShowcaseScreenSpec extends TestSpec with ShallowRendererUtils {
     val Stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
-        <.>()(
+        <.View()(
           ShowcaseScreen.getHomeScreens(Stack)
         )
       }
     }
 
     //when
-    val result = shallowRender(<(wrapper())()())
+    val result = testRender(<(wrapper())()())
 
     //then
     assertNativeComponent(result,
-      <.>()(
+      <.View()(
         // styles
         StylesScreen.getStylesStack(Stack),
         // ui

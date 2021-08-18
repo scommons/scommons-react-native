@@ -1,14 +1,16 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative.Style._
 import scommons.reactnative._
 import showcase.app.style.BorderStyleDemo._
 
 import scala.scalajs.js
 
-class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class BorderStyleDemoSpec extends TestSpec with TestRendererUtils {
+
+  BorderStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
 
   it should "render Example component" in {
     //given
@@ -20,7 +22,7 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -35,34 +37,34 @@ class BorderStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(BorderStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderWidth = 1
         })(
           <.Text()("borderWidth: 1")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderWidth = 3
           override val borderLeftWidth = 0
         })(
           <.Text()("borderWidth: 3, borderLeftWidth: 0")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderWidth = 3
           override val borderLeftColor = Color.red
         })(
           <.Text()("borderWidth: 3, borderLeftColor: 'red'")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderLeftWidth = 3
         })(
           <.Text()("borderLeftWidth: 3")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderWidth = 1
           override val borderStyle = BorderStyle.dashed
         })(

@@ -1,19 +1,18 @@
 package showcase
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.KeyboardAvoidingView._
 import scommons.reactnative._
 import showcase.KeyboardAvoidingViewDemo.styles
 
-class KeyboardAvoidingViewDemoSpec extends TestSpec with ShallowRendererUtils {
+class KeyboardAvoidingViewDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render component" in {
     //given
     val component = <(KeyboardAvoidingViewDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

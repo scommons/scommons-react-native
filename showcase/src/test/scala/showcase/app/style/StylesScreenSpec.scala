@@ -1,12 +1,13 @@
 package showcase.app.style
 
-import showcase.app._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
 import scommons.react.test._
+import scommons.reactnative._
+import showcase.app._
 
-class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
+class StylesScreenSpec extends TestSpec with TestRendererUtils {
 
   it should "render main component" in {
     //given
@@ -14,10 +15,10 @@ class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
     val component = <(StylesScreen())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
-    assertComponent(result, ShowcaseListView) {
+    assertTestComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "BorderStyle" -> "Demo border styles",
@@ -37,18 +38,18 @@ class StylesScreenSpec extends TestSpec with ShallowRendererUtils {
     val stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
-        <.>()(
+        <.View()(
           StylesScreen.getStylesStack(stack)
         )
       }
     }
     
     //when
-    val result = shallowRender(<(wrapper())()())
+    val result = testRender(<(wrapper())()())
     
     //then
     assertNativeComponent(result,
-      <.>()(
+      <.View()(
         <(stack.Screen)(^.name := "Styles", ^.component := StylesScreenController())(),
         <(stack.Screen)(^.name := "BorderStyle", ^.component := BorderStyleDemo())(),
         <(stack.Screen)(^.name := "BorderRadius", ^.component := BorderRadiusDemo())(),

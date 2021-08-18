@@ -1,20 +1,19 @@
 package showcase
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.ViewStyle._
 import scommons.reactnative._
 
 import scala.scalajs.js
 
-class ViewStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class ViewStyleDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render component and set view style" in {
     //given
     val component = <(ViewStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

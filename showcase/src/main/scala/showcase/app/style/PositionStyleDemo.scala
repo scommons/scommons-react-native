@@ -7,30 +7,6 @@ import scala.scalajs.js
 
 object PositionStyleDemo extends FunctionComponent[Unit] {
 
-  protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.screen)(
-      <.View(^.rnStyle := styles.container)(
-        <.View(^.rnStyle := styles.row)(
-          <(Example())()(
-            <(CenteredText())()("A")
-          ),
-          <(Example())()(
-            <(CenteredText())()("B"),
-            <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-              <(CenteredText())()("E")
-            )
-          ),
-          <(Example())()(
-            <(CenteredText())()("C")
-          )
-        ),
-        <(Example())(^.rnStyle := styles.positionAbsolute)(
-          <(CenteredText())()("D")
-        )
-      )
-    )
-  }
-
   private[style] val Example = new FunctionComponent[Unit] {
 
     protected def render(props: Props): ReactElement = {
@@ -53,6 +29,33 @@ object PositionStyleDemo extends FunctionComponent[Unit] {
         props.children
       )
     }
+  }
+
+  private[style] var exampleComp: UiComponent[Unit] = Example
+  private[style] var centeredTextComp: UiComponent[Unit] = CenteredText
+
+  protected def render(props: Props): ReactElement = {
+    <.View(^.rnStyle := styles.screen)(
+      <.View(^.rnStyle := styles.container)(
+        <.View(^.rnStyle := styles.row)(
+          <(exampleComp())()(
+            <(centeredTextComp())()("A")
+          ),
+          <(exampleComp())()(
+            <(centeredTextComp())()("B"),
+            <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
+              <(centeredTextComp())()("E")
+            )
+          ),
+          <(exampleComp())()(
+            <(centeredTextComp())()("C")
+          )
+        ),
+        <(exampleComp())(^.rnStyle := styles.positionAbsolute)(
+          <(centeredTextComp())()("D")
+        )
+      )
+    )
   }
 
   private[style] lazy val styles = StyleSheet.create(new Styles)

@@ -7,7 +7,6 @@ import scommons.reactnative._
 
 class SQLiteDemoSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils
   with TestRendererUtils {
 
   it should "render initial component" in {
@@ -15,7 +14,7 @@ class SQLiteDemoSpec extends AsyncTestSpec
     val component = <(SQLiteDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     implicit val theme: Theme = DefaultTheme

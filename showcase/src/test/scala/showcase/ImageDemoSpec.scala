@@ -8,7 +8,6 @@ import showcase.app.ShowcaseImages
 
 class ImageDemoSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils
   with TestRendererUtils {
 
   it should "render images asynchronously" in {
@@ -45,7 +44,7 @@ class ImageDemoSpec extends AsyncTestSpec
     val component = <(ImageDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

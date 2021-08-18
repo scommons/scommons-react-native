@@ -7,41 +7,6 @@ import scala.scalajs.js
 
 object BorderStyleDemo extends FunctionComponent[Unit] {
 
-  protected def render(props: Props): ReactElement = {
-    import Style._
-    
-    <.View(^.rnStyle := styles.container)(
-      <(Example())(^.rnStyle := new Style {
-        override val borderWidth = 1
-      })(
-        <.Text()("borderWidth: 1")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderWidth = 3
-        override val borderLeftWidth = 0
-      })(
-        <.Text()("borderWidth: 3, borderLeftWidth: 0")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderWidth = 3
-        override val borderLeftColor = Color.red
-      })(
-        <.Text()("borderWidth: 3, borderLeftColor: 'red'")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderLeftWidth = 3
-      })(
-        <.Text()("borderLeftWidth: 3")
-      ),
-      <(Example())(^.rnStyle := new Style {
-        override val borderWidth = 1
-        override val borderStyle = BorderStyle.dashed
-      })(
-        <.Text()("borderWidth: 1, borderStyle: 'dashed'")
-      )
-    )
-  }
-
   private[style] val Example = new FunctionComponent[Unit] {
 
     protected def render(props: Props): ReactElement = {
@@ -52,6 +17,43 @@ object BorderStyleDemo extends FunctionComponent[Unit] {
         props.children
       )
     }
+  }
+
+  private[style] var exampleComp: UiComponent[Unit] = Example
+
+  protected def render(props: Props): ReactElement = {
+    import Style._
+    
+    <.View(^.rnStyle := styles.container)(
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderWidth = 1
+      })(
+        <.Text()("borderWidth: 1")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderWidth = 3
+        override val borderLeftWidth = 0
+      })(
+        <.Text()("borderWidth: 3, borderLeftWidth: 0")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderWidth = 3
+        override val borderLeftColor = Color.red
+      })(
+        <.Text()("borderWidth: 3, borderLeftColor: 'red'")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderLeftWidth = 3
+      })(
+        <.Text()("borderLeftWidth: 3")
+      ),
+      <(exampleComp())(^.rnStyle := new Style {
+        override val borderWidth = 1
+        override val borderStyle = BorderStyle.dashed
+      })(
+        <.Text()("borderWidth: 1, borderStyle: 'dashed'")
+      )
+    )
   }
 
   private[style] lazy val styles = StyleSheet.create(new Styles)

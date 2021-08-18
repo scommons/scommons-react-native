@@ -1,13 +1,11 @@
 package showcase
 
-import scommons.react.test.TestSpec
-import scommons.react.test.raw.ShallowInstance
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.test.PlatformMock
 import showcase.PlatformDemo.styles
 
-class PlatformDemoSpec extends TestSpec with ShallowRendererUtils {
+class PlatformDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render ios component" in {
     //given
@@ -15,7 +13,7 @@ class PlatformDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(PlatformDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertPlatformDemo(result, "ios")
@@ -27,13 +25,13 @@ class PlatformDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(PlatformDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertPlatformDemo(result, "android")
   }
 
-  private def assertPlatformDemo(result: ShallowInstance, platform: String): Unit = {
+  private def assertPlatformDemo(result: TestInstance, platform: String): Unit = {
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
         <.Text(^.rnStyle := styles.info)(

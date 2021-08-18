@@ -11,7 +11,7 @@ import showcase.app.community.HTMLViewDemoSpec.HTMLViewNodeMock
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportAll
 
-class HTMLViewDemoSpec extends TestSpec with ShallowRendererUtils {
+class HTMLViewDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "return custom text component if custom node when renderNode" in {
     //given
@@ -44,7 +44,7 @@ class HTMLViewDemoSpec extends TestSpec with ShallowRendererUtils {
         resultComp.asInstanceOf[ReactElement]
       }
     }.apply()
-    val result = shallowRender(<(wrapper)()())
+    val result = testRender(<(wrapper)()())
     assertNativeComponent(result,
       <.Text(
         ^.key := "1",
@@ -79,7 +79,7 @@ class HTMLViewDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(HTMLViewDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     implicit val theme: Theme = DefaultTheme

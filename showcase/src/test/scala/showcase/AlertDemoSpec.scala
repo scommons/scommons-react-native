@@ -1,7 +1,7 @@
 package showcase
 
 import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test.util.TestRendererUtils
 import scommons.reactnative.Alert.AlertButtonStyle
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
@@ -10,7 +10,7 @@ import showcase.AlertDemoSpec.setAlertMock
 
 import scala.scalajs.js
 
-class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
+class AlertDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "call alert() and okHandler when press 2-Button Alert and OK button" in {
     //given
@@ -18,9 +18,8 @@ class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
     setAlertMock(alertMock)
     val okHandler = mockFunction[Unit]
     AlertDemo.okHandler = okHandler
-    val renderer = createRenderer()
-    renderer.render(<(AlertDemo())()())
-    val List(showAlert, _) = findComponents(renderer.getRenderOutput(), raw.Button)
+    val comp = testRender(<(AlertDemo())()())
+    val List(showAlert, _) = findComponents(comp, raw.Button)
 
     //then
     okHandler.expects()
@@ -52,7 +51,7 @@ class AlertDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(AlertDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,

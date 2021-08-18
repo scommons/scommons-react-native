@@ -8,7 +8,7 @@ import scommons.reactnative._
 
 import scala.scalajs.js
 
-class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
+class ChoiceGroupSpec extends TestSpec with TestRendererUtils {
 
   private lazy val items = List(
     ChoiceItemData("1", "item1"),
@@ -20,7 +20,7 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
     //given
     val onSelectChange = mockFunction[Set[String], Unit]
     val props = ChoiceGroupProps(items, selectedIds = Set("2"), onSelectChange = onSelectChange)
-    val comp = shallowRender(<(ChoiceGroup())(^.wrapped := props)())
+    val comp = testRender(<(ChoiceGroup())(^.wrapped := props)())
     val touch = findComponents(comp, <.TouchableOpacity.reactClass).head
 
     //then
@@ -34,7 +34,7 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
     //given
     val onSelectChange = mockFunction[Set[String], Unit]
     val props = ChoiceGroupProps(items, selectedIds = Set("1"), onSelectChange = onSelectChange)
-    val comp = shallowRender(<(ChoiceGroup())(^.wrapped := props)())
+    val comp = testRender(<(ChoiceGroup())(^.wrapped := props)())
     val touch = findComponents(comp, <.TouchableOpacity.reactClass).head
 
     //then
@@ -53,7 +53,7 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
       onSelectChange = onSelectChange,
       multiSelect = true
     )
-    val comp = shallowRender(<(ChoiceGroup())(^.wrapped := props)())
+    val comp = testRender(<(ChoiceGroup())(^.wrapped := props)())
     val touch = findComponents(comp, <.TouchableOpacity.reactClass).head
 
     //then
@@ -72,7 +72,7 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
       onSelectChange = onSelectChange,
       multiSelect = true
     )
-    val comp = shallowRender(<(ChoiceGroup())(^.wrapped := props)())
+    val comp = testRender(<(ChoiceGroup())(^.wrapped := props)())
     val touch = findComponents(comp, <.TouchableOpacity.reactClass).head
 
     //then
@@ -88,7 +88,7 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ChoiceGroup())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertChoiceGroup(result, props)
@@ -100,13 +100,13 @@ class ChoiceGroupSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ChoiceGroup())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertChoiceGroup(result, props)
   }
   
-  private def assertChoiceGroup(result: ShallowInstance,
+  private def assertChoiceGroup(result: TestInstance,
                                 props: ChoiceGroupProps[String, ChoiceItemData]): Unit = {
 
     implicit val theme: Theme = DefaultTheme

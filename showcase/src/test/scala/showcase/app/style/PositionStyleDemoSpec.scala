@@ -1,13 +1,16 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.PositionStyleDemo._
 
 import scala.scalajs.js
 
-class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class PositionStyleDemoSpec extends TestSpec with TestRendererUtils {
+
+  PositionStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
+  PositionStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
 
   it should "render Example component" in {
     //given
@@ -19,7 +22,7 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -39,7 +42,7 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -54,28 +57,28 @@ class PositionStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(PositionStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.screen)(
         <.View(^.rnStyle := styles.container)(
           <.View(^.rnStyle := styles.row)(
-            <(Example())()(
-              <(CenteredText())()("A")
+            <(exampleComp())()(
+              <(centeredTextComp())()("A")
             ),
-            <(Example())()(
-              <(CenteredText())()("B"),
+            <(exampleComp())()(
+              <(centeredTextComp())()("B"),
               <.View(^.rnStyle := js.Array(styles.tinyExample, styles.positionAbsolute))(
-                <(CenteredText())()("E")
+                <(centeredTextComp())()("E")
               )
             ),
-            <(Example())()(
-              <(CenteredText())()("C")
+            <(exampleComp())()(
+              <(centeredTextComp())()("C")
             )
           ),
-          <(Example())(^.rnStyle := styles.positionAbsolute)(
-            <(CenteredText())()("D")
+          <(exampleComp())(^.rnStyle := styles.positionAbsolute)(
+            <(centeredTextComp())()("D")
           )
         )
       )

@@ -14,7 +14,6 @@ import scala.scalajs.js.annotation.JSExportAll
 
 class FlatListDemoSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils
   with TestRendererUtils {
 
   it should "set refreshing when onRefresh" in {
@@ -36,14 +35,13 @@ class FlatListDemoSpec extends AsyncTestSpec
 
   it should "render item, select and un-select it when onPress" in {
     //given
-    val renderer = createRenderer()
-    renderer.render(<(FlatListDemo())()())
+    val renderer = createTestRenderer(<(FlatListDemo())()())
     val itemMock = mockFunction[Data]
     val data = new FlatListDataMock(itemMock)
     itemMock.expects().repeated(3)
       .returning(dataList.head)
     
-    def renderItem(flatList: ShallowInstance): ShallowInstance = {
+    def renderItem(flatList: TestInstance): TestInstance = {
       val wrapper = new FunctionComponent[ItemProps] {
         protected def render(compProps: Props): ReactElement = {
           val result = flatList.props.renderItem(data.asInstanceOf[FlatListData[Data]])
@@ -51,12 +49,12 @@ class FlatListDemoSpec extends AsyncTestSpec
         }
       }
 
-      shallowRender(<(wrapper())()())
+      testRender(<(wrapper())()())
     }
     
     //when & then
-    val List(flatList) = findComponents(renderer.getRenderOutput(), <.FlatList.reactClass)
-    assertComponent(renderItem(flatList), Item) {
+    val List(flatList) = findComponents(renderer.root, <.FlatList.reactClass)
+    assertTestComponent(renderItem(flatList), Item) {
       case ItemProps(title, selected, onPress) =>
         title shouldBe "First Item"
         selected shouldBe false
@@ -67,8 +65,8 @@ class FlatListDemoSpec extends AsyncTestSpec
     }
 
     //then
-    val List(selectedList) = findComponents(renderer.getRenderOutput(), <.FlatList.reactClass)
-    assertComponent(renderItem(selectedList), Item) {
+    val List(selectedList) = findComponents(renderer.root, <.FlatList.reactClass)
+    assertTestComponent(renderItem(selectedList), Item) {
       case ItemProps(title, selected, onPress) =>
         title shouldBe "First Item"
         selected shouldBe true
@@ -79,8 +77,8 @@ class FlatListDemoSpec extends AsyncTestSpec
     }
     
     //then
-    val List(unselectedList) = findComponents(renderer.getRenderOutput(), <.FlatList.reactClass)
-    assertComponent(renderItem(unselectedList), Item) {
+    val List(unselectedList) = findComponents(renderer.root, <.FlatList.reactClass)
+    assertTestComponent(renderItem(unselectedList), Item) {
       case ItemProps(title, selected, _) =>
         title shouldBe "First Item"
         selected shouldBe false
@@ -89,7 +87,7 @@ class FlatListDemoSpec extends AsyncTestSpec
   
   it should "return data.id from keyExtractor" in {
     //given
-    val comp = shallowRender(<(FlatListDemo())()())
+    val comp = testRender(<(FlatListDemo())()())
     val List(flatList) = findComponents(comp, <.FlatList.reactClass)
     val data = dataList.head
     
@@ -106,7 +104,7 @@ class FlatListDemoSpec extends AsyncTestSpec
     val component = <(Item())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -122,7 +120,7 @@ class FlatListDemoSpec extends AsyncTestSpec
     val component = <(Item())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -137,7 +135,7 @@ class FlatListDemoSpec extends AsyncTestSpec
     val component = <(FlatListDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,

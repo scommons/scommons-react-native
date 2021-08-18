@@ -1,13 +1,14 @@
 package showcase.app
 
-import showcase._
-import showcase.app.ReactNativeDemoScreen._
 import scommons.react._
 import scommons.react.navigation._
 import scommons.react.navigation.stack._
 import scommons.react.test._
+import scommons.reactnative._
+import showcase._
+import showcase.app.ReactNativeDemoScreen._
 
-class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
+class ReactNativeDemoScreenSpec extends TestSpec with TestRendererUtils {
 
   it should "render main component" in {
     //given
@@ -15,10 +16,10 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ReactNativeDemoScreen())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
-    assertComponent(result, ShowcaseListView) {
+    assertTestComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
           "ActivityIndicator" -> "Demo ActivityIndicator component",
@@ -40,18 +41,18 @@ class ReactNativeDemoScreenSpec extends TestSpec with ShallowRendererUtils {
     val Stack = createStackNavigator()
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
-        <.>()(
+        <.View()(
           getReactNativeScreens(Stack)
         )
       }
     }
 
     //when
-    val result = shallowRender(<(wrapper())()())
+    val result = testRender(<(wrapper())()())
 
     //then
     assertNativeComponent(result,
-      <.>()(
+      <.View()(
         <(Stack.Screen)(^.name := "ActivityIndicator", ^.component := ActivityIndicatorDemo())(),
         <(Stack.Screen)(^.name := "Button", ^.component := ButtonDemo())(),
         <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),

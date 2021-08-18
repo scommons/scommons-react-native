@@ -5,13 +5,13 @@ import scommons.reactnative.ScrollView._
 import scommons.reactnative.{raw, _}
 import showcase.app.ShowcaseListView._
 
-class ShowcaseListViewSpec extends TestSpec with ShallowRendererUtils {
+class ShowcaseListViewSpec extends TestSpec with TestRendererUtils {
 
   it should "call navigate when onPress" in {
     //given
     val navigate = mockFunction[String, Unit]
     val props = getShowcaseListViewProps(navigate = navigate)
-    val comp = shallowRender(<(ShowcaseListView())(^.wrapped := props)())
+    val comp = testRender(<(ShowcaseListView())(^.wrapped := props)())
     val touchable = inside(findComponents(comp, raw.TouchableWithoutFeedback)) {
       case List(touchable) => touchable
     }
@@ -32,7 +32,7 @@ class ShowcaseListViewSpec extends TestSpec with ShallowRendererUtils {
     val component = <(ShowcaseListView())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

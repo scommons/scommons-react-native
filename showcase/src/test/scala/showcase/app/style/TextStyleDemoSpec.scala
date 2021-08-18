@@ -1,7 +1,7 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative.IOSTextStyle._
 import scommons.reactnative.Style._
 import scommons.reactnative.TextStyle._
@@ -10,7 +10,9 @@ import showcase.app.style.TextStyleDemo._
 
 import scala.scalajs.js
 
-class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class TextStyleDemoSpec extends TestSpec with TestRendererUtils {
+
+  TextStyleDemo.leftTextComp = () => "LeftText".asInstanceOf[ReactClass]
 
   it should "render LeftText component" in {
     //given
@@ -20,7 +22,7 @@ class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(LeftText())(^.rnStyle := style)("test child")
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -38,30 +40,30 @@ class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(TextStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.screen)(
         <.View(^.rnStyle := styles.container)(
-          <(LeftText())(^.rnStyle := new TextStyle {
+          <(leftTextComp())(^.rnStyle := new TextStyle {
             override val fontStyle = FontStyle.italic
           })(
             "A) Italic"
           ),
-          <(LeftText())(^.rnStyle := new TextStyle {
+          <(leftTextComp())(^.rnStyle := new TextStyle {
             override val textDecorationLine = TextDecorationLine.`underline line-through`
           })(
             "B) Underline and Line Through"
           ),
-          <(LeftText())(^.rnStyle := new IOSTextStyle {
+          <(leftTextComp())(^.rnStyle := new IOSTextStyle {
             override val textDecorationLine = TextDecorationLine.`underline line-through`
             override val textDecorationColor = Color.red
             override val textDecorationStyle = TextDecorationStyle.dotted
           })(
             "C) Underline and Line Through"
           ),
-          <(LeftText())(^.rnStyle := new TextStyle {
+          <(leftTextComp())(^.rnStyle := new TextStyle {
             override val textShadowColor = Color.red
             override val textShadowOffset = new ShadowOffset {
               override val width = -2
@@ -71,12 +73,12 @@ class TextStyleDemoSpec extends TestSpec with ShallowRendererUtils {
           })(
             "D) Text Shadow"
           ),
-          <(LeftText())(^.rnStyle := new IOSTextStyle {
+          <(leftTextComp())(^.rnStyle := new IOSTextStyle {
             override val letterSpacing = 5
           })(
             "E) Letter Spacing"
           ),
-          <(LeftText())(^.rnStyle := new TextStyle {
+          <(leftTextComp())(^.rnStyle := new TextStyle {
             override val textAlign = TextAlign.center
             override val fontWeight = FontWeight.bold
           })(

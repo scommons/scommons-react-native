@@ -5,7 +5,7 @@ import org.scalatest.Succeeded
 import scommons.api.{ApiStatus, StatusResponse}
 import scommons.nodejs.test.AsyncTestSpec
 import scommons.react.redux.task.FutureTask
-import scommons.react.test.{BaseTestSpec, ShallowRendererUtils}
+import scommons.react.test.{BaseTestSpec, TestRendererUtils}
 import scommons.reactnative._
 import scommons.reactnative.raw.{Alert => NativeAlert}
 import showcase.api.task.DemoTaskApi
@@ -18,7 +18,7 @@ import scala.scalajs.js
 
 class DemoTaskScreenSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils {
+  with TestRendererUtils {
 
   it should "dispatch actions and call alert() when press Successful Request" in {
     //given
@@ -30,8 +30,10 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
     setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
-    val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
-    val List(successReqBtn, _, _) = findComponents(comp, raw.Button)
+    val comp = testRender(<(DemoTaskScreen())(^.wrapped := props)())
+    val successReqBtn = inside(findComponents(comp, raw.Button)) {
+      case List(successReqBtn, _, _) => successReqBtn
+    }
 
     val resp = "test resp"
     val action = SuccessfulFetchAction(
@@ -65,8 +67,10 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
     setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
-    val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
-    val List(_, timedoutReqBtn, _) = findComponents(comp, raw.Button)
+    val comp = testRender(<(DemoTaskScreen())(^.wrapped := props)())
+    val timedoutReqBtn = inside(findComponents(comp, raw.Button)) {
+      case List(_, timedoutReqBtn, _) => timedoutReqBtn
+    }
 
     val action = FailingApiAction(
       FutureTask("Timedout", Future.failed(new Exception("timedout resp")))
@@ -92,8 +96,10 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     val alertMock = mockFunction[String, String, js.Array[raw.AlertButton], raw.AlertOptions, Unit]
     setAlertMock(alertMock)
     val props = getDemoTaskScreenProps(dispatch, actions)
-    val comp = shallowRender(<(DemoTaskScreen())(^.wrapped := props)())
-    val List(_, _, failedReqBtn) = findComponents(comp, raw.Button)
+    val comp = testRender(<(DemoTaskScreen())(^.wrapped := props)())
+    val failedReqBtn = inside(findComponents(comp, raw.Button)) {
+      case List(_, _, failedReqBtn) => failedReqBtn
+    }
 
     val action = FailingApiAction(
       FutureTask("Filed", Future.successful(StatusResponse(
@@ -117,7 +123,7 @@ class DemoTaskScreenSpec extends AsyncTestSpec
     val component = <(DemoTaskScreen())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,

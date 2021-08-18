@@ -7,25 +7,25 @@ import scommons.react.test._
 import scommons.reactnative._
 import scommons.reactnative.ui._
 
-class ChoiceGroupDemoSpec extends TestSpec
-  with BaseTestSpec
-  with ShallowRendererUtils {
+class ChoiceGroupDemoSpec extends TestSpec with TestRendererUtils {
+
+  ChoiceGroupDemo.customChoiceGroupComp = () => "CustomChoiceGroup".asInstanceOf[ReactClass]
+  ChoiceGroupDemo.choiceGroupComp = () => "ChoiceGroup".asInstanceOf[ReactClass]
 
   it should "select single item when single select" in {
     //given
-    val singleSelectComp = ChoiceGroup
-    val renderer = createRenderer()
-    renderer.render(<(ChoiceGroupDemo())()())
-    val choiceComp = findComponentProps(renderer.getRenderOutput(), singleSelectComp)
+    val singleSelectComp = choiceGroupComp
+    val renderer = createTestRenderer(<(ChoiceGroupDemo())()())
+    val choiceComp = findComponentProps(renderer.root, singleSelectComp)
 
     //when & then
     choiceComp.onSelectChange(Set("1"))
-    inside(findComponentProps(renderer.getRenderOutput(), singleSelectComp)) { case choice1 =>
+    inside(findComponentProps(renderer.root, singleSelectComp)) { case choice1 =>
       choice1.selectedIds shouldBe Set("1")
     
       //when & then
       choice1.onSelectChange(Set("2"))
-      inside(findComponentProps(renderer.getRenderOutput(), singleSelectComp)) { case choice2 =>
+      inside(findComponentProps(renderer.root, singleSelectComp)) { case choice2 =>
         choice2.selectedIds shouldBe Set("2")
       }
     }
@@ -33,19 +33,18 @@ class ChoiceGroupDemoSpec extends TestSpec
 
   it should "select multiple items when multi select" in {
     //given
-    val multiSelectComp = choiceGroupComp
-    val renderer = createRenderer()
-    renderer.render(<(ChoiceGroupDemo())()())
-    val choiceComp = findComponentProps(renderer.getRenderOutput(), multiSelectComp)
+    val multiSelectComp = customChoiceGroupComp
+    val renderer = createTestRenderer(<(ChoiceGroupDemo())()())
+    val choiceComp = findComponentProps(renderer.root, multiSelectComp)
 
     //when & then
     choiceComp.onSelectChange(Set(1))
-    inside(findComponentProps(renderer.getRenderOutput(), multiSelectComp)) { case choice1 =>
+    inside(findComponentProps(renderer.root, multiSelectComp)) { case choice1 =>
       choice1.selectedIds shouldBe Set(1)
     
       //when & then
       choice1.onSelectChange(Set(1, 2))
-      inside(findComponentProps(renderer.getRenderOutput(), multiSelectComp)) { case choice2 =>
+      inside(findComponentProps(renderer.root, multiSelectComp)) { case choice2 =>
         choice2.selectedIds shouldBe Set(1, 2)
       }
     }
@@ -56,13 +55,13 @@ class ChoiceGroupDemoSpec extends TestSpec
     val component = <(ChoiceGroupDemo())()()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertChoiceGroup(result)
   }
   
-  private def assertChoiceGroup(result: ShallowInstance): Unit = {
+  private def assertChoiceGroup(result: TestInstance): Unit = {
     implicit val theme: Theme = DefaultTheme
     
     assertNativeComponent(result, <.View(^.rnStyle := styles.container)(), { case List(t1, c1, t2, c2) =>
@@ -70,7 +69,7 @@ class ChoiceGroupDemoSpec extends TestSpec
         "Single-select (simple):"
       ))
 
-      assertComponent(c1, ChoiceGroup) {
+      assertTestComponent(c1, choiceGroupComp) {
         case ChoiceGroupProps(items, keyExtractor, _, _, selectedIds, _, multiSelect, style) =>
           items shouldBe List(
             ChoiceItemData("1", "item1"),
@@ -86,7 +85,7 @@ class ChoiceGroupDemoSpec extends TestSpec
         "Multi-select (with custom data):"
       ))
 
-      assertComponent(c2, choiceGroupComp) {
+      assertTestComponent(c2, customChoiceGroupComp) {
         case ChoiceGroupProps(items, keyExtractor, _, labelRenderer, selectedIds, _, multiSelect, style) =>
           val data = ChoiceData(1, "option 1", 0.1)
           
@@ -104,13 +103,13 @@ class ChoiceGroupDemoSpec extends TestSpec
     })
   }
 
-  private def wrapAndRender(element: ReactElement): ShallowInstance = {
+  private def wrapAndRender(element: ReactElement): TestInstance = {
     val wrapper = new FunctionComponent[Unit] {
       protected def render(props: Props): ReactElement = {
         element
       }
     }.apply()
 
-    shallowRender(<(wrapper)()())
+    testRender(<(wrapper)()())
   }
 }

@@ -9,7 +9,6 @@ import showcase.app.expo.AssetDemo.styles
 
 class AssetDemoSpec extends AsyncTestSpec
   with BaseTestSpec
-  with ShallowRendererUtils
   with TestRendererUtils {
 
   it should "load asset asynchronously when mount" in {
@@ -47,7 +46,7 @@ class AssetDemoSpec extends AsyncTestSpec
     val component = <(AssetDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

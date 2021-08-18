@@ -1,13 +1,16 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.PaddingStyleDemo._
 
 import scala.scalajs.js
 
-class PaddingStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class PaddingStyleDemoSpec extends TestSpec with TestRendererUtils {
+
+  PaddingStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
+  PaddingStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
 
   it should "render Example component" in {
     //given
@@ -19,7 +22,7 @@ class PaddingStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -39,7 +42,7 @@ class PaddingStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -54,37 +57,37 @@ class PaddingStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(PaddingStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())()(
-            <(CenteredText())()("A")
+          <(exampleComp())()(
+            <(centeredTextComp())()("A")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val paddingTop = 50
           })(
-            <(CenteredText())()("B")
+            <(centeredTextComp())()("B")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val paddingTop = 50
             override val paddingLeft = 10
           })(
-            <(CenteredText())()("C")
+            <(centeredTextComp())()("C")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val paddingLeft = -10
             override val paddingTop = -10
           })(
-            <(CenteredText())()("D")
+            <(centeredTextComp())()("D")
           )
         )
       )

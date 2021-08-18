@@ -8,16 +8,14 @@ import scommons.reactnative.safearea._
 import scommons.reactnative.webview._
 import showcase.app.community.WebViewDemo._
 
-class WebViewDemoSpec extends TestSpec
-  with BaseTestSpec
-  with ShallowRendererUtils {
+class WebViewDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "render component" in {
     //given
     val component = <(WebViewDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     implicit val theme: Theme = DefaultTheme

@@ -1,21 +1,20 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.ShowcaseImages
 import showcase.app.style.ProfileCard._
 
 import scala.scalajs.js
 
-class ProfileCardSpec extends TestSpec with ShallowRendererUtils {
+class ProfileCardSpec extends TestSpec with TestRendererUtils {
 
   it should "render component" in {
     //given
     val component = <(ProfileCard())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

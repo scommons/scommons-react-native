@@ -6,13 +6,13 @@ import scommons.reactnative.TextInput._
 import scommons.reactnative._
 import showcase.TextInputDemo.styles
 
-class TextInputDemoSpec extends TestSpec with ShallowRendererUtils {
+class TextInputDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "call onChangeText" in {
     //given
     val onChangeText = mockFunction[String, Unit]
     val props = TextInputDemoProps(onChangeText = onChangeText)
-    val comp = shallowRender(<(TextInputDemo())(^.wrapped := props)())
+    val comp = testRender(<(TextInputDemo())(^.wrapped := props)())
     val text = "new text"
     
     //then
@@ -31,7 +31,7 @@ class TextInputDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(TextInputDemo())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,

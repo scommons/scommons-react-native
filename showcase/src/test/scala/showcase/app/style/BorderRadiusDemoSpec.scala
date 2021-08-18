@@ -1,13 +1,16 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.BorderRadiusDemo._
 
 import scala.scalajs.js
 
-class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
+class BorderRadiusDemoSpec extends TestSpec with TestRendererUtils {
+
+  BorderRadiusDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
+  BorderRadiusDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
 
   it should "render Example component" in {
     //given
@@ -19,7 +22,7 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     )
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -39,7 +42,7 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     )
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -54,32 +57,32 @@ class BorderRadiusDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(BorderRadiusDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderRadius = 20
         })(
-          <(CenteredText())()("Example 1:\n4 Rounded Corners")
+          <(centeredTextComp())()("Example 1:\n4 Rounded Corners")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderTopRightRadius = 60
           override val borderBottomRightRadius = 60
         })(
-          <(CenteredText())()("Example 2:\nD Shape")
+          <(centeredTextComp())()("Example 2:\nD Shape")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderTopLeftRadius = 30
           override val borderBottomRightRadius = 30
         })(
-          <(CenteredText())()("Example 3:\nLeaf Shape")
+          <(centeredTextComp())()("Example 3:\nLeaf Shape")
         ),
-        <(Example())(^.rnStyle := new Style {
+        <(exampleComp())(^.rnStyle := new Style {
           override val borderRadius = 60
         })(
-          <(CenteredText())()("Example 4:\nCircle")
+          <(centeredTextComp())()("Example 4:\nCircle")
         )
       )
     )

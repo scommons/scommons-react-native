@@ -10,15 +10,18 @@ import scala.scalajs.js
   */
 object SvgDemo extends FunctionComponent[Unit] {
 
+  private[community] var svgXmlDemoComp: UiComponent[Unit] = SvgXmlDemo
+  private[community] var svgCssDemoComp: UiComponent[Unit] = SvgCssDemo
+
   protected def render(props: Props): ReactElement = {
     implicit val theme: Theme = useTheme()
     
     <.View(^.rnStyle := styles.container)(
       <.Text(themeStyle(styles.title, themeTextStyle))("SvgXml:"),
-      <(SvgXmlDemo())()(),
+      <(svgXmlDemoComp())()(),
 
       <.Text(themeStyle(styles.title, themeTextStyle))("SvgCss:"),
-      <(SvgCssDemo())()()
+      <(svgCssDemoComp())()()
     )
   }
 

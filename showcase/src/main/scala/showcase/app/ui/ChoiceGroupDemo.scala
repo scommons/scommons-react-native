@@ -12,7 +12,9 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
 
   case class ChoiceData(id: Int, name: String, info: Double)
   
-  private[ui] lazy val choiceGroupComp = new ChoiceGroup[Int, ChoiceData]
+  private[ui] var customChoiceGroupComp: UiComponent[ChoiceGroupProps[Int, ChoiceData]] =
+    new ChoiceGroup[Int, ChoiceData]
+  private[ui] var choiceGroupComp: UiComponent[ChoiceGroupProps[String, ChoiceItemData]] = ChoiceGroup
 
   protected def render(props: Props): ReactElement = {
     implicit val theme: Theme = useTheme()
@@ -23,7 +25,7 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
       <.Text(themeStyle(styles.title, themeTextStyle))(
         "Single-select (simple):"
       ),
-      <(ChoiceGroup())(^.wrapped := ChoiceGroupProps(
+      <(choiceGroupComp())(^.wrapped := ChoiceGroupProps(
         items = List(
           ChoiceItemData("1", "item1"),
           ChoiceItemData("2", "item2")
@@ -36,15 +38,15 @@ object ChoiceGroupDemo extends FunctionComponent[Unit] {
       <.Text(themeStyle(styles.title, themeTextStyle))(
         "Multi-select (with custom data):"
       ),
-      <(choiceGroupComp())(^.wrapped := new ChoiceGroupProps[Int, ChoiceData](
+      <(customChoiceGroupComp())(^.wrapped := new ChoiceGroupProps[Int, ChoiceData](
         items = List(
           ChoiceData(1, "option 1", 0.1),
           ChoiceData(2, "option 2", 0.2)
         ),
         keyExtractor = _.id,
         iconRenderer = ChoiceGroupProps.defaultIconRenderer(multiSelect = true),
-        labelRenderer = { (data, theme) =>
-          implicit val t: Theme = theme
+        labelRenderer = { (data, t) =>
+          implicit val theme: Theme = t
           <.Text(themeStyle(styles.label, themeTextStyle))(data.name)
         },
         selectedIds = multiSelectIds,

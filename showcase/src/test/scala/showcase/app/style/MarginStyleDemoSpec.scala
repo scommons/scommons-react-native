@@ -1,13 +1,16 @@
 package showcase.app.style
 
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react._
+import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.MarginStyleDemo._
 
 import scala.scalajs.js
 
-class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
+class MarginStyleDemoSpec extends TestSpec with TestRendererUtils {
+
+  MarginStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
+  MarginStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
 
   it should "render Example component" in {
     //given
@@ -19,7 +22,7 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
@@ -39,7 +42,7 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     )
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertNativeComponent(result,
@@ -54,37 +57,37 @@ class MarginStyleDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(MarginStyleDemo())()()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     assertNativeComponent(result,
       <.View(^.rnStyle := styles.container)(
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())()(
-            <(CenteredText())()("A")
+          <(exampleComp())()(
+            <(centeredTextComp())()("A")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val marginTop = 50
           })(
-            <(CenteredText())()("B")
+            <(centeredTextComp())()("B")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val marginTop = 50
             override val marginLeft = 10
           })(
-            <(CenteredText())()("C")
+            <(centeredTextComp())()("C")
           )
         ),
         <.View(^.rnStyle := styles.exampleContainer)(
-          <(Example())(^.rnStyle := new Style {
+          <(exampleComp())(^.rnStyle := new Style {
             override val marginLeft = -10
             override val marginTop = -10
           })(
-            <(CenteredText())()("D")
+            <(centeredTextComp())()("D")
           )
         )
       )

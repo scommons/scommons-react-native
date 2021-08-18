@@ -1,14 +1,12 @@
 package scommons.reactnative.ui.popup
 
-import scommons.react.test.TestSpec
-import scommons.react.test.raw.ShallowInstance
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.ActivityIndicator._
 import scommons.reactnative.Modal._
 import scommons.reactnative._
 import scommons.reactnative.ui.popup.LoadingPopup._
 
-class LoadingPopupSpec extends TestSpec with ShallowRendererUtils {
+class LoadingPopupSpec extends TestSpec with TestRendererUtils {
 
   it should "render component with custom props" in {
     //given
@@ -19,7 +17,7 @@ class LoadingPopupSpec extends TestSpec with ShallowRendererUtils {
     val component = <(LoadingPopup())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertLoadingPopup(result, props)
@@ -31,13 +29,13 @@ class LoadingPopupSpec extends TestSpec with ShallowRendererUtils {
     val component = <(LoadingPopup())(^.wrapped := props)()
 
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
 
     //then
     assertLoadingPopup(result, props)
   }
   
-  private def assertLoadingPopup(result: ShallowInstance, props: LoadingPopupProps): Unit = {
+  private def assertLoadingPopup(result: TestInstance, props: LoadingPopupProps): Unit = {
     assertNativeComponent(result,
       <.Modal(
         ^.animationType := AnimationType.none,

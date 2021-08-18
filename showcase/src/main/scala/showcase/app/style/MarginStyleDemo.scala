@@ -7,39 +7,6 @@ import scala.scalajs.js
 
 object MarginStyleDemo extends FunctionComponent[Unit] {
 
-  protected def render(props: Props): ReactElement = {
-    <.View(^.rnStyle := styles.container)(
-      <.View(^.rnStyle := styles.exampleContainer)(
-        <(Example())()(
-          <(CenteredText())()("A")
-        )
-      ),
-      <.View(^.rnStyle := styles.exampleContainer)(
-        <(Example())(^.rnStyle := new Style {
-          override val marginTop = 50
-        })(
-          <(CenteredText())()("B")
-        )
-      ),
-      <.View(^.rnStyle := styles.exampleContainer)(
-        <(Example())(^.rnStyle := new Style {
-          override val marginTop = 50
-          override val marginLeft = 10
-        })(
-          <(CenteredText())()("C")
-        )
-      ),
-      <.View(^.rnStyle := styles.exampleContainer)(
-        <(Example())(^.rnStyle := new Style {
-          override val marginLeft = -10
-          override val marginTop = -10
-        })(
-          <(CenteredText())()("D")
-        )
-      )
-    )
-  }
-
   private[style] val Example = new FunctionComponent[Unit] {
 
     protected def render(props: Props): ReactElement = {
@@ -62,6 +29,42 @@ object MarginStyleDemo extends FunctionComponent[Unit] {
         props.children
       )
     }
+  }
+
+  private[style] var exampleComp: UiComponent[Unit] = Example
+  private[style] var centeredTextComp: UiComponent[Unit] = CenteredText
+
+  protected def render(props: Props): ReactElement = {
+    <.View(^.rnStyle := styles.container)(
+      <.View(^.rnStyle := styles.exampleContainer)(
+        <(exampleComp())()(
+          <(centeredTextComp())()("A")
+        )
+      ),
+      <.View(^.rnStyle := styles.exampleContainer)(
+        <(exampleComp())(^.rnStyle := new Style {
+          override val marginTop = 50
+        })(
+          <(centeredTextComp())()("B")
+        )
+      ),
+      <.View(^.rnStyle := styles.exampleContainer)(
+        <(exampleComp())(^.rnStyle := new Style {
+          override val marginTop = 50
+          override val marginLeft = 10
+        })(
+          <(centeredTextComp())()("C")
+        )
+      ),
+      <.View(^.rnStyle := styles.exampleContainer)(
+        <(exampleComp())(^.rnStyle := new Style {
+          override val marginLeft = -10
+          override val marginTop = -10
+        })(
+          <(centeredTextComp())()("D")
+        )
+      )
+    )
   }
 
   private[style] lazy val styles = StyleSheet.create(new Styles)

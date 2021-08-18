@@ -2,14 +2,13 @@ package showcase
 
 import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.navigation._
-import scommons.react.test.TestSpec
-import scommons.react.test.util.ShallowRendererUtils
+import scommons.react.test._
 import scommons.reactnative.Switch._
 import scommons.reactnative._
 import showcase.SwitchDemo.styles
 import showcase.app.config.ShowcaseConfigActions
 
-class SwitchDemoSpec extends TestSpec with ShallowRendererUtils {
+class SwitchDemoSpec extends TestSpec with TestRendererUtils {
 
   it should "call updateTheme when onValueChange" in {
     //given
@@ -21,8 +20,10 @@ class SwitchDemoSpec extends TestSpec with ShallowRendererUtils {
       }
     }
     val props = SwitchDemoProps(dispatch, actions, darkTheme = false)
-    val comp = shallowRender(<(SwitchDemo())(^.wrapped := props)())
-    val List(switchComp) = findComponents(comp, <.Switch.reactClass)
+    val comp = testRender(<(SwitchDemo())(^.wrapped := props)())
+    val switchComp = inside(findComponents(comp, <.Switch.reactClass)) {
+      case List(switchComp) => switchComp
+    }
     val darkTheme = true
 
     //then
@@ -43,7 +44,7 @@ class SwitchDemoSpec extends TestSpec with ShallowRendererUtils {
     val component = <(SwitchDemo())(^.wrapped := props)()
     
     //when
-    val result = shallowRender(component)
+    val result = testRender(component)
     
     //then
     implicit val theme: Theme = DefaultTheme

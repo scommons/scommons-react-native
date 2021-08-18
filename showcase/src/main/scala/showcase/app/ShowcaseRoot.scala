@@ -42,7 +42,7 @@ object ShowcaseRoot extends FunctionComponent[ShowcaseRootProps] {
           else DefaultTheme
         })(
           <(AppStack.Navigator)(
-            ^.screenOptions := { navProps =>
+            ^.screenOptions := { navProps: NavigationProps =>
               val screenTitle = getScreenTitle(navProps)
               val options = new StackScreenOptions {
                 val headerBackTitleVisible = false
