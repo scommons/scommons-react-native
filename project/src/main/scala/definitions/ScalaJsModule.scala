@@ -18,8 +18,6 @@ trait ScalaJsModule extends ReactNativeModule {
       .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
       .settings(CommonMobileModule.settings: _*)
       .settings(
-        version in webpack := "4.29.0",
-
         // required for node.js >= v12.12.0
         // see:
         //   https://github.com/nodejs/node/pull/29919
