@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Showcase",
+    "entryPoint": "./App.dev.js",
     "slug": "showcase",
     "privacy": "public",
     "platforms": [

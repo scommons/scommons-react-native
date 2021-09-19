@@ -37,11 +37,11 @@ script:
        sbt clean publish;
        
        echo "Publish to expo";
-       sbt "project scommons-react-native-showcase" fastOptJS;
+       sbt "project scommons-react-native-showcase" fullOptJS;
        cd showcase;
        npm install;
        expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD;
-       expo publish --non-interactive;
+       EXPO_ENV=production expo publish --non-interactive;
     else
        echo "Publish a release version=$TRAVIS_TAG";
        version=$TRAVIS_TAG sbt clean publishSigned sonatypeBundleRelease;
