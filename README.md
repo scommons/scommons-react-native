@@ -112,13 +112,13 @@ Note: Many examples are from an excellent book [React Native in Action](https://
 * [react-native-htmlview](showcase/src/main/scala/showcase/app/community/HTMLViewDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/HTMLViewDemoSpec.scala)
 * [react-native-syntax-highlighter](showcase/src/main/scala/showcase/app/community/SyntaxHighlighterDemo.scala) => [tests](showcase/src/test/scala/showcase/app/community/SyntaxHighlighterDemoSpec.scala)
 
-#### react-navigation (v5)
+#### react-navigation (v6)
 
-* [Components](https://reactnavigation.org/docs/en/hello-react-navigation.html)
+* [Components](https://reactnavigation.org/docs/hello-react-navigation/)
   * [StackNavigator](showcase/src/main/scala/showcase/app/ReactNativeDemoScreen.scala) => [tests](showcase/src/test/scala/showcase/app/ReactNativeDemoScreenSpec.scala)
   * [BottomTabNavigator](showcase/src/main/scala/showcase/app/ShowcaseRoot.scala) => [tests](showcase/src/test/scala/showcase/app/ShowcaseRootSpec.scala)
 
-* [APIs](https://reactnavigation.org/docs/en/navigation-prop.html)
+* [APIs](https://reactnavigation.org/docs/navigation-prop/)
   * [Navigation](navigation/src/main/scala/scommons/react/navigation/Navigation.scala) => [tests](navigation/src/test/scala/scommons/react/navigation/NavigationSpec.scala)
 
 #### expo modules

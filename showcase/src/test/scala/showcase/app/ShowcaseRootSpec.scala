@@ -96,9 +96,10 @@ class ShowcaseRootSpec extends TestSpec with TestRendererUtils {
     assertNativeComponent(result,
       <(HomeTab.Navigator)(
         ^.initialRouteName := "Home",
-        ^.tabLazy := false,
-        ^.tabBarOptions := new TabBarOptions {
-          override val labelPosition = LabelPosition.`below-icon`
+        ^.screenOptions := new TabScreenOptions {
+          override val headerShown = false
+          override val `lazy` = false
+          override val tabBarLabelPosition = LabelPosition.`below-icon`
         }
       )(), { case List(tab1, tab2, tab3, tab4) =>
         assertNativeComponent(tab1,

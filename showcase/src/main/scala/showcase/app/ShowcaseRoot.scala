@@ -70,10 +70,11 @@ object ShowcaseRoot extends FunctionComponent[ShowcaseRootProps] {
     protected def render(props: Props): ReactElement = {
       <(HomeTab.Navigator)(
         ^.initialRouteName := "Home",
-        ^.tabLazy := false,
-        ^.tabBarOptions := new TabBarOptions {
+        ^.screenOptions := new TabScreenOptions {
           //override val activeTintColor = "#e91e63"
-          override val labelPosition = LabelPosition.`below-icon`
+          override val headerShown = false
+          override val `lazy` = false
+          override val tabBarLabelPosition = LabelPosition.`below-icon`
         }
       )(
         <(HomeTab.Screen)(
