@@ -4,6 +4,7 @@ const moduleAlias = require('module-alias')
 //  https://www.npmjs.com/package/module-alias
 //
 moduleAlias.addAliases({
+  'react-redux': 'react-redux/lib/alternate-renderers',
   'react-native': __dirname + '/sc-react-native-mocks.js',
   'react-native-safe-area-context': __dirname + '/sc-react-native-community-mocks.js',
   'react-native-svg': __dirname + '/sc-react-native-community-mocks.js',
