@@ -1,7 +1,7 @@
 package showcase.app.community
 
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.navigation.{Navigation, raw}
+import scommons.react.redux._
 import scommons.react.test.TestSpec
 import showcase.app.ShowcaseState
 import showcase.app.config.ShowcaseConfig

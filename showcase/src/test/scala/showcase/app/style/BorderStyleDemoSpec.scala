@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative.Style._
 import scommons.reactnative._
@@ -10,7 +9,7 @@ import scala.scalajs.js
 
 class BorderStyleDemoSpec extends TestSpec with TestRendererUtils {
 
-  BorderStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
+  BorderStyleDemo.exampleComp = mockUiComponent("Example")
 
   it should "render Example component" in {
     //given

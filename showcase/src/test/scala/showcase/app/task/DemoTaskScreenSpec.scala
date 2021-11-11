@@ -1,9 +1,9 @@
 package showcase.app.task
 
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import org.scalatest.Succeeded
 import scommons.api.{ApiStatus, StatusResponse}
 import scommons.nodejs.test.AsyncTestSpec
+import scommons.react.redux.Dispatch
 import scommons.react.redux.task.FutureTask
 import scommons.react.test.{BaseTestSpec, TestRendererUtils}
 import scommons.reactnative._

@@ -1,7 +1,7 @@
 package showcase.app.task
 
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react._
+import scommons.react.redux.Dispatch
 import scommons.reactnative._
 
 import scala.concurrent.ExecutionContext.Implicits.global

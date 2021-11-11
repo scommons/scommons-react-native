@@ -1,9 +1,9 @@
 package showcase
 
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import showcase.app.config.ShowcaseConfigActions
 import scommons.react._
 import scommons.react.navigation._
+import scommons.react.redux._
 import scommons.reactnative.Switch._
 import scommons.reactnative._
 

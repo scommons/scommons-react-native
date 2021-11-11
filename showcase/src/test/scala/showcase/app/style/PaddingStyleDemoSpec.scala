@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.PaddingStyleDemo._
@@ -9,8 +8,8 @@ import scala.scalajs.js
 
 class PaddingStyleDemoSpec extends TestSpec with TestRendererUtils {
 
-  PaddingStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
-  PaddingStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
+  PaddingStyleDemo.exampleComp = mockUiComponent("Example")
+  PaddingStyleDemo.centeredTextComp = mockUiComponent("CenteredText")
 
   it should "render Example component" in {
     //given

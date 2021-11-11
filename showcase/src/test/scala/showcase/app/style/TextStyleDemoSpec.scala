@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative.IOSTextStyle._
 import scommons.reactnative.Style._
@@ -12,7 +11,7 @@ import scala.scalajs.js
 
 class TextStyleDemoSpec extends TestSpec with TestRendererUtils {
 
-  TextStyleDemo.leftTextComp = () => "LeftText".asInstanceOf[ReactClass]
+  TextStyleDemo.leftTextComp = mockUiComponent("LeftText")
 
   it should "render LeftText component" in {
     //given

@@ -1,6 +1,5 @@
 package showcase.app.community
 
-import scommons.react._
 import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
@@ -8,8 +7,8 @@ import showcase.app.community.SvgDemo._
 
 class SvgDemoSpec extends TestSpec with TestRendererUtils {
 
-  SvgDemo.svgXmlDemoComp = () => "SvgXmlDemo".asInstanceOf[ReactClass]
-  SvgDemo.svgCssDemoComp = () => "SvgCssDemo".asInstanceOf[ReactClass]
+  SvgDemo.svgXmlDemoComp = mockUiComponent("SvgXmlDemo")
+  SvgDemo.svgCssDemoComp = mockUiComponent("SvgCssDemo")
 
   it should "render component" in {
     //given

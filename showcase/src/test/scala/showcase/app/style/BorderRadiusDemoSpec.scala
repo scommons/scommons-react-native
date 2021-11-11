@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.BorderRadiusDemo._
@@ -9,8 +8,8 @@ import scala.scalajs.js
 
 class BorderRadiusDemoSpec extends TestSpec with TestRendererUtils {
 
-  BorderRadiusDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
-  BorderRadiusDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
+  BorderRadiusDemo.exampleComp = mockUiComponent("Example")
+  BorderRadiusDemo.centeredTextComp = mockUiComponent("CenteredText")
 
   it should "render Example component" in {
     //given

@@ -1,9 +1,8 @@
 package scommons.reactnative.app
 
 import io.github.shogowada.scalajs.reactjs.React.Props
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.react.navigation._
-import scommons.react.redux.BaseStateController
+import scommons.react.redux._
 
 trait BaseStateAndRouteController[S, P] extends BaseStateController[S, P] {
 

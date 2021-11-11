@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.PositionStyleDemo._
@@ -9,8 +8,8 @@ import scala.scalajs.js
 
 class PositionStyleDemoSpec extends TestSpec with TestRendererUtils {
 
-  PositionStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
-  PositionStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
+  PositionStyleDemo.exampleComp = mockUiComponent("Example")
+  PositionStyleDemo.centeredTextComp = mockUiComponent("CenteredText")
 
   it should "render Example component" in {
     //given

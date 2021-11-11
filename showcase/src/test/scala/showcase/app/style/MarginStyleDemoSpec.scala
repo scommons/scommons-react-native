@@ -1,6 +1,5 @@
 package showcase.app.style
 
-import scommons.react._
 import scommons.react.test._
 import scommons.reactnative._
 import showcase.app.style.MarginStyleDemo._
@@ -9,8 +8,8 @@ import scala.scalajs.js
 
 class MarginStyleDemoSpec extends TestSpec with TestRendererUtils {
 
-  MarginStyleDemo.exampleComp = () => "Example".asInstanceOf[ReactClass]
-  MarginStyleDemo.centeredTextComp = () => "CenteredText".asInstanceOf[ReactClass]
+  MarginStyleDemo.exampleComp = mockUiComponent("Example")
+  MarginStyleDemo.centeredTextComp = mockUiComponent("CenteredText")
 
   it should "render Example component" in {
     //given

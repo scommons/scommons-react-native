@@ -9,8 +9,8 @@ import scommons.reactnative.ui._
 
 class ChoiceGroupDemoSpec extends TestSpec with TestRendererUtils {
 
-  ChoiceGroupDemo.customChoiceGroupComp = () => "CustomChoiceGroup".asInstanceOf[ReactClass]
-  ChoiceGroupDemo.choiceGroupComp = () => "ChoiceGroup".asInstanceOf[ReactClass]
+  ChoiceGroupDemo.customChoiceGroupComp = mockUiComponent("CustomChoiceGroup")
+  ChoiceGroupDemo.choiceGroupComp = mockUiComponent("ChoiceGroup")
 
   it should "select single item when single select" in {
     //given

@@ -1,7 +1,6 @@
 package showcase.app.config
 
-import io.github.shogowada.scalajs.reactjs.redux.Action
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
+import scommons.react.redux._
 import showcase.app.config.ShowcaseConfigActions._
 
 trait ShowcaseConfigActions {

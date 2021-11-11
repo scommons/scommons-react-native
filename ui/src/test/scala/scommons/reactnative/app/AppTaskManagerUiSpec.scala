@@ -2,7 +2,6 @@ package scommons.reactnative.app
 
 import scommons.api.http.{ApiHttpResponse, ApiHttpStatusException}
 import scommons.api.{ApiStatus, StatusResponse}
-import scommons.react._
 import scommons.react.redux.task.TaskManagerUiProps
 import scommons.react.test._
 import scommons.reactnative.ActivityIndicator._
@@ -14,9 +13,9 @@ import scala.util.{Failure, Success}
 
 class AppTaskManagerUiSpec extends TestSpec with TestRendererUtils {
 
-  AppTaskManagerUi.taskLoggerComp = () => "TaskLogger".asInstanceOf[ReactClass]
-  AppTaskManagerUi.loadingPopup = () => "LoadingPopup".asInstanceOf[ReactClass]
-  AppTaskManagerUi.errorPopup = () => "ErrorPopup".asInstanceOf[ReactClass]
+  AppTaskManagerUi.taskLoggerComp = mockUiComponent("TaskLogger")
+  AppTaskManagerUi.loadingPopup = mockUiComponent("LoadingPopup")
+  AppTaskManagerUi.errorPopup = mockUiComponent("ErrorPopup")
 
   it should "return error if unsuccessful response in errorHandler" in {
     //given

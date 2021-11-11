@@ -1,8 +1,7 @@
 package showcase.app.task
 
-import io.github.shogowada.scalajs.reactjs.redux.Action
-import io.github.shogowada.scalajs.reactjs.redux.Redux.Dispatch
 import scommons.api.StatusResponse
+import scommons.react.redux._
 import scommons.react.redux.task.{FutureTask, TaskAction}
 import showcase.api.task.DemoTaskApi
 import showcase.app.task.DemoTaskActions._
