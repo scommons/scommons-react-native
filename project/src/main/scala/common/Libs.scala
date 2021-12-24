@@ -7,7 +7,7 @@ import scommons.sbtplugin.project.CommonLibs
 object Libs extends CommonLibs {
 
   val scommonsApiVersion = "0.7.0"
-  val scommonsReactVersion = "0.7.1"
+  val scommonsReactVersion = "1.0.0-SNAPSHOT"
   val scommonsNodejsVersion = "0.7.0"
   val scommonsWebSqlVersion = "0.7.1"
 
