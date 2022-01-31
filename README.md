@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/scommons/scommons-react-native.svg?branch=master)](https://travis-ci.com/scommons/scommons-react-native)
+[![CI](https://github.com/scommons/scommons-react-native/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/scommons/scommons-react-native/actions/workflows/ci.yml?query=workflow%3Aci+branch%3Amaster)
 [![Coverage Status](https://coveralls.io/repos/github/scommons/scommons-react-native/badge.svg?branch=master)](https://coveralls.io/github/scommons/scommons-react-native?branch=master)
 [![scala-index](https://index.scala-lang.org/scommons/scommons-react-native/scommons-react-native-core/latest.svg)](https://index.scala-lang.org/scommons/scommons-react-native/scommons-react-native-core)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.1.0.svg)](https://www.scala-js.org)
@@ -133,7 +133,7 @@ Note: Many examples are from an excellent book [React Native in Action](https://
 * [expo-sqlite](https://docs.expo.io/versions/latest/sdk/sqlite/)
   * [SQLite](showcase/src/main/scala/showcase/app/expo/sqlite/SQLiteDemo.scala) => [tests](showcase/src/test/scala/showcase/app/expo/sqlite/SQLiteDemoSpec.scala)
   * See [scommons-websql](https://github.com/scommons/scommons-websql) for how to:
-    * use [quill](https://getquill.io) bindings with expo SQLite
+    * use high-level `scommons-websql-io` module with expo SQLite
     * use `scommons-websql-migrations` to automate your DB schema versioning
 
 ### How to Build
