@@ -86,9 +86,9 @@ jobs:
         sbt -mem 2048 "project scommons-react-native-showcase" fullOptJS
         cd showcase
         npm install
-        npm install expo-cli --save-dev
+        npm install expo-cli@4 --save-dev
         ./node_modules/expo-cli/bin/expo.js login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-        EXPO_ENV=production ./node_modules/expo-cli/bin/expo.js publish --non-interactive
+        NODE_OPTIONS=--max_old_space_size=4096 EXPO_ENV=production ./node_modules/expo-cli/bin/expo.js publish --non-interactive
       if: ${{ !github.event.pull_request && env.TAG_NAME == '' }}
       env:
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
