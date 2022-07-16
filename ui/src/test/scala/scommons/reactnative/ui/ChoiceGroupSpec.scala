@@ -141,7 +141,9 @@ class ChoiceGroupSpec extends TestSpec with TestRendererUtils {
       )
     }
 
-    val List(item1, item2, item3) = items
+    val (item1, item2, item3) = inside(items) {
+      case List(item1, item2, item3) => (item1, item2, item3)
+    }
     
     assertNativeComponent(result,
       <.View(props.style.map(^.rnStyle := _))(

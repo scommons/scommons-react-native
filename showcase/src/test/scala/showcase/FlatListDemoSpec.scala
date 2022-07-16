@@ -19,7 +19,9 @@ class FlatListDemoSpec extends AsyncTestSpec
   it should "set refreshing when onRefresh" in {
     //given
     val renderer = createTestRenderer(<(FlatListDemo())()())
-    val List(flatList) = findComponents(renderer.root, <.FlatList.reactClass)
+    val flatList = inside(findComponents(renderer.root, <.FlatList.reactClass)) {
+      case List(flatList) => flatList
+    }
     flatList.props.refreshing shouldBe false
 
     //when
@@ -53,7 +55,9 @@ class FlatListDemoSpec extends AsyncTestSpec
     }
     
     //when & then
-    val List(flatList) = findComponents(renderer.root, <.FlatList.reactClass)
+    val flatList = inside(findComponents(renderer.root, <.FlatList.reactClass)) {
+      case List(flatList) => flatList
+    }
     assertTestComponent(renderItem(flatList), Item) {
       case ItemProps(title, selected, onPress) =>
         title shouldBe "First Item"
@@ -65,7 +69,9 @@ class FlatListDemoSpec extends AsyncTestSpec
     }
 
     //then
-    val List(selectedList) = findComponents(renderer.root, <.FlatList.reactClass)
+    val selectedList = inside(findComponents(renderer.root, <.FlatList.reactClass)) {
+      case List(selectedList) => selectedList
+    }
     assertTestComponent(renderItem(selectedList), Item) {
       case ItemProps(title, selected, onPress) =>
         title shouldBe "First Item"
@@ -77,7 +83,9 @@ class FlatListDemoSpec extends AsyncTestSpec
     }
     
     //then
-    val List(unselectedList) = findComponents(renderer.root, <.FlatList.reactClass)
+    val unselectedList = inside(findComponents(renderer.root, <.FlatList.reactClass)) {
+      case List(unselectedList) => unselectedList
+    }
     assertTestComponent(renderItem(unselectedList), Item) {
       case ItemProps(title, selected, _) =>
         title shouldBe "First Item"
@@ -88,7 +96,9 @@ class FlatListDemoSpec extends AsyncTestSpec
   it should "return data.id from keyExtractor" in {
     //given
     val comp = testRender(<(FlatListDemo())()())
-    val List(flatList) = findComponents(comp, <.FlatList.reactClass)
+    val flatList = inside(findComponents(comp, <.FlatList.reactClass)) {
+      case List(flatList) => flatList
+    }
     val data = dataList.head
     
     //when

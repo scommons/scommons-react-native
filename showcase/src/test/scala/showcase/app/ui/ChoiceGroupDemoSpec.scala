@@ -64,7 +64,7 @@ class ChoiceGroupDemoSpec extends TestSpec with TestRendererUtils {
   private def assertChoiceGroup(result: TestInstance): Unit = {
     implicit val theme: Theme = DefaultTheme
     
-    assertNativeComponent(result, <.View(^.rnStyle := styles.container)(), { case List(t1, c1, t2, c2) =>
+    assertNativeComponent(result, <.View(^.rnStyle := styles.container)(), inside(_) { case List(t1, c1, t2, c2) =>
       assertNativeComponent(t1, <.Text(themeStyle(styles.title, themeTextStyle))(
         "Single-select (simple):"
       ))

@@ -10,14 +10,14 @@ class PickerDemoSpec extends TestSpec with TestRendererUtils {
   it should "set selectedValue when onValueChange" in {
     //given
     val renderer = createTestRenderer(<(PickerDemo())()())
-    val List(picker) = findComponents(renderer.root, <.Picker.reactClass)
+    val picker = findComponents(renderer.root, <.Picker.reactClass).head
     picker.props.selectedValue shouldBe "1"
     
     //when
     picker.props.onValueChange("2", 1)
     
     //then
-    val List(updated) = findComponents(renderer.root, <.Picker.reactClass)
+    val updated = findComponents(renderer.root, <.Picker.reactClass).head
     updated.props.selectedValue shouldBe "2"
   }
   

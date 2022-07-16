@@ -19,7 +19,9 @@ class AlertDemoSpec extends TestSpec with TestRendererUtils {
     val okHandler = mockFunction[Unit]
     AlertDemo.okHandler = okHandler
     val comp = testRender(<(AlertDemo())()())
-    val List(showAlert, _) = findComponents(comp, raw.Button)
+    val showAlert = inside(findComponents(comp, raw.Button)) {
+      case List(showAlert, _) => showAlert
+    }
 
     //then
     okHandler.expects()

@@ -12,24 +12,34 @@ class ModalDemoSpec extends TestSpec with TestRendererUtils {
     //given
     val renderer = createTestRenderer(<(ModalDemo())()())
     findComponents(renderer.root, raw.Modal) shouldBe Nil
-    val List(showModal) = findComponents(renderer.root, raw.Button)
+    val showModal = inside(findComponents(renderer.root, raw.Button)) {
+      case List(showModal) => showModal
+    }
     
     //when
     showModal.props.onPress()
     
     //then
-    val List(modal) = findComponents(renderer.root, raw.Modal)
+    val modal = inside(findComponents(renderer.root, raw.Modal)) {
+      case List(modal) => modal
+    }
     modal.props.visible shouldBe true
   }
   
   it should "set visible to false when press Hide Modal" in {
     //given
     val renderer = createTestRenderer(<(ModalDemo())()())
-    val List(showModal) = findComponents(renderer.root, raw.Button)
+    val showModal = inside(findComponents(renderer.root, raw.Button)) {
+      case List(showModal) => showModal
+    }
     showModal.props.onPress()
-    val List(modal) = findComponents(renderer.root, raw.Modal)
+    val modal = inside(findComponents(renderer.root, raw.Modal)) {
+      case List(modal) => modal
+    }
     modal.props.visible shouldBe true
-    val List(hideModal, _) = findComponents(renderer.root, raw.Button)
+    val hideModal = inside(findComponents(renderer.root, raw.Button)) {
+      case List(hideModal, _) => hideModal
+    }
     
     //when
     hideModal.props.onPress()
@@ -56,7 +66,9 @@ class ModalDemoSpec extends TestSpec with TestRendererUtils {
   it should "render component with modal" in {
     //given
     val renderer = createTestRenderer(<(ModalDemo())()())
-    val List(showModal) = findComponents(renderer.root, raw.Button)
+    val showModal = inside(findComponents(renderer.root, raw.Button)) {
+      case List(showModal) => showModal
+    }
 
     //when
     showModal.props.onPress()
