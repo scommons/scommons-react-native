@@ -13,7 +13,7 @@ object ReactNativeShowcase extends ScalaJsModule {
 
   override def definition: Project = super.definition
     .settings(
-      skip in publish := true,
+      publish / skip := true,
       publish := ((): Unit),
       publishLocal := ((): Unit),
       publishM2 := ((): Unit),

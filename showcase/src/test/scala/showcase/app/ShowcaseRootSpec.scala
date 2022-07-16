@@ -101,7 +101,7 @@ class ShowcaseRootSpec extends TestSpec with TestRendererUtils {
           override val `lazy` = false
           override val tabBarLabelPosition = LabelPosition.`below-icon`
         }
-      )(), { case List(tab1, tab2, tab3, tab4) =>
+      )(), inside(_) { case List(tab1, tab2, tab3, tab4) =>
         assertNativeComponent(tab1,
           <(HomeTab.Screen)(^.name := "Home", ^.component := ShowcaseController())()
         )
