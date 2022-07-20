@@ -22,7 +22,7 @@ sbt "project scommons-react-native-showcase" fastOptJS
 Then, please make sure you have `expo-cli` **version 4** installed
 globally:
 ```bash
-npm i expo-cli@4 -g
+npm i expo-cli@5 -g
 ```
 
 To run the application locally, use the following command(s):
