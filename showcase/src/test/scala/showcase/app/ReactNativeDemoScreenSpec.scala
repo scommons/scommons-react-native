@@ -27,7 +27,6 @@ class ReactNativeDemoScreenSpec extends TestSpec with TestRendererUtils {
           "FlatList" -> "Demo FlatList component",
           "Image" -> "Demo Image component",
           "Modal" -> "Demo Modal component",
-          "Picker" -> "Demo Picker component",
           "Alert" -> "Demo Alert component",
           "Switch" -> "Demo Switch component",
           "Platform" -> "Demo Platform API"
@@ -58,7 +57,6 @@ class ReactNativeDemoScreenSpec extends TestSpec with TestRendererUtils {
         <(Stack.Screen)(^.name := "FlatList", ^.component := FlatListDemo())(),
         <(Stack.Screen)(^.name := "Image", ^.component := ImageDemo())(),
         <(Stack.Screen)(^.name := "Modal", ^.component := ModalDemo())(),
-        <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
         <(Stack.Screen)(^.name := "Alert", ^.component := AlertDemo())(),
         <(Stack.Screen)(^.name := "Switch", ^.component := switchComp)(),
         <(Stack.Screen)(^.name := "Platform", ^.component := PlatformDemo())()

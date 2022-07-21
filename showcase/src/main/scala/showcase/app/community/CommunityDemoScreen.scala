@@ -14,6 +14,7 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
 
     <(ShowcaseListView())(^.wrapped := ShowcaseListViewProps(
       items = List(
+        "Picker" -> "Demo Picker component",
         "Svg" -> "Demo Svg components",
         "WebView" -> "Demo WebView components",
         "HTMLView" -> "Demo HTMLView components",
@@ -24,6 +25,7 @@ object CommunityDemoScreen extends FunctionComponent[CommunityDemoScreenProps] {
   }
 
   def getCommunityScreens(stack: StackNavigator): Seq[ReactElement] = Seq(
+    <(stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
     <(stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
     <(stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
     <(stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),

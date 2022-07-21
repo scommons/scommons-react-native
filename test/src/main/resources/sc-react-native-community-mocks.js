@@ -1,6 +1,17 @@
 
+const createPicker = () => {
+  const Picker = function () {
+    return null
+  }
+  Picker.displayName = "Picker"
+  Picker.Item = "Picker.Item"
+  return Picker
+}
+
 module.exports = {
   
+  Picker: createPicker(),
+
   SvgXml: 'SvgXml',
   SvgCss: 'SvgCss',
   

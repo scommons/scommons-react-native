@@ -1,13 +1,14 @@
-package showcase
+package showcase.app.community
 
 import scommons.react._
 import scommons.react.hooks._
-import scommons.reactnative._
 import scommons.react.navigation._
+import scommons.reactnative._
+import scommons.reactnative.picker._
 
 import scala.scalajs.js
 
-/** @see https://reactnative.dev/docs/picker
+/** @see https://github.com/react-native-picker/picker
   */
 object PickerDemo extends FunctionComponent[Unit] {
 
@@ -28,12 +29,13 @@ object PickerDemo extends FunctionComponent[Unit] {
     )
   }
 
-  private[showcase] lazy val styles = StyleSheet.create(new Styles)
-  private[showcase] class Styles extends js.Object {
+  private[community] lazy val styles = StyleSheet.create(new Styles)
+
+  private[community] class Styles extends js.Object {
     
     val picker: Style = new ViewStyle {
       override val height = 50
-      override val width = 100
+      override val width = "100%"
     }
   }
 }

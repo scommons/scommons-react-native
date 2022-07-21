@@ -1,9 +1,10 @@
-package showcase
+package showcase.app.community
 
 import scommons.react.navigation._
 import scommons.react.test._
 import scommons.reactnative._
-import showcase.PickerDemo.styles
+import scommons.reactnative.picker._
+import showcase.app.community.PickerDemo.styles
 
 class PickerDemoSpec extends TestSpec with TestRendererUtils {
 

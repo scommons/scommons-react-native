@@ -1,24 +1,30 @@
 package scommons.reactnative
 
+import io.github.shogowada.scalajs.reactjs.VirtualDOM.VirtualDOMElements.ReactClassElementSpec
 import io.github.shogowada.scalajs.reactjs.VirtualDOM._
 import io.github.shogowada.statictags._
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-/** @see https://reactnative.dev/docs/picker
-  */
-object Picker {
+/** @see https://github.com/react-native-picker/picker
+ */
+package object picker {
 
-  trait PickerAttributes {
+  implicit class PickerVirtualDOMElements(elements: VirtualDOMElements) {
+    lazy val Picker: ReactClassElementSpec = elements(raw.Picker)
+    lazy val PickerItem: ReactClassElementSpec = elements(raw.Picker.Item)
+  }
 
-    import PickerAttributes._
+  implicit class PickerVirtualDOMAttributes(attributes: VirtualDOMAttributes) {
+
+    import PickerVirtualDOMAttributes._
 
     lazy val onValueChange = OnValueChangeAttributeSpec("onValueChange")
     lazy val selectedValue = SelectedValueAttributeSpec("selectedValue")
   }
 
-  object PickerAttributes {
+  object PickerVirtualDOMAttributes {
 
     import VirtualDOMAttributes.Type._
 
@@ -30,7 +36,6 @@ object Picker {
     case class SelectedValueAttributeSpec(name: String) extends AttributeSpec {
       def :=(value: String | Int): Attribute[String | Int] = Attribute(name, value, AS_IS)
     }
-
   }
 
 }

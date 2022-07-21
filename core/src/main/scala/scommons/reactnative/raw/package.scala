@@ -47,12 +47,6 @@ package object raw {
   @JSImport("react-native", "Modal") object Modal extends ReactClass
 
   @js.native
-  @JSImport("react-native", "Picker") object Picker extends ReactClass {
-
-    val Item: ReactClass = js.native
-  }
-
-  @js.native
   @JSImport("react-native", "ScrollView") object ScrollView extends ReactClass
 
   @js.native

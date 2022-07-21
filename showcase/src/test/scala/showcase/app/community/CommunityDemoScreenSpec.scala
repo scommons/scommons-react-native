@@ -21,6 +21,7 @@ class CommunityDemoScreenSpec extends TestSpec with TestRendererUtils {
     assertTestComponent(result, ShowcaseListView) {
       case ShowcaseListViewProps(items, navigate) =>
         items shouldBe List(
+          "Picker" -> "Demo Picker component",
           "Svg" -> "Demo Svg components",
           "WebView" -> "Demo WebView components",
           "HTMLView" -> "Demo HTMLView components",
@@ -47,6 +48,7 @@ class CommunityDemoScreenSpec extends TestSpec with TestRendererUtils {
     //then
     assertNativeComponent(result,
       <.View()(
+        <(Stack.Screen)(^.name := "Picker", ^.component := PickerDemo())(),
         <(Stack.Screen)(^.name := "Svg", ^.component := SvgDemo())(),
         <(Stack.Screen)(^.name := "WebView", ^.component := WebViewDemo())(),
         <(Stack.Screen)(^.name := "HTMLView", ^.component := HTMLViewDemo())(),

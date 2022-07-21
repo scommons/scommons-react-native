@@ -10,15 +10,6 @@ const createImage = () => {
   return Image
 }
 
-const createPicker = () => {
-  const Picker = function () {
-    return null
-  }
-  Picker.displayName = "Picker"
-  Picker.Item = "Picker.Item"
-  return Picker
-}
-
 module.exports = {
   
   Alert: {
@@ -42,7 +33,6 @@ module.exports = {
   Image: createImage(),
   KeyboardAvoidingView: 'KeyboardAvoidingView',
   Modal: 'Modal',
-  Picker: createPicker(),
   ScrollView: 'ScrollView',
   StatusBar: 'StatusBar',
   Switch: 'Switch',
