@@ -32,6 +32,7 @@ object Expo extends ScalaJsModule {
 
   override val testDependencies: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
     TestLibs.scalaTestJs.value,
-    TestLibs.scalaMockJs.value
+    TestLibs.scalaMockJs.value,
+    Libs.scalaJsJavaSecureRandom.value
   ).map(_ % "test"))
 }
