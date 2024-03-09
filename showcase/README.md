@@ -9,8 +9,8 @@ Almost all examples are from a great book [React Native in Action](https://githu
 ### How to run it in your device
 
 * [live expo link](https://expo.io/@viktorpodzigun/showcase)
-* [mobile browser](https://scommons.org/scommons-react-native/showcase.html)
-* [web emulator](https://scommons.org/scommons-react-native/showcase.browser.html)
+* [mobile browser](https://scommons.github.io/scommons-react-native/showcase.html)
+* [web emulator](https://scommons.github.io/scommons-react-native/showcase.browser.html)
 
 #### How to Build/Run Showcase App locally using Expo
 

@@ -43,8 +43,8 @@ resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositor
 See [showcase/README.md](showcase/README.md) for how to build and run it.
 
 * [live expo link](https://expo.io/@viktorpodzigun/showcase)
-* [mobile browser](https://scommons.org/scommons-react-native/showcase.html)
-* [web emulator](https://scommons.org/scommons-react-native/showcase.browser.html)
+* [mobile browser](https://scommons.github.io/scommons-react-native/showcase.html)
+* [web emulator](https://scommons.github.io/scommons-react-native/showcase.browser.html)
 
 ##### Demo App/UI Library Components
 
@@ -146,7 +146,7 @@ sbt test
 
 ## Documentation
 
-You can find more documentation [here](https://scommons.org/scommons-react-native)
+You can find more documentation [here](https://scommons.github.io/scommons-react-native)
 
 ### Examples
 

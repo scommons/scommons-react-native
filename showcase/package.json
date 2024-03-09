@@ -1,5 +1,5 @@
 {
-  "homepage": "https://scommons.org/scommons-react-native",
+  "homepage": "https://scommons.github.io/scommons-react-native",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "postinstall": "patch-package",

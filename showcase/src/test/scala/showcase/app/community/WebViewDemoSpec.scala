@@ -36,7 +36,7 @@ class WebViewDemoSpec extends TestSpec with TestRendererUtils {
         <.Text(themeStyle(styles.title, themeTextStyle))("WebView:"),
         <.WebView(
           ^.source := new UriResource {
-            override val uri = "https://scommons.org/"
+            override val uri = "https://scommons.github.io/"
           }
         )()
       )
